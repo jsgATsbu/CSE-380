@@ -16,10 +16,10 @@ LegendOfMeta.Game.prototype = {
 
         this.cursors = this.game.input.keyboard.createCursorKeys();
         this.altCursors = this.game.addKeys({
-            'up': Phaser.KeyCode.W,
-            'down': Phaser.KeyCode.S,
-            'left': Phaser.KeyCode.A,
-            'right': Phaser.KeyCode.D
+            up: Phaser.KeyCode.W,
+            down: Phaser.KeyCode.S,
+            left: Phaser.KeyCode.A,
+            right: Phaser.KeyCode.D
         });
     },
 

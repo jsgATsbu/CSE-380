@@ -2,7 +2,7 @@
 
 var LegendOfMeta = LegendOfMeta || {};
 
-LegendOfMeta.game = new Phaser.Game(/* TODO decide how large the game window will be */);
+LegendOfMeta.game = new Phaser.Game(2560, 2560);
 
 LegendOfMeta.game.state.add('Boot', LegendOfMeta.Boot);
 LegendOfMeta.game.state.add('Preload', LegendOfMeta.Preload);

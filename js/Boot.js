@@ -5,7 +5,12 @@ TheLegendOfMeta.Boot = function(){};
 TheLegendOfMeta.Boot.prototype = {
   preload: function(){
     this.load.image('logo','assets/images/logo.png');
-    this.load.image('preloadBar','assets/images/preloader-bar.png')
+    this.load.image('preloadBar','assets/images/preloader-bar.png');
+    this.load.image('mainMenuBG','assets/images/MainMenu.png');
+    this.load.image('preloadBG','assets/images/Preload.png');
+    this.load.image('selectLevelBG','assets/images/SelectLevel.png');
+    this.load.image('settingBG','assets/images/Setting.png');
+    this.load.image('helpBG','assets/images/Help.png');
   },
   create: function () {
     this.game.stage.backgroundColor = '#fff';

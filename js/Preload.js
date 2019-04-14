@@ -1,3 +1,5 @@
+'use strict';
+
 var TheLegendOfMeta = TheLegendOfMeta || {};
 
 TheLegendOfMeta.Preload = function(){};

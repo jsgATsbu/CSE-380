@@ -1,3 +1,5 @@
+'use strict';
+
 var TheLegendOfMeta = TheLegendOfMeta || {};
 
 TheLegendOfMeta.game = new Phaser.Game(window.innerWidth,window.innerHeight,Phaser.AUTO,'');

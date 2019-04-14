@@ -18,8 +18,8 @@ TheLegendOfMeta.Preload.prototype = {
         this.load.spritesheet('exitBtn','assets/images/menu_exit.png',256,128);
         this.load.image('returnBtn','assets/images/menu_return.png');
 
-        var style1 = {font: "60px Arial", fill: "#000", align: "center" };
-        var style2 = { font: "30px Arial", fill: "#000", align: "center" };
+        var style1 = {font: "60px Arial", fill: "#fff", align: "center" };
+        var style2 = { font: "30px Arial", fill: "#fff", align: "center" };
         var title = this.game.add.text(this.game.width/2,this.game.height/5,"The Legend Of Meta", style1);
         var tap = this.game.add.text(this.game.width/2,this.game.height*4/5+50, "Tap to Begin", style2);
         title.anchor.set(0.5);

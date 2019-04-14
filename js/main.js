@@ -1,11 +1,12 @@
 'use strict';
 
-var LegendOfMeta = LegendOfMeta || {};
+var TheLegendOfMeta = TheLegendOfMeta || {};
 
-LegendOfMeta.game = new Phaser.Game(2560, 2560);
+TheLegendOfMeta.game = new Phaser.Game(window.innerWidth,window.innerHeight,Phaser.AUTO,'');
 
-LegendOfMeta.game.state.add('Boot', LegendOfMeta.Boot);
-LegendOfMeta.game.state.add('Preload', LegendOfMeta.Preload);
-LegendOfMeta.game.state.add('Game', LegendOfMeta.Game);
+TheLegendOfMeta.game.state.add('Boot',TheLegendOfMeta.Boot);
+TheLegendOfMeta.game.state.add('Preload',TheLegendOfMeta.Preload);
+TheLegendOfMeta.game.state.add('MainMenu',TheLegendOfMeta.MainMenu);
+TheLegendOfMeta.game.state.add('Game',TheLegendOfMeta.Game);
 
-LegendOfMeta.game.state.start('Boot');
+TheLegendOfMeta.game.state.start('Boot');

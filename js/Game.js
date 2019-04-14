@@ -1,35 +1,36 @@
 'use strict';
 
-var LegendOfMeta = LegendOfMeta || {};
+var TheLegendOfMeta = TheLegendOfMeta || {};
 
-LegendOfMeta.Game = function(){};
+TheLegendOfMeta.Game = function() {};
 
-LegendOfMeta.Game.prototype = {
+TheLegendOfMeta.Game.prototype = {
     create: function() {
         this.createMap();
         this.createPlayer();
 
-        this.game.physics.arcade.enable(this.player);
-        this.game.camera.follow(this.player);
+        this.game.camera.follow(this.playerSprite);
         this.setupInput();
     },
 
     createMap() {
-        this.map = this.game.add.tilemap('test_map');
-        this.map.addTilesetImage('test_tiles', 'test_tiles');
+        this.map = this.game.add.tilemap('level1');
+        this.map.addTilesetImage('tiles', 'gameTiles');
 
-        this.background = this.map.createLayer('background');
-        this.obstacles = this.map.createLayer('obstacles');
-        this.background.resizeWorld();
+        this.backgroundlayer = this.map.createLayer('backgroundLayer');
+        this.blockedLayer = this.map.createLayer('blockedLayer');
+        this.backgroundlayer.resizeWorld();
 
-        this.map.setCollisionBetween(1, 2000, true, 'obstacles');
+        this.map.setCollisionBetween(1, 2000, true, 'blockedLayer');
     },
 
     createPlayer() {
-        let playerObj = this.findObjectsByType('playerStart', this.map, 'objects')[0];
-        this.player = this.game.add.sprite(playerObj.x, playerObj.y, 'test_sprites', 0);
-        this.player.animations.add('test_sprites', null, 10, true);
-        this.player.animations.stop();
+        let playerObj = this.findObjectsByType('playerStart', this.map, 'objectsLayer')[0];
+        this.playerSprite = this.game.add.sprite(playerObj.x, playerObj.y, 'playerSprite');
+
+        this.game.physics.arcade.enable(this.playerSprite);
+        this.playerSprite.anchor.setTo(0.5,0.5);
+        this.playerSpeed = 400;
     },
 
     findObjectsByType: function(type, map, layer) {
@@ -63,10 +64,34 @@ LegendOfMeta.Game.prototype = {
         this.two = keyboard.addKey(Phaser.KeyCode.TWO);
         this.three = keyboard.addKey(Phaser.KeyCode.THREE);
         this.four = keyboard.addKey(Phaser.KeyCode.FOUR);
+
+        this.space.onDown.add(function() {
+            // TODO
+        });
+
+        this.esc.onDown.add(function() {
+            // TODO
+        });
+
+        this.one.onDown.add(function() {
+            // TODO
+        });
+
+        this.two.onDown.add(function() {
+            // TODO
+        });
+
+        this.three.onDown.add(function() {
+            // TODO
+        });
+
+        this.four.onDown.add(function() {
+            // TODO
+        });
     },
 
     update: function() {
-        this.game.physics.arcade.collide(this.player, this.obstacles);
+        this.game.physics.arcade.collide(this.playerSprite, this.blockedLayer);
 
         let cursors = this.cursors;
         let altCursors = this.altCursors;
@@ -85,27 +110,21 @@ LegendOfMeta.Game.prototype = {
             right = false;
         }
 
-        let playerVelocity = this.player.body.velocity;
+        let playerSpeed = this.playerSpeed;
         if (up) {
-            playerVelocity.y = -256;
+            this.playerSprite.body.velocity.y = -playerSpeed;
         } else if (down) {
-            playerVelocity.y = 256;
+            this.playerSprite.body.velocity.y = playerSpeed;
         } else {
-            playerVelocity.y = 0;
+            this.playerSprite.body.velocity.y = 0;
         }
 
         if (left) {
-            playerVelocity.x = -256;
+            this.playerSprite.body.velocity.x = -playerSpeed;
         } else if (right) {
-            playerVelocity.x = 256;
+            this.playerSprite.body.velocity.x = playerSpeed;
         } else {
-            playerVelocity.x = 0;
-        }
-
-        if (playerVelocity.x === 0 && playerVelocity.y === 0) {
-            this.player.animations.stop();
-        } else {
-            this.player.animations.play('test_tiles');
+            this.playerSprite.body.velocity.x = 0;
         }
     }
 };

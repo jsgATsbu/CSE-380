@@ -26,7 +26,7 @@ TheLegendOfMeta.Game.prototype = {
 
     createPlayer() {
         let playerObj = this.findObjectsByType('playerStart', this.map, 'objectsLayer')[0];
-        this.playerSprite = this.game.add.sprite(playerObj.x, playerObj.y, 'playerSprite');
+        this.playerSprite = this.game.add.sprite(playerObj.x, playerObj.y, 'player');
 
         this.game.physics.arcade.enable(this.playerSprite);
         this.playerSprite.anchor.setTo(0.5,0.5);

@@ -41,10 +41,10 @@ TheLegendOfMeta.Game.prototype = {
             sprite.damage(this.attackDamage);
         };
 
-        this.player.animations.add('walkFront',[4,5,6,7], 5,true);
-        this.player.animations.add('walkLeft',[8,9,10,11], 5,true);
-        this.player.animations.add('walkRight',[12,13,14,15], 5,true);
-        this.player.animations.add('walkBack',[16,17,18,19], 5,true);
+        this.player.animations.add('walkFront',[0,4,5,6,7], 5,true);
+        this.player.animations.add('walkLeft',[1,8,9,10,11], 5,true);
+        this.player.animations.add('walkRight',[2,12,13,14,15], 5,true);
+        this.player.animations.add('walkBack',[3,16,17,18,19], 5,true);
     },
 
     findObjectsByType: function(type, map, layer) {
@@ -107,11 +107,9 @@ TheLegendOfMeta.Game.prototype = {
                     }
                 }
             } else {
-                let sprite = this.findSpritesByCoordinates(event.clientX,event.clientY)[0];
-                if(sprite==null) {
-                    console.log("nothing to attack");
-                }
-                else if (sprite !== this.player &&
+                let sprite = this.findSpritesByCoordinates(event.clientX+this.game.camera.x,event.clientY+this.game.camera.y)[0];
+                console.log(sprite);
+                if(sprite !== undefined && sprite !== this.player &&
                     Math.abs(this.player.x - sprite.x) <= 128 &&
                     Math.abs(this.player.y - sprite.y) <= 128) {
 
@@ -182,7 +180,7 @@ TheLegendOfMeta.Game.prototype = {
             this.player.animations.play('walkBack');
         }
         else{
-            this.player.animations.stop();
+            this.player.animations.stop(null,true);
         }
 
         let cursors = this.cursors;

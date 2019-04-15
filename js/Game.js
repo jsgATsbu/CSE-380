@@ -12,6 +12,7 @@ TheLegendOfMeta.Game.prototype = {
 
         this.game.camera.follow(this.playerSprite);
         this.setupInput();
+        this.tempSetting = null;
     },
 
     createMap() {
@@ -66,15 +67,53 @@ TheLegendOfMeta.Game.prototype = {
             right: Phaser.KeyCode.D
         });
 
-        this.input.onDown.add(function(pointer, event) {
-            let sprite = this.findSpritesByCoordinates(pointer.x, pointer.y)[0];
-            if (sprite !== this.playerSprite &&
-                Math.abs(this.playerSprite.x - sprite.x) <= 128 &&
-                Math.abs(this.playerSprite.y - sprite.y) <= 128) {
-
-                this.playerSprite.attack(sprite);
+        this.game.input.onDown.add(function(event) {
+            if(this.game.paused){
+                let x = event.clientX + this.game.camera.x;
+                let y = event.clientY + this.game.camera.y;
+                let menu = this.pauseMenu;
+                let btn1 = this.settingBtn;
+                let btn2 = this.titleBtn;
+                if(x < menu.x-menu.width/2 || x > menu.x+menu.width/2 || y < menu.y-menu.height || y > menu.y+menu.height/2) {
+                    if(this.tempSetting === null && this.game.paused) {
+                        this.game.paused = false;
+                        this.pauseMenu.destroy();
+                        this.settingBtn.destroy();
+                        this.titleBtn.destroy();
+                    }
+                    else{
+                        this.tempSetting.destroy();
+                        this.tempSetting = null;
+                    }
+                }
+                else if(x < btn1.x+btn1.width/2 && x > btn1.x-btn1.width/2 && y < btn1.y+btn1.height/2 && y > btn1.y-btn1.height/2){
+                    if(this.tempSetting === null) {
+                        this.tempSetting = this.game.add.image(menu.x, menu.y, 'Control');
+                        this.tempSetting.anchor.setTo(0.5);
+                    }
+                }
+                else if(x < btn2.x+btn2.width/2 && x > btn2.x-btn2.width/2 && y < btn2.y+btn2.height/2 && y > btn2.y-btn2.height/2){
+                    ///// This needs to be edited, don't know how to go back to previous state (MainMenu). Instead it goes back to the game for now.
+                    if(this.tempSetting === null && this.game.paused) {
+                        this.game.paused = false;
+                        this.pauseMenu.destroy();
+                        this.settingBtn.destroy();
+                        this.titleBtn.destroy();
+                    }
+                    else{
+                        this.tempSetting.destroy();
+                        this.tempSetting = null;
+                    }
+                }
             }
-        });
+        //     let sprite = this.findSpritesByCoordinates(pointer.x, pointer.y)[0];
+        //     if (sprite !== this.playerSprite &&
+        //         Math.abs(this.playerSprite.x - sprite.x) <= 128 &&
+        //         Math.abs(this.playerSprite.y - sprite.y) <= 128) {
+        //
+        //         this.playerSprite.attack(sprite);
+        //     }
+        },this);
 
         this.space = keyboard.addKey(Phaser.KeyCode.SPACEBAR);
         this.esc = keyboard.addKey(Phaser.KeyCode.ESC);
@@ -84,23 +123,30 @@ TheLegendOfMeta.Game.prototype = {
         this.four = keyboard.addKey(Phaser.KeyCode.FOUR);
 
         this.space.onDown.add(function() {
-            // TODO
-        });
+        },this);
         this.esc.onDown.add(function() {
-            // TODO
-        });
+            if(!this.game.paused) {
+                this.game.paused = true;
+                this.pauseMenu = this.game.add.sprite(this.game.camera.x + window.innerWidth / 2, this.game.camera.y + window.innerHeight / 2, 'pauseMenu');
+                this.pauseMenu.anchor.setTo(0.5);
+                this.settingBtn = this.game.add.button(this.pauseMenu.x, this.pauseMenu.y-75, 'settingBtn');
+                this.titleBtn = this.game.add.button(this.pauseMenu.x, this.pauseMenu.y+75, 'titleBtn');
+                this.settingBtn.anchor.setTo(0.5);
+                this.titleBtn.anchor.setTo(0.5);
+            }
+        },this);
         this.one.onDown.add(function() {
             // TODO
-        });
+        },this);
         this.two.onDown.add(function() {
             // TODO
-        });
+        },this);
         this.three.onDown.add(function() {
             // TODO
-        });
+        },this);
         this.four.onDown.add(function() {
             // TODO
-        });
+        },this);
     },
 
     findSpritesByCoordinates: function(x, y) {

@@ -18,6 +18,8 @@ TheLegendOfMeta.Preload.prototype = {
         this.load.spritesheet('settingBtn','assets/images/menu_setting.png',256,128);
         this.load.spritesheet('helpBtn','assets/images/menu_help.png',256,128);
         this.load.spritesheet('exitBtn','assets/images/menu_exit.png',256,128);
+        this.load.spritesheet('resumeBtn','assets/images/menu_resume.png',256,128);
+        this.load.spritesheet('titleBtn','assets/images/menu_return.png',256,128);
         this.load.image('returnBtn','assets/images/menu_return.png');
 
         var style1 = {font: "60px Arial", fill: "#fff", align: "center" };

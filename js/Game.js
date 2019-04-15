@@ -7,6 +7,7 @@ TheLegendOfMeta.Game = function() {};
 TheLegendOfMeta.Game.prototype = {
     create: function() {
         this.createMap();
+        this.game.sprites = [];
         this.createPlayer();
 
         this.game.camera.follow(this.playerSprite);
@@ -27,10 +28,17 @@ TheLegendOfMeta.Game.prototype = {
     createPlayer() {
         let playerObj = this.findObjectsByType('playerStart', this.map, 'objectsLayer')[0];
         this.playerSprite = this.game.add.sprite(playerObj.x, playerObj.y, 'player');
+        this.playerSprite.setHealth(100);
+        this.game.sprites.push(this.playerSprite);
 
         this.game.physics.arcade.enable(this.playerSprite);
         this.playerSprite.anchor.setTo(0.5,0.5);
         this.playerSpeed = 400;
+
+        this.attackDamage = 10;
+        this.playerSprite.attack = function(sprite) {
+            sprite.damage(this.attackDamage);
+        }
     },
 
     findObjectsByType: function(type, map, layer) {
@@ -58,6 +66,16 @@ TheLegendOfMeta.Game.prototype = {
             right: Phaser.KeyCode.D
         });
 
+        this.input.onDown.add(function(pointer, event) {
+            let sprite = this.findSpritesByCoordinates(pointer.x, pointer.y)[0];
+            if (sprite !== this.playerSprite &&
+                Math.abs(this.playerSprite.x - sprite.x) <= 128 &&
+                Math.abs(this.playerSprite.y - sprite.y) <= 128) {
+
+                this.playerSprite.attack(sprite);
+            }
+        });
+
         this.space = keyboard.addKey(Phaser.KeyCode.SPACEBAR);
         this.esc = keyboard.addKey(Phaser.KeyCode.ESC);
         this.one = keyboard.addKey(Phaser.KeyCode.ONE);
@@ -68,26 +86,33 @@ TheLegendOfMeta.Game.prototype = {
         this.space.onDown.add(function() {
             // TODO
         });
-
         this.esc.onDown.add(function() {
             // TODO
         });
-
         this.one.onDown.add(function() {
             // TODO
         });
-
         this.two.onDown.add(function() {
             // TODO
         });
-
         this.three.onDown.add(function() {
             // TODO
         });
-
         this.four.onDown.add(function() {
             // TODO
         });
+    },
+
+    findSpritesByCoordinates: function(x, y) {
+        let result = [];
+        this.game.sprites.forEach(function (sprite) {
+            if (x > sprite.left() && x < sprite.right() &&
+                y > sprite.top()  && y < sprite.bottom()) {
+                result.push(sprite);
+            }
+        });
+
+        return result;
     },
 
     update: function() {

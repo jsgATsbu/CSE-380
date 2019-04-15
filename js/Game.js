@@ -102,7 +102,7 @@ TheLegendOfMeta.Game.prototype = {
                     }
                 }
             } else {
-                let sprite = this.findSpritesByCoordinates(pointer.x, pointer.y)[0];
+                let sprite = this.findSpritesByCoordinates(event.clientX,event.clientY)[0];
                 if (sprite !== this.playerSprite &&
                     Math.abs(this.playerSprite.x - sprite.x) <= 128 &&
                     Math.abs(this.playerSprite.y - sprite.y) <= 128) {

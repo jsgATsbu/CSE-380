@@ -108,7 +108,10 @@ TheLegendOfMeta.Game.prototype = {
                 }
             } else {
                 let sprite = this.findSpritesByCoordinates(event.clientX,event.clientY)[0];
-                if (sprite !== this.player &&
+                if(sprite==null) {
+                    console.log("nothing to attack");
+                }
+                else if (sprite !== this.player &&
                     Math.abs(this.player.x - sprite.x) <= 128 &&
                     Math.abs(this.player.y - sprite.y) <= 128) {
 

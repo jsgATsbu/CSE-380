@@ -154,8 +154,8 @@ TheLegendOfMeta.Game.prototype = {
     findSpritesByCoordinates: function(x, y) {
         let result = [];
         this.game.sprites.forEach(function (sprite) {
-            if (x > sprite.left() && x < sprite.right() &&
-                y > sprite.top()  && y < sprite.bottom()) {
+            if (x > sprite.left && x < sprite.right &&
+                y > sprite.top  && y < sprite.bottom) {
                 result.push(sprite);
             }
         });

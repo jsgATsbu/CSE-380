@@ -7,7 +7,6 @@ TheLegendOfMeta.MainMenu.prototype = {
         this.background = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'Black');
 
         var mainMenuBG = this.game.add.image(this.game.width/2,this.game.height*2/5,'mainMenuBG');
-        console.log(mainMenuBG);
         mainMenuBG.scale.setTo(1.7);
         mainMenuBG.anchor.setTo(0.5);
 

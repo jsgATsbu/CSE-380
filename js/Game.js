@@ -68,51 +68,48 @@ TheLegendOfMeta.Game.prototype = {
         });
 
         this.game.input.onDown.add(function(event) {
-            if(this.game.paused){
+            if (this.game.paused) {
                 let x = event.clientX + this.game.camera.x;
                 let y = event.clientY + this.game.camera.y;
                 let menu = this.pauseMenu;
                 let btn1 = this.settingBtn;
                 let btn2 = this.titleBtn;
-                if(x < menu.x-menu.width/2 || x > menu.x+menu.width/2 || y < menu.y-menu.height || y > menu.y+menu.height/2) {
-                    if(this.tempSetting === null && this.game.paused) {
+                if (x < menu.x - menu.width / 2 || x > menu.x + menu.width / 2 || y < menu.y - menu.height || y > menu.y + menu.height / 2) {
+                    if (this.tempSetting === null && this.game.paused) {
                         this.game.paused = false;
                         this.pauseMenu.destroy();
                         this.settingBtn.destroy();
                         this.titleBtn.destroy();
-                    }
-                    else{
+                    } else {
                         this.tempSetting.destroy();
                         this.tempSetting = null;
                     }
-                }
-                else if(x < btn1.x+btn1.width/2 && x > btn1.x-btn1.width/2 && y < btn1.y+btn1.height/2 && y > btn1.y-btn1.height/2){
-                    if(this.tempSetting === null) {
+                } else if (x < btn1.x + btn1.width / 2 && x > btn1.x - btn1.width / 2 && y < btn1.y + btn1.height / 2 && y > btn1.y - btn1.height / 2) {
+                    if (this.tempSetting === null) {
                         this.tempSetting = this.game.add.image(menu.x, menu.y, 'Control');
                         this.tempSetting.anchor.setTo(0.5);
                     }
-                }
-                else if(x < btn2.x+btn2.width/2 && x > btn2.x-btn2.width/2 && y < btn2.y+btn2.height/2 && y > btn2.y-btn2.height/2){
+                } else if (x < btn2.x + btn2.width / 2 && x > btn2.x - btn2.width / 2 && y < btn2.y + btn2.height / 2 && y > btn2.y - btn2.height / 2) {
                     ///// This needs to be edited, don't know how to go back to previous state (MainMenu). Instead it goes back to the game for now.
-                    if(this.tempSetting === null && this.game.paused) {
+                    if (this.tempSetting === null && this.game.paused) {
                         this.game.paused = false;
                         this.pauseMenu.destroy();
                         this.settingBtn.destroy();
                         this.titleBtn.destroy();
-                    }
-                    else{
+                    } else {
                         this.tempSetting.destroy();
                         this.tempSetting = null;
                     }
                 }
+            } else {
+                let sprite = this.findSpritesByCoordinates(pointer.x, pointer.y)[0];
+                if (sprite !== this.playerSprite &&
+                    Math.abs(this.playerSprite.x - sprite.x) <= 128 &&
+                    Math.abs(this.playerSprite.y - sprite.y) <= 128) {
+
+                    this.playerSprite.attack(sprite);
+                }
             }
-        //     let sprite = this.findSpritesByCoordinates(pointer.x, pointer.y)[0];
-        //     if (sprite !== this.playerSprite &&
-        //         Math.abs(this.playerSprite.x - sprite.x) <= 128 &&
-        //         Math.abs(this.playerSprite.y - sprite.y) <= 128) {
-        //
-        //         this.playerSprite.attack(sprite);
-        //     }
         },this);
 
         this.space = keyboard.addKey(Phaser.KeyCode.SPACEBAR);

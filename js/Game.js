@@ -10,7 +10,7 @@ TheLegendOfMeta.Game.prototype = {
         this.game.sprites = [];
         this.createPlayer();
 
-        this.game.camera.follow(this.playerSprite);
+        this.game.camera.follow(this.player);
         this.setupInput();
         this.tempSetting = null;
     },
@@ -28,18 +28,23 @@ TheLegendOfMeta.Game.prototype = {
 
     createPlayer() {
         let playerObj = this.findObjectsByType('playerStart', this.map, 'objectsLayer')[0];
-        this.playerSprite = this.game.add.sprite(playerObj.x, playerObj.y, 'player');
-        this.playerSprite.setHealth(100);
-        this.game.sprites.push(this.playerSprite);
+        this.player = this.game.add.sprite(playerObj.x, playerObj.y, 'player');
+        this.player.setHealth(100);
+        this.game.sprites.push(this.player);
 
-        this.game.physics.arcade.enable(this.playerSprite);
-        this.playerSprite.anchor.setTo(0.5,0.5);
+        this.game.physics.arcade.enable(this.player);
+        this.player.anchor.setTo(0.5,0.5);
         this.playerSpeed = 400;
 
         this.attackDamage = 10;
-        this.playerSprite.attack = function(sprite) {
+        this.player.attack = function(sprite) {
             sprite.damage(this.attackDamage);
-        }
+        };
+
+        this.player.animations.add('walkFront',[4,5,6,7], 5,true);
+        this.player.animations.add('walkLeft',[8,9,10,11], 5,true);
+        this.player.animations.add('walkRight',[12,13,14,15], 5,true);
+        this.player.animations.add('walkBack',[16,17,18,19], 5,true);
     },
 
     findObjectsByType: function(type, map, layer) {
@@ -103,11 +108,11 @@ TheLegendOfMeta.Game.prototype = {
                 }
             } else {
                 let sprite = this.findSpritesByCoordinates(event.clientX,event.clientY)[0];
-                if (sprite !== this.playerSprite &&
-                    Math.abs(this.playerSprite.x - sprite.x) <= 128 &&
-                    Math.abs(this.playerSprite.y - sprite.y) <= 128) {
+                if (sprite !== this.player &&
+                    Math.abs(this.player.x - sprite.x) <= 128 &&
+                    Math.abs(this.player.y - sprite.y) <= 128) {
 
-                    this.playerSprite.attack(sprite);
+                    this.player.attack(sprite);
                 }
             }
         },this);
@@ -159,7 +164,23 @@ TheLegendOfMeta.Game.prototype = {
     },
 
     update: function() {
-        this.game.physics.arcade.collide(this.playerSprite, this.blockedLayer);
+        this.game.physics.arcade.collide(this.player, this.blockedLayer);
+
+        if(this.player.body.velocity.x > 0) {
+            this.player.animations.play('walkRight');
+        }
+        else if(this.player.body.velocity.x < 0){
+            this.player.animations.play('walkLeft');
+        }
+        else if(this.player.body.velocity.y > 0){
+            this.player.animations.play('walkFront');
+        }
+        else if(this.player.body.velocity.y < 0){
+            this.player.animations.play('walkBack');
+        }
+        else{
+            this.player.animations.stop();
+        }
 
         let cursors = this.cursors;
         let altCursors = this.altCursors;
@@ -180,19 +201,19 @@ TheLegendOfMeta.Game.prototype = {
 
         let playerSpeed = this.playerSpeed;
         if (up) {
-            this.playerSprite.body.velocity.y = -playerSpeed;
+            this.player.body.velocity.y = -playerSpeed;
         } else if (down) {
-            this.playerSprite.body.velocity.y = playerSpeed;
+            this.player.body.velocity.y = playerSpeed;
         } else {
-            this.playerSprite.body.velocity.y = 0;
+            this.player.body.velocity.y = 0;
         }
 
         if (left) {
-            this.playerSprite.body.velocity.x = -playerSpeed;
+            this.player.body.velocity.x = -playerSpeed;
         } else if (right) {
-            this.playerSprite.body.velocity.x = playerSpeed;
+            this.player.body.velocity.x = playerSpeed;
         } else {
-            this.playerSprite.body.velocity.x = 0;
+            this.player.body.velocity.x = 0;
         }
     }
 };

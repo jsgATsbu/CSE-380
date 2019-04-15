@@ -110,9 +110,8 @@ TheLegendOfMeta.Game.prototype = {
                 let sprite = this.findSpritesByCoordinates(event.clientX+this.game.camera.x,event.clientY+this.game.camera.y)[0];
                 console.log(sprite);
                 if(sprite !== undefined && sprite !== this.player &&
-                    Math.abs(this.player.x - sprite.x) <= 128 &&
-                    Math.abs(this.player.y - sprite.y) <= 128) {
-
+                    Math.abs(this.player.x - sprite.x) <= 64 &&
+                    Math.abs(this.player.y - sprite.y) <= 64) {
                     this.player.attack(sprite);
                 }
             }

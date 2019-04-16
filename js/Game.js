@@ -93,6 +93,12 @@ TheLegendOfMeta.Game.prototype = {
         stats.maxHealth = health;
         stats.spd = spd;
         sprite.stats = stats;
+        sprite.attack = function(enemy){
+            let dmg = sprite.stats.atk - enemy.stats.def;
+            if(enemy.stats.currentHealth > 0){
+                enemy.stats.currentHealth -= dmg;
+            }
+        }
     },
     findObjectsByType: function(type, map, layer) {
         let result = [];
@@ -218,7 +224,6 @@ TheLegendOfMeta.Game.prototype = {
             mon.healthBar.setPosition(mon.body.x+32,mon.body.y-20);
             mon.healthBar.setPercent(mon.stats.currentHealth*100/mon.stats.maxHealth);
         },this);
-        
 
         if(this.player.body.velocity.x > 0) {
             this.player.animations.play('walkRight');

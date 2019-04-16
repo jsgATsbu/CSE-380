@@ -6,6 +6,7 @@ TheLegendOfMeta.Game = function() {};
 
 TheLegendOfMeta.Game.prototype = {
     create: function() {
+        this.monsters = [];
         this.createMap();
         this.game.sprites = [];
         this.createPlayer();
@@ -15,7 +16,6 @@ TheLegendOfMeta.Game.prototype = {
         this.setupInput();
         this.tempSetting = null;
     },
-
     createMap() {
         this.map = this.game.add.tilemap('level1');
         this.map.addTilesetImage('tiles', 'gameTiles');
@@ -55,6 +55,7 @@ TheLegendOfMeta.Game.prototype = {
         let alien = this.game.add.sprite(alienObj.x+32, alienObj.y+32, 'alien');
         this.initiateStat(alien, 40,5,60,400);
         this.game.sprites.push(alien);
+        this.monsters.push(alien);
 
         this.game.physics.arcade.enable(alien);
         alien.anchor.setTo(0.5,0.5);
@@ -71,6 +72,7 @@ TheLegendOfMeta.Game.prototype = {
         let dreadFace = this.game.add.sprite(dreadFaceObj.x+32, dreadFaceObj.y+32, 'dreadFace');
         this.initiateStat(dreadFace, 20,20,120,200);
         this.game.sprites.push(dreadFace);
+        this.monsters.push(dreadFace);
 
         this.game.physics.arcade.enable(dreadFace);
         dreadFace.anchor.setTo(0.5,0.5);
@@ -87,7 +89,8 @@ TheLegendOfMeta.Game.prototype = {
         let stats = {};
         stats.atk = atk;
         stats.def = def;
-        stats.health = health;
+        stats.currentHealth = health;
+        stats.maxHealth = health;
         stats.spd = spd;
         sprite.stats = stats;
     },
@@ -205,14 +208,17 @@ TheLegendOfMeta.Game.prototype = {
 
         return result;
     },
-
     update: function() {
         this.game.physics.arcade.collide(this.player, this.blockedLayer);
         this.game.physics.arcade.collide(this.player, this.game.sprites);
 
         this.player.healthBar.setPosition(this.player.body.x+32, this.player.body.y-20);
-        // this.myHealthBar.setPercent(this.myHealthBar.percent);
-        // this.myHealthBar.percent--;
+        this.player.healthBar.setPercent(this.player.stats.currentHealth*100/this.player.stats.maxHealth);
+        this.monsters.forEach(function(mon){
+            mon.healthBar.setPosition(mon.body.x+32,mon.body.y-20);
+            mon.healthBar.setPercent(mon.stats.currentHealth*100/mon.stats.maxHealth);
+        },this);
+        
 
         if(this.player.body.velocity.x > 0) {
             this.player.animations.play('walkRight');

@@ -53,7 +53,7 @@ TheLegendOfMeta.Game.prototype = {
     createMonster: function(){
         let alienObj = this.findObjectsByType('alien',this.map,'objectsLayer')[0];
         let alien = this.game.add.sprite(alienObj.x+32, alienObj.y+32, 'alien');
-        this.initiateStat(alien, 40,5,60);
+        this.initiateStat(alien, 40,5,60,400);
         this.game.sprites.push(alien);
 
         this.game.physics.arcade.enable(alien);
@@ -69,7 +69,7 @@ TheLegendOfMeta.Game.prototype = {
 
         let dreadFaceObj = this.findObjectsByType('dreadFace',this.map,'objectsLayer')[0];
         let dreadFace = this.game.add.sprite(dreadFaceObj.x+32, dreadFaceObj.y+32, 'dreadFace');
-        this.initiateStat(dreadFace, 20,20,120);
+        this.initiateStat(dreadFace, 20,20,120,200);
         this.game.sprites.push(dreadFace);
 
         this.game.physics.arcade.enable(dreadFace);

@@ -38,9 +38,9 @@ TheLegendOfMeta.Game.prototype = {
         this.game.physics.arcade.enable(this.player);
         this.player.anchor.setTo(0.5,0.5);
 
-        this.player.attack = function(sprite, atk) {
-            sprite.damage(atk);
-        };
+        // this.player.attack = function(sprite, atk) {
+        //     sprite.damage(atk);
+        // };
         this.player.abilities = [breakRock];
         this.player.activeAbility = function() {};
 
@@ -89,7 +89,6 @@ TheLegendOfMeta.Game.prototype = {
         dreadFace.animations.add('walkRight',[4,5], 5,true);
         dreadFace.animations.add('walkBack',[6,7], 5,true);
 
-
         //// For Simple AI, temporary
         alien.origXY = {x:alien.body.x,y:alien.body.y};
         dreadFace.origXY = {x:dreadFace.x,y:dreadFace.y};
@@ -98,6 +97,7 @@ TheLegendOfMeta.Game.prototype = {
         let stats = {};
         stats.atk = atk;
         stats.def = def;
+        stats.currentHealth = health;
         stats.maxHealth = health;
         stats.spd = spd;
         sprite.stats = stats;
@@ -238,10 +238,18 @@ TheLegendOfMeta.Game.prototype = {
             mon.healthBar.setPosition(mon.body.x+32,mon.body.y-20);
             mon.healthBar.setPercent(mon.stats.currentHealth*100/mon.stats.maxHealth);
         },this);
-
         //// SimpleAI: Monsters[0] is the alien, Monsters[1] is dreadFace, we only have 2 monsters right now
         let alien = this.monsters[0];
         let dreadFace = this.monsters[1];
+
+        if(alien.stats.currentHealth <= 0){
+            alien.healthBar.kill();
+            alien.kill();
+        }
+        if(dreadFace.stats.currentHealth <= 0){
+            dreadFace.healthBar.kill();
+            dreadFace.kill();
+        }
 
         if(alien.body.velocity.x > 0){
             alien.animations.play('walkRight');

@@ -9,6 +9,7 @@ TheLegendOfMeta.Game.prototype = {
         this.createMap();
         this.game.sprites = [];
         this.createPlayer();
+        this.createMonster();
 
         this.game.camera.follow(this.player);
         this.setupInput();
@@ -25,33 +26,71 @@ TheLegendOfMeta.Game.prototype = {
 
         this.map.setCollisionBetween(1, 2000, true, 'blockedLayer');
     },
-
     createPlayer() {
         let playerObj = this.findObjectsByType('playerStart', this.map, 'objectsLayer')[0];
-        this.player = this.game.add.sprite(playerObj.x, playerObj.y, 'player');
-        this.player.setHealth(100);
+        this.player = this.game.add.sprite(playerObj.x+32, playerObj.y+32, 'player');
+        this.initiateStat(this.player,30,15,100, 400);
         this.game.sprites.push(this.player);
 
         this.game.physics.arcade.enable(this.player);
         this.player.anchor.setTo(0.5,0.5);
-        this.playerSpeed = 400;
+        // this.playerSpeed = 400;
 
-        this.attackDamage = 10;
-        this.player.attack = function(sprite) {
-            sprite.damage(this.attackDamage);
-        };
+        // this.attackDamage = 10;
+        // this.player.attack = function(sprite) {
+        //     sprite.damage(this.attackDamage);
+        // };
 
-        var barConfig = {width: 64, height: 8, bar:{color: '#92F6BD'}, bg:{color: 'black'}, x: this.player.body.x, y: (this.player.body.y-this.player.body.height*2/3)};
-        this.myHealthBar = new HealthBar(this.game, barConfig);
-        this.myHealthBar.setAnchor(0.5,0.5);
-        this.myHealthBar.percent = 100;
+        var barConfig = {width: 64, height: 8, bar:{color: '#46EF6E'}, bg:{color: 'black'}, x: this.player.body.x, y: (this.player.body.y-this.player.body.height*2/3)};
+        this.player.healthBar = new HealthBar(this.game, barConfig);
+        this.player.healthBar.setAnchor(0.5,0.5);
 
         this.player.animations.add('walkFront',[0,4,5,6,7], 5,true);
         this.player.animations.add('walkLeft',[1,8,9,10,11], 5,true);
         this.player.animations.add('walkRight',[2,12,13,14,15], 5,true);
         this.player.animations.add('walkBack',[3,16,17,18,19], 5,true);
     },
+    createMonster: function(){
+        let alienObj = this.findObjectsByType('alien',this.map,'objectsLayer')[0];
+        let alien = this.game.add.sprite(alienObj.x+32, alienObj.y+32, 'alien');
+        this.initiateStat(alien, 40,5,60);
+        this.game.sprites.push(alien);
 
+        this.game.physics.arcade.enable(alien);
+        alien.anchor.setTo(0.5,0.5);
+        var barConfig = {width: 64, height: 8, bar:{color: '#46EF6E'}, bg:{color: 'black'}, x: alien.body.x, y: (alien.body.y-alien.body.height*2/3)};
+        alien.healthBar = new HealthBar(this.game, barConfig);
+        alien.healthBar.setAnchor(0.5,0.5);
+
+        alien.animations.add('walkFront',[0,4,5,6,7], 5,true);
+        alien.animations.add('walkLeft',[1,8,9,10,11], 5,true);
+        alien.animations.add('walkRight',[2,12,13,14,15], 5,true);
+        alien.animations.add('walkBack',[3,16,17,18,19], 5,true);
+
+        let dreadFaceObj = this.findObjectsByType('dreadFace',this.map,'objectsLayer')[0];
+        let dreadFace = this.game.add.sprite(dreadFaceObj.x+32, dreadFaceObj.y+32, 'dreadFace');
+        this.initiateStat(dreadFace, 20,20,120);
+        this.game.sprites.push(dreadFace);
+
+        this.game.physics.arcade.enable(dreadFace);
+        dreadFace.anchor.setTo(0.5,0.5);
+        var barConfig2 = {width: 64, height: 8, bar:{color: '#46EF6E'}, bg:{color: 'black'}, x: dreadFace.body.x, y: (dreadFace.body.y-dreadFace.body.height*2/3)};
+        dreadFace.healthBar = new HealthBar(this.game, barConfig2);
+        dreadFace.healthBar.setAnchor(0.5,0.5);
+
+        dreadFace.animations.add('walkFront',[0,4,5,6,7], 5,true);
+        dreadFace.animations.add('walkLeft',[1,8,9,10,11], 5,true);
+        dreadFace.animations.add('walkRight',[2,12,13,14,15], 5,true);
+        dreadFace.animations.add('walkBack',[3,16,17,18,19], 5,true);
+    },
+    initiateStat: function(sprite, atk, def, health, spd){
+        let stats = {};
+        stats.atk = atk;
+        stats.def = def;
+        stats.health = health;
+        stats.spd = spd;
+        sprite.stats = stats;
+    },
     findObjectsByType: function(type, map, layer) {
         let result = [];
         map.objects[layer].forEach(function(element) {
@@ -113,7 +152,6 @@ TheLegendOfMeta.Game.prototype = {
                 }
             } else {
                 let sprite = this.findSpritesByCoordinates(event.clientX+this.game.camera.x,event.clientY+this.game.camera.y)[0];
-                console.log(sprite);
                 if(sprite !== undefined && sprite !== this.player &&
                     Math.abs(this.player.x - sprite.x) <= 64 &&
                     Math.abs(this.player.y - sprite.y) <= 64) {
@@ -170,10 +208,11 @@ TheLegendOfMeta.Game.prototype = {
 
     update: function() {
         this.game.physics.arcade.collide(this.player, this.blockedLayer);
+        this.game.physics.arcade.collide(this.player, this.game.sprites);
 
-        this.myHealthBar.setPosition(this.player.body.x+32, this.player.body.y-20);
-        this.myHealthBar.setPercent(this.myHealthBar.percent);
-        this.myHealthBar.percent--;
+        this.player.healthBar.setPosition(this.player.body.x+32, this.player.body.y-20);
+        // this.myHealthBar.setPercent(this.myHealthBar.percent);
+        // this.myHealthBar.percent--;
 
         if(this.player.body.velocity.x > 0) {
             this.player.animations.play('walkRight');
@@ -208,7 +247,7 @@ TheLegendOfMeta.Game.prototype = {
             right = false;
         }
 
-        let playerSpeed = this.playerSpeed;
+        let playerSpeed = this.player.stats.spd;
         if (up) {
             this.player.body.velocity.y = -playerSpeed;
         } else if (down) {

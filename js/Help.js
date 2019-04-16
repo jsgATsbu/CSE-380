@@ -13,9 +13,9 @@ TheLegendOfMeta.Help.prototype = {
             "\n" +
             "After suffering from another painful loss, the king summoned some of the soldier to conduct human experimentation by injecting demon leftovers into them, hoping to strengthen their power. Meta, who is desperate for power, is willing to be one of them.\n" +
             "\n" +
-            "In the end, all died immediately except for one. The only survivor, Meta, finally receive his desired power and starts his journey of revenge...";
-        var textBar = this.game.add.text(100,100,text,style);
-        // textBar.anchor.setTo(0.5);
+            "In the end, all died immediately except for one. The only survivor, Meta, finally receive his desired power and starts his journey of revenge...\n"+
+            "\n" + "Produced by: Sungyeong Jang, Henry Crain, Shenggui Jin";
+        this.game.add.text(100,100,text,style);
 
         var returnBtn = this.game.add.button(this.game.width/2,this.game.height*5/6,'returnBtn');
         returnBtn.anchor.setTo(0.5);

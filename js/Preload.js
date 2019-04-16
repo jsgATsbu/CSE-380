@@ -13,6 +13,8 @@ TheLegendOfMeta.Preload.prototype = {
         this.load.tilemap('level1', 'assets/tilemaps/level1.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.image('gameTiles', 'assets/images/tiles.png');
         this.load.spritesheet('player', 'assets/images/Meta.png',64,64);
+        this.load.spritesheet('alien', 'assets/images/Monsters.png',64,64);
+        this.load.spritesheet('dreadFace', 'assets/images/Monsters.png',64,64);
         this.load.spritesheet('startBtn','assets/images/menu_start.png',256,128);
         this.load.spritesheet('selectLevelBtn','assets/images/menu_select.png',256,128);
         this.load.spritesheet('settingBtn','assets/images/menu_setting.png',256,128);

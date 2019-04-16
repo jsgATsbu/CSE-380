@@ -6,6 +6,9 @@ TheLegendOfMeta.Game = function() {};
 
 TheLegendOfMeta.Game.prototype = {
     create: function() {
+        ///for Simple AI, temporary
+        this.countDown = 0;
+
         this.monsters = [];
         this.createMap();
         this.game.sprites = [];
@@ -81,10 +84,15 @@ TheLegendOfMeta.Game.prototype = {
         dreadFace.healthBar = new HealthBar(this.game, barConfig2);
         dreadFace.healthBar.setAnchor(0.5,0.5);
 
-        dreadFace.animations.add('walkFront',[0,4,5,6,7], 5,true);
-        dreadFace.animations.add('walkLeft',[1,8,9,10,11], 5,true);
-        dreadFace.animations.add('walkRight',[2,12,13,14,15], 5,true);
-        dreadFace.animations.add('walkBack',[3,16,17,18,19], 5,true);
+        dreadFace.animations.add('walkFront',[0,1], 5,true);
+        dreadFace.animations.add('walkLeft',[2,3], 5,true);
+        dreadFace.animations.add('walkRight',[4,5], 5,true);
+        dreadFace.animations.add('walkBack',[6,7], 5,true);
+
+
+        //// For Simple AI, temporary
+        alien.origXY = {x:alien.body.x,y:alien.body.y};
+        dreadFace.origXY = {x:dreadFace.x,y:dreadFace.y};
     },
     initiateStat: function(sprite, atk, def, health, spd){
         let stats = {};
@@ -94,6 +102,12 @@ TheLegendOfMeta.Game.prototype = {
         stats.maxHealth = health;
         stats.spd = spd;
         sprite.stats = stats;
+        sprite.attack = function(enemy){
+            let dmg = sprite.stats.atk - enemy.stats.def;
+            if(enemy.stats.currentHealth > 0){
+                enemy.stats.currentHealth -= dmg;
+            }
+        }
     },
     findObjectsByType: function(type, map, layer) {
         let result = [];
@@ -216,13 +230,71 @@ TheLegendOfMeta.Game.prototype = {
         this.game.physics.arcade.collide(this.player, this.blockedLayer);
         this.game.physics.arcade.collide(this.player, this.game.sprites);
 
+        //// Update the HP bar position and the percentage every frame
         this.player.healthBar.setPosition(this.player.body.x+32, this.player.body.y-20);
         this.player.healthBar.setPercent(this.player.stats.currentHealth*100/this.player.stats.maxHealth);
         this.monsters.forEach(function(mon){
+            this.game.physics.arcade.collide(mon, this.blockedLayer);
+            this.game.physics.arcade.collide(mon, this.game.sprites);
             mon.healthBar.setPosition(mon.body.x+32,mon.body.y-20);
             mon.healthBar.setPercent(mon.stats.currentHealth*100/mon.stats.maxHealth);
         },this);
-        
+
+
+        //// SimpleAI: Monsters[0] is the alien, Monsters[1] is dreadFace, we only have 2 monsters right now
+        let alien = this.monsters[0];
+        let dreadFace = this.monsters[1];
+
+        if(alien.body.velocity.x > 0){
+            alien.animations.play('walkRight');
+        }
+        else if(alien.body.velocity.x < 0){
+            alien.animations.play('walkLeft');
+        }
+        else{
+            alien.animations.stop();
+            alien.frame = 0;
+        }
+
+        if(dreadFace.body.velocity.y > 0){
+            dreadFace.animations.play('walkFront');
+        }
+        else if(dreadFace.body.velocity.y <0){
+            dreadFace.animations.play('walkBack');
+        }
+        else{
+            dreadFace.animations.stop();
+        }
+
+        if(this.countDown === 0) {
+            if (alien.body.velocity.x === 0) {
+                if(alien.body.x > alien.origXY.x){
+                    alien.body.velocity.x = -150;
+                }
+                else{
+                    alien.body.velocity.x = 150;
+                }
+            }
+            else{
+                alien.body.velocity.x = 0;
+            }
+            if (dreadFace.body.velocity.y === 0) {
+                if(dreadFace.body.y > dreadFace.origXY.y){
+                    dreadFace.body.velocity.y = -100;
+                }
+                else{
+                    dreadFace.body.velocity.y = 100;
+                }
+            }
+            else{
+                dreadFace.body.velocity.x = 0;
+            }
+            this.countDown = 150;
+        }
+        else{
+            this.countDown--;
+        }
+
 
         if(this.player.body.velocity.x > 0) {
             this.player.animations.play('walkRight');

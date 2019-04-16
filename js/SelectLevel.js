@@ -20,6 +20,10 @@ TheLegendOfMeta.SelectLevel.prototype = {
         lvl5.anchor.setTo(0.5);
         lvl6.anchor.setTo(0.5);
 
+        lvl1.onInputDown.add(function() {
+            this.state.start('Game')
+        }, this);
+
         var returnBtn = this.game.add.button(this.game.width/2,this.game.height*5/6,'returnBtn');
         returnBtn.anchor.setTo(0.5);
 

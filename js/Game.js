@@ -97,7 +97,6 @@ TheLegendOfMeta.Game.prototype = {
         let stats = {};
         stats.atk = atk;
         stats.def = def;
-        stats.currentHealth = health;
         stats.maxHealth = health;
         stats.spd = spd;
         sprite.stats = stats;
@@ -235,7 +234,6 @@ TheLegendOfMeta.Game.prototype = {
             mon.healthBar.setPosition(mon.body.x+32,mon.body.y-20);
             mon.healthBar.setPercent(mon.stats.currentHealth*100/mon.stats.maxHealth);
         },this);
-
 
         //// SimpleAI: Monsters[0] is the alien, Monsters[1] is dreadFace, we only have 2 monsters right now
         let alien = this.monsters[0];

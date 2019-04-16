@@ -37,17 +37,18 @@ TheLegendOfMeta.Game.prototype = {
 
         this.game.physics.arcade.enable(this.player);
         this.player.anchor.setTo(0.5,0.5);
-        // this.playerSpeed = 400;
 
-        // this.attackDamage = 10;
-        // this.player.attack = function(sprite) {
-        //     sprite.damage(this.attackDamage);
-        // };
+        this.player.attack = function(sprite, atk) {
+            sprite.damage(atk);
+        };
+        this.player.abilities = [breakRock];
+        this.player.activeAbility = function() {};
 
         var barConfig = {width: 64, height: 8, bar:{color: '#46EF6E'}, bg:{color: 'black'}, x: this.player.body.x, y: (this.player.body.y-this.player.body.height*2/3)};
         this.player.healthBar = new HealthBar(this.game, barConfig);
         this.player.healthBar.setAnchor(0.5,0.5);
 
+        this.player.direction = 'down';
         this.player.animations.add('walkFront',[0,4,5,6,7], 5,true);
         this.player.animations.add('walkLeft',[1,8,9,10,11], 5,true);
         this.player.animations.add('walkRight',[2,12,13,14,15], 5,true);
@@ -171,7 +172,7 @@ TheLegendOfMeta.Game.prototype = {
                 if(sprite !== undefined && sprite !== this.player &&
                     Math.abs(this.player.x - sprite.x) <= 64 &&
                     Math.abs(this.player.y - sprite.y) <= 64) {
-                    this.player.attack(sprite);
+                    this.player.attack(sprite, this.player.stats.atk);
                 }
             }
         },this);
@@ -183,8 +184,7 @@ TheLegendOfMeta.Game.prototype = {
         this.three = keyboard.addKey(Phaser.KeyCode.THREE);
         this.four = keyboard.addKey(Phaser.KeyCode.FOUR);
 
-        this.space.onDown.add(function() {
-        },this);
+        this.space.onDown.add(this.useAbility, this);
         this.esc.onDown.add(function() {
             if(!this.game.paused) {
                 this.game.paused = true;
@@ -197,17 +197,21 @@ TheLegendOfMeta.Game.prototype = {
             }
         },this);
         this.one.onDown.add(function() {
-            // TODO
+            this.player.activeAbility = this.player.abilities[0];
         },this);
         this.two.onDown.add(function() {
-            // TODO
+            this.player.activeAbility = this.player.abilities[1];
         },this);
         this.three.onDown.add(function() {
-            // TODO
+            this.player.activeAbility = this.player.abilities[2];
         },this);
         this.four.onDown.add(function() {
-            // TODO
+            this.player.activeAbility = this.player.abilities[3];
         },this);
+    },
+
+    useAbility() {
+        this.player.activeAbility.call(this, this.player);
     },
 
     findSpritesByCoordinates: function(x, y) {
@@ -292,15 +296,19 @@ TheLegendOfMeta.Game.prototype = {
 
         if(this.player.body.velocity.x > 0) {
             this.player.animations.play('walkRight');
+            this.player.direction = 'right';
         }
         else if(this.player.body.velocity.x < 0){
             this.player.animations.play('walkLeft');
+            this.player.direction = 'left';
         }
         else if(this.player.body.velocity.y > 0){
             this.player.animations.play('walkFront');
+            this.player.direction = 'front';
         }
         else if(this.player.body.velocity.y < 0){
             this.player.animations.play('walkBack');
+            this.player.direction = 'back';
         }
         else{
             this.player.animations.stop();

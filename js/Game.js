@@ -29,17 +29,20 @@ TheLegendOfMeta.Game.prototype = {
     createPlayer() {
         let playerObj = this.findObjectsByType('playerStart', this.map, 'objectsLayer')[0];
         this.player = this.game.add.sprite(playerObj.x, playerObj.y, 'player');
-        this.player.setHealth(100);
         this.game.sprites.push(this.player);
 
         this.game.physics.arcade.enable(this.player);
         this.player.anchor.setTo(0.5,0.5);
         this.playerSpeed = 400;
 
+        this.player.setHealth(100);
         this.attackDamage = 10;
         this.player.attack = function(sprite) {
             sprite.damage(this.attackDamage);
         };
+        this.player.abilities = [];
+        this.player.abilities.push(breakRock);
+        this.player.activeAbility = function() {};
 
         this.player.animations.add('walkFront',[0,4,5,6,7], 5,true);
         this.player.animations.add('walkLeft',[1,8,9,10,11], 5,true);
@@ -125,8 +128,7 @@ TheLegendOfMeta.Game.prototype = {
         this.three = keyboard.addKey(Phaser.KeyCode.THREE);
         this.four = keyboard.addKey(Phaser.KeyCode.FOUR);
 
-        this.space.onDown.add(function() {
-        },this);
+        this.space.onDown.add(this.useAbility, this);
         this.esc.onDown.add(function() {
             if(!this.game.paused) {
                 this.game.paused = true;
@@ -139,17 +141,21 @@ TheLegendOfMeta.Game.prototype = {
             }
         },this);
         this.one.onDown.add(function() {
-            // TODO
+            this.player.activeAbility = this.player.abilities[0];
         },this);
         this.two.onDown.add(function() {
-            // TODO
+            this.player.activeAbility = this.player.abilities[1];
         },this);
         this.three.onDown.add(function() {
-            // TODO
+            this.player.activeAbility = this.player.abilities[2];
         },this);
         this.four.onDown.add(function() {
-            // TODO
+            this.player.activeAbility = this.player.abilities[3];
         },this);
+    },
+
+    useAbility() {
+        this.player.activeAbility.call(this, this.player);
     },
 
     findSpritesByCoordinates: function(x, y) {

@@ -12,7 +12,7 @@ TheLegendOfMeta.Boot.prototype = {
         this.load.image('preloadBG','assets/images/Preload.png');
         this.load.image('selectLevelBG','assets/images/SelectLevel.png');
         this.load.image('settingBG','assets/images/Setting.png');
-        this.load.image('helpBG','assets/images/Help.png');
+        this.load.image('helpBG','assets/images/help_bg.png');
         this.load.image('Level-1','assets/images/Level1.png');
         this.load.image('Level-2','assets/images/Level2.png');
         this.load.image('Level-3','assets/images/Level3.png');

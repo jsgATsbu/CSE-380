@@ -44,6 +44,11 @@ TheLegendOfMeta.Game.prototype = {
         this.player.abilities.push(breakRock);
         this.player.activeAbility = function() {};
 
+        var barConfig = {width: 64, height: 8, bar:{color: '#92F6BD'}, bg:{color: 'black'}, x: this.player.body.x, y: (this.player.body.y-this.player.body.height*2/3)};
+        this.myHealthBar = new HealthBar(this.game, barConfig);
+        this.myHealthBar.setAnchor(0.5,0.5);
+        this.myHealthBar.percent = 100;
+
         this.player.animations.add('walkFront',[0,4,5,6,7], 5,true);
         this.player.animations.add('walkLeft',[1,8,9,10,11], 5,true);
         this.player.animations.add('walkRight',[2,12,13,14,15], 5,true);
@@ -113,9 +118,8 @@ TheLegendOfMeta.Game.prototype = {
                 let sprite = this.findSpritesByCoordinates(event.clientX+this.game.camera.x,event.clientY+this.game.camera.y)[0];
                 console.log(sprite);
                 if(sprite !== undefined && sprite !== this.player &&
-                    Math.abs(this.player.x - sprite.x) <= 128 &&
-                    Math.abs(this.player.y - sprite.y) <= 128) {
-
+                    Math.abs(this.player.x - sprite.x) <= 64 &&
+                    Math.abs(this.player.y - sprite.y) <= 64) {
                     this.player.attack(sprite);
                 }
             }
@@ -173,6 +177,10 @@ TheLegendOfMeta.Game.prototype = {
     update: function() {
         this.game.physics.arcade.collide(this.player, this.blockedLayer);
 
+        this.myHealthBar.setPosition(this.player.body.x+32, this.player.body.y-20);
+        this.myHealthBar.setPercent(this.myHealthBar.percent);
+        this.myHealthBar.percent--;
+
         if(this.player.body.velocity.x > 0) {
             this.player.animations.play('walkRight');
         }
@@ -186,7 +194,7 @@ TheLegendOfMeta.Game.prototype = {
             this.player.animations.play('walkBack');
         }
         else{
-            this.player.animations.stop(null,true);
+            this.player.animations.stop();
         }
 
         let cursors = this.cursors;

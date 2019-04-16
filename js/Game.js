@@ -48,7 +48,7 @@ TheLegendOfMeta.Game.prototype = {
         this.player.healthBar = new HealthBar(this.game, barConfig);
         this.player.healthBar.setAnchor(0.5,0.5);
 
-        this.player.direction = 'down';
+        this.player.direction = 'front';
         this.player.animations.add('walkFront',[0,4,5,6,7], 5,true);
         this.player.animations.add('walkLeft',[1,8,9,10,11], 5,true);
         this.player.animations.add('walkRight',[2,12,13,14,15], 5,true);

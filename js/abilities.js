@@ -13,11 +13,11 @@ let breakRock = function(creature) {
             xReach = 64;
             yReach = 0;
             break;
-        case 'forward':
+        case 'back':
             xReach = 0;
             yReach = -64;
             break;
-        case 'back':
+        case 'front':
         default:
             xReach = 0;
             yReach = 64;

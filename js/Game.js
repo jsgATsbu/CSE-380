@@ -249,6 +249,7 @@ TheLegendOfMeta.Game.prototype = {
         }
         else{
             alien.animations.stop();
+            alien.frame = 0;
         }
 
         if(dreadFace.body.velocity.y > 0){
@@ -259,7 +260,6 @@ TheLegendOfMeta.Game.prototype = {
         }
         else{
             dreadFace.animations.stop();
-            dreadFace.frame = 0;
         }
 
         if(this.countDown === 0) {

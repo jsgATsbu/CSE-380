@@ -39,37 +39,19 @@
                         {
                          "name":"type",
                          "type":"string",
-                         "value":"playerStart"
+                         "value":"player"
                         }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":768,
-                 "y":704
+                 "x":770,
+                 "y":700
                 }, 
                 {
                  "gid":161,
                  "height":64,
-                 "id":4,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"dreadFace"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":1216,
-                 "y":1152
-                }, 
-                {
-                 "gid":201,
-                 "height":64,
-                 "id":5,
+                 "id":2,
                  "name":"",
                  "properties":[
                         {
@@ -81,8 +63,26 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":384,
-                 "y":192
+                 "x":256,
+                 "y":128
+                }, 
+                {
+                 "gid":213,
+                 "height":64,
+                 "id":3,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"dreadFace"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":1152,
+                 "y":1344
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -91,7 +91,7 @@
          "y":0
         }],
  "nextlayerid":4,
- "nextobjectid":6,
+ "nextobjectid":4,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.3",
@@ -126,26 +126,13 @@
         {
          "columns":4,
          "firstgid":161,
-         "image":"..\/images\/dreadFace.png",
-         "imageheight":640,
+         "image":"..\/images\/Monsters.png",
+         "imageheight":1472,
          "imagewidth":256,
          "margin":0,
-         "name":"dreadFace",
+         "name":"Monsters",
          "spacing":0,
-         "tilecount":40,
-         "tileheight":64,
-         "tilewidth":64
-        }, 
-        {
-         "columns":4,
-         "firstgid":201,
-         "image":"..\/images\/alien.png",
-         "imageheight":832,
-         "imagewidth":256,
-         "margin":0,
-         "name":"alien",
-         "spacing":0,
-         "tilecount":52,
+         "tilecount":0,
          "tileheight":64,
          "tilewidth":64
         }],

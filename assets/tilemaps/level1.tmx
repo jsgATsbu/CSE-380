@@ -6,7 +6,7 @@
  <tileset firstgid="65" name="tiles" tilewidth="64" tileheight="64" tilecount="96" columns="16">
   <image source="../images/tiles.png" width="1024" height="384"/>
  </tileset>
- <tileset firstgid="161" name="Monsters" tilewidth="64" tileheight="64" tilecount="92" columns="4">
+ <tileset firstgid="161" name="Monsters" tilewidth="64" tileheight="64" tilecount="0" columns="4">
   <image source="../images/Monsters.png" width="256" height="1472"/>
  </tileset>
  <layer id="1" name="backgroundLayer" width="25" height="25">
@@ -70,7 +70,7 @@
  <objectgroup id="3" name="objectsLayer">
   <object id="1" gid="1" x="770" y="700" width="64" height="64">
    <properties>
-    <property name="type" value="playerStart"/>
+    <property name="type" value="player"/>
    </properties>
   </object>
   <object id="2" gid="161" x="256" y="128" width="64" height="64">

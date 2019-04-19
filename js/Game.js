@@ -13,12 +13,13 @@ TheLegendOfMeta.Game.prototype = {
         this.createMap();
         this.game.sprites = [];
         this.createPlayer();
-        this.createMonster();
+        this.createMonsters();
 
         this.game.camera.follow(this.player);
         this.setupInput();
         this.tempSetting = null;
     },
+
     createMap() {
         this.map = this.game.add.tilemap('level1');
         this.map.addTilesetImage('tiles', 'gameTiles');
@@ -29,85 +30,50 @@ TheLegendOfMeta.Game.prototype = {
 
         this.map.setCollisionBetween(1, 2000, true, 'blockedLayer');
     },
+
     createPlayer() {
-        let playerObj = this.findObjectsByType('playerStart', this.map, 'objectsLayer')[0];
-        this.player = this.game.add.sprite(playerObj.x+32, playerObj.y+32, 'player');
-        this.initiateStat(this.player,30,15,100, 400);
-        this.game.sprites.push(this.player);
+        this.player = this.createSprite('player', 30, 15, 100, 400);
+        this.addSpriteAnimations(this.player, ['walkFront', 'walkLeft', 'walkRight', 'walkBack'],
+                                [[0, 4, 5, 6, 7], [1, 8, 9, 10, 11], [2, 12, 13, 14, 15], [3, 16, 17, 18, 19]]);
 
-        this.game.physics.arcade.enable(this.player);
-        this.player.anchor.setTo(0.5,0.5);
-
-        // this.player.attack = function(sprite, atk) {
-        //     sprite.damage(atk);
-        // };
         this.player.abilities = [breakRock];
         this.player.activeAbility = function() {};
-
-        var barConfig = {width: 64, height: 8, bar:{color: '#46EF6E'}, bg:{color: 'black'}, x: this.player.body.x, y: (this.player.body.y-this.player.body.height*2/3)};
-        this.player.healthBar = new HealthBar(this.game, barConfig);
-        this.player.healthBar.setAnchor(0.5,0.5);
-
-        this.player.direction = 'front';
-        this.player.animations.add('walkFront',[0,4,5,6,7], 5,true);
-        this.player.animations.add('walkLeft',[1,8,9,10,11], 5,true);
-        this.player.animations.add('walkRight',[2,12,13,14,15], 5,true);
-        this.player.animations.add('walkBack',[3,16,17,18,19], 5,true);
     },
-    createMonster: function(){
-        let alienObj = this.findObjectsByType('alien',this.map,'objectsLayer')[0];
-        let alien = this.game.add.sprite(alienObj.x+32, alienObj.y+32, 'alien');
-        this.initiateStat(alien, 40,5,60,400);
-        this.game.sprites.push(alien);
-        this.monsters.push(alien);
 
-        this.game.physics.arcade.enable(alien);
-        alien.anchor.setTo(0.5,0.5);
-        var barConfig = {width: 64, height: 8, bar:{color: '#46EF6E'}, bg:{color: 'black'}, x: alien.body.x, y: (alien.body.y-alien.body.height*2/3)};
-        alien.healthBar = new HealthBar(this.game, barConfig);
-        alien.healthBar.setAnchor(0.5,0.5);
+    createMonsters: function(){
+        let alien = this.createSprite('alien', 40, 5, 60, 400);
+        this.addSpriteAnimations(alien, ['walkFront', 'walkLeft', 'walkRight', 'walkBack'],
+                                [[0, 4, 5, 6, 7], [1, 8, 9, 10, 11], [2, 12, 13, 14, 15], [3, 16, 17, 18, 19]]);
 
-        alien.animations.add('walkFront',[0,4,5,6,7], 5,true);
-        alien.animations.add('walkLeft',[1,8,9,10,11], 5,true);
-        alien.animations.add('walkRight',[2,12,13,14,15], 5,true);
-        alien.animations.add('walkBack',[3,16,17,18,19], 5,true);
+        let dreadFace = this.createSprite('dreadFace', 20, 20, 120, 200);
+        this.addSpriteAnimations(dreadFace, ['walkFront', 'walkLeft', 'walkRight', 'walkBack'],
+                                [[0, 1], [2, 3], [4, 5],[6, 7]]);
+    },
 
-        let dreadFaceObj = this.findObjectsByType('dreadFace',this.map,'objectsLayer')[0];
-        let dreadFace = this.game.add.sprite(dreadFaceObj.x+32, dreadFaceObj.y+32, 'dreadFace');
-        this.initiateStat(dreadFace, 20,20,120,200);
-        this.game.sprites.push(dreadFace);
-        this.monsters.push(dreadFace);
+    createSprite(type, atk, def, health, spd) {
+        let obj = this.findObjectsByType(type, this.map, 'objectsLayer')[0];
+        let sprite = this.game.add.sprite(obj.x + 32, obj.y + 32, type);
+        this.initializeStats(sprite, atk, def, health, spd);
+        this.game.sprites.push(sprite);
+        if (type !== 'player') {
+            this.monsters.push(sprite);
+        }
 
-        this.game.physics.arcade.enable(dreadFace);
-        dreadFace.anchor.setTo(0.5,0.5);
-        var barConfig2 = {width: 64, height: 8, bar:{color: '#46EF6E'}, bg:{color: 'black'}, x: dreadFace.body.x, y: (dreadFace.body.y-dreadFace.body.height*2/3)};
-        dreadFace.healthBar = new HealthBar(this.game, barConfig2);
-        dreadFace.healthBar.setAnchor(0.5,0.5);
-
-        dreadFace.animations.add('walkFront',[0,1], 5,true);
-        dreadFace.animations.add('walkLeft',[2,3], 5,true);
-        dreadFace.animations.add('walkRight',[4,5], 5,true);
-        dreadFace.animations.add('walkBack',[6,7], 5,true);
+        this.game.physics.arcade.enable(sprite);
+        sprite.anchor.setTo(0.5,0.5);
+        let barConfig = {width: 64, height: 8,
+                         bar:{color: '#46EF6E'}, bg:{color: 'black'},
+                         x: sprite.body.x,
+                         y: (sprite.body.y - sprite.body.height * 2/3)};
+        sprite.healthBar = new HealthBar(this.game, barConfig);
+        sprite.healthBar.setAnchor(0.5,0.5);
 
         //// For Simple AI, temporary
-        alien.origXY = {x:alien.body.x,y:alien.body.y};
-        dreadFace.origXY = {x:dreadFace.x,y:dreadFace.y};
+        sprite.origXY = {x: sprite.body.x, y: sprite.body.y};
+
+        return sprite;
     },
-    initiateStat: function(sprite, atk, def, health, spd){
-        let stats = {};
-        stats.atk = atk;
-        stats.def = def;
-        stats.currentHealth = health;
-        stats.maxHealth = health;
-        stats.spd = spd;
-        sprite.stats = stats;
-        sprite.attack = function(enemy){
-            let dmg = sprite.stats.atk - enemy.stats.def;
-            if(enemy.stats.currentHealth > 0){
-                enemy.stats.currentHealth -= dmg;
-            }
-        }
-    },
+
     findObjectsByType: function(type, map, layer) {
         let result = [];
         map.objects[layer].forEach(function(element) {
@@ -120,6 +86,30 @@ TheLegendOfMeta.Game.prototype = {
             });
         });
         return result;
+    },
+
+    initializeStats: function(sprite, atk, def, health, spd){
+        let stats = {};
+        stats.atk = atk;
+        stats.def = def;
+        stats.currentHealth = health;
+        stats.maxHealth = health;
+        stats.spd = spd;
+        sprite.stats = stats;
+
+        sprite.attack = function(enemy){
+            let dmg = sprite.stats.atk - enemy.stats.def;
+            if(enemy.stats.currentHealth > 0){
+                enemy.stats.currentHealth -= dmg;
+            }
+        }
+    },
+
+    addSpriteAnimations(sprite, states, frames) {
+        for (let i = 0; i < states.length; i++) {
+            sprite.animations.add(states[i], frames[i], 5, true);
+        }
+        sprite.direction = 'front';
     },
 
     setupInput: function() {
@@ -184,7 +174,10 @@ TheLegendOfMeta.Game.prototype = {
         this.three = keyboard.addKey(Phaser.KeyCode.THREE);
         this.four = keyboard.addKey(Phaser.KeyCode.FOUR);
 
-        this.space.onDown.add(this.useAbility, this);
+        this.space.onDown.add(function() {
+            this.player.activeAbility.call(this, this.player);
+        }, this);
+
         this.esc.onDown.add(function() {
             if(!this.game.paused) {
                 this.game.paused = true;
@@ -196,22 +189,22 @@ TheLegendOfMeta.Game.prototype = {
                 this.titleBtn.anchor.setTo(0.5);
             }
         },this);
+
         this.one.onDown.add(function() {
             this.player.activeAbility = this.player.abilities[0];
         },this);
+
         this.two.onDown.add(function() {
             this.player.activeAbility = this.player.abilities[1];
         },this);
+
         this.three.onDown.add(function() {
             this.player.activeAbility = this.player.abilities[2];
         },this);
+
         this.four.onDown.add(function() {
             this.player.activeAbility = this.player.abilities[3];
         },this);
-    },
-
-    useAbility() {
-        this.player.activeAbility.call(this, this.player);
     },
 
     findSpritesByCoordinates: function(x, y) {
@@ -222,106 +215,89 @@ TheLegendOfMeta.Game.prototype = {
                 result.push(sprite);
             }
         });
-
         return result;
     },
+
     update: function() {
+        this.updateSprites();
+        this.updatePlayerMovement();
+    },
+
+    updateSprites() {
         this.game.physics.arcade.collide(this.player, this.blockedLayer);
         this.game.physics.arcade.collide(this.player, this.game.sprites);
 
         //// Update the HP bar position and the percentage every frame
         this.player.healthBar.setPosition(this.player.body.x+32, this.player.body.y-20);
         this.player.healthBar.setPercent(this.player.stats.currentHealth*100/this.player.stats.maxHealth);
+
+        this.animateSprite(this.player);
+
         this.monsters.forEach(function(mon){
             this.game.physics.arcade.collide(mon, this.blockedLayer);
             this.game.physics.arcade.collide(mon, this.game.sprites);
-            mon.healthBar.setPosition(mon.body.x+32,mon.body.y-20);
-            mon.healthBar.setPercent(mon.stats.currentHealth*100/mon.stats.maxHealth);
-        },this);
-        //// SimpleAI: Monsters[0] is the alien, Monsters[1] is dreadFace, we only have 2 monsters right now
-        let alien = this.monsters[0];
-        let dreadFace = this.monsters[1];
 
-        if(alien.stats.currentHealth <= 0){
-            alien.healthBar.kill();
-            alien.kill();
-        }
-        if(dreadFace.stats.currentHealth <= 0){
-            dreadFace.healthBar.kill();
-            dreadFace.kill();
-        }
+            mon.healthBar.setPosition(mon.body.x + 32,mon.body.y - 20);
+            mon.healthBar.setPercent(mon.stats.currentHealth*100 / mon.stats.maxHealth);
 
-        if(alien.body.velocity.x > 0){
-            alien.animations.play('walkRight');
-        }
-        else if(alien.body.velocity.x < 0){
-            alien.animations.play('walkLeft');
-        }
-        else{
-            alien.animations.stop();
-            alien.frame = 0;
-        }
+            if (mon.stats.currentHealth <= 0) {
+                mon.healthBar.kill();
+                mon.kill();
+            }
 
-        if(dreadFace.body.velocity.y > 0){
-            dreadFace.animations.play('walkFront');
-        }
-        else if(dreadFace.body.velocity.y <0){
-            dreadFace.animations.play('walkBack');
-        }
-        else{
-            dreadFace.animations.stop();
-        }
+            this.animateSprite(mon);
+        }, this);
 
         if(this.countDown === 0) {
-            if (alien.body.velocity.x === 0) {
-                if(alien.body.x > alien.origXY.x){
-                    alien.body.velocity.x = -150;
-                }
-                else{
-                    alien.body.velocity.x = 150;
-                }
-            }
-            else{
-                alien.body.velocity.x = 0;
-            }
-            if (dreadFace.body.velocity.y === 0) {
-                if(dreadFace.body.y > dreadFace.origXY.y){
-                    dreadFace.body.velocity.y = -100;
-                }
-                else{
-                    dreadFace.body.velocity.y = 100;
-                }
-            }
-            else{
-                dreadFace.body.velocity.x = 0;
-            }
+            this.monsters.forEach(this.simpleAI, this);
             this.countDown = 150;
-        }
-        else{
+        } else {
             this.countDown--;
         }
+    },
 
+    animateSprite(sprite) {
+        if(sprite.body.velocity.x > 0){
+            sprite.animations.play('walkRight');
+            sprite.direction = 'right';
+        } else if(sprite.body.velocity.x < 0){
+            sprite.animations.play('walkLeft');
+            sprite.direction = 'left';
+        } else if(sprite.body.velocity.y > 0){
+            sprite.animations.play('walkFront');
+            sprite.direction = 'front';
+        } else if(sprite.body.velocity.y < 0){
+            sprite.animations.play('walkBack');
+            sprite.direction = 'back';
+        } else{
+            sprite.animations.stop();
+            sprite.frame = 0;
+        }
+    },
 
-        if(this.player.body.velocity.x > 0) {
-            this.player.animations.play('walkRight');
-            this.player.direction = 'right';
-        }
-        else if(this.player.body.velocity.x < 0){
-            this.player.animations.play('walkLeft');
-            this.player.direction = 'left';
-        }
-        else if(this.player.body.velocity.y > 0){
-            this.player.animations.play('walkFront');
-            this.player.direction = 'front';
-        }
-        else if(this.player.body.velocity.y < 0){
-            this.player.animations.play('walkBack');
-            this.player.direction = 'back';
-        }
-        else{
-            this.player.animations.stop();
+    simpleAI(mon) {
+        if (mon.body.velocity.x === 0) {
+            if(mon.body.x > mon.origXY.x){
+                mon.body.velocity.x = -150;
+            } else{
+                mon.body.velocity.x = 150;
+            }
+        } else {
+            mon.body.velocity.x = 0;
         }
 
+        if (mon.body.velocity.y === 0) {
+            if(mon.body.y > mon.origXY.y){
+                mon.body.velocity.y = -150;
+            } else{
+                mon.body.velocity.y = 150;
+            }
+        } else {
+            mon.body.velocity.y = 0;
+        }
+    },
+
+    updatePlayerMovement() {
         let cursors = this.cursors;
         let altCursors = this.altCursors;
 

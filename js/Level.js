@@ -41,6 +41,7 @@ class Level {
         this.player.abilities = [breakRock];
         this.player.activeAbility = function() {};
         this.player.immovable = true;
+        this.player.invincible = false;
     }
 
     createMonsters(monsters) {
@@ -125,12 +126,13 @@ class Level {
             }
         }, this);
 
-        this.space = keyboard.addKey(Phaser.KeyCode.SPACEBAR);
         this.esc = keyboard.addKey(Phaser.KeyCode.ESC);
         this.one = keyboard.addKey(Phaser.KeyCode.ONE);
         this.two = keyboard.addKey(Phaser.KeyCode.TWO);
         this.three = keyboard.addKey(Phaser.KeyCode.THREE);
         this.four = keyboard.addKey(Phaser.KeyCode.FOUR);
+        this.space = keyboard.addKey(Phaser.KeyCode.SPACEBAR);
+        this.i = keyboard.addKey(Phaser.KeyCode.I);
 
         this.esc.onDown.add(function() {
             if (!this.game.paused) {
@@ -145,6 +147,7 @@ class Level {
         this.three.onDown.add(function() { this.player.activeAbility = this.player.abilities[2]; }, this);
         this.four.onDown.add(function() { this.player.activeAbility = this.player.abilities[3]; }, this);
         this.space.onDown.add(function() { this.player.activeAbility.call(this, this.player); }, this);
+        this.i.onDown.add(function () { this.player.invulnerable = !this.player.invulnerable; }, this);
     }
 
     pause() {

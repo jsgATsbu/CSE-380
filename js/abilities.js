@@ -1,6 +1,6 @@
 "use strict";
 
-// "Game" must be passed as context to all of these
+// The level must be passed as context to all of these
 
 let breakRock = function(creature) {
     let xReach, yReach;

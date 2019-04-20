@@ -10,6 +10,6 @@ TheLegendOfMeta.game.state.add('MainMenu',TheLegendOfMeta.MainMenu);
 TheLegendOfMeta.game.state.add('SelectLevel',TheLegendOfMeta.SelectLevel);
 TheLegendOfMeta.game.state.add('Setting',TheLegendOfMeta.Setting);
 TheLegendOfMeta.game.state.add('Help',TheLegendOfMeta.Help);
-TheLegendOfMeta.game.state.add('Game',TheLegendOfMeta.Game);
+TheLegendOfMeta.game.state.add('Level1',TheLegendOfMeta.Level1);
 
 TheLegendOfMeta.game.state.start('Boot');

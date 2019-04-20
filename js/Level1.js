@@ -2,9 +2,9 @@
 
 var TheLegendOfMeta = TheLegendOfMeta || {};
 
-TheLegendOfMeta.Game = function() {};
+TheLegendOfMeta.Level1 = function() {};
 
-TheLegendOfMeta.Game.prototype = {
+TheLegendOfMeta.Level1.prototype = {
     create: function() {
         ///for Simple AI, temporary
         this.countDown = 0;

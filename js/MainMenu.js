@@ -21,10 +21,10 @@ TheLegendOfMeta.MainMenu.prototype = {
         help.anchor.set(0.5);
         exit.anchor.set(0.5);
 
-        start.onInputDown.add(function(){this.state.start("Level1")},this);
-        selectLevel.onInputDown.add(function(){this.state.start("SelectLevel")},this);
-        setting.onInputDown.add(function(){this.state.start("Setting")},this);
-        help.onInputDown.add(function(){this.state.start("Help")},this);
-        exit.onInputDown.add(function(){this.game.destroy()},this);
+        start.onInputDown.add(function(){this.state.start("Level1");},this);
+        selectLevel.onInputDown.add(function(){this.state.start("SelectLevel");},this);
+        setting.onInputDown.add(function(){this.state.start("Setting");},this);
+        help.onInputDown.add(function(){this.state.start("Help");},this);
+        exit.onInputDown.add(function(){this.game.destroy();},this);
     }
 };

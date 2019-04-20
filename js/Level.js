@@ -40,7 +40,6 @@ class Level {
         this.player = this.createSprite(this.playerProperties);
         this.player.abilities = [breakRock];
         this.player.activeAbility = function() {};
-        this.player.immovable = true;
     }
 
     createMonsters(monsters) {
@@ -71,6 +70,8 @@ class Level {
             sprite.animations.add(anim, mon.animations[anim], 5, true);
         });
         sprite.direction = 'front';
+
+        sprite.body.immovable = true;
 
         return sprite;
     }
@@ -109,8 +110,7 @@ class Level {
     setupInput() {
         const keyboard = this.game.input.keyboard;
 
-        this.cursors = keyboard.createCursorKeys();
-        this.altCursors = keyboard.addKeys({
+        this.cursors = keyboard.addKeys({
             up: Phaser.KeyCode.W,
             down: Phaser.KeyCode.S,
             left: Phaser.KeyCode.A,
@@ -222,31 +222,38 @@ class Level {
     update() {
         this.updateSprites();
         this.updatePlayerMovement();
+
     }
 
     updateSprites() {
         this.game.physics.arcade.collide(this.player, this.blockedLayer);
-        this.game.physics.arcade.collide(this.player, this.game.sprites);
 
         //// Update the HP bar position and the percentage every frame
         this.player.healthBar.setPosition(this.player.body.x+32, this.player.body.y-20);
-        this.player.healthBar.setPercent(this.player.stats.currentHealth*100/this.player.stats.maxHealth);
-
-        Level.animateSprite(this.player);
+        this.player.healthBar.setPercent(this.player.stats.currentHealth*100 / this.player.stats.maxHealth);
 
         this.monsters.forEach(function(mon){
             this.game.physics.arcade.collide(mon, this.blockedLayer);
-            this.game.physics.arcade.collide(mon, this.game.sprites);
 
             mon.healthBar.setPosition(mon.body.x + 32,mon.body.y - 20);
             mon.healthBar.setPercent(mon.stats.currentHealth*100 / mon.stats.maxHealth);
+
+            if (this.game.physics.arcade.collide(this.player, mon)) {
+                mon.body.moves = false;
+                mon.body.velocity.x = 0;
+                mon.body.velocity.y = 0;
+                mon.body.immovable = true;
+            } else {
+                mon.body.moves = true;
+                mon.body.immovable = false;
+            }
+
+            this.game.physics.arcade.collide(this.player, mon);
 
             if (mon.stats.currentHealth <= 0) {
                 mon.healthBar.kill();
                 mon.kill();
             }
-
-            Level.animateSprite(mon);
         }, this);
 
         if(this.countDown === 0) {
@@ -254,25 +261,6 @@ class Level {
             this.countDown = 150;
         } else {
             this.countDown--;
-        }
-    }
-
-    static animateSprite(sprite) {
-        if(sprite.body.velocity.x > 0){
-            sprite.animations.play('walkRight');
-            sprite.direction = 'right';
-        } else if(sprite.body.velocity.x < 0){
-            sprite.animations.play('walkLeft');
-            sprite.direction = 'left';
-        } else if(sprite.body.velocity.y > 0){
-            sprite.animations.play('walkFront');
-            sprite.direction = 'front';
-        } else if(sprite.body.velocity.y < 0){
-            sprite.animations.play('walkBack');
-            sprite.direction = 'back';
-        } else{
-            sprite.animations.stop();
-            sprite.frame = 0;
         }
     }
 
@@ -300,37 +288,36 @@ class Level {
 
     updatePlayerMovement() {
         let cursors = this.cursors;
-        let altCursors = this.altCursors;
 
-        let up = cursors.up.isDown || altCursors.up.isDown;
-        let down = cursors.down.isDown || altCursors.down.isDown;
-        if (up && down) {
-            up = false;
-            down = false;
-        }
+        let up = cursors.up.isDown;
+        let down = cursors.down.isDown;
+        let left = cursors.left.isDown;
+        let right = cursors.right.isDown;
 
-        let left = cursors.left.isDown || altCursors.left.isDown;
-        let right = cursors.right.isDown || altCursors.right.isDown;
-        if (left && right) {
-            left = false;
-            right = false;
-        }
+        this.player.body.immovable = false;
 
         let playerSpeed = this.player.stats.spd;
         if (up) {
+            this.player.animations.play('walkBack');
             this.player.body.velocity.y = -playerSpeed;
-        } else if (down) {
-            this.player.body.velocity.y = playerSpeed;
-        } else {
-            this.player.body.velocity.y = 0;
-        }
-
-        if (left) {
-            this.player.body.velocity.x = -playerSpeed;
-        } else if (right) {
-            this.player.body.velocity.x = playerSpeed;
-        } else {
             this.player.body.velocity.x = 0;
+        } else if (down) {
+            this.player.animations.play('walkFront');
+            this.player.body.velocity.y = playerSpeed;
+            this.player.body.velocity.x = 0;
+        } else if (left) {
+            this.player.animations.play('walkLeft');
+            this.player.body.velocity.x = -playerSpeed;
+            this.player.body.velocity.y = 0;
+        } else if (right) {
+            this.player.animations.play('walkRight');
+            this.player.body.velocity.x = playerSpeed;
+            this.player.body.velocity.y = 0;
+        } else {
+            this.player.body.immovable = true;
+            this.player.animations.stop();
+            this.player.body.velocity.x = 0;
+            this.player.body.velocity.y = 0;
         }
     }
 }

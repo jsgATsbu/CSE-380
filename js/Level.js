@@ -59,7 +59,7 @@ class Level {
         let barConfig = {width: 64, height: 8,
             bar:{color: '#46EF6E'}, bg:{color: 'black'},
             x: sprite.body.x,
-            y: (sprite.body.y - sprite.body.height * 2/3)};
+            y: sprite.body.y - sprite.body.height * 2 / 3};
         sprite.healthBar = new HealthBar(this.game, barConfig);
         sprite.healthBar.setAnchor(0.5,0.5);
 
@@ -102,7 +102,7 @@ class Level {
             if(enemy.stats.currentHealth > 0){
                 enemy.stats.currentHealth -= dmg;
             }
-        }
+        };
     }
 
     setupInput() {
@@ -187,7 +187,7 @@ class Level {
             y < btn2.y + btn2.height / 2 && y > btn2.y - btn2.height / 2) {
             if (this.tempSetting === null && this.game.paused) {
                 this.game.paused = false;
-                this.state.start("MainMenu")
+                this.state.start("MainMenu");
             } else {
                 this.tempSetting.destroy();
                 this.tempSetting = null;
@@ -230,7 +230,7 @@ class Level {
         this.player.healthBar.setPosition(this.player.body.x+32, this.player.body.y-20);
         this.player.healthBar.setPercent(this.player.stats.currentHealth*100/this.player.stats.maxHealth);
 
-        this.animateSprite(this.player);
+        Level.animateSprite(this.player);
 
         this.monsters.forEach(function(mon){
             this.game.physics.arcade.collide(mon, this.blockedLayer);
@@ -244,18 +244,18 @@ class Level {
                 mon.kill();
             }
 
-            this.animateSprite(mon);
+            Level.animateSprite(mon);
         }, this);
 
         if(this.countDown === 0) {
-            this.monsters.forEach(this.simpleAI, this);
+            this.monsters.forEach(Level.simpleAI, this);
             this.countDown = 150;
         } else {
             this.countDown--;
         }
     }
 
-    animateSprite(sprite) {
+    static animateSprite(sprite) {
         if(sprite.body.velocity.x > 0){
             sprite.animations.play('walkRight');
             sprite.direction = 'right';
@@ -274,7 +274,7 @@ class Level {
         }
     }
 
-    simpleAI(mon) {
+    static simpleAI(mon) {
         if (mon.body.velocity.x === 0) {
             if(mon.body.x > mon.origXY.x){
                 mon.body.velocity.x = -150;

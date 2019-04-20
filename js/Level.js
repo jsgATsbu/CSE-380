@@ -40,6 +40,7 @@ class Level {
         this.player = this.createSprite(this.playerProperties);
         this.player.abilities = [breakRock];
         this.player.activeAbility = function() {};
+        this.player.immovable = true;
     }
 
     createMonsters(monsters) {
@@ -187,6 +188,7 @@ class Level {
             y < btn2.y + btn2.height / 2 && y > btn2.y - btn2.height / 2) {
             if (this.tempSetting === null && this.game.paused) {
                 this.game.paused = false;
+                // noinspection JSUnresolvedVariable
                 this.state.start("MainMenu");
             } else {
                 this.tempSetting.destroy();

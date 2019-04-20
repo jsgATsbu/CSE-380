@@ -222,7 +222,7 @@ class Level {
     update() {
         this.updateSprites();
         this.updatePlayerMovement();
-
+        this.updateMonsterMovement();
     }
 
     updateSprites() {
@@ -255,16 +255,9 @@ class Level {
                 mon.kill();
             }
         }, this);
-
-        if(this.countDown === 0) {
-            this.monsters.forEach(Level.simpleAI, this);
-            this.countDown = 150;
-        } else {
-            this.countDown--;
-        }
     }
 
-    static simpleAI(mon) {
+    simpleAI(mon) {
         if (mon.body.velocity.x === 0) {
             if(mon.body.x > mon.origXY.x){
                 mon.body.velocity.x = -150;
@@ -284,6 +277,33 @@ class Level {
         } else {
             mon.body.velocity.y = 0;
         }
+    }
+
+    updateMonsterMovement() {
+        if(this.countDown === 0) {
+            this.monsters.forEach(this.simpleAI, this);
+            this.countDown = 150;
+        } else {
+            this.countDown--;
+        }
+        this.monsters.forEach(function(mon){
+            let spd = mon.body.velocity;
+            if(spd.x > 0){
+                mon.animations.play('walkRight');
+            }
+            else if(spd.x < 0){
+                mon.animations.play('walkLeft');
+            }
+            else if(spd.y > 0){
+                mon.animations.play('walkFront');
+            }
+            else if(spd.y < 0){
+                mon.animations.play('walkBack');
+            }
+            else{
+                mon.animations.stop();
+            }
+        });
     }
 
     updatePlayerMovement() {

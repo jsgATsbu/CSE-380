@@ -33,21 +33,34 @@ TheLegendOfMeta.Level1.prototype = {
 
     createPlayer() {
         this.player = this.createSprite('player', 30, 15, 100, 400);
-        this.addSpriteAnimations(this.player, ['walkFront', 'walkLeft', 'walkRight', 'walkBack'],
-                                [[0, 4, 5, 6, 7], [1, 8, 9, 10, 11], [2, 12, 13, 14, 15], [3, 16, 17, 18, 19]]);
+        this.addSpriteAnimations(this.player, {
+            'walkFront': [0, 4, 5, 6, 7],
+            'walkLeft':[1, 8, 9, 10, 11],
+            'walkRight':[2, 12, 13, 14, 15],
+            'walkBack':[3, 16, 17, 18, 19],
+        });
 
         this.player.abilities = [breakRock];
         this.player.activeAbility = function() {};
+        this.player.body.immovable = true;
     },
 
     createMonsters: function(){
         let alien = this.createSprite('alien', 40, 5, 60, 400);
-        this.addSpriteAnimations(alien, ['walkFront', 'walkLeft', 'walkRight', 'walkBack'],
-                                [[0, 4, 5, 6, 7], [1, 8, 9, 10, 11], [2, 12, 13, 14, 15], [3, 16, 17, 18, 19]]);
+        this.addSpriteAnimations(alien, {
+            walkFront: [0, 4, 5, 6, 7],
+            walkLeft: [1, 8, 9, 10, 11],
+            walkRight: [2, 12, 13, 14, 15],
+            walkBack: [3, 16, 17, 18, 19],
+        });
 
         let dreadFace = this.createSprite('dreadFace', 20, 20, 120, 200);
-        this.addSpriteAnimations(dreadFace, ['walkFront', 'walkLeft', 'walkRight', 'walkBack'],
-                                [[0, 1], [2, 3], [4, 5],[6, 7]]);
+        this.addSpriteAnimations(dreadFace, {
+            walkFront:[0, 1],
+            walkLeft:[2, 3],
+            walkRight:[4, 5],
+            walkBack:[6, 7],
+        });
     },
 
     createSprite(type, atk, def, health, spd) {
@@ -105,11 +118,11 @@ TheLegendOfMeta.Level1.prototype = {
         }
     },
 
-    addSpriteAnimations(sprite, states, frames) {
-        for (let i = 0; i < states.length; i++) {
-            sprite.animations.add(states[i], frames[i], 5, true);
+    addSpriteAnimations(sprite, animationObj) {
+        let animations = Object.keys(animationObj);
+        for (let i=0;i<animations.length;i++) {
+            sprite.animations.add(animations[i], animationObj[animations[i]], 5, true);
         }
-        sprite.direction = 'front';
     },
 
     setupInput: function() {
@@ -276,7 +289,6 @@ TheLegendOfMeta.Level1.prototype = {
             sprite.direction = 'back';
         } else{
             sprite.animations.stop();
-            sprite.frame = 0;
         }
     },
 

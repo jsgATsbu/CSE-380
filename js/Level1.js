@@ -125,45 +125,9 @@ TheLegendOfMeta.Level1.prototype = {
 
         this.game.input.onDown.add(function(event) {
             if (this.game.paused) {
-                let x = event.clientX + this.game.camera.x;
-                let y = event.clientY + this.game.camera.y;
-                let menu = this.pauseMenu;
-                let btn1 = this.settingBtn;
-                let btn2 = this.titleBtn;
-                if (x < menu.x - menu.width / 2 || x > menu.x + menu.width / 2 || y < menu.y - menu.height || y > menu.y + menu.height / 2) {
-                    if (this.tempSetting === null && this.game.paused) {
-                        this.game.paused = false;
-                        this.pauseMenu.destroy();
-                        this.settingBtn.destroy();
-                        this.titleBtn.destroy();
-                    } else {
-                        this.tempSetting.destroy();
-                        this.tempSetting = null;
-                    }
-                } else if (x < btn1.x + btn1.width / 2 && x > btn1.x - btn1.width / 2 && y < btn1.y + btn1.height / 2 && y > btn1.y - btn1.height / 2) {
-                    if (this.tempSetting === null) {
-                        this.tempSetting = this.game.add.image(menu.x, menu.y, 'Control');
-                        this.tempSetting.anchor.setTo(0.5);
-                    }
-                } else if (x < btn2.x + btn2.width / 2 && x > btn2.x - btn2.width / 2 && y < btn2.y + btn2.height / 2 && y > btn2.y - btn2.height / 2) {
-                    ///// This needs to be edited, don't know how to go back to previous state (MainMenu). Instead it goes back to the game for now.
-                    if (this.tempSetting === null && this.game.paused) {
-                        this.game.paused = false;
-                        this.pauseMenu.destroy();
-                        this.settingBtn.destroy();
-                        this.titleBtn.destroy();
-                    } else {
-                        this.tempSetting.destroy();
-                        this.tempSetting = null;
-                    }
-                }
+                this.handleClickPaused(event.clientX + this.game.camera.x, event.clientY + this.game.camera.y);
             } else {
-                let sprite = this.findSpritesByCoordinates(event.clientX+this.game.camera.x,event.clientY+this.game.camera.y)[0];
-                if(sprite !== undefined && sprite !== this.player &&
-                    Math.abs(this.player.x - sprite.x) <= 64 &&
-                    Math.abs(this.player.y - sprite.y) <= 64) {
-                    this.player.attack(sprite, this.player.stats.atk);
-                }
+                this.attack(event.clientX + this.game.camera.x, event.clientY + this.game.camera.y);
             }
         },this);
 
@@ -174,37 +138,78 @@ TheLegendOfMeta.Level1.prototype = {
         this.three = keyboard.addKey(Phaser.KeyCode.THREE);
         this.four = keyboard.addKey(Phaser.KeyCode.FOUR);
 
-        this.space.onDown.add(function() {
-            this.player.activeAbility.call(this, this.player);
+        this.esc.onDown.add(function() {
+            if (!this.game.paused) {
+                this.pause();
+            } else {
+                this.unpause();
+            }
         }, this);
 
-        this.esc.onDown.add(function() {
-            if(!this.game.paused) {
-                this.game.paused = true;
-                this.pauseMenu = this.game.add.sprite(this.game.camera.x + window.innerWidth / 2, this.game.camera.y + window.innerHeight / 2, 'pauseMenu');
-                this.pauseMenu.anchor.setTo(0.5);
-                this.settingBtn = this.game.add.button(this.pauseMenu.x, this.pauseMenu.y-75, 'settingBtn');
-                this.titleBtn = this.game.add.button(this.pauseMenu.x, this.pauseMenu.y+75, 'titleBtn');
-                this.settingBtn.anchor.setTo(0.5);
-                this.titleBtn.anchor.setTo(0.5);
+        this.one.onDown.add(function() { this.player.activeAbility = this.player.abilities[0]; }, this);
+        this.two.onDown.add(function() { this.player.activeAbility = this.player.abilities[1]; }, this);
+        this.three.onDown.add(function() { this.player.activeAbility = this.player.abilities[2]; }, this);
+        this.four.onDown.add(function() { this.player.activeAbility = this.player.abilities[3]; }, this);
+        this.space.onDown.add(function() { this.player.activeAbility.call(this, this.player); }, this);
+    },
+
+    pause: function() {
+        this.game.paused = true;
+        this.pauseMenu = this.game.add.sprite(this.game.camera.x + window.innerWidth / 2, this.game.camera.y + window.innerHeight / 2, 'pauseMenu');
+        this.pauseMenu.anchor.setTo(0.5);
+        this.settingBtn = this.game.add.button(this.pauseMenu.x, this.pauseMenu.y-75, 'settingBtn');
+        this.titleBtn = this.game.add.button(this.pauseMenu.x, this.pauseMenu.y+75, 'titleBtn');
+        this.settingBtn.anchor.setTo(0.5);
+        this.titleBtn.anchor.setTo(0.5);
+    },
+
+    unpause: function() {
+        this.game.paused = false;
+        this.pauseMenu.destroy();
+        this.settingBtn.destroy();
+        this.titleBtn.destroy();
+    },
+
+    handleClickPaused: function(x, y) {
+        let menu = this.pauseMenu;
+        let btn1 = this.settingBtn;
+        let btn2 = this.titleBtn;
+
+        if (x < menu.x - menu.width / 2 || x > menu.x + menu.width / 2 ||
+            y < menu.y - menu.height || y > menu.y + menu.height / 2) {
+            if (this.tempSetting === null && this.game.paused) {
+                this.unpause();
+            } else {
+                this.tempSetting.destroy();
+                this.tempSetting = null;
             }
-        },this);
+        } else if (x < btn1.x + btn1.width / 2 && x > btn1.x - btn1.width / 2 &&
+                   y < btn1.y + btn1.height / 2 && y > btn1.y - btn1.height / 2) {
+            if (this.tempSetting === null) {
+                this.tempSetting = this.game.add.image(menu.x, menu.y, 'Control');
+                this.tempSetting.anchor.setTo(0.5);
+            }
+        } else if (x < btn2.x + btn2.width / 2 && x > btn2.x - btn2.width / 2 &&
+                   y < btn2.y + btn2.height / 2 && y > btn2.y - btn2.height / 2) {
+            if (this.tempSetting === null && this.game.paused) {
+                this.game.paused = false;
+                this.state.start("MainMenu")
+            } else {
+                this.tempSetting.destroy();
+                this.tempSetting = null;
+            }
+        }
+    },
 
-        this.one.onDown.add(function() {
-            this.player.activeAbility = this.player.abilities[0];
-        },this);
+    attack: function(x, y) {
+        let sprite = this.findSpritesByCoordinates(x, y)[0];
 
-        this.two.onDown.add(function() {
-            this.player.activeAbility = this.player.abilities[1];
-        },this);
+        if(sprite !== undefined && sprite !== this.player &&
+            Math.abs(this.player.x - sprite.x) <= 64 &&
+            Math.abs(this.player.y - sprite.y) <= 64) {
 
-        this.three.onDown.add(function() {
-            this.player.activeAbility = this.player.abilities[2];
-        },this);
-
-        this.four.onDown.add(function() {
-            this.player.activeAbility = this.player.abilities[3];
-        },this);
+            this.player.attack(sprite, this.player.stats.atk);
+        }
     },
 
     findSpritesByCoordinates: function(x, y) {

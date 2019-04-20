@@ -24,10 +24,9 @@ let breakRock = function(creature) {
     }
 
     let tile = this.map.getTileWorldXY(creature.x + xReach, creature.y + yReach,
-        64, 64, 'blockedLayer');
+                                       64, 64, 'blockedLayer');
     if (tile !== null && tile.index === 112) {  // if the tile is a rock
-        console.log(tile);
         this.map.removeTileWorldXY(creature.x + xReach, creature.y + yReach,
-            64, 64, 'blockedLayer');
+                                   64, 64, 'blockedLayer');
     }
 };

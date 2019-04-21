@@ -67,7 +67,7 @@ class Level {
         sprite.origXY = {x: sprite.body.x, y: sprite.body.y};
 
         Object.keys(mon.animations).forEach(function (anim) {
-            sprite.animations.add(anim, mon.animations[anim], 5, true);
+            sprite.animations.add(anim, mon.animations[anim].frames, mon.animations[anim].frameRate, mon.animations[anim].loop);
         });
         sprite.direction = 'front';
 
@@ -100,8 +100,25 @@ class Level {
         sprite.stats = stats;
 
         sprite.attack = function(enemy){
+            let diffX = enemy.x - sprite.x;
+            let diffY = enemy.y - sprite.y;
+
+            if (diffX > diffY) {
+                if (diffX > 0) {
+                    sprite.animations.play('attackRight');
+                } else {
+                    sprite.animations.play('attackLeft');
+                }
+            } else {
+                if (diffY > 0) {
+                    sprite.animations.play('attackFront');
+                } else {
+                    sprite.animations.play('attackBack');
+                }
+            }
+
             let dmg = sprite.stats.atk - enemy.stats.def;
-            if(enemy.stats.currentHealth > 0){
+            if(enemy.stats.currentHealth > 0 && !enemy.invincible){
                 enemy.stats.currentHealth -= dmg;
             }
         };
@@ -131,6 +148,7 @@ class Level {
         this.two = keyboard.addKey(Phaser.KeyCode.TWO);
         this.three = keyboard.addKey(Phaser.KeyCode.THREE);
         this.four = keyboard.addKey(Phaser.KeyCode.FOUR);
+        this.i = keyboard.addKey(Phaser.KeyCode.I);
 
         this.esc.onDown.add(function() {
             if (!this.game.paused) {
@@ -140,11 +158,12 @@ class Level {
             }
         }, this);
 
+        this.space.onDown.add(function() { this.player.activeAbility.call(this, this.player); }, this);
         this.one.onDown.add(function() { this.player.activeAbility = this.player.abilities[0]; }, this);
         this.two.onDown.add(function() { this.player.activeAbility = this.player.abilities[1]; }, this);
         this.three.onDown.add(function() { this.player.activeAbility = this.player.abilities[2]; }, this);
         this.four.onDown.add(function() { this.player.activeAbility = this.player.abilities[3]; }, this);
-        this.space.onDown.add(function() { this.player.activeAbility.call(this, this.player); }, this);
+        this.i.onDown.add(function() { this.player.invincible = !this.player.invincible; }, this);
     }
 
     pause() {
@@ -204,7 +223,7 @@ class Level {
             Math.abs(this.player.x - sprite.x) <= 64 &&
             Math.abs(this.player.y - sprite.y) <= 64) {
 
-            this.player.attack(sprite, this.player.stats.atk);
+            this.player.attack(sprite);
         }
     }
 
@@ -252,16 +271,24 @@ class Level {
 
             if (mon.stats.currentHealth <= 0) {
                 mon.healthBar.kill();
-                mon.kill();
+                mon.animations.play("death", 5, false, true);
             }
         }, this);
     }
 
     simpleAI(mon) {
+        if (this.findSpritesByCoordinates(mon.x + 64, mon.y) === this.player ||
+            this.findSpritesByCoordinates(mon.x - 64, mon.y) === this.player ||
+            this.findSpritesByCoordinates(mon.x, mon.y + 64) === this.player ||
+            this.findSpritesByCoordinates(mon.x , mon.y - 64) === this.player) {
+
+            mon.attack(this.player);
+        }
+
         if (mon.body.velocity.x === 0) {
             if(mon.body.x > mon.origXY.x){
                 mon.body.velocity.x = -150;
-            } else{
+            } else {
                 mon.body.velocity.x = 150;
             }
         } else {
@@ -271,7 +298,7 @@ class Level {
         if (mon.body.velocity.y === 0) {
             if(mon.body.y > mon.origXY.y){
                 mon.body.velocity.y = -150;
-            } else{
+            } else {
                 mon.body.velocity.y = 150;
             }
         } else {

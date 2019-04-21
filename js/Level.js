@@ -23,6 +23,13 @@ class Level {
         this.game.camera.follow(this.player);
         this.setupInput();
         this.tempSetting = null;
+
+        var weapon = this.game.add.weapon(10, 'bullet');
+        weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
+        weapon.bulletSpeed = 600;
+        weapon.fireRate = 100;
+        weapon.trackSprite(this.player);
+        this.player.weapon = weapon;
     }
 
     createMap() {
@@ -125,7 +132,7 @@ class Level {
             }
         }, this);
 
-        this.space = keyboard.addKey(Phaser.KeyCode.SPACEBAR);
+        this.jKey = keyboard.addKey(Phaser.KeyCode.J);
         this.esc = keyboard.addKey(Phaser.KeyCode.ESC);
         this.one = keyboard.addKey(Phaser.KeyCode.ONE);
         this.two = keyboard.addKey(Phaser.KeyCode.TWO);
@@ -144,7 +151,22 @@ class Level {
         this.two.onDown.add(function() { this.player.activeAbility = this.player.abilities[1]; }, this);
         this.three.onDown.add(function() { this.player.activeAbility = this.player.abilities[2]; }, this);
         this.four.onDown.add(function() { this.player.activeAbility = this.player.abilities[3]; }, this);
-        this.space.onDown.add(function() { this.player.activeAbility.call(this, this.player); }, this);
+        this.jKey.onDown.add(function() {
+            let weapon = this.player.weapon;
+            // if(this.player.direction === 'front') {
+            //     weapon.fireAngle = 90;
+            // }
+            // else if(this.player.direction === 'back'){
+            //     weapon.fireAngle = 270;
+            // }
+            // else if(this.player.direction === 'left'){
+            //     weapon.fireAngle = 180;
+            // }
+            // else{
+            //     weapon.fireAngle = 0;
+            // }
+            weapon.fire();
+        }, this);
     }
 
     pause() {
@@ -220,9 +242,17 @@ class Level {
     }
 
     update() {
+        this.updateBullets();
         this.updateSprites();
         this.updatePlayerMovement();
         this.updateMonsterMovement();
+    }
+
+    updateBullets(){
+        this.game.physics.arcade.overlap(this.player.weapon.bullets,this.monsters[0],function(enemy,bullet){
+            bullet.kill();
+            enemy.stats.currentHealth -= 5;
+        },null,this);
     }
 
     updateSprites() {
@@ -257,31 +287,34 @@ class Level {
         }, this);
     }
 
-    simpleAI(mon) {
-        if (mon.body.velocity.x === 0) {
-            if(mon.body.x > mon.origXY.x){
-                mon.body.velocity.x = -150;
-            } else{
-                mon.body.velocity.x = 150;
-            }
-        } else {
-            mon.body.velocity.x = 0;
-        }
+    simpleAI() {
+        this.monsters.forEach(function (mon) {
+                if (mon.body.velocity.x === 0) {
+                    if (mon.body.x > mon.origXY.x) {
+                        mon.body.velocity.x = -150;
+                    } else {
+                        mon.body.velocity.x = 150;
+                    }
+                } else {
+                    mon.body.velocity.x = 0;
+                }
 
-        if (mon.body.velocity.y === 0) {
-            if(mon.body.y > mon.origXY.y){
-                mon.body.velocity.y = -150;
-            } else{
-                mon.body.velocity.y = 150;
+                if (mon.body.velocity.y === 0) {
+                    if (mon.body.y > mon.origXY.y) {
+                        mon.body.velocity.y = -150;
+                    } else {
+                        mon.body.velocity.y = 150;
+                    }
+                } else {
+                    mon.body.velocity.y = 0;
+                }
             }
-        } else {
-            mon.body.velocity.y = 0;
-        }
+        );
     }
 
     updateMonsterMovement() {
         if(this.countDown === 0) {
-            this.monsters.forEach(this.simpleAI, this);
+            this.simpleAI();
             this.countDown = 150;
         } else {
             this.countDown--;
@@ -309,6 +342,9 @@ class Level {
     updatePlayerMovement() {
         let cursors = this.cursors;
 
+        // this.player.weapon.bulletKillDistance = 300;
+        // this.player.weapon.bulletKillType = Phaser.Weapon.KILL_DISTANCE;
+
         let up = cursors.up.isDown;
         let down = cursors.down.isDown;
         let left = cursors.left.isDown;
@@ -321,18 +357,26 @@ class Level {
             this.player.animations.play('walkBack');
             this.player.body.velocity.y = -playerSpeed;
             this.player.body.velocity.x = 0;
+            this.player.weapon.fireAngle = 270;
+            this.player.weapon.trackOffset.set(0,-32);
         } else if (down) {
             this.player.animations.play('walkFront');
             this.player.body.velocity.y = playerSpeed;
             this.player.body.velocity.x = 0;
+            this.player.weapon.fireAngle = 90;
+            this.player.weapon.trackOffset.set(0,32);
         } else if (left) {
             this.player.animations.play('walkLeft');
             this.player.body.velocity.x = -playerSpeed;
             this.player.body.velocity.y = 0;
+            this.player.weapon.fireAngle = 180;
+            this.player.weapon.trackOffset.set(-32,0);
         } else if (right) {
             this.player.animations.play('walkRight');
             this.player.body.velocity.x = playerSpeed;
             this.player.body.velocity.y = 0;
+            this.player.weapon.fireAngle = 0;
+            this.player.weapon.trackOffset.set(32,0);
         } else {
             this.player.body.immovable = true;
             this.player.animations.stop();

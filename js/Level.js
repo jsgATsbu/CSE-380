@@ -155,7 +155,7 @@ class Level {
         this.two = keyboard.addKey(Phaser.KeyCode.TWO);
         this.three = keyboard.addKey(Phaser.KeyCode.THREE);
         this.four = keyboard.addKey(Phaser.KeyCode.FOUR);
-        this.i = keyboard.addKey(Phaser.KeyCode.I);
+        this.iKey = keyboard.addKey(Phaser.KeyCode.I);
 
         this.esc.onDown.add(function() {
             if (!this.game.paused) {
@@ -165,11 +165,13 @@ class Level {
             }
         }, this);
 
-        this.space.onDown.add(function() { this.player.activeAbility.call(this, this.player); }, this);
+        this.jKey.onDown.add(function() { this.player.activeAbility.call(this, this.player); }, this);
         this.one.onDown.add(function() { this.player.activeAbility = this.player.abilities[0]; }, this);
         this.two.onDown.add(function() { this.player.activeAbility = this.player.abilities[1]; }, this);
         this.three.onDown.add(function() { this.player.activeAbility = this.player.abilities[2]; }, this);
         this.four.onDown.add(function() { this.player.activeAbility = this.player.abilities[3]; }, this);
+        this.iKey.onDown.add(function() { this.player.invincible = !this.player.invincible; }, this);
+
         this.jKey.onDown.add(function() {
             let weapon = this.player.weapon;
             // if(this.player.direction === 'front') {

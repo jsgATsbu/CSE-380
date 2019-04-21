@@ -26,13 +26,6 @@ class Level {
         this.tempSetting = null;
 
         this.currentSkill = 1;
-
-        var weapon = this.game.add.weapon(10, 'bullet');
-        weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
-        weapon.bulletSpeed = 600;
-        weapon.fireRate = 100;
-        weapon.trackSprite(this.player);
-        this.player.weapon = weapon;
     }
 
     createSkillSlot(){
@@ -55,6 +48,13 @@ class Level {
         this.player = this.createSprite(this.playerProperties);
         this.player.abilities = [breakRock];
         this.player.activeAbility = function() {};
+
+        var weapon = this.game.add.weapon(10, 'bullet');
+        weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
+        weapon.bulletSpeed = 600;
+        weapon.fireRate = 100;
+        weapon.trackSprite(this.player);
+        this.player.weapon = weapon;
     }
 
     createMonsters(monsters) {
@@ -84,7 +84,8 @@ class Level {
         Object.keys(mon.animations).forEach(function (anim) {
             sprite.animations.add(anim, mon.animations[anim].frames, mon.animations[anim].frameRate, mon.animations[anim].loop);
         });
-        sprite.direction = 'front';
+        sprite.animations.play('walkFront');  // otherwise death will be default currentAnim
+        sprite.animations.stop();
 
         sprite.body.immovable = true;
 
@@ -348,24 +349,10 @@ class Level {
         } else {
             this.countDown--;
         }
-        this.monsters.forEach(function(mon){
-            let spd = mon.body.velocity;
-            if(spd.x > 0){
-                mon.animations.play('walkRight');
-            }
-            else if(spd.x < 0){
-                mon.animations.play('walkLeft');
-            }
-            else if(spd.y > 0){
-                mon.animations.play('walkFront');
-            }
-            else if(spd.y < 0){
-                mon.animations.play('walkBack');
-            }
-            else{
-                mon.animations.stop();
-            }
-        });
+
+        this.monsters.forEach(function(mon) {
+            this.animateSprite(mon);
+        }, this);
     }
 
     updatePlayerMovement() {
@@ -383,34 +370,61 @@ class Level {
 
         let playerSpeed = this.player.stats.spd;
         if (up) {
-            this.player.animations.play('walkBack');
+            // this.player.animations.play('walkBack');
             this.player.body.velocity.y = -playerSpeed;
             this.player.body.velocity.x = 0;
             this.player.weapon.fireAngle = 270;
             this.player.weapon.trackOffset.set(0,-32);
         } else if (down) {
-            this.player.animations.play('walkFront');
+            // this.player.animations.play('walkFront');
             this.player.body.velocity.y = playerSpeed;
             this.player.body.velocity.x = 0;
             this.player.weapon.fireAngle = 90;
             this.player.weapon.trackOffset.set(0,32);
         } else if (left) {
-            this.player.animations.play('walkLeft');
+            // this.player.animations.play('walkLeft');
             this.player.body.velocity.x = -playerSpeed;
             this.player.body.velocity.y = 0;
             this.player.weapon.fireAngle = 180;
             this.player.weapon.trackOffset.set(-32,0);
         } else if (right) {
-            this.player.animations.play('walkRight');
+            // this.player.animations.play('walkRight');
             this.player.body.velocity.x = playerSpeed;
             this.player.body.velocity.y = 0;
             this.player.weapon.fireAngle = 0;
             this.player.weapon.trackOffset.set(32,0);
         } else {
             this.player.body.immovable = true;
-            this.player.animations.stop();
+            // this.player.animations.stop();
             this.player.body.velocity.x = 0;
             this.player.body.velocity.y = 0;
+        }
+
+        this.animateSprite(this.player);
+    }
+
+    animateSprite(sprite) {
+        let currentAnim = sprite.animations.currentAnim.name;
+        // don't interrupt attacking or death
+        if (currentAnim === 'attackLeft' || currentAnim === 'attackRight' ||
+            currentAnim === 'attackFront' || currentAnim === 'attackBack' ||
+            currentAnim === 'death') {
+
+            return;
+        }
+
+        let velocity = sprite.body.velocity;
+        if (velocity.x > 0) {  // don't restart an already playing animation
+            sprite.animations.play('walkRight');
+        } else if (velocity.x < 0) {
+            sprite.animations.play('walkLeft');
+        } else if (velocity.y > 0) {
+            sprite.animations.play('walkFront');
+        } else if (velocity.y < 0) {
+            sprite.animations.play('walkBack');
+        } else {
+            sprite.animations.stop();
+            sprite.animations.frame = 0;
         }
     }
 }

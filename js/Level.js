@@ -249,7 +249,7 @@ class Level {
     }
 
     updateBullets(){
-        this.game.physics.arcade.overlap(this.player.weapon.bullets,this.monsters[0],function(enemy,bullet){
+        this.game.physics.arcade.overlap(this.player.weapon.bullets,this.monsters,function(enemy,bullet){
             bullet.kill();
             enemy.stats.currentHealth -= 5;
         },null,this);

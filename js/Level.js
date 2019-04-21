@@ -84,7 +84,7 @@ class Level {
         Object.keys(mon.animations).forEach(function (anim) {
             sprite.animations.add(anim, mon.animations[anim].frames, mon.animations[anim].frameRate, mon.animations[anim].loop);
         });
-        sprite.animations.play('walkFront');  // otherwise death will be default currentAnim
+        sprite.animations.play('walkFront');  // otherwise currentAnim will be the last one added
         sprite.animations.stop();
 
         sprite.body.immovable = true;
@@ -115,11 +115,13 @@ class Level {
         stats.spd = spd;
         sprite.stats = stats;
 
-        sprite.attack = function(enemy){
+        sprite.attack = function(enemy) {
             let diffX = enemy.x - sprite.x;
             let diffY = enemy.y - sprite.y;
+            console.log(diffX, diffY);
 
-            if (diffX > diffY) {
+            let last = sprite.animations.currentAnim;
+            if (Math.abs(diffX) > Math.abs(diffY)) {
                 if (diffX > 0) {
                     sprite.animations.play('attackRight');
                 } else {
@@ -132,6 +134,9 @@ class Level {
                     sprite.animations.play('attackBack');
                 }
             }
+            sprite.animations.currentAnim.onComplete.addOnce(function() {
+                sprite.animations.play(last);
+            }, this);
 
             let dmg = sprite.stats.atk - enemy.stats.def;
             if(enemy.stats.currentHealth > 0 && !enemy.invincible){
@@ -404,13 +409,15 @@ class Level {
     }
 
     animateSprite(sprite) {
-        let currentAnim = sprite.animations.currentAnim.name;
+        let currentAnim = sprite.animations.currentAnim;
         // don't interrupt attacking or death
-        if (currentAnim === 'attackLeft' || currentAnim === 'attackRight' ||
-            currentAnim === 'attackFront' || currentAnim === 'attackBack' ||
-            currentAnim === 'death') {
+        if (currentAnim.name === 'attackLeft' || currentAnim.name === 'attackRight' ||
+             currentAnim.name === 'attackFront' || currentAnim.name === 'attackBack' ||
+             currentAnim.name === 'death') {
 
-            return;
+            if (currentAnim.isPlaying) {
+                return;
+            }
         }
 
         let velocity = sprite.body.velocity;

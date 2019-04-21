@@ -23,6 +23,7 @@ TheLegendOfMeta.Preload.prototype = {
         this.load.spritesheet('resumeBtn','assets/images/menu_resume.png',256,128);
         this.load.spritesheet('titleBtn','assets/images/menu_return.png',256,128);
         this.load.image('returnBtn','assets/images/menu_return.png');
+        this.load.image('bullet','assets/images/bullet.png');
 
         var style1 = {font: "60px Arial", fill: "#fff", align: "center" };
         var style2 = { font: "30px Arial", fill: "#fff", align: "center" };

@@ -19,10 +19,13 @@ class Level {
         this.game.sprites = [];
         this.createPlayer();
         this.createMonsters(this.monsterProperties);
+        this.createSkillSlot();
 
         this.game.camera.follow(this.player);
         this.setupInput();
         this.tempSetting = null;
+
+        this.currentSkill = 1;
 
         var weapon = this.game.add.weapon(10, 'bullet');
         weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
@@ -30,6 +33,11 @@ class Level {
         weapon.fireRate = 100;
         weapon.trackSprite(this.player);
         this.player.weapon = weapon;
+    }
+
+    createSkillSlot(){
+        this.skillSlot = this.game.add.image(this.game.camera.x+window.innerWidth/2,this.game.camera.y+window.innerHeight*8/10, 'SkillSlot');
+        this.skillFrame = this.game.add.image(this.game.camera.x+window.innerWidth/2,this.game.camera.y+window.innerHeight*8/10, 'SkillFrame');
     }
 
     createMap() {
@@ -147,25 +155,16 @@ class Level {
             }
         }, this);
 
-        this.one.onDown.add(function() { this.player.activeAbility = this.player.abilities[0]; }, this);
-        this.two.onDown.add(function() { this.player.activeAbility = this.player.abilities[1]; }, this);
-        this.three.onDown.add(function() { this.player.activeAbility = this.player.abilities[2]; }, this);
-        this.four.onDown.add(function() { this.player.activeAbility = this.player.abilities[3]; }, this);
+        this.one.onDown.add(function() {
+            this.currentSkill=0;}, this);
+        this.two.onDown.add(function() {
+            this.currentSkill=1;}, this);
+        this.three.onDown.add(function() {
+            this.currentSkill=2;}, this);
+        this.four.onDown.add(function() {
+            this.currentSkill=3;}, this);
         this.jKey.onDown.add(function() {
-            let weapon = this.player.weapon;
-            // if(this.player.direction === 'front') {
-            //     weapon.fireAngle = 90;
-            // }
-            // else if(this.player.direction === 'back'){
-            //     weapon.fireAngle = 270;
-            // }
-            // else if(this.player.direction === 'left'){
-            //     weapon.fireAngle = 180;
-            // }
-            // else{
-            //     weapon.fireAngle = 0;
-            // }
-            weapon.fire();
+            this.player.weapon.fire();
         }, this);
     }
 
@@ -242,6 +241,8 @@ class Level {
     }
 
     update() {
+        this.skillSlot.position.set(this.game.camera.x + window.innerWidth*5/12, this.game.camera.y + window.innerHeight*8/10);
+        this.skillFrame.position.set(this.skillSlot.position.x+this.currentSkill*64, this.skillSlot.position.y);
         this.updateBullets();
         this.updateSprites();
         this.updatePlayerMovement();

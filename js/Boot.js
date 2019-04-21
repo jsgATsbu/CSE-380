@@ -22,6 +22,8 @@ TheLegendOfMeta.Boot.prototype = {
         this.load.image('pauseMenu','assets/images/menu_paused.png');
         this.load.image("Black",'assets/images/Black.png');
         this.load.image("Control",'assets/images/controls.png');
+        this.load.image("SkillSlot",'assets/images/SkillSlot.png');
+        this.load.image("SkillFrame",'assets/images/SkillFrame.png');
     },
 
     create: function () {

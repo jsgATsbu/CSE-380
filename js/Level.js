@@ -84,8 +84,7 @@ class Level {
         Object.keys(mon.animations).forEach(function (anim) {
             sprite.animations.add(anim, mon.animations[anim].frames, mon.animations[anim].frameRate, mon.animations[anim].loop);
         });
-        sprite.animations.play('walkFront');  // otherwise currentAnim will be the last one added
-        sprite.animations.stop();
+        sprite.animations.stop('walkFront', true);  // otherwise currentAnim will be the last one added
 
         sprite.body.immovable = true;
 
@@ -375,32 +374,27 @@ class Level {
 
         let playerSpeed = this.player.stats.spd;
         if (up) {
-            // this.player.animations.play('walkBack');
             this.player.body.velocity.y = -playerSpeed;
             this.player.body.velocity.x = 0;
             this.player.weapon.fireAngle = 270;
             this.player.weapon.trackOffset.set(0,-32);
         } else if (down) {
-            // this.player.animations.play('walkFront');
             this.player.body.velocity.y = playerSpeed;
             this.player.body.velocity.x = 0;
             this.player.weapon.fireAngle = 90;
             this.player.weapon.trackOffset.set(0,32);
         } else if (left) {
-            // this.player.animations.play('walkLeft');
             this.player.body.velocity.x = -playerSpeed;
             this.player.body.velocity.y = 0;
             this.player.weapon.fireAngle = 180;
             this.player.weapon.trackOffset.set(-32,0);
         } else if (right) {
-            // this.player.animations.play('walkRight');
             this.player.body.velocity.x = playerSpeed;
             this.player.body.velocity.y = 0;
             this.player.weapon.fireAngle = 0;
             this.player.weapon.trackOffset.set(32,0);
         } else {
             this.player.body.immovable = true;
-            // this.player.animations.stop();
             this.player.body.velocity.x = 0;
             this.player.body.velocity.y = 0;
         }
@@ -430,8 +424,7 @@ class Level {
         } else if (velocity.y < 0) {
             sprite.animations.play('walkBack');
         } else {
-            sprite.animations.stop();
-            sprite.animations.frame = 0;
+            sprite.animations.stop(sprite.animations.currentAnim.name, true);
         }
     }
 }

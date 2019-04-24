@@ -33,7 +33,8 @@ class AI {
                 }
                 if (this.path.length === 0) {
                     this.patrol.push(this.patrol.shift());
-                    this.path = this.pathfinding.findPath(currentTile, this.patrol[0]);
+                    let dest = this.level.map.getTile(this.patrol[0][0], this.patrol[0][1]);
+                    this.path = this.pathfinding.findPath(currentTile, dest);
                 }
             }
         }
@@ -47,17 +48,17 @@ class AI {
             } else {
                 this.state = states.NORMAL;
                 // approximate distance to waypoint using taxicab distance
-                let distances = this.patrol.map(tile => Math.abs(tile.x - currentTile.x) + Math.abs(tile.y + currentTile.y));
-                let next = Math.min(distances);
-                while (this.patrol[0] !== next) {
+                let distances = this.patrol.map(point => Math.abs(point[0] - currentTile.x) + Math.abs(point[1] + currentTile.y));
+                let minIndex = distances.findIndex(Math.min(distances));
+                let min = this.patrol[minIndex];
+                while (this.patrol[0] !== min) {
                     this.patrol.push(this.patrol.shift());
                 }
             }
         }
 
-        if (monster.path.length !== 0) {
-            let theta = Phaser.Math.angleBetween(playerTile.x, playerTile.y,
-                                                 this.level.player.path[0].x, this.level.player.path[0].y);
+        if (this.path.length !== 0) {
+            let theta = Phaser.Math.angleBetween(playerTile.x, playerTile.y, this.path[0].x, this.path[0].y);
             monster.body.velocity.x = monster.velocity * Math.cos(theta);
             monster.body.velocity.y = monster.velocity * Math.sin(theta);
             monster.rotation = theta + Math.PI / 2;
@@ -72,7 +73,7 @@ class AI {
         this.__los.start.set(this.monster.x, this.monster.y);
         this.__los.end.set(this.level.player.x, this.level.player.y);
 
-        let layer = this.level.map.getLayer('blockedLayer');
+        let layer = this.level.blockedLayer;
         let hits = layer.getRayCastTiles(this.__los);
         return hits.length === 0;
     }

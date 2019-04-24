@@ -12,7 +12,7 @@ class Level {
 
     create() {
         ///for Simple AI, temporary
-        this.countDown = 0;
+        // this.countDown = 0;
 
         this.monsters = [];
         this.createMap();
@@ -42,6 +42,7 @@ class Level {
         this.backgroundlayer.resizeWorld();
 
         this.map.setCollisionBetween(1, 2000, true, 'blockedLayer');
+        this.pathfinding = new Pathfinding(this.map);
     }
 
     createPlayer() {
@@ -58,8 +59,10 @@ class Level {
     }
 
     createMonsters(monsters) {
-        monsters.forEach(function (mon) {
-            this.monsters.push(this.createSprite(mon));
+        monsters.forEach(function(mon) {
+            let monsterSprite = this.createSprite(mon);
+            this.monsters.push(monsterSprite);
+            monsterSprite.ai = new AI(monsterSprite, mon.patrol, this);
         }, this);
     }
 
@@ -79,7 +82,7 @@ class Level {
         sprite.healthBar.setAnchor(0.5,0.5);
 
         //// For Simple AI, temporary
-        sprite.origXY = {x: sprite.body.x, y: sprite.body.y};
+        // sprite.origXY = {x: sprite.body.x, y: sprite.body.y};
 
         Object.keys(mon.animations).forEach(function (anim) {
             sprite.animations.add(anim, mon.animations[anim].frames, mon.animations[anim].frameRate, mon.animations[anim].loop);
@@ -314,7 +317,7 @@ class Level {
         }, this);
     }
 
-    simpleAI() {
+    /*simpleAI() {
         this.monsters.forEach(function (mon) {
                 if (this.findSpritesByCoordinates(mon.x + 64, mon.y) === this.player ||
                     this.findSpritesByCoordinates(mon.x - 64, mon.y) === this.player ||
@@ -344,17 +347,18 @@ class Level {
                     mon.body.velocity.y = 0;
                 }
             }, this);
-    }
+    }*/
 
     updateMonsterMovement() {
-        if(this.countDown === 0) {
+        /*if(this.countDown === 0) {
             this.simpleAI();
             this.countDown = 150;
         } else {
             this.countDown--;
-        }
+        }*/
 
         this.monsters.forEach(function(mon) {
+            mon.ai.update();
             this.animateSprite(mon);
         }, this);
     }
@@ -402,6 +406,7 @@ class Level {
         this.animateSprite(this.player);
     }
 
+    // noinspection JSMethodCanBeStatic
     animateSprite(sprite) {
         let currentAnim = sprite.animations.currentAnim;
         // don't interrupt attacking or death

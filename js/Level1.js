@@ -41,7 +41,9 @@ TheLegendOfMeta.Level1 = function() {
                 attackRight: {frames: [2, 28, 29, 30, 31], frameRate: 5, loop: false},
                 attackBack: {frames: [3, 32, 33, 34, 35], frameRate: 5, loop: false},
                 death: {frames: [36, 37, 38, 39], frameRate: 5, loop: false}
-            }
+            },
+
+            patrol: [[3, 2], [3, 5], [8, 5], [8, 2]]
         },
 
         {
@@ -60,7 +62,9 @@ TheLegendOfMeta.Level1 = function() {
                 attackRight: {frames: [4, 16, 17, 18, 19], frameRate: 5, loop: false},
                 attackBack: {frames: [6, 20, 21, 22, 23], frameRate: 5, loop: false},
                 death: {frames: [24, 25, 26, 27], frameRate: 5, loop: false}
-            }
+            },
+
+            patrol: [[13, 20], [19, 14]]
         }
     ];
 };

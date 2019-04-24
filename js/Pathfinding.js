@@ -57,7 +57,7 @@ class Pathfinding {
     }
 
     isObstacle(tile) {
-        return this.map.getTile(tile.x, tile.y, 'obstacles') !== null;
+        return this.map.getTile(tile.x, tile.y, 'blockedLayer') !== null;
     }
 
     static findFinalPath(dest) {

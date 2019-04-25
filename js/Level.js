@@ -74,6 +74,8 @@ class Level {
 
         this.game.physics.arcade.enable(sprite);
         sprite.anchor.setTo(0.5,0.5);
+        // sprite.body.setSize(56, 56, 4, 4);
+
         let barConfig = {width: 64, height: 8,
             bar:{color: '#46EF6E'}, bg:{color: 'black'},
             x: sprite.body.x,

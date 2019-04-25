@@ -5,18 +5,22 @@ const states = {
     COMBAT: 1
 };
 
+/*
+ * Pathfinding improvements from https://gamedevacademy.org/how-to-use-pathfinding-in-phaser
+ */
 class AI {
 
     constructor(monster, patrol, level) {
         this.monster = monster;
         this.patrol = patrol;
-        this.path = patrol;
+        this.path = [];
 
         this.level = level;
+        this.game = level.game;
         this.pathfinding = level.pathfinding;
         this.state = states.NORMAL;
 
-        this.__los = new Phaser.Line();  // line of sight; one line so we don't have to keep creating new ones either
+        this._los = new Phaser.Line();  // line of sight; one line so we don't have to keep creating new ones
     }
 
     update() {
@@ -28,13 +32,13 @@ class AI {
             if (this.playerNearby() && this.scanForPlayer()) {
                 this.state = states.COMBAT;
             } else {
-                if (currentTile.x === this.path[0].x && currentTile.y === this.path[0].y) {
+                if (this.path.length !== 0 && this.reachedTarget()) {
                     this.path.shift();
                 }
                 if (this.path.length === 0) {
-                    this.patrol.push(this.patrol.shift());
                     let dest = this.level.map.getTile(this.patrol[0][0], this.patrol[0][1]);
                     this.path = this.pathfinding.findPath(currentTile, dest);
+                    this.patrol.push(this.patrol.shift());
                 }
             }
         }
@@ -42,7 +46,7 @@ class AI {
         if (this.state === states.COMBAT) {
             if (this.playerNearby()) {
                 this.path = this.pathfinding.findPath(currentTile, playerTile);
-                if (currentTile.x === this.path[0].x && currentTile.y === this.path[0].y) {
+                if (this.reachedTarget()) {
                     this.path.shift();
                 }
             } else {
@@ -58,10 +62,9 @@ class AI {
         }
 
         if (this.path.length !== 0) {
-            let theta = Phaser.Math.angleBetween(playerTile.x, playerTile.y, this.path[0].x, this.path[0].y);
-            monster.body.velocity.x = monster.velocity * Math.cos(theta);
-            monster.body.velocity.y = monster.velocity * Math.sin(theta);
-            monster.rotation = theta + Math.PI / 2;
+            let targetX = this.path[0].worldX + this.path[0].centerX;
+            let targetY = this.path[0].worldY + this.path[0].centerY;
+            this.game.physics.arcade.moveToXY(this.monster, targetX, targetY, this.monster.stats.spd);
         } else {
             monster.body.velocity.x = 0;
             monster.body.velocity.y = 0;
@@ -69,12 +72,17 @@ class AI {
         }
     }
 
+    reachedTarget() {
+        return Math.abs(this.monster.x - (this.path[0].worldX + this.path[0].centerX)) < 4 &&
+               Math.abs(this.monster.y - (this.path[0].worldY + this.path[0].centerY)) < 4;
+    }
+
     scanForPlayer() {
-        this.__los.start.set(this.monster.x, this.monster.y);
-        this.__los.end.set(this.level.player.x, this.level.player.y);
+        this._los.start.set(this.monster.x, this.monster.y);
+        this._los.end.set(this.level.player.x, this.level.player.y);
 
         let layer = this.level.blockedLayer;
-        let hits = layer.getRayCastTiles(this.__los);
+        let hits = layer.getRayCastTiles(this._los);
         return hits.length === 0;
     }
 

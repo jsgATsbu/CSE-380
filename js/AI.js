@@ -61,7 +61,9 @@ class AI {
             }
         }
 
-        if (this.path.length !== 0) {
+        if (this.reachedPlayer()) {
+            this.monster.attack(this.level.player);
+        } else if (this.path.length !== 0) {
             let targetX = this.path[0].worldX + this.path[0].centerX;
             let targetY = this.path[0].worldY + this.path[0].centerY;
             this.game.physics.arcade.moveToXY(this.monster, targetX, targetY, this.monster.stats.spd);
@@ -77,6 +79,11 @@ class AI {
 
         return Math.abs(this.monster.x - (this.path[0].worldX + this.path[0].centerX)) < 4 &&
                Math.abs(this.monster.y - (this.path[0].worldY + this.path[0].centerY)) < 4;
+    }
+
+    reachedPlayer() {
+        let player = this.level.player;
+        return Math.abs(this.monster.x - player.x) <= 64 && Math.abs(this.monster.y - player.y) <= 64;
     }
 
     scanForPlayer() {

@@ -11,9 +11,6 @@ class Level {
     }
 
     create() {
-        ///for Simple AI, temporary
-        // this.countDown = 0;
-
         this.monsters = [];
         this.createMap();
         this.game.sprites = [];
@@ -74,17 +71,14 @@ class Level {
 
         this.game.physics.arcade.enable(sprite);
         sprite.anchor.setTo(0.5,0.5);
-        // sprite.body.setSize(56, 56, 4, 4);
+        sprite.body.setSize(56, 56, 4, 4);
 
         let barConfig = {width: 64, height: 8,
-            bar:{color: '#46EF6E'}, bg:{color: 'black'},
-            x: sprite.body.x,
-            y: sprite.body.y - sprite.body.height * 2 / 3};
+                         bar:{color: '#46EF6E'}, bg:{color: 'black'},
+                         x: sprite.body.x,
+                         y: sprite.body.y - sprite.body.height * 2/3};
         sprite.healthBar = new HealthBar(this.game, barConfig);
         sprite.healthBar.setAnchor(0.5,0.5);
-
-        //// For Simple AI, temporary
-        // sprite.origXY = {x: sprite.body.x, y: sprite.body.y};
 
         Object.keys(mon.animations).forEach(function (anim) {
             sprite.animations.add(anim, mon.animations[anim].frames, mon.animations[anim].frameRate, mon.animations[anim].loop);
@@ -319,46 +313,7 @@ class Level {
         }, this);
     }
 
-    /*simpleAI() {
-        this.monsters.forEach(function (mon) {
-                if (this.findSpritesByCoordinates(mon.x + 64, mon.y) === this.player ||
-                    this.findSpritesByCoordinates(mon.x - 64, mon.y) === this.player ||
-                    this.findSpritesByCoordinates(mon.x, mon.y + 64) === this.player ||
-                    this.findSpritesByCoordinates(mon.x , mon.y - 64) === this.player) {
-
-                    mon.attack(this.player);
-                }
-
-                if (mon.body.velocity.x === 0) {
-                    if (mon.body.x > mon.origXY.x) {
-                        mon.body.velocity.x = -150;
-                    } else {
-                        mon.body.velocity.x = 150;
-                    }
-                } else {
-                    mon.body.velocity.x = 0;
-                }
-
-                if (mon.body.velocity.y === 0) {
-                    if (mon.body.y > mon.origXY.y) {
-                        mon.body.velocity.y = -150;
-                    } else {
-                        mon.body.velocity.y = 150;
-                    }
-                } else {
-                    mon.body.velocity.y = 0;
-                }
-            }, this);
-    }*/
-
     updateMonsterMovement() {
-        /*if(this.countDown === 0) {
-            this.simpleAI();
-            this.countDown = 150;
-        } else {
-            this.countDown--;
-        }*/
-
         this.monsters.forEach(function(mon) {
             mon.ai.update();
             this.animateSprite(mon);

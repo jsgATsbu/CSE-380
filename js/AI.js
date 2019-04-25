@@ -53,7 +53,7 @@ class AI {
                 this.state = states.NORMAL;
                 // approximate distance to waypoint using taxicab distance
                 let distances = this.patrol.map(point => Math.abs(point[0] - currentTile.x) + Math.abs(point[1] + currentTile.y));
-                let minIndex = distances.findIndex(Math.min(distances));
+                let minIndex = distances.indexOf(Math.min(...distances));
                 let min = this.patrol[minIndex];
                 while (this.patrol[0] !== min) {
                     this.patrol.push(this.patrol.shift());
@@ -73,6 +73,8 @@ class AI {
     }
 
     reachedTarget() {
+        if (this.path.length === 0) return true;
+
         return Math.abs(this.monster.x - (this.path[0].worldX + this.path[0].centerX)) < 4 &&
                Math.abs(this.monster.y - (this.path[0].worldY + this.path[0].centerY)) < 4;
     }
@@ -82,8 +84,15 @@ class AI {
         this._los.end.set(this.level.player.x, this.level.player.y);
 
         let layer = this.level.blockedLayer;
-        let hits = layer.getRayCastTiles(this._los);
-        return hits.length === 0;
+        let tiles = layer.getRayCastTiles(this._los);
+        let hit = false;
+        tiles.forEach(function(tile) {
+            if (tile.index !== -1) {
+                hit = true;
+            }
+        });
+
+        return hit;
     }
 
     playerNearby() {
@@ -92,6 +101,6 @@ class AI {
 
         // want to know if player is in general vicinity, so use Euclidean distance
         let dist = Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2));
-        return dist <= 640;
+        return dist <= 320;
     }
 }

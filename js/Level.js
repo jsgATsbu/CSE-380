@@ -8,6 +8,8 @@ class Level {
         this.mapKey = undefined;  // should be string with name of map
         this.playerProperties = undefined;  // should be object with properties of player
         this.monsterProperties = undefined;  //should be array of objects with properties of each monster
+
+
     }
 
     create() {

@@ -24,6 +24,26 @@ TheLegendOfMeta.SelectLevel.prototype = {
             this.state.start('Level1')
         }, this);
 
+        lvl2.onInputDown.add(function(){
+            this.state.start('Level2')
+        }, this);
+
+        lvl3.onInputDown.add(function(){
+            this.state.start('Level3')
+        }, this);
+
+        lvl4.onInputDown.add(function(){
+            this.state.start('Level4')
+        }, this);
+
+        lvl5.onInputDown.add(function(){
+            this.state.start('Level5')
+        }, this);
+
+        lvl6.onInputDown.add(function(){
+            this.state.start('Level6')
+        }, this);
+
         var returnBtn = this.game.add.button(this.game.width/2,this.game.height*5/6,'returnBtn');
         returnBtn.anchor.setTo(0.5);
 

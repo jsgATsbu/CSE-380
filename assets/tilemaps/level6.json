@@ -51,7 +51,7 @@
                         {
                          "name":"type",
                          "type":"string",
-                         "value":"playerStart"
+                         "value":"player"
                         }],
                  "rotation":0,
                  "type":"",

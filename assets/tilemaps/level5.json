@@ -47,6 +47,12 @@
                  "height":64,
                  "id":1,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"player"
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,

@@ -8,8 +8,6 @@ class Level {
         this.mapKey = undefined;  // should be string with name of map
         this.playerProperties = undefined;  // should be object with properties of player
         this.monsterProperties = undefined;  //should be array of objects with properties of each monster
-
-
     }
 
     create() {
@@ -20,43 +18,24 @@ class Level {
         this.createMap();
         this.game.sprites = [];
         this.createPlayer();
-        this.createMonsters(this.monsterProperties);
+        if(this.monsterProperties !== undefined) {
+            this.createMonsters(this.monsterProperties);
+        }
         this.createSkillSlot();
 
         this.game.camera.follow(this.player);
         this.setupInput();
         this.tempSetting = null;
-
-        this.currentSkill = 1;
-
-        this.openList = [];
-        this.closedList = [];
-        this.tileList = [];
-        for(let i=0;i<50;i++) {
-            this.tileList[i] = [];
-            for (let j = 0; j < 50; j++) {
-                let temp = {};
-                temp.x = i;
-                temp.y = j;
-                temp.G = 0;
-                temp.H = 0;
-                temp.isBlocked = this.map.getTile(i, j, 'blockedLayer') !== null;
-                temp.isNotBlocked = this.map.getTile(i, j, 'blockedLayer') === null;
-                temp.name = " (" + temp.x + "," + temp.y + ") ";
-                temp.parent = [];
-                temp.reset = function () {
-                    this.G = 0;
-                    this.H = 0;
-                    this.parent.length = 0;
-                };
-                this.tileList[i][j] = temp;
-            }
-        }
     }
 
     createSkillSlot(){
-        this.skillSlot = this.game.add.image(this.game.camera.x+window.innerWidth/2,this.game.camera.y+window.innerHeight*8/10, 'SkillSlot');
-        this.skillFrame = this.game.add.image(this.game.camera.x+window.innerWidth/2,this.game.camera.y+window.innerHeight*8/10, 'SkillFrame');
+        this.skillSlot = this.game.add.image(this.game.camera.x+window.innerWidth/2-128,this.game.camera.y+window.innerHeight*8/10, 'SkillSlot');
+        this.skillFrame = this.game.add.image(this.game.camera.x+window.innerWidth/2-128,this.game.camera.y+window.innerHeight*8/10, 'SkillFrame');
+
+        this.skillSlot.fixedToCamera = true;
+        this.skillFrame.fixedToCamera = true;
+
+        this.currentSkill = 0;
     }
 
     createMap() {
@@ -208,13 +187,17 @@ class Level {
         }, this);
 
         this.one.onDown.add(function() {
-            this.currentSkill=0;}, this);
+            this.currentSkill=0;
+            this.skillFrame.cameraOffset.setTo(window.innerWidth/2-128,window.innerHeight*8/10)}, this);
         this.two.onDown.add(function() {
-            this.currentSkill=1;}, this);
+            this.currentSkill=1;
+            this.skillFrame.cameraOffset.setTo(window.innerWidth/2-64,window.innerHeight*8/10)}, this);
         this.three.onDown.add(function() {
-            this.currentSkill=2;}, this);
+            this.currentSkill=2;
+            this.skillFrame.cameraOffset.setTo(window.innerWidth/2,window.innerHeight*8/10)}, this);
         this.four.onDown.add(function() {
-            this.currentSkill=3;}, this);
+            this.currentSkill=3;
+            this.skillFrame.cameraOffset.setTo(window.innerWidth/2+64,window.innerHeight*8/10)},this);
         this.iKey.onDown.add(function() {
             this.player.invincible = !this.player.invincible;
         }, this);
@@ -296,18 +279,25 @@ class Level {
     }
 
     update() {
-        this.skillSlot.position.set(this.game.camera.x + window.innerWidth*5/12, this.game.camera.y + window.innerHeight*8/10);
-        this.skillFrame.position.set(this.skillSlot.position.x+this.currentSkill*64, this.skillSlot.position.y);
+        this.updateSkillSlot();
         this.updateBullets();
         this.updateSprites();
         this.updatePlayerMovement();
         this.updateMonsterMovement();
     }
 
+    updateSkillSlot(){
+
+    }
+
     updateBullets(){
+        this.game.physics.arcade.collide(this.player.weapon.bullets,this.blockedLayer,function(bullet){
+            bullet.kill();
+        },null,this);
         this.game.physics.arcade.overlap(this.player.weapon.bullets,this.monsters,function(enemy,bullet){
             bullet.kill();
             enemy.stats.currentHealth -= 5;
+            enemy.healthBar.setPercent(enemy.stats.currentHealth*100/enemy.stats.maxHealth);
         },null,this);
     }
 
@@ -321,8 +311,7 @@ class Level {
         this.monsters.forEach(function(mon){
             this.game.physics.arcade.collide(mon, [this.blockedLayer,this.bulletLayer]);
 
-            mon.healthBar.setPosition(mon.body.x + 32,mon.body.y - 20);
-            mon.healthBar.setPercent(mon.stats.currentHealth*100 / mon.stats.maxHealth);
+            mon.healthBar.setPosition(mon.body.x+32,mon.body.y-20);
 
             if (this.game.physics.arcade.collide(this.player, mon)) {
                 mon.body.moves = false;
@@ -422,122 +411,5 @@ class Level {
         } else {
             sprite.animations.stop(sprite.animations.currentAnim.name, true);
         }
-    }
-
-    aStar(head, end) {
-
-        this.closedList = [];
-        this.openList = [];
-        head.reset();
-        end.reset();
-
-        let start =head;
-        start.G = 0;
-        start.H = this.getDist(start,end);
-        start.F = start.G + start.H;
-        start.parent = [];
-
-        this.openList.push(start);
-
-        while(this.openList.length > 0) {
-            let min = this.openList[0];
-
-            for(let i=0;i<this.openList.length;i++){
-                if(this.openList[i].F < min.F){
-                    min = this.openList[i];
-                }
-            }
-
-            this.openList.splice(this.openList.indexOf(min),1);
-
-            let nb = this.getNeighbors(min);
-
-            for(let i=0;i<nb.length;i++){
-                if(!this.openList.includes(nb[i])){
-                    nb[i].G = this.getDist(nb[i],min) + min.G;
-                    nb[i].H = this.getDist(nb[i],end);
-                    nb[i].F = nb[i].G + nb[i].H;
-                    nb[i].parent = min.parent.concat(nb[i]);
-                    this.openList.push(nb[i]);
-                }
-
-                if(nb[i] === end){
-                    return nb[i].parent;
-                }
-            }
-            this.closedList.push(min);
-        }
-        return [];
-    }
-
-    gotoXY(x,y, sprite){
-
-        let speed = sprite.stats.spd;
-        let y2 = y-sprite.body.y;
-        let x2 = x-sprite.body.x;
-
-        if(y2 % (speed / 60) !== 0){
-            sprite.body.y += y2 % (speed/60);
-        }
-        if(x2 % (speed / 60) !== 0){
-            sprite.body.x += x2 % (speed/60);
-        }
-
-        if(x === sprite.body.x) {
-            sprite.body.velocity.x = 0;
-        }
-        else{
-            sprite.body.velocity.x = (x > sprite.body.x)?speed:-1*speed;
-        }
-        if(y === sprite.body.y) {
-            sprite.body.velocity.y = 0;
-        }
-        else{
-            sprite.body.velocity.y = (y > sprite.body.y)?speed:-1*speed;
-        }
-    }
-
-    getDist(tile1,tile2){
-        let x = Math.abs(tile1.x - tile2.x);
-        let y = Math.abs(tile1.y - tile2.y);
-        return Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
-    }
-
-    getNeighbors(tile){
-        let list = [];
-        if(this.tileList[tile.x-1][tile.y-1].isNotBlocked && this.tileList[tile.x][tile.y-1].isNotBlocked && this.tileList[tile.x-1][tile.y].isNotBlocked
-        ){
-            list.push(this.tileList[tile.x-1][tile.y-1]);
-        }
-        if(this.tileList[tile.x+1][tile.y-1].isNotBlocked && this.tileList[tile.x][tile.y-1].isNotBlocked && this.tileList[tile.x+1][tile.y].isNotBlocked
-        ){
-            list.push(this.tileList[tile.x+1][tile.y-1]);
-        }
-        if(this.tileList[tile.x-1][tile.y+1].isNotBlocked && this.tileList[tile.x][tile.y+1].isNotBlocked && this.tileList[tile.x-1][tile.y].isNotBlocked
-        ){
-            list.push(this.tileList[tile.x-1][tile.y+1]);
-        }
-        if(this.tileList[tile.x+1][tile.y+1].isNotBlocked && this.tileList[tile.x][tile.y+1].isNotBlocked && this.tileList[tile.x+1][tile.y].isNotBlocked
-        ){
-            list.push(this.tileList[tile.x+1][tile.y+1]);
-        }
-        if(this.tileList[tile.x-1][tile.y].isNotBlocked){
-            list.push(this.tileList[tile.x-1][tile.y]);
-        }
-        if(this.tileList[tile.x+1][tile.y].isNotBlocked){
-            list.push(this.tileList[tile.x+1][tile.y]);
-        }
-        if(this.tileList[tile.x][tile.y-1].isNotBlocked){
-            list.push(this.tileList[tile.x][tile.y-1]);
-        }
-        if(this.tileList[tile.x][tile.y+1].isNotBlocked){
-            list.push(this.tileList[tile.x][tile.y+1]);
-        }
-
-        list = list.filter(function(ele){
-            return !this.closedList.includes(ele);
-        }.bind(this));
-
-        return list;
     }
 }

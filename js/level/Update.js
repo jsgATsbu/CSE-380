@@ -121,4 +121,26 @@ var animateSprite = function(sprite) {
     } else {
         sprite.animations.stop(sprite.animations.currentAnim.name, true);
     }
-}
+};
+
+var checkGameStatus = function(obj){
+    if(obj.player.alive === false){
+        obj.state.start("ResultScreen",true,false,'lose',obj.lvl);
+        return;
+    }
+
+    let allMonsterDead = true;
+    obj.monsters.forEach(function(mon){
+        if(mon.alive)
+            allMonsterDead = false
+    },this);
+
+    if(allMonsterDead){
+        if(obj.mapKey === 'level6'){
+            obj.state.start("ResultScreen",true,false,'final', obj.lvl);
+        }
+        else {
+            obj.state.start("ResultScreen",true,false,'win', obj.lvl);
+        }
+    }
+};

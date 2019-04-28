@@ -4,6 +4,7 @@ var TheLegendOfMeta = TheLegendOfMeta || {};
 
 TheLegendOfMeta.Level1 = function() {
     this.mapKey = 'level1';
+    this.lvl = 1;
 
     this.playerProperties = {
         name: 'player',

@@ -16,5 +16,6 @@ TheLegendOfMeta.game.state.add('Level3',TheLegendOfMeta.Level3);
 TheLegendOfMeta.game.state.add('Level4',TheLegendOfMeta.Level4);
 TheLegendOfMeta.game.state.add('Level5',TheLegendOfMeta.Level5);
 TheLegendOfMeta.game.state.add('Level6',TheLegendOfMeta.Level6);
+TheLegendOfMeta.game.state.add('ResultScreen', TheLegendOfMeta.ResultScreen);
 
 TheLegendOfMeta.game.state.start('Boot');

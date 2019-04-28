@@ -4,6 +4,7 @@ var TheLegendOfMeta = TheLegendOfMeta || {};
 
 TheLegendOfMeta.Level6 = function() {
     this.mapKey = 'level6';
+    this.lvl = 6;
 
     this.playerProperties = {
         name: 'player',
@@ -23,6 +24,31 @@ TheLegendOfMeta.Level6 = function() {
             death: {frames: [20, 21, 22, 23], frameRate: 5, loop: false}
         }
     };
+
+    this.monsterProperties = [
+        {
+            name: 'death',
+            atk: 50,
+            def: 5,
+            health: 60,
+            spd: 400,
+            moveList: [],
+            status: {
+                patrol: []
+            },
+            animations: {
+                walkFront: {frames: [0], frameRate: 5, loop: true},
+                walkLeft: {frames: [1], frameRate: 5, loop: true},
+                walkRight: {frames: [2], frameRate: 5, loop: true},
+                walkBack: {frames: [3], frameRate: 5, loop: true},
+                attackFront: {frames: [0], frameRate: 5, loop: false},
+                attackLeft: {frames: [1], frameRate: 5, loop: false},
+                attackRight: {frames: [2], frameRate: 5, loop: false},
+                attackBack: {frames: [3], frameRate: 5, loop: false},
+                death: {frames: [0], frameRate: 5, loop: false}
+            }
+        }
+    ]
 };
 
 TheLegendOfMeta.Level6.prototype = Level.prototype;

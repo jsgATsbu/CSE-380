@@ -52,9 +52,9 @@ var setupInput = function(obj) {
 
     obj.game.input.onDown.add(function(event) {
         if (obj.game.paused) {
-            handleClickPaused(event.clientX + obj.game.camera.x, event.clientY + obj.game.camera.y);
+            handleClickPaused(obj,event.clientX + obj.game.camera.x, event.clientY + obj.game.camera.y);
         } else {
-            obj.attack(event.clientX + obj.game.camera.x, event.clientY + obj.game.camera.y);
+            attack(obj,event.clientX + obj.game.camera.x, event.clientY + obj.game.camera.y);
         }
     }, obj);
 
@@ -68,7 +68,7 @@ var setupInput = function(obj) {
 
     obj.esc.onDown.add(function() {
         if (!obj.game.paused) {
-            obj.pause();
+            pause(obj);
         } else {
             unpause(obj);
         }

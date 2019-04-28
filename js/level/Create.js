@@ -22,7 +22,8 @@ var createMap = function(obj) {
     obj.map.addTilesetImage('tiles', 'gameTiles');
 
     obj.backgroundlayer = obj.map.createLayer('backgroundLayer');
-    obj.map.createLayer('roadLayer');
+    if(obj.map.getLayerIndex('roadLayer') !== null)
+        obj.map.createLayer('roadLayer');
     obj.bulletLayer = obj.map.createLayer('bulletLayer');
     obj.blockedLayer = obj.map.createLayer('blockedLayer');
     obj.backgroundlayer.resizeWorld();
@@ -42,10 +43,14 @@ var createPlayer = function(obj) {
     weapon.fireRate = 100;
     weapon.trackSprite(obj.player);
     obj.player.weapon = weapon;
+    obj.game.camera.follow(obj.player);
 };
 
 var createMonsters = function(obj) {
     let properties = obj.monsterProperties;
+    if(properties === undefined){
+        return;
+    }
     properties.forEach(function (pro) {
         obj.monsters.push(createSprite(obj, pro));
     }, obj);
@@ -74,4 +79,4 @@ var createSprite = function(obj, pro) {
     sprite.body.immovable = true;
 
     return sprite;
-}
+};

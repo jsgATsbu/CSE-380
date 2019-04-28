@@ -15,12 +15,8 @@ class Level {
         createFields(this);
         createMap(this);
         createPlayer(this);
-        if(this.monsterProperties !== undefined) {
-            createMonsters(this);
-        }
+        createMonsters(this);
         createSkillSlot(this);
-
-        this.game.camera.follow(this.player);
         setupInput(this);
     }
 
@@ -29,6 +25,7 @@ class Level {
         updateSprites(this);
         updatePlayerMovement(this);
         updateMonsterMovement(this);
+        checkGameStatus(this);
     }
 
     findObjectsByType(type, map, layer) {

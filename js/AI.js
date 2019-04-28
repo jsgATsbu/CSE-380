@@ -99,7 +99,7 @@ class AI {
             }
         });
 
-        return hit;
+        return !hit;
     }
 
     playerNearby() {

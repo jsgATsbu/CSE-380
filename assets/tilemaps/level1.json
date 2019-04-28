@@ -124,7 +124,7 @@
         {
          "columns":4,
          "firstgid":1,
-         "image":"..\/images\/Meta.png",
+         "image":"..\/images\/sprite\/Meta.png",
          "imageheight":1024,
          "imagewidth":256,
          "margin":0,
@@ -137,7 +137,7 @@
         {
          "columns":16,
          "firstgid":65,
-         "image":"..\/images\/tiles.png",
+         "image":"..\/images\/sprite\/tiles.png",
          "imageheight":384,
          "imagewidth":1024,
          "margin":0,
@@ -150,7 +150,7 @@
         {
          "columns":4,
          "firstgid":161,
-         "image":"..\/images\/alien.png",
+         "image":"..\/images\/sprite\/alien.png",
          "imageheight":832,
          "imagewidth":256,
          "margin":0,
@@ -163,7 +163,7 @@
         {
          "columns":4,
          "firstgid":213,
-         "image":"..\/images\/dreadFace.png",
+         "image":"..\/images\/sprite\/dreadFace.png",
          "imageheight":640,
          "imagewidth":256,
          "margin":0,

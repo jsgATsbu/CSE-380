@@ -59,6 +59,24 @@
                  "width":64,
                  "x":1216,
                  "y":1216
+                }, 
+                {
+                 "gid":161,
+                 "height":64,
+                 "id":4,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"werewolf"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":770,
+                 "y":1535
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -67,7 +85,7 @@
          "y":0
         }],
  "nextlayerid":5,
- "nextobjectid":4,
+ "nextobjectid":5,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.3",
@@ -76,7 +94,7 @@
         {
          "columns":4,
          "firstgid":1,
-         "image":"..\/images\/Meta.png",
+         "image":"..\/images\/sprite\/Meta.png",
          "imageheight":1024,
          "imagewidth":256,
          "margin":0,
@@ -89,13 +107,26 @@
         {
          "columns":16,
          "firstgid":65,
-         "image":"..\/images\/tiles.png",
+         "image":"..\/images\/sprite\/tiles.png",
          "imageheight":384,
          "imagewidth":1024,
          "margin":0,
          "name":"tiles",
          "spacing":0,
          "tilecount":96,
+         "tileheight":64,
+         "tilewidth":64
+        }, 
+        {
+         "columns":4,
+         "firstgid":161,
+         "image":"..\/images\/sprite\/werewolf.png",
+         "imageheight":640,
+         "imagewidth":256,
+         "margin":0,
+         "name":"werewolf",
+         "spacing":0,
+         "tilecount":40,
          "tileheight":64,
          "tilewidth":64
         }],

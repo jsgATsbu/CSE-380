@@ -12,11 +12,8 @@ class Level {
 
     create() {
         ///for Simple AI, temporary
-        this.countDown = 0;
-
-        this.monsters = [];
+        createFields(this);
         createMap(this);
-        this.game.sprites = [];
         createPlayer(this);
         if(this.monsterProperties !== undefined) {
             createMonsters(this);
@@ -25,7 +22,6 @@ class Level {
 
         this.game.camera.follow(this.player);
         setupInput(this);
-        this.tempSetting = null;
     }
 
     update() {

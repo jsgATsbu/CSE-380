@@ -1,5 +1,12 @@
 'use strict';
 
+var createFields = function(obj){
+    obj.countDown = 0;
+    obj.tempSetting = null;
+    obj.monsters = [];
+    obj.game.sprites = [];
+};
+
 var createSkillSlot = function(obj){
     obj.skillSlot = obj.game.add.image(obj.game.camera.x+window.innerWidth/2-128,obj.game.camera.y+window.innerHeight*8/10, 'SkillSlot');
     obj.skillFrame = obj.game.add.image(obj.game.camera.x+window.innerWidth/2-128,obj.game.camera.y+window.innerHeight*8/10, 'SkillFrame');
@@ -58,9 +65,6 @@ var createSprite = function(obj, pro) {
         y: sprite.body.y - sprite.body.height * 2 / 3};
     sprite.healthBar = new HealthBar(obj.game, barConfig);
     sprite.healthBar.setAnchor(0.5,0.5);
-
-    //// For Simple AI, temporary
-    // sprite.origXY = {x: sprite.body.x, y: sprite.body.y};
 
     Object.keys(pro.animations).forEach(function (anim) {
         sprite.animations.add(anim, pro.animations[anim].frames, pro.animations[anim].frameRate, pro.animations[anim].loop);

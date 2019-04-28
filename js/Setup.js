@@ -52,7 +52,7 @@ var setupInput = function(obj) {
 
     obj.game.input.onDown.add(function(event) {
         if (obj.game.paused) {
-            obj.handleClickPaused(event.clientX + obj.game.camera.x, event.clientY + obj.game.camera.y);
+            handleClickPaused(event.clientX + obj.game.camera.x, event.clientY + obj.game.camera.y);
         } else {
             obj.attack(event.clientX + obj.game.camera.x, event.clientY + obj.game.camera.y);
         }

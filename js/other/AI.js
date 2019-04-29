@@ -4,7 +4,6 @@ const STATE = {
     PATROL: 0,
     COMBAT_MELEE: 1,
     COMBAT_RANGE: 2,
-    DYING: 3,
 };
 
 /*
@@ -22,12 +21,17 @@ class AI {
 
         this.patrolList = patrolList;
 
+        this.cooldown = 0;
+
         this._los = new Phaser.Line();  // line of sight; one line so we don't have to keep creating new ones
     }
 
     update() {
         if(this.monster.stats.currentHealth <= 0){              // Check if monster is dead first, if yes, no more updates
-            this.state = STATE.DYING;
+            this.monster.body.velocity.x = 0;
+            this.monster.body.velocity.y = 0;
+            this.monster.healthBar.kill();
+            this.monster.animations.play("death", 3, false, true);
             return;
         }
 
@@ -56,8 +60,12 @@ class AI {
             this.path.shift();
         }
 
-        if(this.reachedPlayer()){
+        if(this.cooldown <= 0 && this.reachedPlayer()){
             this.monster.attack(this.level.player);
+            this.cooldown = 100;
+        }
+        else{
+            this.cooldown--;
         }
 
         if(this.path.length === 0){
@@ -66,9 +74,7 @@ class AI {
             this.path = this.pathFinder.findPath(start, dest);
         }
 
-        if(this.path.length !== 0) {
-            console.log(this.reachedTarget());
-            console.log("body: " + this.monster.body.x + "    tile: " + this.path[0].worldX);
+        if(this.path.length !== 0 && !this.reachedPlayer()) {
             this.moveMonToXY(this.path[0].worldX,this.path[0].worldY);
         }
     }
@@ -91,13 +97,14 @@ class AI {
     reachedTarget() {
         if (this.path.length === 0) return true;
 
-        return Math.abs(this.monster.body.x - this.path[0].worldX) <= 10 &&
-            Math.abs(this.monster.body.y - this.path[0].worldY) <= 10;
+        return Math.abs(this.monster.body.x - this.path[0].worldX) <= this.monster.stats.spd / 60 &&
+            Math.abs(this.monster.body.y - this.path[0].worldY) <= this.monster.stats.spd / 60;
     }
 
     reachedPlayer() {
         let player = this.level.player;
-        return Math.abs(this.monster.x - player.x) <= 70 && Math.abs(this.monster.y - player.y) <= 70;
+        let result = Math.abs(this.monster.x - player.x) <= 70 && Math.abs(this.monster.y - player.y) <= 70;
+        return result;
     }
 
     noBlockInBetween() {

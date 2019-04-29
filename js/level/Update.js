@@ -34,20 +34,10 @@ var updateSprites = function(level) {
         }
 
         level.game.physics.arcade.collide(level.player, mon);
-
-        if (mon.stats.currentHealth <= 0) {
-            mon.healthBar.kill();
-            mon.animations.play("death", 5, false, true);
-        }
     }, level);
 };
 
 var updateMonsterMovement = function(level) {
-    // if(level.countDown === 0) {
-    //     level.countDown = 150;
-    // } else {
-    //     level.countDown--;
-    // }
     level.monsters.forEach(function(mon) {
         mon.ai.update();
         animateSprite(mon);
@@ -55,10 +45,15 @@ var updateMonsterMovement = function(level) {
 };
 
 var updatePlayerMovement = function(level) {
-    let cursors = level.cursors;
 
-    // obj.player.weapon.bulletKillDistance = 300;
-    // obj.player.weapon.bulletKillType = Phaser.Weapon.KILL_DISTANCE;
+    if(level.player.stats.currentHealth <= 0){
+        level.player.body.velocity.x = 0;
+        level.player.body.velocity.y = 0;
+        level.player.animations.play('death',3,false,true);
+        return;
+    }
+
+    let cursors = level.cursors;
 
     let up = cursors.up.isDown;
     let down = cursors.down.isDown;

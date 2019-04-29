@@ -21,7 +21,7 @@ TheLegendOfMeta.Level1 = function() {
             attackLeft: {frames: [1, 40, 41, 42, 43], frameRate: 5, loop: false},
             attackRight: {frames: [2, 44, 45, 46, 47], frameRate: 5, loop: false},
             attackBack: {frames: [3, 48, 49, 50, 51], frameRate: 5, loop: false},
-            death: {frames: [20, 21, 22, 23], frameRate: 5, loop: false}
+            death: {frames: [20, 21, 22, 23], frameRate: 3, loop: false}
         }
     };
 
@@ -41,11 +41,11 @@ TheLegendOfMeta.Level1 = function() {
                 walkLeft: {frames: [1, 8, 9, 10, 11], frameRate: 5, loop: true},
                 walkRight: {frames: [2, 12, 13, 14, 15], frameRate: 5, loop: true},
                 walkBack: {frames: [3, 16, 17, 18, 19], frameRate: 5, loop: true},
-                attackFront: {frames: [0, 20, 21, 22, 23], frameRate: 5, loop: false},
-                attackLeft: {frames: [1, 24, 25, 26, 27], frameRate: 5, loop: false},
-                attackRight: {frames: [2, 28, 29, 30, 31], frameRate: 5, loop: false},
-                attackBack: {frames: [3, 32, 33, 34, 35], frameRate: 5, loop: false},
-                death: {frames: [36, 37, 38, 39], frameRate: 5, loop: false}
+                attackFront: {frames: [0, 20, 21, 22, 23], frameRate: 20, loop: false},
+                attackLeft: {frames: [1, 24, 25, 26, 27], frameRate: 20, loop: false},
+                attackRight: {frames: [2, 28, 29, 30, 31], frameRate: 20, loop: false},
+                attackBack: {frames: [3, 32, 33, 34, 35], frameRate: 20, loop: false},
+                death: {frames: [36, 37, 38, 39], frameRate: 3, loop: false}
             }
         },
 
@@ -64,11 +64,11 @@ TheLegendOfMeta.Level1 = function() {
                 walkLeft: {frames: [2, 3], frameRate: 5, loop: true},
                 walkRight: {frames: [4, 5], frameRate: 5, loop: true},
                 walkBack: {frames: [6, 7], frameRate: 5, loop: true},
-                attackFront: {frames: [0, 8, 9, 10, 11], frameRate: 5, loop: false},
-                attackLeft: {frames: [2, 12, 13, 14, 15], frameRate: 5, loop: false},
-                attackRight: {frames: [4, 16, 17, 18, 19], frameRate: 5, loop: false},
-                attackBack: {frames: [6, 20, 21, 22, 23], frameRate: 5, loop: false},
-                death: {frames: [24, 25, 26, 27], frameRate: 5, loop: false}
+                attackFront: {frames: [0, 8, 9, 10, 11], frameRate: 20, loop: false},
+                attackLeft: {frames: [2, 12, 13, 14, 15], frameRate: 20, loop: false},
+                attackRight: {frames: [4, 16, 17, 18, 19], frameRate: 20, loop: false},
+                attackBack: {frames: [6, 20, 21, 22, 23], frameRate: 20, loop: false},
+                death: {frames: [24, 25, 26, 27], frameRate: 3, loop: false}
             }
         }
     ];

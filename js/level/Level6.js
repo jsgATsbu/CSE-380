@@ -33,8 +33,8 @@ TheLegendOfMeta.Level6 = function() {
             health: 60,
             spd: 400,
             moveList: [],
-            status: {
-                patrol: []
+            ai: {
+                patrol: [[30,20]]
             },
             animations: {
                 walkFront: {frames: [0], frameRate: 5, loop: true},

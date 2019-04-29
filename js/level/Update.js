@@ -1,29 +1,29 @@
 'use strict';
 
-var updateBullets = function(obj){
-    obj.game.physics.arcade.collide(obj.player.weapon.bullets,obj.blockedLayer,function(bullet){
+var updateBullets = function(level){
+    level.game.physics.arcade.collide(level.player.weapon.bullets,level.blockedLayer,function(bullet){
         bullet.kill();
-    },null,obj);
-    obj.game.physics.arcade.overlap(obj.player.weapon.bullets,obj.monsters,function(enemy,bullet){
+    },null,level);
+    level.game.physics.arcade.overlap(level.player.weapon.bullets,level.monsters,function(enemy,bullet){
         bullet.kill();
         enemy.stats.currentHealth -= 5;
         enemy.healthBar.setPercent(enemy.stats.currentHealth*100/enemy.stats.maxHealth);
-    },null,obj);
+    },null,level);
 };
 
-var updateSprites = function(obj) {
-    obj.game.physics.arcade.collide(obj.player, [obj.blockedLayer,obj.bulletLayer]);
+var updateSprites = function(level) {
+    level.game.physics.arcade.collide(level.player, [level.blockedLayer,level.bulletLayer]);
 
     //// Update the HP bar position and the percentage every frame
-    obj.player.healthBar.setPosition(obj.player.body.x+32, obj.player.body.y-20);
-    obj.player.healthBar.setPercent(obj.player.stats.currentHealth*100 / obj.player.stats.maxHealth);
+    level.player.healthBar.setPosition(level.player.body.x+32, level.player.body.y-20);
+    level.player.healthBar.setPercent(level.player.stats.currentHealth*100 / level.player.stats.maxHealth);
 
-    obj.monsters.forEach(function(mon){
-        obj.game.physics.arcade.collide(mon, [obj.blockedLayer,obj.bulletLayer]);
+    level.monsters.forEach(function(mon){
+        level.game.physics.arcade.collide(mon, [level.blockedLayer,level.bulletLayer]);
 
         mon.healthBar.setPosition(mon.body.x+32,mon.body.y-20);
 
-        if (obj.game.physics.arcade.collide(obj.player, mon)) {
+        if (level.game.physics.arcade.collide(level.player, mon)) {
             mon.body.moves = false;
             mon.body.velocity.x = 0;
             mon.body.velocity.y = 0;
@@ -33,29 +33,29 @@ var updateSprites = function(obj) {
             mon.body.immovable = false;
         }
 
-        obj.game.physics.arcade.collide(obj.player, mon);
+        level.game.physics.arcade.collide(level.player, mon);
 
         if (mon.stats.currentHealth <= 0) {
             mon.healthBar.kill();
             mon.animations.play("death", 5, false, true);
         }
-    }, obj);
+    }, level);
 };
 
-var updateMonsterMovement = function(obj) {
-    if(obj.countDown === 0) {
-        obj.countDown = 150;
-    } else {
-        obj.countDown--;
-    }
-
-    obj.monsters.forEach(function(mon) {
+var updateMonsterMovement = function(level) {
+    // if(level.countDown === 0) {
+    //     level.countDown = 150;
+    // } else {
+    //     level.countDown--;
+    // }
+    level.monsters.forEach(function(mon) {
+        mon.ai.update();
         animateSprite(mon);
-    }, obj);
+    }, level);
 };
 
-var updatePlayerMovement = function(obj) {
-    let cursors = obj.cursors;
+var updatePlayerMovement = function(level) {
+    let cursors = level.cursors;
 
     // obj.player.weapon.bulletKillDistance = 300;
     // obj.player.weapon.bulletKillType = Phaser.Weapon.KILL_DISTANCE;
@@ -65,36 +65,36 @@ var updatePlayerMovement = function(obj) {
     let left = cursors.left.isDown;
     let right = cursors.right.isDown;
 
-    obj.player.body.immovable = false;
+    level.player.body.immovable = false;
 
-    let playerSpeed = obj.player.stats.spd;
+    let playerSpeed = level.player.stats.spd;
     if (up) {
-        obj.player.body.velocity.y = -playerSpeed;
-        obj.player.body.velocity.x = 0;
-        obj.player.weapon.fireAngle = 270;
-        obj.player.weapon.trackOffset.set(0,-32);
+        level.player.body.velocity.y = -playerSpeed;
+        level.player.body.velocity.x = 0;
+        level.player.weapon.fireAngle = 270;
+        level.player.weapon.trackOffset.set(0,-32);
     } else if (down) {
-        obj.player.body.velocity.y = playerSpeed;
-        obj.player.body.velocity.x = 0;
-        obj.player.weapon.fireAngle = 90;
-        obj.player.weapon.trackOffset.set(0,32);
+        level.player.body.velocity.y = playerSpeed;
+        level.player.body.velocity.x = 0;
+        level.player.weapon.fireAngle = 90;
+        level.player.weapon.trackOffset.set(0,32);
     } else if (left) {
-        obj.player.body.velocity.x = -playerSpeed;
-        obj.player.body.velocity.y = 0;
-        obj.player.weapon.fireAngle = 180;
-        obj.player.weapon.trackOffset.set(-32,0);
+        level.player.body.velocity.x = -playerSpeed;
+        level.player.body.velocity.y = 0;
+        level.player.weapon.fireAngle = 180;
+        level.player.weapon.trackOffset.set(-32,0);
     } else if (right) {
-        obj.player.body.velocity.x = playerSpeed;
-        obj.player.body.velocity.y = 0;
-        obj.player.weapon.fireAngle = 0;
-        obj.player.weapon.trackOffset.set(32,0);
+        level.player.body.velocity.x = playerSpeed;
+        level.player.body.velocity.y = 0;
+        level.player.weapon.fireAngle = 0;
+        level.player.weapon.trackOffset.set(32,0);
     } else {
-        obj.player.body.immovable = true;
-        obj.player.body.velocity.x = 0;
-        obj.player.body.velocity.y = 0;
+        level.player.body.immovable = true;
+        level.player.body.velocity.x = 0;
+        level.player.body.velocity.y = 0;
     }
 
-    animateSprite(obj.player);
+    animateSprite(level.player);
 };
 
 var animateSprite = function(sprite) {
@@ -123,24 +123,24 @@ var animateSprite = function(sprite) {
     }
 };
 
-var checkGameStatus = function(obj){
-    if(obj.player.alive === false){
-        obj.state.start("ResultScreen",true,false,'lose',obj.lvl);
+var checkGameStatus = function(level){
+    if(level.player.alive === false){
+        level.state.start("ResultScreen",true,false,'lose',level.lvl);
         return;
     }
 
     let allMonsterDead = true;
-    obj.monsters.forEach(function(mon){
+    level.monsters.forEach(function(mon){
         if(mon.alive)
             allMonsterDead = false
     },this);
 
     if(allMonsterDead){
-        if(obj.mapKey === 'level6'){
-            obj.state.start("ResultScreen",true,false,'final', obj.lvl);
+        if(level.mapKey === 'level6'){
+            level.state.start("ResultScreen",true,false,'final', level.lvl);
         }
         else {
-            obj.state.start("ResultScreen",true,false,'win', obj.lvl);
+            level.state.start("ResultScreen",true,false,'win', level.lvl);
         }
     }
 };

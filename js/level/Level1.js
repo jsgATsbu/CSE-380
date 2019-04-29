@@ -4,6 +4,7 @@ var TheLegendOfMeta = TheLegendOfMeta || {};
 
 TheLegendOfMeta.Level1 = function() {
     this.mapKey = 'level1';
+    this.lvl = 1;
 
     this.playerProperties = {
         name: 'player',
@@ -31,6 +32,10 @@ TheLegendOfMeta.Level1 = function() {
             def: 5,
             health: 60,
             spd: 400,
+            moveList: [],
+            status: {
+                patrol: [[3,2],[8,5],[3,8],[8,5]]
+            },
             animations: {
                 walkFront: {frames: [0, 4, 5, 6, 7], frameRate: 5, loop: true},
                 walkLeft: {frames: [1, 8, 9, 10, 11], frameRate: 5, loop: true},
@@ -50,6 +55,10 @@ TheLegendOfMeta.Level1 = function() {
             def: 20,
             health: 120,
             spd: 200,
+            moveList: [],
+            status: {
+                patrol: [[13, 20], [19, 13]]
+            },
             animations: {
                 walkFront: {frames: [0, 1], frameRate: 5, loop: true},
                 walkLeft: {frames: [2, 3], frameRate: 5, loop: true},

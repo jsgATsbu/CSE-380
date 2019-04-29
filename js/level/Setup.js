@@ -65,6 +65,7 @@ var setupInput = function(obj) {
     obj.three = keyboard.addKey(Phaser.KeyCode.THREE);
     obj.four = keyboard.addKey(Phaser.KeyCode.FOUR);
     obj.iKey = keyboard.addKey(Phaser.KeyCode.I);
+    obj.pKey = keyboard.addKey(Phaser.KeyCode.P);
 
     obj.esc.onDown.add(function() {
         if (!obj.game.paused) {
@@ -91,6 +92,9 @@ var setupInput = function(obj) {
     }, obj);
     obj.jKey.onDown.add(function() {
         obj.player.weapon.fire();
+    }, obj);
+    obj.pKey.onDown.add(function() {
+        killAll(obj);
     }, obj);
 };
 
@@ -153,4 +157,11 @@ var attack = function(obj, x, y) {
 
         obj.player.attack(sprite);
     }
+};
+
+var killAll = function(obj) {
+    obj.monsters.forEach(function(mon) {
+        mon.healthBar.kill();
+        mon.animations.play("death", 5, false, true);
+    });
 };

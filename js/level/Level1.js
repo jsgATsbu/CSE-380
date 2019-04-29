@@ -31,7 +31,7 @@ TheLegendOfMeta.Level1 = function() {
             atk: 50,
             def: 5,
             health: 60,
-            spd: 400,
+            spd: 240,
             moveList: [],
             ai: {
                 patrol: [[3,2],[8,5],[3,8],[8,5]]

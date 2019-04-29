@@ -67,12 +67,14 @@ class AI {
         }
 
         if(this.path.length !== 0) {
+            console.log(this.reachedTarget());
+            console.log("body: " + this.monster.body.x + "    tile: " + this.path[0].worldX);
             this.moveMonToXY(this.path[0].worldX,this.path[0].worldY);
         }
     }
 
     moveMonToXY(x,y) {
-        let speed = this.monster.stats.spd / 2;
+        let speed = this.monster.stats.spd;
 
         if (x === this.monster.body.x) {
             this.monster.body.velocity.x = 0;
@@ -89,8 +91,8 @@ class AI {
     reachedTarget() {
         if (this.path.length === 0) return true;
 
-        return Math.abs(this.monster.x - (this.path[0].worldX + this.path[0].centerX)) <= 4 &&
-            Math.abs(this.monster.y - (this.path[0].worldY + this.path[0].centerY)) <= 4;
+        return Math.abs(this.monster.body.x - this.path[0].worldX) <= 10 &&
+            Math.abs(this.monster.body.y - this.path[0].worldY) <= 10;
     }
 
     reachedPlayer() {
@@ -99,8 +101,8 @@ class AI {
     }
 
     noBlockInBetween() {
-        this._los.start.set(this.monster.x, this.monster.y);
-        this._los.end.set(this.level.player.x, this.level.player.y);
+        this._los.start.set(this.monster.body.x, this.monster.body.y);
+        this._los.end.set(this.level.player.body.x, this.level.player.body.y);
 
         let layer = this.level.blockedLayer;
         let tiles = layer.getRayCastTiles(this._los);
@@ -116,8 +118,8 @@ class AI {
     }
 
     playerNearby() {
-        let distX = this.monster.x - this.level.player.x;
-        let distY = this.monster.y - this.level.player.y;
+        let distX = this.monster.body.x - this.level.player.body.x;
+        let distY = this.monster.body.y - this.level.player.body.y;
 
         // want to know if player is in general vicinity, so use Euclidean distance
         let dist = Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2));

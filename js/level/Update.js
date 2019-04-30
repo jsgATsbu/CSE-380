@@ -18,7 +18,7 @@ var updateSprites = function(level) {
         level.game.physics.arcade.overlap(level.player, icon, function () {
             if (level.player.abilities.length < 4 || level.r) {
                 level.addAbility(icon);
-                icon.kill();
+                icon.destroy();
             }
         });
     });

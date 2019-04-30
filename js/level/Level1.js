@@ -47,7 +47,7 @@ TheLegendOfMeta.Level1 = function() {
                 attackBack: {frames: [3, 32, 33, 34, 35], frameRate: 20, loop: false},
                 death: {frames: [36, 37, 38, 39], frameRate: 3, loop: false}
             },
-            ability: breakRock
+            ability: invisibility
         },
 
         {

@@ -13,7 +13,7 @@ var createFields = function(level){
     level.tempSetting = null;
     level.monsters = [];
     level.game.sprites = [];
-    level.icons = [];
+    // level.icons = [];
 };
 
 var createSkillSlot = function(level){

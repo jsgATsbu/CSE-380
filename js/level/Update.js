@@ -14,14 +14,14 @@ var updateBullets = function(level){
 var updateSprites = function(level) {
     level.game.physics.arcade.collide(level.player, [level.blockedLayer,level.bulletLayer]);
 
-    level.icons.forEach(function(icon) {
+    /*level.icons.forEach(function(icon) {
         level.game.physics.arcade.overlap(level.player, icon, function () {
             if (level.player.abilities.length < 4 || level.r) {
                 level.addAbility(icon);
-                icon.kill();
+                icon.destroy();
             }
         });
-    });
+    });*/
 
     //// Update the HP bar position and the percentage every frame
     level.player.healthBar.setPosition(level.player.body.x + 32, level.player.body.y - 20);
@@ -52,6 +52,10 @@ var updateMonsterMovement = function(level) {
         mon.ai.update();
         animateSprite(mon);
     }, level);
+
+    level.monsters = level.monsters.filter(function(mon) {
+        return mon.stats.currentHealth > 0;
+    });
 };
 
 var updatePlayerMovement = function(level) {
@@ -62,6 +66,8 @@ var updatePlayerMovement = function(level) {
         level.player.animations.play('death',3,false,true);
         return;
     }
+
+    // level.r = level.rKey.isDown;
 
     let cursors = level.cursors;
 

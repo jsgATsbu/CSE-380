@@ -33,6 +33,17 @@ TheLegendOfMeta.Preload.prototype = {
         this.load.image('returnBtn','assets/images/gui/menu_return.png');
         this.load.image('bullet','assets/images/bullet/bullet.png');
 
+        this.load.image('breakRock', 'assets/images/abilities/breakRock.png');
+        this.load.image('feather', 'assets/images/abilities/feather.png');
+        this.load.image('fireball', 'assets/images/abilities/fireball.png');
+        this.load.image('fly', 'assets/images/abilities/fly.png');
+        this.load.image('freeze', 'assets/images/abilities/freeze.png');
+        this.load.image('invisibility', 'assets/images/abilities/invisibility.png');
+        this.load.image('lifeDrain', 'assets/images/abilities/lifeDrain.png');
+        this.load.image('poison', 'assets/images/abilities/poison.png');
+        this.load.image('strength', 'assets/images/abilities/strength.png');
+        this.load.image('waterWalk', 'assets/images/abilities/waterWalk.png');
+
         this.load.audio('bgm1','assets/audios/1.ogg');
         this.load.audio('bgm2','assets/audios/2.ogg');
         this.load.audio('bgm3','assets/audios/3.ogg');

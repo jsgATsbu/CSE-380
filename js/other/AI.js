@@ -35,7 +35,8 @@ class AI {
             monster.healthBar.kill();
             monster.animations.play("death", 3, false, true);
 
-            this.level.addIcon(monster.x + 32, monster.y + 32, monster.ability);
+            // this.level.addAbility(monster.ability);
+            // this.level.addIcon(monster.x + 32, monster.y + 32, monster.ability);
         }
 
         let start = this.level.map.getTileWorldXY(this.monster.x, this.monster.y);

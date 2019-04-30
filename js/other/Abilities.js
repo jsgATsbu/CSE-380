@@ -30,3 +30,7 @@ let breakRock = function(creature) {
                                    64, 64, 'blockedLayer');
     }
 };
+
+let invisibility = function() {
+    // TODO
+};

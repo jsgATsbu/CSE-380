@@ -39,15 +39,15 @@ TheLegendOfMeta.Level3 = function() {
                 patrol: [[30,20]]
             },
             animations: {
-                walkFront: {frames: [0], frameRate: 5, loop: true},
-                walkLeft: {frames: [1], frameRate: 5, loop: true},
-                walkRight: {frames: [2], frameRate: 5, loop: true},
-                walkBack: {frames: [3], frameRate: 5, loop: true},
-                attackFront: {frames: [0], frameRate: 5, loop: false},
-                attackLeft: {frames: [1], frameRate: 5, loop: false},
-                attackRight: {frames: [2], frameRate: 5, loop: false},
-                attackBack: {frames: [3], frameRate: 5, loop: false},
-                death: {frames: [0], frameRate: 5, loop: false}
+                walkFront: {frames: [0,1,2,3], frameRate: 5, loop: true},
+                walkLeft: {frames: [4,5,6,7], frameRate: 5, loop: true},
+                walkRight: {frames: [8,9,10,11], frameRate: 5, loop: true},
+                walkBack: {frames: [12,13,14,15], frameRate: 5, loop: true},
+                attackFront: {frames: [16,17,18,19], frameRate: 5, loop: false},
+                attackLeft: {frames: [20,21,22,23], frameRate: 5, loop: false},
+                attackRight: {frames: [24,25,26,27], frameRate: 5, loop: false},
+                attackBack: {frames: [28,29,30,31], frameRate: 5, loop: false},
+                death: {frames: [32,33,34,35], frameRate: 5, loop: false}
             }
         }
     ]

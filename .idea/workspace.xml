@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="31eb6693-bbb3-410f-9abd-67e33bc239ea" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/level/Level2.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/level/Level2.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/level/Setup.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-546">
-              <caret line="141" column="48" selection-start-line="141" selection-start-column="48" selection-end-line="141" selection-end-column="48" />
+            <state relative-caret-position="488">
+              <caret line="165" column="36" selection-start-line="165" selection-start-column="36" selection-end-line="165" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -28,7 +27,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/level/Level.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
+            <state relative-caret-position="255">
               <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
             </state>
           </provider>
@@ -37,17 +36,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/level/Update.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="63" column="5" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
+            <state relative-caret-position="1105">
+              <caret line="65" column="59" lean-forward="true" selection-start-line="65" selection-start-column="59" selection-end-line="65" selection-end-column="59" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/level/Create.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+            <state relative-caret-position="391">
+              <caret line="23" column="42" lean-forward="true" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/other/AI.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
             </state>
           </provider>
         </entry>
@@ -55,8 +63,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/level/Level1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="24" />
+            <state relative-caret-position="153">
+              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
             </state>
           </provider>
         </entry>
@@ -64,17 +72,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/level/Level2.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="47" column="80" lean-forward="true" selection-start-line="47" selection-start-column="80" selection-end-line="47" selection-end-column="80" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/level/Level3.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+            <state relative-caret-position="799">
+              <caret line="47" column="80" selection-start-line="47" selection-start-column="80" selection-end-line="47" selection-end-column="80" />
             </state>
           </provider>
         </entry>
@@ -129,6 +128,7 @@
       <find>getRayC</find>
       <find>getLayerIn</find>
       <find>.rkey</find>
+      <find>.ondown.</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -158,12 +158,12 @@
         <option value="$PROJECT_DIR$/js/Pathfinding.js" />
         <option value="$PROJECT_DIR$/js/Level.js" />
         <option value="$PROJECT_DIR$/js/AI.js" />
-        <option value="$PROJECT_DIR$/js/level/Setup.js" />
         <option value="$PROJECT_DIR$/js/level/Level1.js" />
-        <option value="$PROJECT_DIR$/js/other/AI.js" />
         <option value="$PROJECT_DIR$/js/level/Create.js" />
         <option value="$PROJECT_DIR$/js/level/Update.js" />
         <option value="$PROJECT_DIR$/js/level/Level2.js" />
+        <option value="$PROJECT_DIR$/js/other/AI.js" />
+        <option value="$PROJECT_DIR$/js/level/Setup.js" />
       </list>
     </option>
   </component>
@@ -185,17 +185,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="CSE-380" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="D:\CSE380\CSE-380" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -219,6 +208,17 @@
               <item name="CSE-380" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
               <item name="other" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="CSE-380" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="D:\CSE380\CSE-380" type="442cc68d:ScopeViewTreeModel$RootNode" />
             </path>
           </expand>
           <select />
@@ -302,6 +302,7 @@
       <workItem from="1556564337380" duration="409000" />
       <workItem from="1556565046267" duration="4821000" />
       <workItem from="1556576540820" duration="1326000" />
+      <workItem from="1556644265331" duration="5000" />
     </task>
     <task id="LOCAL-00001" summary="Added skeleton of game">
       <created>1554766057497</created>
@@ -520,15 +521,28 @@
       <option name="project" value="LOCAL" />
       <updated>1556595041099</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Monsters now attack">
+      <created>1556595668256</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1556595668256</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Monsters now attack">
+      <created>1556596264942</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1556596264942</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="183594000" />
+    <option name="totallyTimeSpent" value="184803000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24983476" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -622,9 +636,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Monsters now attack" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/assets/images/menu_setting.png" />
-    <entry file="file://$PROJECT_DIR$/assets/images/menu_resume.png" />
-    <entry file="file://$PROJECT_DIR$/assets/images/menu_return.png" />
     <entry file="file://$PROJECT_DIR$/assets/images/menu_paused.png" />
     <entry file="file://$PROJECT_DIR$/assets/images/Monsters.png" />
     <entry file="file://$PROJECT_DIR$/js/Healthbar.standalone.js" />
@@ -668,13 +679,6 @@
     <entry file="file://$PROJECT_DIR$/assets/images/alien.png" />
     <entry file="file://$PROJECT_DIR$/assets/images/Meta.png" />
     <entry file="file://$PROJECT_DIR$/js/Level.js" />
-    <entry file="file://$PROJECT_DIR$/js/level/Level6.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/Boot.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -708,13 +712,6 @@
     <entry file="file://$PROJECT_DIR$/js/Setting.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/level/Setup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-546">
-          <caret line="141" column="48" selection-start-line="141" selection-start-column="48" selection-end-line="141" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/BaiduNetdiskDownload/2d-topdown/CSE 380 HW3/js/Game.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="337">
@@ -729,45 +726,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/level/Level1.js">
+    <entry file="file://$PROJECT_DIR$/js/level/Level3.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="24" />
+          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/other/AI.js">
+    <entry file="file://$PROJECT_DIR$/js/level/Setup.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="88" column="5" lean-forward="true" selection-start-line="88" selection-start-column="5" selection-end-line="88" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/level/Update.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="63" column="5" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/level/Level2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="47" column="80" lean-forward="true" selection-start-line="47" selection-start-column="80" selection-end-line="47" selection-end-column="80" />
+        <state relative-caret-position="488">
+          <caret line="165" column="36" selection-start-line="165" selection-start-column="36" selection-end-line="165" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/level/Level.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
+        <state relative-caret-position="255">
           <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/level/Update.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1105">
+          <caret line="65" column="59" lean-forward="true" selection-start-line="65" selection-start-column="59" selection-end-line="65" selection-end-column="59" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/level/Create.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+        <state relative-caret-position="391">
+          <caret line="23" column="42" lean-forward="true" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/other/AI.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/level/Level1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/level/Level2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="47" column="80" selection-start-line="47" selection-start-column="80" selection-end-line="47" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/level/Level4.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="13" selection-start-column="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/level/Level5.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/level/Level6.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
         </state>
       </provider>
     </entry>

@@ -6,6 +6,8 @@ TheLegendOfMeta.Level4 = function() {
     this.mapKey = 'level4';
     this.lvl = 4;
 
+    this.music = 'bgm4';
+
     this.playerProperties = {
         name: 'player',
         atk: 30,

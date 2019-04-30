@@ -12,7 +12,6 @@ var initializeStats = function(sprite, atk, def, health, spd){
     sprite.attack = function(enemy) {
         let diffX = enemy.x - sprite.x;
         let diffY = enemy.y - sprite.y;
-        console.log(diffX, diffY);
 
         if (Math.abs(diffX) > Math.abs(diffY)) {
             if (diffX > 0) {
@@ -40,127 +39,127 @@ var initializeStats = function(sprite, atk, def, health, spd){
     };
 };
 
-var setupInput = function(obj) {
-    const keyboard = obj.game.input.keyboard;
+var setupInput = function(level) {
+    const keyboard = level.game.input.keyboard;
 
-    obj.cursors = keyboard.addKeys({
+    level.cursors = keyboard.addKeys({
         up: Phaser.KeyCode.W,
         down: Phaser.KeyCode.S,
         left: Phaser.KeyCode.A,
         right: Phaser.KeyCode.D
     });
 
-    obj.game.input.onDown.add(function(event) {
-        if (obj.game.paused) {
-            handleClickPaused(obj,event.clientX + obj.game.camera.x, event.clientY + obj.game.camera.y);
+    level.game.input.onDown.add(function(event) {
+        if (level.game.paused) {
+            handleClickPaused(level,event.clientX + level.game.camera.x, event.clientY + level.game.camera.y);
         } else {
-            attack(obj,event.clientX + obj.game.camera.x, event.clientY + obj.game.camera.y);
+            attack(level,event.clientX + level.game.camera.x, event.clientY + level.game.camera.y);
         }
-    }, obj);
+    }, level);
 
-    obj.jKey = keyboard.addKey(Phaser.KeyCode.J);
-    obj.esc = keyboard.addKey(Phaser.KeyCode.ESC);
-    obj.one = keyboard.addKey(Phaser.KeyCode.ONE);
-    obj.two = keyboard.addKey(Phaser.KeyCode.TWO);
-    obj.three = keyboard.addKey(Phaser.KeyCode.THREE);
-    obj.four = keyboard.addKey(Phaser.KeyCode.FOUR);
-    obj.iKey = keyboard.addKey(Phaser.KeyCode.I);
-    obj.pKey = keyboard.addKey(Phaser.KeyCode.P);
+    level.jKey = keyboard.addKey(Phaser.KeyCode.J);
+    level.esc = keyboard.addKey(Phaser.KeyCode.ESC);
+    level.one = keyboard.addKey(Phaser.KeyCode.ONE);
+    level.two = keyboard.addKey(Phaser.KeyCode.TWO);
+    level.three = keyboard.addKey(Phaser.KeyCode.THREE);
+    level.four = keyboard.addKey(Phaser.KeyCode.FOUR);
+    level.iKey = keyboard.addKey(Phaser.KeyCode.I);
+    level.pKey = keyboard.addKey(Phaser.KeyCode.P);
 
-    obj.esc.onDown.add(function() {
-        if (!obj.game.paused) {
-            pause(obj);
+    level.esc.onDown.add(function() {
+        if (!level.game.paused) {
+            pause(level);
         } else {
-            unpause(obj);
+            unpause(level);
         }
-    }, obj);
+    }, level);
 
-    obj.one.onDown.add(function() {
-        obj.currentSkill=0;
-        obj.skillFrame.cameraOffset.setTo(window.innerWidth/2-128,window.innerHeight*8/10)}, obj);
-    obj.two.onDown.add(function() {
-        obj.currentSkill=1;
-        obj.skillFrame.cameraOffset.setTo(window.innerWidth/2-64,window.innerHeight*8/10)}, obj);
-    obj.three.onDown.add(function() {
-        obj.currentSkill=2;
-        obj.skillFrame.cameraOffset.setTo(window.innerWidth/2,window.innerHeight*8/10)}, obj);
-    obj.four.onDown.add(function() {
-        obj.currentSkill=3;
-        obj.skillFrame.cameraOffset.setTo(window.innerWidth/2+64,window.innerHeight*8/10)},obj);
-    obj.iKey.onDown.add(function() {
-        obj.player.invincible = !obj.player.invincible;
-    }, obj);
-    obj.jKey.onDown.add(function() {
-        obj.player.weapon.fire();
-    }, obj);
-    obj.pKey.onDown.add(function() {
-        killAll(obj);
-    }, obj);
+    level.one.onDown.add(function() {
+        level.currentSkill=0;
+        level.skillFrame.cameraOffset.setTo(window.innerWidth/2-128,window.innerHeight*8/10)}, level);
+    level.two.onDown.add(function() {
+        level.currentSkill=1;
+        level.skillFrame.cameraOffset.setTo(window.innerWidth/2-64,window.innerHeight*8/10)}, level);
+    level.three.onDown.add(function() {
+        level.currentSkill=2;
+        level.skillFrame.cameraOffset.setTo(window.innerWidth/2,window.innerHeight*8/10)}, level);
+    level.four.onDown.add(function() {
+        level.currentSkill=3;
+        level.skillFrame.cameraOffset.setTo(window.innerWidth/2+64,window.innerHeight*8/10)},level);
+    level.iKey.onDown.add(function() {
+        level.player.invincible = !level.player.invincible;
+    }, level);
+    level.jKey.onDown.add(function() {
+        level.player.weapon.fire();
+    }, level);
+    level.pKey.onDown.add(function() {
+        killAll(level);
+    }, level);
 };
 
-var pause = function(obj) {
-    obj.game.paused = true;
-    obj.pauseMenu = obj.game.add.sprite(obj.game.camera.x + window.innerWidth / 2,
-        obj.game.camera.y + window.innerHeight / 2, 'pauseMenu');
-    obj.pauseMenu.anchor.setTo(0.5);
-    obj.settingBtn = obj.game.add.button(obj.pauseMenu.x, obj.pauseMenu.y-75, 'settingBtn');
-    obj.titleBtn = obj.game.add.button(obj.pauseMenu.x, obj.pauseMenu.y+75, 'titleBtn');
-    obj.settingBtn.anchor.setTo(0.5);
-    obj.titleBtn.anchor.setTo(0.5);
+var pause = function(level) {
+    level.game.paused = true;
+    level.pauseMenu = level.game.add.sprite(level.game.camera.x + window.innerWidth / 2,
+        level.game.camera.y + window.innerHeight / 2, 'pauseMenu');
+    level.pauseMenu.anchor.setTo(0.5);
+    level.settingBtn = level.game.add.button(level.pauseMenu.x, level.pauseMenu.y-75, 'settingBtn');
+    level.titleBtn = level.game.add.button(level.pauseMenu.x, level.pauseMenu.y+75, 'titleBtn');
+    level.settingBtn.anchor.setTo(0.5);
+    level.titleBtn.anchor.setTo(0.5);
 };
 
-var unpause = function(obj) {
-    obj.game.paused = false;
-    obj.pauseMenu.destroy();
-    obj.settingBtn.destroy();
-    obj.titleBtn.destroy();
+var unpause = function(level) {
+    level.game.paused = false;
+    level.pauseMenu.destroy();
+    level.settingBtn.destroy();
+    level.titleBtn.destroy();
 };
 
-var handleClickPaused = function(obj, x, y) {
-    let menu = obj.pauseMenu;
-    let btn1 = obj.settingBtn;
-    let btn2 = obj.titleBtn;
+var handleClickPaused = function(level, x, y) {
+    let menu = level.pauseMenu;
+    let btn1 = level.settingBtn;
+    let btn2 = level.titleBtn;
 
     if (x < menu.x - menu.width / 2 || x > menu.x + menu.width / 2 ||
         y < menu.y - menu.height || y > menu.y + menu.height / 2) {
-        if (obj.tempSetting === null && obj.game.paused) {
-            unpause(obj);
+        if (level.tempSetting === null && level.game.paused) {
+            unpause(level);
         } else {
-            obj.tempSetting.destroy();
-            obj.tempSetting = null;
+            level.tempSetting.destroy();
+            level.tempSetting = null;
         }
     } else if (x < btn1.x + btn1.width / 2 && x > btn1.x - btn1.width / 2 &&
         y < btn1.y + btn1.height / 2 && y > btn1.y - btn1.height / 2) {
-        if (obj.tempSetting === null) {
-            obj.tempSetting = obj.game.add.image(menu.x, menu.y, 'Control');
-            obj.tempSetting.anchor.setTo(0.5);
+        if (level.tempSetting === null) {
+            level.tempSetting = level.game.add.image(menu.x, menu.y, 'Control');
+            level.tempSetting.anchor.setTo(0.5);
         }
     } else if (x < btn2.x + btn2.width / 2 && x > btn2.x - btn2.width / 2 &&
         y < btn2.y + btn2.height / 2 && y > btn2.y - btn2.height / 2) {
-        if (obj.tempSetting === null && obj.game.paused) {
-            obj.game.paused = false;
+        if (level.tempSetting === null && level.game.paused) {
+            level.game.paused = false;
             // noinspection JSUnresolvedVariable
-            obj.state.start("MainMenu");
+            level.state.start("MainMenu");
         } else {
-            obj.tempSetting.destroy();
-            obj.tempSetting = null;
+            level.tempSetting.destroy();
+            level.tempSetting = null;
         }
     }
 };
 
-var attack = function(obj, x, y) {
-    let sprite = obj.findSpritesByCoordinates(x, y)[0];
+var attack = function(level, x, y) {
+    let sprite = level.findSpritesByCoordinates(x, y)[0];
 
-    if(sprite !== undefined && sprite !== obj.player &&
-        Math.abs(obj.player.x - sprite.x) <= 64 &&
-        Math.abs(obj.player.y - sprite.y) <= 64) {
+    if(sprite !== undefined && sprite !== level.player &&
+        Math.abs(level.player.x - sprite.x) <= 64 &&
+        Math.abs(level.player.y - sprite.y) <= 64) {
 
-        obj.player.attack(sprite);
+        level.player.attack(sprite);
     }
 };
 
-var killAll = function(obj) {
-    obj.monsters.forEach(function(mon) {
+var killAll = function(level) {
+    level.monsters.forEach(function(mon) {
         mon.healthBar.kill();
         mon.animations.play("death", 5, false, true);
     });

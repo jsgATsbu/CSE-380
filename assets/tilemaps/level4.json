@@ -61,7 +61,7 @@
                  "y":1216
                 }, 
                 {
-                 "gid":161,
+                 "gid":241,
                  "height":64,
                  "id":4,
                  "name":"",
@@ -108,18 +108,18 @@
          "columns":16,
          "firstgid":65,
          "image":"..\/images\/sprite\/tiles.png",
-         "imageheight":384,
+         "imageheight":704,
          "imagewidth":1024,
          "margin":0,
          "name":"tiles",
          "spacing":0,
-         "tilecount":96,
+         "tilecount":176,
          "tileheight":64,
          "tilewidth":64
         }, 
         {
          "columns":4,
-         "firstgid":161,
+         "firstgid":241,
          "image":"..\/images\/sprite\/icegiant.png",
          "imageheight":640,
          "imagewidth":256,

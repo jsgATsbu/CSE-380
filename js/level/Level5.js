@@ -6,6 +6,8 @@ TheLegendOfMeta.Level5 = function() {
     this.mapKey = 'level5';
     this.lvl = 5;
 
+    this.music = 'bgm5';
+
     this.playerProperties = {
         name: 'player',
         atk: 30,
@@ -27,7 +29,7 @@ TheLegendOfMeta.Level5 = function() {
 
     this.monsterProperties = [
         {
-            name: 'harpy',
+            name: 'vampire',
             atk: 50,
             def: 5,
             health: 60,

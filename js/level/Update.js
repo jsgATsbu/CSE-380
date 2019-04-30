@@ -63,8 +63,6 @@ var updatePlayerMovement = function(level) {
         return;
     }
 
-    level.r = level.rKey.isDown;
-
     let cursors = level.cursors;
 
     let up = cursors.up.isDown;

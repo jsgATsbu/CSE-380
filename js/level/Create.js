@@ -8,7 +8,6 @@ var createSound = function(level){
     },this);
 };
 
-
 var createFields = function(level){
     level.countDown = 0;
     level.tempSetting = null;

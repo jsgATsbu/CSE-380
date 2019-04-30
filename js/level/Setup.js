@@ -43,6 +43,13 @@ var initializeStats = function(sprite, atk, def, health, spd){
 var setupInput = function(obj) {
     const keyboard = obj.game.input.keyboard;
 
+    obj.cursors = keyboard.addKeys({
+        up: Phaser.KeyCode.W,
+        down: Phaser.KeyCode.S,
+        left: Phaser.KeyCode.A,
+        right: Phaser.KeyCode.D
+    });
+
     obj.game.input.onDown.add(function(event) {
         if (obj.game.paused) {
             handleClickPaused(obj,event.clientX + obj.game.camera.x, event.clientY + obj.game.camera.y);
@@ -51,25 +58,14 @@ var setupInput = function(obj) {
         }
     }, obj);
 
-    obj.cursors = keyboard.addKeys({
-        up: Phaser.KeyCode.W,
-        down: Phaser.KeyCode.S,
-        left: Phaser.KeyCode.A,
-        right: Phaser.KeyCode.D
-    });
-    obj.rKey = keyboard.addKey(Phaser.KeyCode.R);
-
+    obj.jKey = keyboard.addKey(Phaser.KeyCode.J);
     obj.esc = keyboard.addKey(Phaser.KeyCode.ESC);
-
     obj.one = keyboard.addKey(Phaser.KeyCode.ONE);
     obj.two = keyboard.addKey(Phaser.KeyCode.TWO);
     obj.three = keyboard.addKey(Phaser.KeyCode.THREE);
     obj.four = keyboard.addKey(Phaser.KeyCode.FOUR);
-
-    obj.jKey = keyboard.addKey(Phaser.KeyCode.J);
     obj.iKey = keyboard.addKey(Phaser.KeyCode.I);
     obj.pKey = keyboard.addKey(Phaser.KeyCode.P);
-
 
     obj.esc.onDown.add(function() {
         if (!obj.game.paused) {
@@ -91,7 +87,6 @@ var setupInput = function(obj) {
     obj.four.onDown.add(function() {
         obj.currentSkill=3;
         obj.skillFrame.cameraOffset.setTo(window.innerWidth/2+64,window.innerHeight*8/10)},obj);
-
     obj.iKey.onDown.add(function() {
         obj.player.invincible = !obj.player.invincible;
     }, obj);

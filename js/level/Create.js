@@ -1,5 +1,14 @@
 'use strict';
 
+var createSound = function(level){
+    level.bgm = level.game.add.audio(level.music,1,true);
+    level.bgm.play();
+    level.state.onStateChange.add(function(){
+        level.bgm.stop();
+    },this);
+};
+
+
 var createFields = function(level){
     level.countDown = 0;
     level.tempSetting = null;

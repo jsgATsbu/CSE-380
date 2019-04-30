@@ -90,8 +90,9 @@ var setupInput = function(obj) {
         obj.player.invincible = !obj.player.invincible;
     }, obj);
     obj.jKey.onDown.add(function() {
-        obj.player.activeAbility.call(obj, obj.player);
-        console.log(obj.player.activeAbility);
+        obj.player.weapon.fire();
+        // obj.player.activeAbility.call(obj, obj.player);
+        // console.log(obj.player.activeAbility);
     }, obj);
     obj.pKey.onDown.add(function() {
         killAll(obj);
@@ -162,6 +163,7 @@ var attack = function(obj, x, y) {
 var killAll = function(obj) {
     obj.monsters.forEach(function(mon) {
         mon.healthBar.kill();
-        mon.animations.play("death", 5, false, true);
+        mon.stats.currentHealth = 0;
+        mon.animations.play("death", 2, false, true);
     });
 };

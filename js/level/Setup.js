@@ -12,7 +12,6 @@ var initializeStats = function(sprite, atk, def, health, spd){
     sprite.attack = function(enemy) {
         let diffX = enemy.x - sprite.x;
         let diffY = enemy.y - sprite.y;
-        console.log(diffX, diffY);
 
         if (Math.abs(diffX) > Math.abs(diffY)) {
             if (diffX > 0) {
@@ -76,22 +75,23 @@ var setupInput = function(obj) {
     }, obj);
 
     obj.one.onDown.add(function() {
-        obj.currentSkill=0;
+        obj.player.activeAbility = obj.player.abilities[0];
         obj.skillFrame.cameraOffset.setTo(window.innerWidth/2-128,window.innerHeight*8/10)}, obj);
     obj.two.onDown.add(function() {
-        obj.currentSkill=1;
+        obj.player.activeAbility = obj.player.abilities[1];
         obj.skillFrame.cameraOffset.setTo(window.innerWidth/2-64,window.innerHeight*8/10)}, obj);
     obj.three.onDown.add(function() {
-        obj.currentSkill=2;
+        obj.player.activeAbility = obj.player.abilities[2];
         obj.skillFrame.cameraOffset.setTo(window.innerWidth/2,window.innerHeight*8/10)}, obj);
     obj.four.onDown.add(function() {
-        obj.currentSkill=3;
+        obj.player.activeAbility = obj.player.abilities[3];
         obj.skillFrame.cameraOffset.setTo(window.innerWidth/2+64,window.innerHeight*8/10)},obj);
     obj.iKey.onDown.add(function() {
         obj.player.invincible = !obj.player.invincible;
     }, obj);
     obj.jKey.onDown.add(function() {
-        obj.player.weapon.fire();
+        obj.player.activeAbility.call(obj, obj.player);
+        console.log(obj.player.activeAbility);
     }, obj);
     obj.pKey.onDown.add(function() {
         killAll(obj);

@@ -64,8 +64,18 @@ class Level {
     }*/
 
     addAbility(ability) {
-        this.player.abilities.shift();
-        this.player.abilities.push(ability);
-        console.log(this.player.abilities);
+        // noinspection JSUnresolvedVariable
+        let player = this.player;
+        let abilities = player.abilities;
+
+        if (abilities.length >= 4) {
+            abilities.shift();
+            if (player.activeAbilityIndex === 0)
+                player.activeAbilityIndex = 3;
+            else
+                player.activeAbilityIndex -= 1;
+        }
+        abilities.push(ability);
+        player.activeAbility = abilities[player.activeAbilityIndex];
     }
 }

@@ -167,6 +167,7 @@ var attack = function(obj, x, y) {
 var killAll = function(obj) {
     obj.monsters.forEach(function(mon) {
         mon.healthBar.kill();
-        mon.animations.play("death", 5, false, true);
+        mon.stats.currentHealth = 0;
+        mon.animations.play("death", 2, false, true);
     });
 };

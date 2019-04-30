@@ -5,6 +5,7 @@ var createFields = function(level){
     level.tempSetting = null;
     level.monsters = [];
     level.game.sprites = [];
+    level.icons = [];
 };
 
 var createSkillSlot = function(level){
@@ -28,13 +29,13 @@ var createMap = function(level) {
     level.blockedLayer = level.map.createLayer('blockedLayer');
     level.backgroundlayer.resizeWorld();
 
-    level.map.setCollisionBetween(1,2000,true,'bulletLayer')
+    level.map.setCollisionBetween(1,2000,true,'bulletLayer');
     level.map.setCollisionBetween(1, 2000, true, 'blockedLayer');
 };
 
 var createPlayer = function(level) {
     level.player = createSprite(level, level.playerProperties);
-    level.player.abilities = [breakRock];
+    level.player.abilities = [];
     level.player.activeAbility = function() {};
 
     var weapon = level.game.add.weapon(10, 'bullet');
@@ -66,10 +67,12 @@ var createSprite = function(level, properties) {
 
     level.game.physics.arcade.enable(sprite);
     sprite.anchor.setTo(0.5,0.5);
-    let barConfig = {width: 64, height: 8,
-        bar:{color: '#46EF6E'}, bg:{color: 'black'},
+    let barConfig = {
+        width: 64, height: 8,
+        bar: { color: '#46EF6E' }, bg: { color: 'black' },
         x: sprite.body.x,
-        y: sprite.body.y - sprite.body.height * 2 / 3};
+        y: sprite.body.y - sprite.body.height * 2 / 3
+    };
     sprite.healthBar = new HealthBar(level.game, barConfig);
     sprite.healthBar.setAnchor(0.5,0.5);
 
@@ -77,6 +80,8 @@ var createSprite = function(level, properties) {
         sprite.animations.add(anim, properties.animations[anim].frames, properties.animations[anim].frameRate, properties.animations[anim].loop);
     });
     sprite.animations.stop('walkFront', true);  // otherwise currentAnim will be the last one added
+
+    sprite.ability = properties.ability;
 
     sprite.body.immovable = true;
 

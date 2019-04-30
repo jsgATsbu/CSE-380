@@ -52,4 +52,18 @@ class Level {
         });
         return result;
     }
+
+    addIcon(x, y, ability) {
+        let icon = this.game.add.sprite(x, y, ability.name);
+        this.game.physics.arcade.enable(icon);
+        icon.anchor.setTo(0.5,0.5);
+        icon.ability = ability;
+
+        this.icons.push(icon);
+    }
+
+    addAbility(ability) {
+        this.player.abilities.shift();
+        this.player.abilities.push(ability);
+    }
 }

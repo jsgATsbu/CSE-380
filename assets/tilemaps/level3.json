@@ -43,7 +43,7 @@
          "name":"objectsLayer",
          "objects":[
                 {
-                 "gid":177,
+                 "gid":209,
                  "height":64,
                  "id":1,
                  "name":"",
@@ -61,7 +61,7 @@
                  "y":1088
                 }, 
                 {
-                 "gid":241,
+                 "gid":273,
                  "height":64,
                  "id":2,
                  "name":"",
@@ -75,8 +75,8 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":641,
-                 "y":1219
+                 "x":511,
+                 "y":1665
                 }],
          "opacity":1,
          "properties":[
@@ -101,18 +101,18 @@
          "columns":16,
          "firstgid":1,
          "image":"..\/images\/sprite\/tiles.png",
-         "imageheight":704,
+         "imageheight":832,
          "imagewidth":1024,
          "margin":0,
          "name":"tiles",
          "spacing":0,
-         "tilecount":176,
+         "tilecount":208,
          "tileheight":64,
          "tilewidth":64
         }, 
         {
          "columns":4,
-         "firstgid":177,
+         "firstgid":209,
          "image":"..\/images\/sprite\/Meta.png",
          "imageheight":1024,
          "imagewidth":256,
@@ -125,7 +125,7 @@
         }, 
         {
          "columns":4,
-         "firstgid":241,
+         "firstgid":273,
          "image":"..\/images\/sprite\/harpy.png",
          "imageheight":768,
          "imagewidth":256,

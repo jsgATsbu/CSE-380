@@ -27,12 +27,15 @@ class AI {
     }
 
     update() {
-        if(this.monster.stats.currentHealth <= 0){              // Check if monster is dead first, if yes, no more updates
-            this.monster.body.velocity.x = 0;
-            this.monster.body.velocity.y = 0;
-            this.monster.healthBar.kill();
-            this.monster.animations.play("death", 3, false, true);
-            return;
+        let monster = this.monster;
+
+        if (monster.stats.currentHealth <= 0) {              // Check if monster is dead first, if yes, no more updates
+            monster.body.velocity.x = 0;
+            monster.body.velocity.y = 0;
+            monster.healthBar.kill();
+            monster.animations.play("death", 3, false, true);
+
+            this.level.addIcon(monster.x + 32, monster.y + 32, monster.ability);
         }
 
         let start = this.level.map.getTileWorldXY(this.monster.x, this.monster.y);

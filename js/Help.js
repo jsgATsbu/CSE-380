@@ -17,7 +17,8 @@ TheLegendOfMeta.Help.prototype = {
             "In the end, all died immediately except for one. The only survivor, Meta, finally receive his desired power and starts his journey of revenge...\n"+
             "\n" + "Produced by: Sungyeong Jang, Henry Crain, Shenggui Jin";
         var a = this.game.add.text(this.game.width/2,300,text,style);
-        a.anchor.setTo(0.5);
+        a.anchor.setTo(0.5,0.7);
+        
 
         var returnBtn = this.game.add.button(this.game.width/2,this.game.height*5/6,'returnBtn');
         returnBtn.anchor.setTo(0.5);

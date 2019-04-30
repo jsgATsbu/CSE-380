@@ -35,9 +35,7 @@ TheLegendOfMeta.Level4 = function() {
             health: 60,
             spd: 400,
             moveList: [],
-            ai: {
-                patrol: [[30,20]]
-            },
+            ai: { patrol: [[27, 35], [28, 10], [20, 8], [6, 14], [5, 26], [15, 38]] },
             animations: {
                 walkFront: {frames: [0,1], frameRate: 5, loop: true},
                 walkLeft: {frames: [2,3], frameRate: 5, loop: true},

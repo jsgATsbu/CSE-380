@@ -6,22 +6,22 @@ let breakRock = function() {
     let player = this.player;
     let xReach, yReach;
     switch(player.weapon.fireAngle) {
-        case 180:
-            xReach = -64;
-            yReach = 0;
-            break;
         case 0:
             xReach = 64;
             yReach = 0;
             break;
-        case 270:
-            xReach = 0;
-            yReach = -64;
-            break;
         case 90:
-        default:
             xReach = 0;
             yReach = 64;
+            break;
+        case 180:
+            xReach = -64;
+            yReach = 0;
+            break;
+        case 270:
+        default:
+            xReach = 0;
+            yReach = -64;
     }
 
     let tile = this.map.getTileWorldXY(player.x + xReach, player.y + yReach,
@@ -33,5 +33,11 @@ let breakRock = function() {
 };
 
 let invisibility = function() {
-    // TODO
+    this.player.alpha = 0.5;
+    this.player.invisible = true;
+
+    this.game.time.events.add(10000, function () {
+        this.player.alpha = 1.0;
+        this.player.invisible = false;
+    }, this);
 };

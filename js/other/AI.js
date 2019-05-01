@@ -35,7 +35,7 @@ class AI {
             monster.healthBar.kill();
             monster.animations.play("death", 3, false, true);
 
-            // this.level.addAbility(monster.ability);
+            this.level.addAbility(monster.ability);
             // this.level.addIcon(monster.x + 32, monster.y + 32, monster.ability);
         }
 
@@ -49,7 +49,7 @@ class AI {
             }
         }
         else{
-            if(this.playerNearby() && this.noBlockInBetween()) {
+            if(this.playerNearby() && this.noBlockInBetween() && !this.level.player.invisible) {
                 let dest = this.level.map.getTileWorldXY(this.level.player.x, this.level.player.y);     // Chase Player
                 this.state = STATE.PATROL;
                 this.path = this.pathFinder.findPath(start, dest);

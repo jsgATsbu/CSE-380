@@ -103,7 +103,7 @@ var updatePlayerMovement = function(level) {
         level.player.body.velocity.x = 0;
     }
 
-    if(level.player.body.velocity.x==0 && level.player.body.velocity.y==0) {
+    if(level.player.body.velocity.x === 0 && level.player.body.velocity.y === 0) {
         level.player.body.immovable = true;
     }
 
@@ -138,6 +138,7 @@ var animateSprite = function(sprite) {
 
 var checkGameStatus = function(level){
     if(level.player.alive === false){
+        level.input.enabled = true;
         level.state.start("ResultScreen",true,false,'lose',level.lvl);
         return;
     }

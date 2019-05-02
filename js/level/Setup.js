@@ -52,7 +52,7 @@ var setupInput = function(obj) {
     obj.game.input.onDown.add(function(event) {
         if (obj.game.paused) {
             handleClickPaused(obj,event.clientX + obj.game.camera.x, event.clientY + obj.game.camera.y);
-        } else {
+        } else if (obj.player.stats.currentHealth > 0) {
             attack(obj,event.clientX + obj.game.camera.x, event.clientY + obj.game.camera.y);
         }
     }, obj);

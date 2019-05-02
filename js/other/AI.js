@@ -37,6 +37,8 @@ class AI {
 
             this.level.addAbility(monster.ability);
             // this.level.addIcon(monster.x + 32, monster.y + 32, monster.ability);
+
+            return;
         }
 
         let start = this.level.map.getTileWorldXY(this.monster.x, this.monster.y);

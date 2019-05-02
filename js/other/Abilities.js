@@ -44,9 +44,11 @@ let invisibility = function() {
 
 let strength = function() {
     this.player.stats.dmg *= 2;
+    this.player.strengthened = true;
 
     this.game.time.events.add(10000, function () {
         this.player.stats.dmg /= 2;
+        this.player.strengthened = false;
     }, this);
 };
 

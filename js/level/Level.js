@@ -67,15 +67,30 @@ class Level {
         // noinspection JSUnresolvedVariable
         let player = this.player;
         let abilities = player.abilities;
+        let abilityIcons = this.skillIcons;
 
         if (abilities.length >= 4) {
             abilities.shift();
+
+            abilityIcons[0].destroy();
+            abilityIcons.shift();
+            abilityIcons.forEach(function(icon) {
+                icon.x -= 64;
+            });
+
             if (player.activeAbilityIndex === 0)
                 player.activeAbilityIndex = 3;
             else
                 player.activeAbilityIndex -= 1;
         }
         abilities.push(ability);
+
+        let icon = this.game.add.image(this.game.camera.x + window.innerWidth/2 - 128,
+                                       window.innerHeight * 8/10,
+                                       ability.name);
+        icon.fixedToCamera = true;
+        abilityIcons.push(icon);
+
         player.activeAbility = abilities[player.activeAbilityIndex];
     }
 }

@@ -41,3 +41,11 @@ let invisibility = function() {
         this.player.invisible = false;
     }, this);
 };
+
+let strength = function() {
+    this.player.stats.dmg *= 2;
+
+    this.game.time.events.add(10000, function () {
+        this.player.stats.dmg /= 2;
+    }, this);
+};

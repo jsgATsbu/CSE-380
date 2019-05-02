@@ -81,28 +81,30 @@ var updatePlayerMovement = function(level) {
     let playerSpeed = level.player.stats.spd;
     if (up) {
         level.player.body.velocity.y = -playerSpeed;
-        level.player.body.velocity.x = 0;
         level.player.weapon.fireAngle = 270;
         level.player.weapon.trackOffset.set(0,-32);
     } else if (down) {
         level.player.body.velocity.y = playerSpeed;
-        level.player.body.velocity.x = 0;
         level.player.weapon.fireAngle = 90;
         level.player.weapon.trackOffset.set(0,32);
-    } else if (left) {
+    } else {
+        level.player.body.velocity.y=0;
+    } 
+    
+    if (left) {
         level.player.body.velocity.x = -playerSpeed;
-        level.player.body.velocity.y = 0;
         level.player.weapon.fireAngle = 180;
         level.player.weapon.trackOffset.set(-32,0);
     } else if (right) {
         level.player.body.velocity.x = playerSpeed;
-        level.player.body.velocity.y = 0;
         level.player.weapon.fireAngle = 0;
         level.player.weapon.trackOffset.set(32,0);
     } else {
-        level.player.body.immovable = true;
         level.player.body.velocity.x = 0;
-        level.player.body.velocity.y = 0;
+    }
+
+    if(level.player.body.velocity.x==0 && level.player.body.velocity.y==0) {
+        level.player.body.immovable = true;
     }
 
     animateSprite(level.player);

@@ -49,3 +49,19 @@ let strength = function() {
         this.player.stats.dmg /= 2;
     }, this);
 };
+
+let feather = function() {
+    // TODO
+};
+
+let freeze = function() {
+    // TODO
+};
+
+let lifeDrain = function() {
+    // TODO
+};
+
+let poison = function() {
+    // TODO
+};

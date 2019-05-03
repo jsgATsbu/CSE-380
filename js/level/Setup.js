@@ -53,12 +53,8 @@ var setupInput = function(obj) {
         if (obj.game.paused) {
             handleClickPaused(obj,event.clientX + obj.game.camera.x, event.clientY + obj.game.camera.y);
         } else if (obj.player.stats.currentHealth > 0) {
-            if (obj.player.activeAbility) {
-                obj.player.activeAbility.call(obj);
-            } else {
-                attack(obj,event.clientX + obj.game.camera.x, event.clientY + obj.game.camera.y);
-            }
-        }
+            obj.player.activeAbility.call(obj);
+         }
     }, obj);
 
     obj.esc = keyboard.addKey(Phaser.KeyCode.ESC);
@@ -138,7 +134,7 @@ var handleClickPaused = function(obj, x, y) {
     }
 };
 
-var attack = function(obj, x, y) {
+/*var attack = function(obj, x, y) {
     let sprite = obj.findSpritesByCoordinates(x, y)[0];
 
     if(sprite !== undefined && sprite !== obj.player &&
@@ -147,17 +143,16 @@ var attack = function(obj, x, y) {
 
         obj.player.attack(sprite);
     }
-};
+};*/
 
 var selectAbility = function(obj, num) {  // obj is automatically passed as the first argument
     if (this.player.activeAbilityIndex === num) {
-        this.player.activeAbilityIndex = -1;
-        this.player.activeAbility = null;
+        this.player.activeAbilityIndex = 0;
+        this.player.activeAbility = attack;
         this.skillFrame.visible = false;
     } else {
         this.player.activeAbilityIndex = num;
         this.player.activeAbility = this.player.abilities[num];
-        console.log(window.innerWidth, num);
         this.skillFrame.cameraOffset.setTo(window.innerWidth / 2 + (-128 + 64 * num),
                                            window.innerHeight * 8/10);
         this.skillFrame.visible = true;

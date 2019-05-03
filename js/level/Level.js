@@ -90,6 +90,10 @@ class Level {
         icon.moveDown();
         abilityIcons.push(icon);
 
-        player.activeAbility = abilities[player.activeAbilityIndex];
+        if (player.activeAbilityIndex >= 0) {
+            player.activeAbility = abilities[player.activeAbilityIndex];
+        } else {
+            player.activeAbility = attack;
+        }
     }
 }

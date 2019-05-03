@@ -18,7 +18,6 @@ var createFields = function(level){
 
 var createSkillSlot = function(level){
     level.skillSlot = level.game.add.image(level.game.camera.x+window.innerWidth/2-128,level.game.camera.y+window.innerHeight*8/10, 'SkillSlot');
-    console.log(window.innerWidth);
     level.skillFrame = level.game.add.image(level.game.camera.x+window.innerWidth/2-128,level.game.camera.y+window.innerHeight*8/10, 'SkillFrame');
     level.skillIcons = [];
 
@@ -46,6 +45,7 @@ var createMap = function(level) {
 var createPlayer = function(level) {
     level.player = createSprite(level, level.playerProperties);
     level.player.abilities = [];
+    level.player.activeAbility = attack;
     level.player.activeAbilityIndex = 0;
 
     var weapon = level.game.add.weapon(10, 'bullet');

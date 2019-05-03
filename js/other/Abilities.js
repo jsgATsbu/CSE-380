@@ -2,6 +2,37 @@
 
 // The level must be passed as context to all of these
 
+let attack = function() {
+    let player = this.player;
+    let xReach, yReach;
+    switch(player.weapon.fireAngle) {
+        case 0:
+            xReach = 64;
+            yReach = 0;
+            break;
+        case 90:
+            xReach = 0;
+            yReach = 64;
+            break;
+        case 180:
+            xReach = -64;
+            yReach = 0;
+            break;
+        case 270:
+        default:
+            xReach = 0;
+            yReach = -64;
+    }
+
+    let sprite = this.findSpritesByCoordinates(player.x + xReach, player.y + yReach)[0];
+    if (sprite !== undefined && sprite !== player &&
+        Math.abs(player.x - sprite.x) <= 64 &&
+        Math.abs(player.y - sprite.y) <= 64) {
+
+        player.attack(sprite);
+    }
+};
+
 let breakRock = function() {
     let player = this.player;
     let xReach, yReach;

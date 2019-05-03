@@ -25,10 +25,7 @@ let attack = function() {
     }
 
     let sprite = this.findSpritesByCoordinates(player.x + xReach, player.y + yReach)[0];
-    if (sprite !== undefined && sprite !== player &&
-        Math.abs(player.x - sprite.x) <= 64 &&
-        Math.abs(player.y - sprite.y) <= 64) {
-
+    if (sprite !== undefined) {
         player.attack(sprite);
     }
 };

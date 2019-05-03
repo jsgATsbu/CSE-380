@@ -69,31 +69,28 @@ class Level {
         let abilities = player.abilities;
         let abilityIcons = this.skillIcons;
 
-        if (abilities.length >= 4) {
-            abilities.shift();
+        abilities.splice(3, 1);
+        abilities.splice(0, 0, ability);
 
-            abilityIcons[0].destroy();
-            abilityIcons.shift();
-            abilityIcons.forEach(function(icon) {
-                icon.x -= 64;
-            });
-
-            if (player.activeAbilityIndex === 0)
-                player.activeAbilityIndex = 3;
-            else
-                player.activeAbilityIndex -= 1;
+        if (player.activeAbilityIndex === 0) {
+            player.activeAbilityIndex = 3;
+        } else {
+            player.activeAbilityIndex -= 1;
         }
-        abilities.push(ability);
+        player.activeAbility = abilities[player.activeAbilityIndex];
+
+
+        if (abilityIcons[3]) {
+            abilityIcons[3].destroy();
+        }
+        abilityIcons.splice(3, 1);
+        abilityIcons.forEach(function (icon) {
+            icon.x -= 64;
+        });
 
         let icon = this.game.add.image(window.innerWidth/2 - 128, window.innerHeight * 8/10, ability.name);
         icon.fixedToCamera = true;
         icon.moveDown();
-        abilityIcons.push(icon);
-
-        if (player.activeAbilityIndex >= 0) {
-            player.activeAbility = abilities[player.activeAbilityIndex];
-        } else {
-            player.activeAbility = attack;
-        }
+        abilityIcons.splice(0, 0, icon);
     }
 }

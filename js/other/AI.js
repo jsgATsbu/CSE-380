@@ -44,7 +44,7 @@ class AI {
         let start = this.level.map.getTileWorldXY(this.monster.x, this.monster.y);
 
         if(this.state === STATE.PATROL) {
-            if (this.playerNearby() && this.noBlockInBetween()) {
+            if (this.playerNearby() && this.noBlockInBetween() && !this.level.player.invisible) {
                 let dest = this.level.map.getTileWorldXY(this.level.player.x, this.level.player.y);     // Chase Player
                 this.state = STATE.COMBAT_MELEE;
                 this.path = this.pathFinder.findPath(start, dest);
@@ -109,6 +109,11 @@ class AI {
 
     reachedPlayer() {
         let player = this.level.player;
+
+        if (player.invisible) {
+            return false;
+        }
+
         let result = Math.abs(this.monster.x - player.x) <= 70 && Math.abs(this.monster.y - player.y) <= 70;
         return result;
     }

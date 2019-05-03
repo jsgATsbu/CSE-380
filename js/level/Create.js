@@ -44,9 +44,9 @@ var createMap = function(level) {
 
 var createPlayer = function(level) {
     level.player = createSprite(level, level.playerProperties);
-    level.player.abilities = [];
-    level.player.activeAbility = attack;
+    level.player.abilities = [attack, attack, attack, attack];
     level.player.activeAbilityIndex = 0;
+    level.player.activeAbility = level.player.abilities[level.player.activeAbilityIndex];
 
     var weapon = level.game.add.weapon(10, 'bullet');
     weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;

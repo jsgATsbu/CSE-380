@@ -147,7 +147,7 @@ var handleClickPaused = function(obj, x, y) {
 
 var selectAbility = function(obj, num) {  // obj is automatically passed as the first argument
     if (this.player.activeAbilityIndex === num) {
-        this.player.activeAbilityIndex = 0;
+        this.player.activeAbilityIndex = -1;
         this.player.activeAbility = attack;
         this.skillFrame.visible = false;
     } else {

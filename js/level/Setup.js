@@ -53,11 +53,14 @@ var setupInput = function(obj) {
         if (obj.game.paused) {
             handleClickPaused(obj,event.clientX + obj.game.camera.x, event.clientY + obj.game.camera.y);
         } else if (obj.player.stats.currentHealth > 0) {
-            attack(obj,event.clientX + obj.game.camera.x, event.clientY + obj.game.camera.y);
+            if (obj.player.activeAbility) {
+                obj.player.activeAbility.call(obj);
+            } else {
+                attack(obj,event.clientX + obj.game.camera.x, event.clientY + obj.game.camera.y);
+            }
         }
     }, obj);
 
-    obj.jKey = keyboard.addKey(Phaser.KeyCode.J);
     obj.esc = keyboard.addKey(Phaser.KeyCode.ESC);
     obj.one = keyboard.addKey(Phaser.KeyCode.ONE);
     obj.two = keyboard.addKey(Phaser.KeyCode.TWO);
@@ -74,33 +77,15 @@ var setupInput = function(obj) {
         }
     }, obj);
 
-    obj.one.onDown.add(function() {
-        obj.player.activeAbilityIndex = 0;
-        obj.player.activeAbility = obj.player.abilities[0];
-        obj.skillFrame.cameraOffset.setTo(window.innerWidth/2-128,window.innerHeight*8/10)}, obj);
-    obj.two.onDown.add(function() {
-        obj.player.activeAbilityIndex = 1;
-        obj.player.activeAbility = obj.player.abilities[1];
-        obj.skillFrame.cameraOffset.setTo(window.innerWidth/2-64,window.innerHeight*8/10)}, obj);
-    obj.three.onDown.add(function() {
-        obj.player.activeAbilityIndex = 2;
-        obj.player.activeAbility = obj.player.abilities[2];
-        obj.skillFrame.cameraOffset.setTo(window.innerWidth/2,window.innerHeight*8/10)}, obj);
-    obj.four.onDown.add(function() {
-        obj.player.activeAbilityIndex = 3;
-        obj.player.activeAbility = obj.player.abilities[3];
-        obj.skillFrame.cameraOffset.setTo(window.innerWidth/2+64,window.innerHeight*8/10)},obj);
+    obj.one.onDown.add(selectAbility, obj, 0, 0);
+    obj.two.onDown.add(selectAbility, obj, 0, 1);
+    obj.three.onDown.add(selectAbility, obj, 0, 2);
+    obj.four.onDown.add(selectAbility, obj, 0, 3);
+
     obj.iKey.onDown.add(function() {
         obj.player.invincible = !obj.player.invincible;
     }, obj);
-    obj.jKey.onDown.add(function() {
-        if (obj.player.activeAbility) {
-            obj.player.activeAbility.call(obj);
-        }
-    }, obj);
-    obj.pKey.onDown.add(function() {
-        killAll(obj);
-    }, obj);
+    obj.pKey.onDown.add(killAll, obj, 0);
 };
 
 var pause = function(obj) {
@@ -164,8 +149,23 @@ var attack = function(obj, x, y) {
     }
 };
 
-var killAll = function(obj) {
-    obj.monsters.forEach(function(mon) {
+var selectAbility = function(obj, num) {  // obj is automatically passed as the first argument
+    if (this.player.activeAbilityIndex === num) {
+        this.player.activeAbilityIndex = -1;
+        this.player.activeAbility = null;
+        this.skillFrame.visible = false;
+    } else {
+        this.player.activeAbilityIndex = num;
+        this.player.activeAbility = this.player.abilities[num];
+        console.log(window.innerWidth, num);
+        this.skillFrame.cameraOffset.setTo(window.innerWidth / 2 + (-128 + 64 * num),
+                                           window.innerHeight * 8/10);
+        this.skillFrame.visible = true;
+    }
+};
+
+var killAll = function() {
+    this.monsters.forEach(function(mon) {
         mon.healthBar.kill();
         mon.stats.currentHealth = 0;
         mon.animations.play("death", 2, false, true);

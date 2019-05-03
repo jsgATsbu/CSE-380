@@ -18,6 +18,7 @@ var createFields = function(level){
 
 var createSkillSlot = function(level){
     level.skillSlot = level.game.add.image(level.game.camera.x+window.innerWidth/2-128,level.game.camera.y+window.innerHeight*8/10, 'SkillSlot');
+    console.log(window.innerWidth);
     level.skillFrame = level.game.add.image(level.game.camera.x+window.innerWidth/2-128,level.game.camera.y+window.innerHeight*8/10, 'SkillFrame');
     level.skillIcons = [];
 

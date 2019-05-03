@@ -85,10 +85,9 @@ class Level {
         }
         abilities.push(ability);
 
-        let icon = this.game.add.image(this.game.camera.x + window.innerWidth/2 - 128,
-                                       window.innerHeight * 8/10,
-                                       ability.name);
+        let icon = this.game.add.image(window.innerWidth/2 - 128, window.innerHeight * 8/10, ability.name);
         icon.fixedToCamera = true;
+        icon.moveDown();
         abilityIcons.push(icon);
 
         player.activeAbility = abilities[player.activeAbilityIndex];

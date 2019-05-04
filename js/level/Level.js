@@ -88,7 +88,7 @@ class Level {
             icon.x -= 64;
         });
 
-        let icon = this.game.add.image(window.innerWidth/2 - 128, window.innerHeight * 8/10, ability.name);
+        let icon = this.game.add.image(window.innerWidth/2 - 128, window.innerHeight * 8/10, 'abilities', ability.name);
         icon.fixedToCamera = true;
         icon.moveDown();
         abilityIcons.splice(0, 0, icon);

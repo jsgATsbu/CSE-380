@@ -33,6 +33,8 @@ TheLegendOfMeta.Preload.prototype = {
         this.load.image('returnBtn','assets/images/gui/menu_return.png');
         this.load.image('bullet','assets/images/bullet/bullet.png');
 
+        this.load.atlas('abilities', 'assets/images/atlases/abilities.png', 'assets/atlases/abilities.json');
+
         this.load.image('breakRock', 'assets/images/abilities/breakRock.png');
         this.load.image('feather', 'assets/images/abilities/feather.png');
         this.load.image('fireball', 'assets/images/abilities/fireball.png');

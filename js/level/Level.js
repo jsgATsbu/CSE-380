@@ -72,10 +72,15 @@ class Level {
         abilities.splice(3, 1);
         abilities.splice(0, 0, ability);
 
-        if (player.activeAbilityIndex === 0) {
-            player.activeAbilityIndex = 3;
-        } else {
-            player.activeAbilityIndex -= 1;
+        if (player.activeAbility !== attack) {
+            if (player.activeAbilityIndex === 3) {
+                player.activeAbilityIndex = 0;
+                this.skillFrame.cameraOffset.setTo(window.innerWidth / 2 - 128,
+                    window.innerHeight * 8 / 10)
+            } else {
+                player.activeAbilityIndex += 1;
+                this.skillFrame.x += 64;
+            }
         }
         player.activeAbility = abilities[player.activeAbilityIndex];
 
@@ -85,7 +90,7 @@ class Level {
         }
         abilityIcons.splice(3, 1);
         abilityIcons.forEach(function (icon) {
-            icon.x -= 64;
+            icon.x += 64;
         });
 
         let icon = this.game.add.image(window.innerWidth/2 - 128, window.innerHeight * 8/10, 'abilities', ability.name);

@@ -134,17 +134,6 @@ var handleClickPaused = function(obj, x, y) {
     }
 };
 
-/*var attack = function(obj, x, y) {
-    let sprite = obj.findSpritesByCoordinates(x, y)[0];
-
-    if(sprite !== undefined && sprite !== obj.player &&
-        Math.abs(obj.player.x - sprite.x) <= 64 &&
-        Math.abs(obj.player.y - sprite.y) <= 64) {
-
-        obj.player.attack(sprite);
-    }
-};*/
-
 var selectAbility = function(obj, num) {  // obj is automatically passed as the first argument
     if (this.player.activeAbilityIndex === num) {
         this.player.activeAbilityIndex = -1;

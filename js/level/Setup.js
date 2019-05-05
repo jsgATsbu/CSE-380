@@ -135,13 +135,20 @@ var handleClickPaused = function(obj, x, y) {
 };
 
 var selectAbility = function(obj, num) {  // obj is automatically passed as the first argument
-    if (this.player.activeAbilityIndex === num) {
-        this.player.activeAbilityIndex = -1;
-        this.player.activeAbility = attack;
+    let player = this.player;
+
+    if (player.activeAbilityIndex === num) {
+        player.activeAbilityIndex = -1;
+        player.activeAbility = attack;
+
         this.skillFrame.visible = false;
     } else {
-        this.player.activeAbilityIndex = num;
-        this.player.activeAbility = this.player.abilities[num];
+        player.activeAbilityIndex = num;
+        player.activeAbility = player.abilities[num];
+        player.weapon.bullets.forEach(function(bullet) {
+            bullet.frameName = player.activeAbility.bullet;
+        }, this);
+
         this.skillFrame.cameraOffset.setTo(window.innerWidth / 2 + (-128 + 64 * num),
                                            window.innerHeight * 8/10);
         this.skillFrame.visible = true;

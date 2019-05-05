@@ -1,14 +1,32 @@
 'use strict';
 
 var updateBullets = function(level){
-    level.game.physics.arcade.collide(level.player.weapon.bullets,level.blockedLayer,function(bullet){
+    level.game.physics.arcade.collide(level.player.weapon.bullets, level.blockedLayer, function(bullet) {
         bullet.kill();
-    },null,level);
-    level.game.physics.arcade.overlap(level.player.weapon.bullets,level.monsters,function(enemy,bullet){
+    }, null, level);
+
+    level.game.physics.arcade.overlap(level.player.weapon.bullets, level.monsters, function(enemy, bullet) {
         bullet.kill();
-        enemy.stats.currentHealth -= 5;
-        enemy.healthBar.setPercent(enemy.stats.currentHealth*100/enemy.stats.maxHealth);
-    },null,level);
+        switch (bullet.frameName) {
+            case 'feather':
+                enemy.stats.currentHealth -= 10;
+                enemy.healthBar.setPercent(enemy.stats.currentHealth*100 / enemy.stats.maxHealth);
+                break;
+
+            case 'ice':
+                // TODO
+                break;
+
+            case 'lifeDrain':
+                enemy.stats.currentHealth -= 10;
+                enemy.healthBar.setPercent(enemy.stats.currentHealth*100 / enemy.stats.maxHealth);
+
+                this.player.stats.currentHealth -= 10;
+                this.player.healthBar.setPercent(this.player.stats.currentHealth*100 / this.player.stats.maxHealth);
+                break;
+        }
+
+    }, null, level);
 };
 
 var updateSprites = function(level) {

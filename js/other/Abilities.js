@@ -61,35 +61,41 @@ let breakRock = function() {
 };
 
 let invisibility = function() {
-    this.player.alpha = 0.5;
-    this.player.invisible = true;
+    if (!this.player.invisible) {
+        this.player.alpha = 0.5;
+        this.player.invisible = true;
 
-    this.game.time.events.add(10000, function () {
-        this.player.alpha = 1.0;
-        this.player.invisible = false;
-    }, this);
+        this.game.time.events.add(10000, function() {
+            this.player.alpha = 1.0;
+            this.player.invisible = false;
+        }, this);
+    }
 };
 
 let strength = function() {
-    this.player.stats.dmg *= 2;
-    this.player.strengthened = true;
+    if (!this.player.strengthened) {
+        this.player.stats.atk *= 2;
+        this.player.strengthened = true;
 
-    this.game.time.events.add(10000, function () {
-        this.player.stats.dmg /= 2;
-        this.player.strengthened = false;
-    }, this);
+        this.game.time.events.add(10000, function() {
+            this.player.stats.atk /= 2;
+            this.player.strengthened = false;
+        }, this);
+    }
 };
 
 let feather = function() {
-    // TODO
+    this.player.weapon.fire();
 };
+feather.bullet = 'feather';
 
 let freeze = function() {
-    // TODO
+    this.player.weapon.fire();
 };
+freeze.bullet = 'ice';
 
 let lifeDrain = function() {
-    // TODO
+    // TODO melee or ranged?
 };
 
 let poison = function() {

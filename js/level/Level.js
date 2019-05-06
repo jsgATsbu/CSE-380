@@ -26,7 +26,7 @@ class Level {
         updateSprites(this);
         updatePlayerMovement(this);
         updateMonsterMovement(this);
-        checkGameStatus(this);
+        // checkGameStatus(this);
     }
 
     findObjectsByType(type, map, layer) {

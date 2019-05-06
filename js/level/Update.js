@@ -48,6 +48,9 @@ var updateSprites = function(level) {
 };
 
 var updateMonsterMovement = function(level) {
+    if(level.monsterProperties === undefined){
+        return;
+    }
     level.monsters.forEach(function(mon) {
         mon.ai.update();
         animateSprite(mon);

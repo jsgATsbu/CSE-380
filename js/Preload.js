@@ -69,6 +69,8 @@ TheLegendOfMeta.Preload.prototype = {
         this.load.spritesheet('exitBtn','assets/images/gui/menu_exit.png',256,128);
         this.load.spritesheet('resumeBtn','assets/images/gui/menu_resume.png',256,128);
         this.load.spritesheet('titleBtn','assets/images/gui/menu_return.png',256,128);
+        this.load.spritesheet('controlsBtn','assets/images/gui/menu_controls.png',256,128);
+        this.load.spritesheet('mainmenuBtn','assets/images/gui/menu_mainmenu.png',256,128);
     },
     create: function(){
         this.background = this.game.add.tileSprite(0,0,this.game.width,this.game.height,'preloadBG');

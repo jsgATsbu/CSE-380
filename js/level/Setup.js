@@ -89,8 +89,8 @@ var pause = function(obj) {
     obj.pauseMenu = obj.game.add.sprite(obj.game.camera.x + window.innerWidth / 2,
         obj.game.camera.y + window.innerHeight / 2, 'pauseMenu');
     obj.pauseMenu.anchor.setTo(0.5);
-    obj.settingBtn = obj.game.add.button(obj.pauseMenu.x, obj.pauseMenu.y-75, 'settingBtn');
-    obj.titleBtn = obj.game.add.button(obj.pauseMenu.x, obj.pauseMenu.y+75, 'titleBtn');
+    obj.settingBtn = obj.game.add.button(obj.pauseMenu.x, obj.pauseMenu.y-75, 'controlsBtn');
+    obj.titleBtn = obj.game.add.button(obj.pauseMenu.x, obj.pauseMenu.y+75, 'mainmenuBtn');
     obj.settingBtn.anchor.setTo(0.5);
     obj.titleBtn.anchor.setTo(0.5);
 };

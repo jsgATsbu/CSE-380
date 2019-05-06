@@ -12,7 +12,7 @@ TheLegendOfMeta.MainMenu.prototype = {
 
         var start = this.game.add.button(this.game.width/6, this.game.height*4/5, "startBtn");
         var selectLevel = this.game.add.button(this.game.width*2/6, this.game.height*4/5, "selectLevelBtn");
-        var setting = this.game.add.button(this.game.width*3/6, this.game.height*4/5, "settingBtn");
+        var setting = this.game.add.button(this.game.width*3/6, this.game.height*4/5, "controlsBtn");
         var help = this.game.add.button(this.game.width*4/6, this.game.height*4/5, "helpBtn");
         var exit = this.game.add.button(this.game.width*5/6, this.game.height*4/5, "exitBtn");
         start.anchor.set(0.5);

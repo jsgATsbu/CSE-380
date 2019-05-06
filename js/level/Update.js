@@ -1,14 +1,32 @@
 'use strict';
 
 var updateBullets = function(level){
-    level.game.physics.arcade.collide(level.player.weapon.bullets,level.blockedLayer,function(bullet){
+    level.game.physics.arcade.collide(level.player.weapon.bullets, level.blockedLayer, function(bullet) {
         bullet.kill();
-    },null,level);
-    level.game.physics.arcade.overlap(level.player.weapon.bullets,level.monsters,function(enemy,bullet){
+    }, null, level);
+
+    level.game.physics.arcade.overlap(level.player.weapon.bullets, level.monsters, function(enemy, bullet) {
         bullet.kill();
-        enemy.stats.currentHealth -= 5;
-        enemy.healthBar.setPercent(enemy.stats.currentHealth*100/enemy.stats.maxHealth);
-    },null,level);
+        switch (bullet.frameName) {
+            case 'feather':
+                enemy.stats.currentHealth -= 10;
+                enemy.healthBar.setPercent(enemy.stats.currentHealth*100 / enemy.stats.maxHealth);
+                break;
+
+            case 'ice':
+                // TODO
+                break;
+
+            case 'lifeDrain':
+                enemy.stats.currentHealth -= 10;
+                enemy.healthBar.setPercent(enemy.stats.currentHealth*100 / enemy.stats.maxHealth);
+
+                this.player.stats.currentHealth -= 10;
+                this.player.healthBar.setPercent(this.player.stats.currentHealth*100 / this.player.stats.maxHealth);
+                break;
+        }
+
+    }, null, level);
 };
 
 var updateSprites = function(level) {
@@ -84,28 +102,30 @@ var updatePlayerMovement = function(level) {
     let playerSpeed = level.player.stats.spd;
     if (up) {
         level.player.body.velocity.y = -playerSpeed;
-        level.player.body.velocity.x = 0;
         level.player.weapon.fireAngle = 270;
         level.player.weapon.trackOffset.set(0,-32);
     } else if (down) {
         level.player.body.velocity.y = playerSpeed;
-        level.player.body.velocity.x = 0;
         level.player.weapon.fireAngle = 90;
         level.player.weapon.trackOffset.set(0,32);
-    } else if (left) {
+    } else {
+        level.player.body.velocity.y=0;
+    } 
+    
+    if (left) {
         level.player.body.velocity.x = -playerSpeed;
-        level.player.body.velocity.y = 0;
         level.player.weapon.fireAngle = 180;
         level.player.weapon.trackOffset.set(-32,0);
     } else if (right) {
         level.player.body.velocity.x = playerSpeed;
-        level.player.body.velocity.y = 0;
         level.player.weapon.fireAngle = 0;
         level.player.weapon.trackOffset.set(32,0);
     } else {
-        level.player.body.immovable = true;
         level.player.body.velocity.x = 0;
-        level.player.body.velocity.y = 0;
+    }
+
+    if(level.player.body.velocity.x === 0 && level.player.body.velocity.y === 0) {
+        level.player.body.immovable = true;
     }
 
     animateSprite(level.player);
@@ -139,6 +159,7 @@ var animateSprite = function(sprite) {
 
 var checkGameStatus = function(level){
     if(level.player.alive === false){
+        level.input.enabled = true;
         level.state.start("ResultScreen",true,false,'lose',level.lvl);
         return;
     }

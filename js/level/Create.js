@@ -19,11 +19,10 @@ var createFields = function(level){
 var createSkillSlot = function(level){
     level.skillSlot = level.game.add.image(level.game.camera.x+window.innerWidth/2-128,level.game.camera.y+window.innerHeight*8/10, 'SkillSlot');
     level.skillFrame = level.game.add.image(level.game.camera.x+window.innerWidth/2-128,level.game.camera.y+window.innerHeight*8/10, 'SkillFrame');
+    level.skillIcons = [];
 
     level.skillSlot.fixedToCamera = true;
     level.skillFrame.fixedToCamera = true;
-
-    level.currentSkill = 0;
 };
 
 var createMap = function(level) {
@@ -43,10 +42,11 @@ var createMap = function(level) {
 
 var createPlayer = function(level) {
     level.player = createSprite(level, level.playerProperties);
-    level.player.abilities = [];
+    level.player.abilities = [attack, attack, attack, attack];
     level.player.activeAbilityIndex = 0;
+    level.player.activeAbility = level.player.abilities[level.player.activeAbilityIndex];
 
-    var weapon = level.game.add.weapon(10, 'bullet');
+    var weapon = level.game.add.weapon(10, 'bullets');
     weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
     weapon.bulletSpeed = 600;
     weapon.fireRate = 100;

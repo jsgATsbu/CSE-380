@@ -10,6 +10,7 @@ TheLegendOfMeta.Level1 = function() {
 
     this.playerProperties = {
         name: 'player',
+        type: 'player',
         atk: 30,
         def: 15,
         health: 100,
@@ -45,7 +46,8 @@ TheLegendOfMeta.Level1 = function() {
 
     // this.monsterProperties = [
     //     {
-    //         name: 'alien',
+    //         name: 'alien1',
+    //         type: 'alien',
     //         atk: 50,
     //         def: 5,
     //         health: 60,
@@ -67,7 +69,8 @@ TheLegendOfMeta.Level1 = function() {
     //     },
     //
     //     {
-    //         name: 'dreadFace',
+    //         name: 'dreadFace1',
+    //         type: 'dreadFace',
     //         atk: 20,
     //         def: 20,
     //         health: 120,

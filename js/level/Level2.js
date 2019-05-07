@@ -10,6 +10,7 @@ TheLegendOfMeta.Level2 = function() {
 
     this.playerProperties = {
         name: 'player',
+        type: 'player',
         atk: 30,
         def: 15,
         health: 100,
@@ -45,7 +46,8 @@ TheLegendOfMeta.Level2 = function() {
 
     this.monsterProperties = [
         {
-            name: 'werewolf',
+            name: 'werewolf1',
+            type: 'werewolf',
             atk: 50,
             def: 5,
             health: 60,

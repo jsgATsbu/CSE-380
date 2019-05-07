@@ -10,6 +10,7 @@ TheLegendOfMeta.Level5 = function() {
 
     this.playerProperties = {
         name: 'player',
+        type: 'player',
         atk: 30,
         def: 15,
         health: 100,
@@ -45,7 +46,8 @@ TheLegendOfMeta.Level5 = function() {
 
     this.monsterProperties = [
         {
-            name: 'vampire',
+            name: 'vampire1',
+            type: 'vampire',
             atk: 50,
             def: 5,
             health: 60,

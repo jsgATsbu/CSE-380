@@ -68,8 +68,19 @@ var createMonsters = function(level) {
 };
 
 var createSprite = function(level, properties) {
-    let foundObj = level.findObjectsByType(properties.type, level.map, 'objectsLayer')[0];
-    let sprite = level.game.add.sprite(foundObj.x + 32, foundObj.y + 32, properties.type);
+    let results = level.findObjectsByType(properties.type, level.map, 'objectsLayer');
+    let found = results.find(function(obj) {
+        let match = false;
+        obj.properties.forEach(function(property) {
+            if (property.name === "name" && property.value === properties.name) {
+                match = true;
+            }
+        });
+
+        return match;
+    });
+
+    let sprite = level.game.add.sprite(found.x + 32, found.y + 32, properties.type);
     initializeStats(sprite, properties.atk, properties.def, properties.health, properties.spd);
     level.game.sprites.push(sprite);
 

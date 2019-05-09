@@ -73,14 +73,7 @@ var createSprite = function(level, properties) {
 
     let results = level.findObjectsByType(type.spriteKey, level.map, 'objectsLayer');
     let found = results.find(function(obj) {
-        let match = false;
-        obj.properties.forEach(function(property) {
-            if (property.name === "name" && property.value === properties.name) {
-                match = true;
-            }
-        });
-
-        return match;
+        return obj.name === properties.name;
     });
 
     let sprite = level.game.add.sprite(found.x + 32, found.y + 32, type.spriteKey);

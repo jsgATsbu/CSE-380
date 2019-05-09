@@ -59,19 +59,8 @@
                  "height":40,
                  "id":1,
                  "name":"player",
-                 "properties":[
-                        {
-                         "name":"name",
-                         "type":"string",
-                         "value":"player"
-                        }, 
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"player"
-                        }],
                  "rotation":0,
-                 "type":"",
+                 "type":"player",
                  "visible":true,
                  "width":40,
                  "x":329.575757575758,
@@ -82,19 +71,8 @@
                  "height":64,
                  "id":2,
                  "name":"dreadFace1",
-                 "properties":[
-                        {
-                         "name":"name",
-                         "type":"string",
-                         "value":"dreadFace1"
-                        }, 
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"dreadFace"
-                        }],
                  "rotation":0,
-                 "type":"",
+                 "type":"dreadFace",
                  "visible":true,
                  "width":64,
                  "x":2656.87878787879,
@@ -105,19 +83,8 @@
                  "height":64,
                  "id":6,
                  "name":"werewolf1",
-                 "properties":[
-                        {
-                         "name":"name",
-                         "type":"string",
-                         "value":"werewolf1"
-                        }, 
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"werewolf"
-                        }],
                  "rotation":0,
-                 "type":"",
+                 "type":"werewolf",
                  "visible":true,
                  "width":64,
                  "x":464.636363636364,
@@ -128,19 +95,8 @@
                  "height":64,
                  "id":7,
                  "name":"alien1",
-                 "properties":[
-                        {
-                         "name":"name",
-                         "type":"string",
-                         "value":"alien1"
-                        }, 
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"alien"
-                        }],
                  "rotation":0,
-                 "type":"",
+                 "type":"alien",
                  "visible":true,
                  "width":64,
                  "x":1773.09090909091,
@@ -151,19 +107,8 @@
                  "height":64,
                  "id":8,
                  "name":"werewolf2",
-                 "properties":[
-                        {
-                         "name":"name",
-                         "type":"string",
-                         "value":"werewolf2"
-                        }, 
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"werewolf"
-                        }],
                  "rotation":0,
-                 "type":"",
+                 "type":"werewolf",
                  "visible":true,
                  "width":64,
                  "x":3224.63636363636,
@@ -174,19 +119,8 @@
                  "height":64,
                  "id":11,
                  "name":"harpy1",
-                 "properties":[
-                        {
-                         "name":"name",
-                         "type":"string",
-                         "value":"harpy1"
-                        }, 
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"harpy"
-                        }],
                  "rotation":0,
-                 "type":"",
+                 "type":"harpy",
                  "visible":true,
                  "width":64,
                  "x":4177.0303030303,
@@ -197,19 +131,8 @@
                  "height":64,
                  "id":12,
                  "name":"werewolf3",
-                 "properties":[
-                        {
-                         "name":"name",
-                         "type":"string",
-                         "value":"werewolf3"
-                        }, 
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"werewolf"
-                        }],
                  "rotation":0,
-                 "type":"",
+                 "type":"werewolf",
                  "visible":true,
                  "width":64,
                  "x":792.151515151515,
@@ -220,19 +143,8 @@
                  "height":64,
                  "id":13,
                  "name":"dreadFace2",
-                 "properties":[
-                        {
-                         "name":"name",
-                         "type":"string",
-                         "value":"dreadFace2"
-                        }, 
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"dreadFace"
-                        }],
                  "rotation":0,
-                 "type":"",
+                 "type":"dreadFace",
                  "visible":true,
                  "width":64,
                  "x":3728.60606060606,
@@ -243,19 +155,8 @@
                  "height":64,
                  "id":15,
                  "name":"guardWerewolf1",
-                 "properties":[
-                        {
-                         "name":"name",
-                         "type":"string",
-                         "value":"guardWerewolf1"
-                        }, 
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"werewolf"
-                        }],
                  "rotation":0,
-                 "type":"",
+                 "type":"werewolf",
                  "visible":true,
                  "width":64,
                  "x":4866.54545454546,
@@ -266,19 +167,8 @@
                  "height":64,
                  "id":16,
                  "name":"guardWerewolf2",
-                 "properties":[
-                        {
-                         "name":"name",
-                         "type":"string",
-                         "value":"guardWerewolf2"
-                        }, 
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"werewolf"
-                        }],
                  "rotation":0,
-                 "type":"",
+                 "type":"werewolf",
                  "visible":true,
                  "width":64,
                  "x":4994.18181818182,
@@ -289,19 +179,8 @@
                  "height":64,
                  "id":17,
                  "name":"guardHarpy1",
-                 "properties":[
-                        {
-                         "name":"name",
-                         "type":"string",
-                         "value":"guardHarpy1"
-                        }, 
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"harpy"
-                        }],
                  "rotation":0,
-                 "type":"",
+                 "type":"harpy",
                  "visible":true,
                  "width":64,
                  "x":4863.51515151515,
@@ -312,19 +191,8 @@
                  "height":64,
                  "id":18,
                  "name":"guardHarpy2",
-                 "properties":[
-                        {
-                         "name":"name",
-                         "type":"string",
-                         "value":"guardHarpy2"
-                        }, 
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"harpy"
-                        }],
                  "rotation":0,
-                 "type":"",
+                 "type":"harpy",
                  "visible":true,
                  "width":64,
                  "x":4990.78787878788,
@@ -335,19 +203,8 @@
                  "height":64,
                  "id":20,
                  "name":"harpy2",
-                 "properties":[
-                        {
-                         "name":"name",
-                         "type":"string",
-                         "value":"harpy2"
-                        }, 
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"harpy"
-                        }],
                  "rotation":0,
-                 "type":"",
+                 "type":"harpy",
                  "visible":true,
                  "width":64,
                  "x":4372.9696969697,

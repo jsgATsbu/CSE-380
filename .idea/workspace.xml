@@ -2,20 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="31eb6693-bbb3-410f-9abd-67e33bc239ea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/js/other/MonsterTypes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/tilemaps/level3.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/tilemaps/level3.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/tilemaps/level4.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/tilemaps/level4.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/tilemaps/level5.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/tilemaps/level5.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/tilemaps/level6.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/tilemaps/level6.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/tilemaps/level8.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/tilemaps/level8.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/level/Create.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/level/Create.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/level/Level.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/level/Level.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/level/Level1.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/level/Level1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/level/Level2.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/level/Level2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/level/Level3.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/level/Level3.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/level/Level4.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/level/Level4.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/level/Level5.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/level/Level5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/level/Level6.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/level/Level6.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/level/Setup.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/level/Input.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/other/AI.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/other/AI.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -40,8 +34,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/level/Create.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="97">
-              <caret line="86" column="40" selection-start-line="86" selection-start-column="40" selection-end-line="86" selection-end-column="40" />
+            <state relative-caret-position="114">
+              <caret line="75" column="27" selection-start-line="75" selection-start-column="27" selection-end-line="75" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/level/Level.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -124,8 +127,8 @@
         <option value="$PROJECT_DIR$/js/other/MonsterTypes.js" />
         <option value="$PROJECT_DIR$/js/level/Setup.js" />
         <option value="$PROJECT_DIR$/js/other/AI.js" />
-        <option value="$PROJECT_DIR$/js/level/Level.js" />
         <option value="$PROJECT_DIR$/js/level/Input.js" />
+        <option value="$PROJECT_DIR$/js/level/Level.js" />
         <option value="$PROJECT_DIR$/js/level/Create.js" />
       </list>
     </option>
@@ -281,14 +284,7 @@
       <workItem from="1557359527364" duration="17000" />
       <workItem from="1557359578415" duration="11192000" />
       <workItem from="1557408575783" duration="840000" />
-      <workItem from="1557414445192" duration="6498000" />
-    </task>
-    <task id="LOCAL-00001" summary="Added skeleton of game">
-      <created>1554766057497</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1554766057497</updated>
+      <workItem from="1557414445192" duration="7890000" />
     </task>
     <task id="LOCAL-00002" summary="Added creature class">
       <created>1554773708774</created>
@@ -626,11 +622,18 @@
       <option name="project" value="LOCAL" />
       <updated>1557374591232</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Added MonsterTypes.js">
+      <created>1557424463928</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1557424463928</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="274245000" />
+    <option name="totallyTimeSpent" value="275637000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -722,7 +725,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Attack and death animations now work" />
     <MESSAGE value="Sprites now stand in correct direction" />
     <MESSAGE value="AI doesn't work yet, but it doesn't crash" />
     <MESSAGE value="Added pathfinding and patrolling. Monsters currently don't follow player." />
@@ -747,7 +749,8 @@
     <MESSAGE value="Modified code for adding monsters" />
     <MESSAGE value="Added names to distinguish monsters" />
     <MESSAGE value="Added level 2 and made necessary changes to level, AI, and ability code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added level 2 and made necessary changes to level, AI, and ability code" />
+    <MESSAGE value="Added MonsterTypes.js" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added MonsterTypes.js" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/assets/images/siren.png" />
@@ -913,13 +916,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/level/Level.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="60" selection-start-line="11" selection-start-column="60" selection-end-line="11" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/level/Update.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2079">
@@ -934,13 +930,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/other/MonsterTypes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="24" lean-forward="true" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/level/Input.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -948,10 +937,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/level/Level.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/other/MonsterTypes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="24" lean-forward="true" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/level/Create.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="86" column="40" selection-start-line="86" selection-start-column="40" selection-end-line="86" selection-end-column="40" />
+        <state relative-caret-position="114">
+          <caret line="75" column="27" selection-start-line="75" selection-start-column="27" selection-end-line="75" selection-end-column="27" />
         </state>
       </provider>
     </entry>

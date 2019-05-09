@@ -35,13 +35,9 @@ class Level {
     findObjectsByType(type, map, layer) {
         let result = [];
         map.objects[layer].forEach(function(element) {
-            element.properties.forEach(function(property) {
-                if (property.name === "type" && property.value === type) {
-                    //Phaser uses top left, Tiled bottom left so we have to adjust
-                    element.y -= map.tileHeight;
-                    result.push(element);
-                }
-            });
+            if (element.type === type) {
+                result.push(element);
+            }
         });
         return result;
     }

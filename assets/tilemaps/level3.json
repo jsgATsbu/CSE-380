@@ -46,20 +46,9 @@
                  "gid":209,
                  "height":64,
                  "id":1,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"name",
-                         "type":"string",
-                         "value":"player"
-                        }, 
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"player"
-                        }],
+                 "name":"player",
                  "rotation":0,
-                 "type":"",
+                 "type":"player",
                  "visible":true,
                  "width":64,
                  "x":1088,
@@ -69,20 +58,9 @@
                  "gid":273,
                  "height":64,
                  "id":2,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"name",
-                         "type":"string",
-                         "value":"harpy1"
-                        }, 
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"harpy"
-                        }],
+                 "name":"harpy1",
                  "rotation":0,
-                 "type":"",
+                 "type":"harpy",
                  "visible":true,
                  "width":64,
                  "x":511,

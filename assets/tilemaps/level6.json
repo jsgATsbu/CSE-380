@@ -46,20 +46,9 @@
                  "gid":1,
                  "height":64,
                  "id":1,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"name",
-                         "type":"string",
-                         "value":"player"
-                        }, 
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"player"
-                        }],
+                 "name":"player",
                  "rotation":0,
-                 "type":"",
+                 "type":"player",
                  "visible":true,
                  "width":64,
                  "x":1216,
@@ -69,20 +58,9 @@
                  "gid":273,
                  "height":64,
                  "id":4,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"name",
-                         "type":"string",
-                         "value":"death1"
-                        }, 
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"death"
-                        }],
+                 "name":"death1",
                  "rotation":0,
-                 "type":"",
+                 "type":"death",
                  "visible":true,
                  "width":64,
                  "x":1476,

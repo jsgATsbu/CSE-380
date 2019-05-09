@@ -33,8 +33,6 @@ var createMap = function(level) {
     level.backgroundlayer = level.map.createLayer('backgroundLayer');
     if(level.map.getLayerIndex('roadLayer') !== null)
         level.map.createLayer('roadLayer');
-    if(level.map.getLayerIndex('bushLayer') !== null)
-        level.map.createLayer('bushLayer');
     level.bulletLayer = level.map.createLayer('bulletLayer');
     level.blockedLayer = level.map.createLayer('blockedLayer');
     level.backgroundlayer.resizeWorld();
@@ -71,7 +69,9 @@ var createMonsters = function(level) {
 };
 
 var createSprite = function(level, properties) {
-    let results = level.findObjectsByType(properties.type, level.map, 'objectsLayer');
+    let type = properties.type;
+
+    let results = level.findObjectsByType(type.spriteKey, level.map, 'objectsLayer');
     let found = results.find(function(obj) {
         let match = false;
         obj.properties.forEach(function(property) {
@@ -83,8 +83,8 @@ var createSprite = function(level, properties) {
         return match;
     });
 
-    let sprite = level.game.add.sprite(found.x + 32, found.y + 32, properties.type);
-    initializeStats(sprite, properties.atk, properties.def, properties.health, properties.spd);
+    let sprite = level.game.add.sprite(found.x + 32, found.y + 32, type.spriteKey);
+    initializeStats(sprite, type.stats);
     level.game.sprites.push(sprite);
 
     level.game.physics.arcade.enable(sprite);
@@ -98,14 +98,52 @@ var createSprite = function(level, properties) {
     sprite.healthBar = new HealthBar(level.game, barConfig);
     sprite.healthBar.setAnchor(0.5,0.5);
 
-    Object.keys(properties.animations).forEach(function (anim) {
-        sprite.animations.add(anim, properties.animations[anim].frames, properties.animations[anim].frameRate, properties.animations[anim].loop);
+    Object.keys(type.animations).forEach(function(anim) {
+        sprite.animations.add(anim, type.animations[anim].frames, type.animations[anim].frameRate, type.animations[anim].loop);
     });
     sprite.animations.stop('walkFront', true);  // otherwise currentAnim will be the last one added
 
-    sprite.ability = properties.ability;
+    sprite.ability = type.ability;
 
     sprite.body.immovable = true;
 
     return sprite;
+};
+
+var initializeStats = function(sprite, stats){
+    sprite.stats = {};
+    sprite.stats.atk = stats.atk;
+    sprite.stats.def = stats.def;
+    sprite.stats.currentHealth = stats.health;
+    sprite.stats.maxHealth = stats.health;
+    sprite.stats.spd = stats.spd;
+
+    sprite.attack = function(enemy) {
+        let diffX = enemy.x - sprite.x;
+        let diffY = enemy.y - sprite.y;
+
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+            if (diffX > 0) {
+                sprite.animations.play('attackRight');
+            } else {
+                sprite.animations.play('attackLeft');
+            }
+        } else {
+            if (diffY > 0) {
+                sprite.animations.play('attackFront');
+            } else {
+                sprite.animations.play('attackBack');
+            }
+        }
+
+        let last = sprite.animations.currentAnim;
+        sprite.animations.currentAnim.onComplete.addOnce(function() {
+            sprite.animations.play(last);
+        },this);
+
+        let dmg = sprite.stats.atk - enemy.stats.def;
+        if(enemy.stats.currentHealth > 0 && !enemy.invincible){
+            enemy.stats.currentHealth -= dmg;
+        }
+    };
 };

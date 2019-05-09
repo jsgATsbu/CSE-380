@@ -67,7 +67,7 @@ class AI {
         }
 
         if(this.cooldown <= 0 && this.reachedPlayer()){
-            this.monster.attack(this.level.player);
+            this.monster.attack.call(this.monster, this.level.player);
             this.cooldown = 100;
         }
         else{

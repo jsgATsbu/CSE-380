@@ -7,7 +7,10 @@ class Level {
 
         this.mapKey = undefined;  // should be string with name of map
         this.playerProperties = undefined;  // should be object with properties of player
-        this.monsterProperties = undefined;  //should be array of objects with properties of each monster
+        this.monsterProperties = undefined;  // should be array of objects with properties of each monster
+
+        this.player = undefined;  // defined in createPlayer(); included here to avoid IDE warning
+        this.skillFrame = undefined;  // defined in createSkillSlot(); included here to avoid IDE warning
     }
 
     create() {
@@ -64,9 +67,9 @@ class Level {
     }*/
 
     addAbility(ability) {
-        // noinspection JSUnresolvedVariable
         let player = this.player;
         let abilities = player.abilities;
+        // noinspection JSUnresolvedVariable
         let abilityIcons = this.skillIcons;
 
         if (abilities.includes(ability)) {
@@ -112,7 +115,6 @@ class Level {
     }
 
     selectAbility(num) {
-        // noinspection JSUnresolvedVariable
         let player = this.player;
 
         if (player.activeAbilityIndex === num) {

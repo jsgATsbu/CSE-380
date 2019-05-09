@@ -69,33 +69,67 @@ class Level {
         let abilities = player.abilities;
         let abilityIcons = this.skillIcons;
 
-        abilities.splice(3, 1);
+        if (abilities.includes(ability)) {
+            return;
+        }
+
+        // TODO figure out what to do if player has four abilities
+        abilities.push(ability);
+        /*abilities.splice(3, 1);
         abilities.splice(0, 0, ability);
+
 
         if (player.activeAbility !== attack) {
             if (player.activeAbilityIndex === 3) {
                 player.activeAbilityIndex = 0;
                 this.skillFrame.cameraOffset.setTo(window.innerWidth / 2 - 128,
-                    window.innerHeight * 8 / 10)
+                                                   window.innerHeight * 8 / 10)
             } else {
                 player.activeAbilityIndex += 1;
                 this.skillFrame.x += 64;
             }
-        }
-        player.activeAbility = abilities[player.activeAbilityIndex];
+        }*/
+        let index = player.activeAbilityIndex;  // reset selected ability
+        player.activeAbilityIndex = -1;
+        this.selectAbility(index);
 
 
-        if (abilityIcons[3]) {
+        /*if (abilityIcons[3]) {
             abilityIcons[3].destroy();
         }
         abilityIcons.splice(3, 1);
-        abilityIcons.forEach(function (icon) {
+        abilityIcons.forEach(function(icon) {
             icon.x += 64;
-        });
+        });*/
 
-        let icon = this.game.add.image(window.innerWidth/2 - 128, window.innerHeight * 8/10, 'abilities', ability.name);
+        let icon = this.game.add.image(window.innerWidth/2 + (-128 + 64 * abilityIcons.length),
+                                       window.innerHeight * 8/10,
+                                       'abilities', ability.name);
         icon.fixedToCamera = true;
         icon.moveDown();
-        abilityIcons.splice(0, 0, icon);
+        // abilityIcons.splice(0, 0, icon);
+        abilityIcons.push(icon);
+    }
+
+    selectAbility(num) {
+        // noinspection JSUnresolvedVariable
+        let player = this.player;
+
+        if (player.activeAbilityIndex === num) {
+            player.activeAbilityIndex = -1;
+            player.activeAbility = attack;
+
+            this.skillFrame.visible = false;
+        } else {
+            player.activeAbilityIndex = num;
+            player.activeAbility = player.abilities[num] || attack;
+            player.weapon.bullets.forEach(function(bullet) {
+                bullet.frameName = player.activeAbility.bullet;
+            }, this);
+
+            this.skillFrame.cameraOffset.setTo(window.innerWidth / 2 + (-128 + 64 * num),
+                window.innerHeight * 8/10);
+            this.skillFrame.visible = true;
+        }
     }
 }

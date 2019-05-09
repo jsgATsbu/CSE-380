@@ -23,6 +23,7 @@ var createSkillSlot = function(level){
 
     level.skillSlot.fixedToCamera = true;
     level.skillFrame.fixedToCamera = true;
+    level.skillFrame.visible = false;
 };
 
 var createMap = function(level) {
@@ -32,6 +33,8 @@ var createMap = function(level) {
     level.backgroundlayer = level.map.createLayer('backgroundLayer');
     if(level.map.getLayerIndex('roadLayer') !== null)
         level.map.createLayer('roadLayer');
+    if(level.map.getLayerIndex('bushLayer') !== null)
+        level.map.createLayer('bushLayer');
     level.bulletLayer = level.map.createLayer('bulletLayer');
     level.blockedLayer = level.map.createLayer('blockedLayer');
     level.backgroundlayer.resizeWorld();
@@ -42,9 +45,9 @@ var createMap = function(level) {
 
 var createPlayer = function(level) {
     level.player = createSprite(level, level.playerProperties);
-    level.player.abilities = [attack, attack, attack, attack];
-    level.player.activeAbilityIndex = 0;
-    level.player.activeAbility = level.player.abilities[level.player.activeAbilityIndex];
+    level.player.abilities = [];
+    level.player.activeAbilityIndex = -1;
+    level.player.activeAbility = attack;
 
     var weapon = level.game.add.weapon(10, 'bullets');
     weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;

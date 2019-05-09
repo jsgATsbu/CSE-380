@@ -54,7 +54,8 @@ let breakRock = function() {
 
     let tile = this.map.getTileWorldXY(player.x + xReach, player.y + yReach,
                                        64, 64, this.blockedLayer);
-    if (tile !== null && tile.index === 112) {  // if the tile is a rock
+    if (tile !== null && (tile.index === 112 || tile.index === 48)) {  // if the tile is a rock  TODO 112 is temporary
+                                                                                              // TODO not sure why this is 48
         this.map.removeTileWorldXY(player.x + xReach, player.y + yReach,
                                    64, 64, this.blockedLayer);
     }

@@ -73,10 +73,10 @@ var setupInput = function(obj) {
         }
     }, obj);
 
-    obj.one.onDown.add(selectAbility, obj, 0, 0);
-    obj.two.onDown.add(selectAbility, obj, 0, 1);
-    obj.three.onDown.add(selectAbility, obj, 0, 2);
-    obj.four.onDown.add(selectAbility, obj, 0, 3);
+    obj.one.onDown.add(selectAbilityWrapper, obj, 0, 0);
+    obj.two.onDown.add(selectAbilityWrapper, obj, 0, 1);
+    obj.three.onDown.add(selectAbilityWrapper, obj, 0, 2);
+    obj.four.onDown.add(selectAbilityWrapper, obj, 0, 3);
 
     obj.iKey.onDown.add(function() {
         obj.player.invincible = !obj.player.invincible;
@@ -134,25 +134,8 @@ var handleClickPaused = function(obj, x, y) {
     }
 };
 
-var selectAbility = function(obj, num) {  // obj is automatically passed as the first argument
-    let player = this.player;
-
-    if (player.activeAbilityIndex === num) {
-        player.activeAbilityIndex = -1;
-        player.activeAbility = attack;
-
-        this.skillFrame.visible = false;
-    } else {
-        player.activeAbilityIndex = num;
-        player.activeAbility = player.abilities[num];
-        player.weapon.bullets.forEach(function(bullet) {
-            bullet.frameName = player.activeAbility.bullet;
-        }, this);
-
-        this.skillFrame.cameraOffset.setTo(window.innerWidth / 2 + (-128 + 64 * num),
-                                           window.innerHeight * 8/10);
-        this.skillFrame.visible = true;
-    }
+var selectAbilityWrapper = function(obj, num) {  // obj is automatically passed as the first argument
+    this.selectAbility(num);
 };
 
 var killAll = function() {

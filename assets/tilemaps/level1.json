@@ -61,6 +61,11 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"name",
+                         "type":"string",
+                         "value":"player"
+                        }, 
+                        {
                          "name":"type",
                          "type":"string",
                          "value":"player"
@@ -73,11 +78,16 @@
                  "y":700
                 }, 
                 {
-                 "gid":241,
+                 "gid":273,
                  "height":64,
                  "id":4,
                  "name":"",
                  "properties":[
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"alien1"
+                        }, 
                         {
                          "name":"type",
                          "type":"string",
@@ -91,11 +101,16 @@
                  "y":192
                 }, 
                 {
-                 "gid":293,
+                 "gid":325,
                  "height":64,
                  "id":5,
                  "name":"",
                  "properties":[
+                        {
+                         "name":"name",
+                         "type":"string",
+                         "value":"dreadFace1"
+                        }, 
                         {
                          "name":"type",
                          "type":"string",
@@ -138,18 +153,18 @@
          "columns":16,
          "firstgid":65,
          "image":"..\/images\/sprite\/tiles.png",
-         "imageheight":704,
+         "imageheight":832,
          "imagewidth":1024,
          "margin":0,
          "name":"tiles",
          "spacing":0,
-         "tilecount":176,
+         "tilecount":208,
          "tileheight":64,
          "tilewidth":64
         }, 
         {
          "columns":4,
-         "firstgid":241,
+         "firstgid":273,
          "image":"..\/images\/sprite\/alien.png",
          "imageheight":832,
          "imagewidth":256,
@@ -162,7 +177,7 @@
         }, 
         {
          "columns":4,
-         "firstgid":293,
+         "firstgid":325,
          "image":"..\/images\/sprite\/dreadFace.png",
          "imageheight":640,
          "imagewidth":256,

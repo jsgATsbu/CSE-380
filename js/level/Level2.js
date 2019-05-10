@@ -10,44 +10,92 @@ TheLegendOfMeta.Level2 = function() {
 
     this.playerProperties = {
         name: 'player',
-        atk: 30,
-        def: 15,
-        health: 100,
-        spd: 400,
-        animations: {
-            walkFront: {frames: [0, 4, 5, 6, 7], frameRate: 5, loop: true},
-            walkLeft: {frames: [1, 8, 9, 10, 11], frameRate: 5, loop: true},
-            walkRight: {frames: [2, 12, 13, 14, 15], frameRate: 5, loop: true},
-            walkBack: {frames: [3, 16, 17, 18, 19], frameRate: 5, loop: true},
-            attackFront: {frames: [0, 36, 37, 38, 39], frameRate: 5, loop: false},
-            attackLeft: {frames: [1, 40, 41, 42, 43], frameRate: 5, loop: false},
-            attackRight: {frames: [2, 44, 45, 46, 47], frameRate: 5, loop: false},
-            attackBack: {frames: [3, 48, 49, 50, 51], frameRate: 5, loop: false},
-            death: {frames: [20, 21, 22, 23], frameRate: 5, loop: false}
-        }
+        type: meta
     };
 
     this.monsterProperties = [
         {
-            name: 'werewolf',
-            atk: 50,
-            def: 5,
-            health: 60,
-            spd: 400,
+            name: 'werewolf1',
+            type: werewolf,
             moveList: [],
-            ai: { patrol: [[11, 32], [33, 31], [25, 4], [7, 5]] },
-            animations: {
-                walkFront: {frames: [0,1], frameRate: 5, loop: true},
-                walkLeft: {frames: [2,3], frameRate: 5, loop: true},
-                walkRight: {frames: [4,5], frameRate: 5, loop: true},
-                walkBack: {frames: [6,7], frameRate: 5, loop: true},
-                attackFront: {frames: [8,9,10,11], frameRate: 5, loop: false},
-                attackLeft: {frames: [12,13,14,15], frameRate: 5, loop: false},
-                attackRight: {frames: [16,17,18,19], frameRate: 5, loop: false},
-                attackBack: {frames: [20,21,22,23], frameRate: 5, loop: false},
-                death: {frames: [24,25,26,27], frameRate: 5, loop: false}
-            },
-            ability: strength
+            ai: { patrol: [[9,5], [15, 33]] }
+        },
+
+        {
+            name: 'werewolf2',
+            type: werewolf,
+            moveList: [],
+            ai: { patrol: [[47, 62], [75, 62]] }
+        },
+
+        {
+            name: 'werewolf3',
+            type: werewolf,
+            moveList: [],
+            ai: { patrol: [[24, 74], [27, 57], [24, 74], [12, 60]] }
+        },
+
+        {
+            name: 'guardWerewolf1',
+            type: werewolf,
+            moveList: [],
+            ai: { patrol: [[76, 28]] }
+        },
+
+        {
+            name: 'guardWerewolf2',
+            type: werewolf,
+            moveList: [],
+            ai: { patrol: [[78, 28]] }
+        },
+
+        {
+            name: 'dreadFace1',
+            type: dreadFace,
+            moveList: [],
+            ai: { patrol: [[41, 68], [41, 77]] }
+        },
+
+        {
+            name: 'dreadFace2',
+            type: dreadFace,
+            moveList: [],
+            ai: { patrol: [[66, 23], [58, 19]] }
+        },
+
+        {
+            name: 'alien1',
+            type: alien,
+            moveList: [],
+            ai: { patrol: [[26, 18], [28, 9]] }
+        },
+
+        {
+            name: 'harpy1',
+            type: harpy,
+            moveList: [],
+            ai: { patrol: [[55, 55], [65, 55]] }
+        },
+
+        {
+            name: 'harpy2',
+            type: harpy,
+            moveList: [],
+            ai: { patrol: [[76, 7], [67, 20]] }
+        },
+
+        {
+            name: 'guardHarpy1',
+            type: harpy,
+            moveList: [],
+            ai: { patrol: [[76, 30]] }
+        },
+
+        {
+            name: 'guardHarpy2',
+            type: harpy,
+            moveList: [],
+            ai: { patrol: [[78, 30]] }
         }
     ];
 };

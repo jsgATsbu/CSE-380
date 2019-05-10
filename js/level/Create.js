@@ -23,6 +23,7 @@ var createSkillSlot = function(level){
 
     level.skillSlot.fixedToCamera = true;
     level.skillFrame.fixedToCamera = true;
+    level.skillFrame.visible = false;
 };
 
 var createMap = function(level) {
@@ -42,9 +43,9 @@ var createMap = function(level) {
 
 var createPlayer = function(level) {
     level.player = createSprite(level, level.playerProperties);
-    level.player.abilities = [attack, attack, attack, attack];
-    level.player.activeAbilityIndex = 0;
-    level.player.activeAbility = level.player.abilities[level.player.activeAbilityIndex];
+    level.player.abilities = [];
+    level.player.activeAbilityIndex = -1;
+    level.player.activeAbility = attack;
 
     var weapon = level.game.add.weapon(10, 'bullets');
     weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
@@ -68,9 +69,15 @@ var createMonsters = function(level) {
 };
 
 var createSprite = function(level, properties) {
-    let foundObj = level.findObjectsByType(properties.name, level.map, 'objectsLayer')[0];
-    let sprite = level.game.add.sprite(foundObj.x + 32, foundObj.y + 32, properties.name);
-    initializeStats(sprite, properties.atk, properties.def, properties.health, properties.spd);
+    let type = properties.type;
+
+    let results = level.findObjectsByType(type.spriteKey, level.map, 'objectsLayer');
+    let found = results.find(function(obj) {
+        return obj.name === properties.name;
+    });
+
+    let sprite = level.game.add.sprite(found.x + 32, found.y + 32, type.spriteKey);
+    initializeStats(sprite, type.stats);
     level.game.sprites.push(sprite);
 
     level.game.physics.arcade.enable(sprite);
@@ -84,14 +91,52 @@ var createSprite = function(level, properties) {
     sprite.healthBar = new HealthBar(level.game, barConfig);
     sprite.healthBar.setAnchor(0.5,0.5);
 
-    Object.keys(properties.animations).forEach(function (anim) {
-        sprite.animations.add(anim, properties.animations[anim].frames, properties.animations[anim].frameRate, properties.animations[anim].loop);
+    Object.keys(type.animations).forEach(function(anim) {
+        sprite.animations.add(anim, type.animations[anim].frames, type.animations[anim].frameRate, type.animations[anim].loop);
     });
     sprite.animations.stop('walkFront', true);  // otherwise currentAnim will be the last one added
 
-    sprite.ability = properties.ability;
+    sprite.ability = type.ability;
 
     sprite.body.immovable = true;
 
     return sprite;
+};
+
+var initializeStats = function(sprite, stats){
+    sprite.stats = {};
+    sprite.stats.atk = stats.atk;
+    sprite.stats.def = stats.def;
+    sprite.stats.currentHealth = stats.health;
+    sprite.stats.maxHealth = stats.health;
+    sprite.stats.spd = stats.spd;
+
+    sprite.attack = function(enemy) {
+        let diffX = enemy.x - sprite.x;
+        let diffY = enemy.y - sprite.y;
+
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+            if (diffX > 0) {
+                sprite.animations.play('attackRight');
+            } else {
+                sprite.animations.play('attackLeft');
+            }
+        } else {
+            if (diffY > 0) {
+                sprite.animations.play('attackFront');
+            } else {
+                sprite.animations.play('attackBack');
+            }
+        }
+
+        let last = sprite.animations.currentAnim;
+        sprite.animations.currentAnim.onComplete.addOnce(function() {
+            sprite.animations.play(last);
+        },this);
+
+        let dmg = sprite.stats.atk - enemy.stats.def;
+        if(enemy.stats.currentHealth > 0 && !enemy.invincible){
+            enemy.stats.currentHealth -= dmg;
+        }
+    };
 };

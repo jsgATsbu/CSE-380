@@ -44,7 +44,7 @@ TheLegendOfMeta.Preload.prototype = {
         this.load.audio('bgm6','assets/audios/6.ogg');
 
         this.load.tilemap('level1', 'assets/tilemaps/level7.json', null, Phaser.Tilemap.TILED_JSON);
-        this.load.tilemap('level2', 'assets/tilemaps/level2.json', null, Phaser.Tilemap.TILED_JSON);
+        this.load.tilemap('level2', 'assets/tilemaps/level8.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.tilemap('level3', 'assets/tilemaps/level3.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.tilemap('level4', 'assets/tilemaps/level4.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.tilemap('level5', 'assets/tilemaps/level5.json', null, Phaser.Tilemap.TILED_JSON);
@@ -69,6 +69,8 @@ TheLegendOfMeta.Preload.prototype = {
         this.load.spritesheet('exitBtn','assets/images/gui/menu_exit.png',256,128);
         this.load.spritesheet('resumeBtn','assets/images/gui/menu_resume.png',256,128);
         this.load.spritesheet('titleBtn','assets/images/gui/menu_return.png',256,128);
+        this.load.spritesheet('controlsBtn','assets/images/gui/menu_controls.png',256,128);
+        this.load.spritesheet('mainmenuBtn','assets/images/gui/menu_mainmenu.png',256,128);
     },
     create: function(){
         this.background = this.game.add.tileSprite(0,0,this.game.width,this.game.height,'preloadBG');

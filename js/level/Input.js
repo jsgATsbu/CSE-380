@@ -1,44 +1,5 @@
 'use strict';
 
-var initializeStats = function(sprite, atk, def, health, spd){
-    let stats = {};
-    stats.atk = atk;
-    stats.def = def;
-    stats.currentHealth = health;
-    stats.maxHealth = health;
-    stats.spd = spd;
-    sprite.stats = stats;
-
-    sprite.attack = function(enemy) {
-        let diffX = enemy.x - sprite.x;
-        let diffY = enemy.y - sprite.y;
-
-        if (Math.abs(diffX) > Math.abs(diffY)) {
-            if (diffX > 0) {
-                sprite.animations.play('attackRight');
-            } else {
-                sprite.animations.play('attackLeft');
-            }
-        } else {
-            if (diffY > 0) {
-                sprite.animations.play('attackFront');
-            } else {
-                sprite.animations.play('attackBack');
-            }
-        }
-
-        let last = sprite.animations.currentAnim;
-        sprite.animations.currentAnim.onComplete.addOnce(function() {
-            sprite.animations.play(last);
-        },this);
-
-        let dmg = sprite.stats.atk - enemy.stats.def;
-        if(enemy.stats.currentHealth > 0 && !enemy.invincible){
-            enemy.stats.currentHealth -= dmg;
-        }
-    };
-};
-
 var setupInput = function(obj) {
     const keyboard = obj.game.input.keyboard;
 
@@ -51,7 +12,7 @@ var setupInput = function(obj) {
 
     obj.game.input.onDown.add(function(event) {
         if (obj.game.paused) {
-            handleClickPaused(obj,event.clientX + obj.game.camera.x, event.clientY + obj.game.camera.y);
+            handleClickPaused(obj, event.clientX + obj.game.camera.x, event.clientY + obj.game.camera.y);
         } else if (obj.player.stats.currentHealth > 0) {
             obj.player.activeAbility.call(obj);
          }
@@ -73,24 +34,25 @@ var setupInput = function(obj) {
         }
     }, obj);
 
-    obj.one.onDown.add(selectAbility, obj, 0, 0);
-    obj.two.onDown.add(selectAbility, obj, 0, 1);
-    obj.three.onDown.add(selectAbility, obj, 0, 2);
-    obj.four.onDown.add(selectAbility, obj, 0, 3);
+    obj.one.onDown.add(selectAbilityWrapper, obj, 0, 0);
+    obj.two.onDown.add(selectAbilityWrapper, obj, 0, 1);
+    obj.three.onDown.add(selectAbilityWrapper, obj, 0, 2);
+    obj.four.onDown.add(selectAbilityWrapper, obj, 0, 3);
 
     obj.iKey.onDown.add(function() {
         obj.player.invincible = !obj.player.invincible;
     }, obj);
-    obj.pKey.onDown.add(killAll, obj, 0);
+    obj.pKey.onDown.add(killAll, obj);
 };
 
 var pause = function(obj) {
     obj.game.paused = true;
     obj.pauseMenu = obj.game.add.sprite(obj.game.camera.x + window.innerWidth / 2,
-        obj.game.camera.y + window.innerHeight / 2, 'pauseMenu');
+                    obj.game.camera.y + window.innerHeight / 2,
+                    'pauseMenu');
     obj.pauseMenu.anchor.setTo(0.5);
-    obj.settingBtn = obj.game.add.button(obj.pauseMenu.x, obj.pauseMenu.y-75, 'settingBtn');
-    obj.titleBtn = obj.game.add.button(obj.pauseMenu.x, obj.pauseMenu.y+75, 'titleBtn');
+    obj.settingBtn = obj.game.add.button(obj.pauseMenu.x, obj.pauseMenu.y - 75, 'controlsBtn');
+    obj.titleBtn = obj.game.add.button(obj.pauseMenu.x, obj.pauseMenu.y + 75, 'mainmenuBtn');
     obj.settingBtn.anchor.setTo(0.5);
     obj.titleBtn.anchor.setTo(0.5);
 };
@@ -134,25 +96,8 @@ var handleClickPaused = function(obj, x, y) {
     }
 };
 
-var selectAbility = function(obj, num) {  // obj is automatically passed as the first argument
-    let player = this.player;
-
-    if (player.activeAbilityIndex === num) {
-        player.activeAbilityIndex = -1;
-        player.activeAbility = attack;
-
-        this.skillFrame.visible = false;
-    } else {
-        player.activeAbilityIndex = num;
-        player.activeAbility = player.abilities[num];
-        player.weapon.bullets.forEach(function(bullet) {
-            bullet.frameName = player.activeAbility.bullet;
-        }, this);
-
-        this.skillFrame.cameraOffset.setTo(window.innerWidth / 2 + (-128 + 64 * num),
-                                           window.innerHeight * 8/10);
-        this.skillFrame.visible = true;
-    }
+var selectAbilityWrapper = function(obj, num) {  // obj is automatically passed as the first argument
+    this.selectAbility(num);
 };
 
 var killAll = function() {

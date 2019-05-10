@@ -53,11 +53,11 @@ class AI {
         else{
             if(this.playerNearby() && this.noBlockInBetween() && !this.level.player.invisible) {
                 let dest = this.level.map.getTileWorldXY(this.level.player.x, this.level.player.y);     // Chase Player
-                this.state = STATE.PATROL;
                 this.path = this.pathFinder.findPath(start, dest);
             }
             else{
                 let dest = this.level.map.getTile(this.patrolList[0][0], this.patrolList[0][1]);         // Patrol
+                this.state = STATE.PATROL;
                 this.path = this.pathFinder.findPath(start, dest);
             }
         }
@@ -67,7 +67,7 @@ class AI {
         }
 
         if(this.cooldown <= 0 && this.reachedPlayer()){
-            this.monster.attack(this.level.player);
+            this.monster.attack.call(this.monster, this.level.player);
             this.cooldown = 100;
         }
         else{

@@ -9,12 +9,18 @@ var updateBullets = function(level){
         bullet.kill();
         switch (bullet.frameName) {
             case 'feather':
-                enemy.stats.currentHealth -= 10;
+                enemy.stats.currentHealth -= 20;
                 enemy.healthBar.setPercent(enemy.stats.currentHealth*100 / enemy.stats.maxHealth);
                 break;
 
             case 'ice':
-                // TODO
+                enemy.stats.currentHealth -= 10;
+                enemy.healthBar.setPercent(enemy.stats.currentHealth*100 / enemy.stats.maxHealth);
+                enemy.frozen = true;
+
+                this.game.time.events.add(10000, function() {
+                    enemy.frozen = false;
+                }, this);
                 break;
 
             case 'lifeDrain':
@@ -23,6 +29,15 @@ var updateBullets = function(level){
 
                 this.player.stats.currentHealth -= 10;
                 this.player.healthBar.setPercent(this.player.stats.currentHealth*100 / this.player.stats.maxHealth);
+                break;
+
+            case 'fireball':
+                enemy.stats.currentHealth -= 10;
+                enemy.healthBar.setPercent(enemy.stats.currentHealth*100 / enemy.stats.maxHealth);
+
+                this.game.time.events.repeat(1000, 9, function () {
+                    enemy.stats.currentHealth -= 5;
+                }, this);
                 break;
         }
 

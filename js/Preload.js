@@ -46,7 +46,7 @@ TheLegendOfMeta.Preload.prototype = {
         this.load.tilemap('level1', 'assets/tilemaps/level7.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.tilemap('level2', 'assets/tilemaps/level8.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.tilemap('level3', 'assets/tilemaps/level3.json', null, Phaser.Tilemap.TILED_JSON);
-        this.load.tilemap('level4', 'assets/tilemaps/level4.json', null, Phaser.Tilemap.TILED_JSON);
+        this.load.tilemap('level4', 'assets/tilemaps/level10.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.tilemap('level5', 'assets/tilemaps/level5.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.tilemap('level6', 'assets/tilemaps/level6.json', null, Phaser.Tilemap.TILED_JSON);
 

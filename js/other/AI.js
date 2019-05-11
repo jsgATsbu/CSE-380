@@ -80,7 +80,7 @@ class AI {
             this.path = this.pathFinder.findPath(start, dest);
         }
 
-        if(this.path.length !== 0 && !this.reachedPlayer()) {
+        if(this.path.length !== 0 && !this.reachedPlayer() && monster.frozen) {  // frozen monsters can't move
             this.moveMonToXY(this.path[0].worldX,this.path[0].worldY);
         }
     }

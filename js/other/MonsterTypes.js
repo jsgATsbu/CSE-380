@@ -139,7 +139,7 @@ let harpy = {
     ability: feather
 };
 
-let iceGiant = {
+let icegiant = {
     spriteKey: "icegiant",
 
     stats: {
@@ -214,8 +214,8 @@ let death = {
     // ability: poison
 };
 
-let fireStone = {
-    spriteKey: 'fireStone',
+let firestone = {
+    spriteKey: 'firestone',
 
     stats: {
         atk: 50,

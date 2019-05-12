@@ -15,10 +15,41 @@ TheLegendOfMeta.Level4 = function() {
 
     this.monsterProperties = [
         {
-            name: 'icegiant1',
-            type: iceGiant,
-            moveList: [],
-            ai: { patrol: [[27, 35], [28, 10], [20, 8], [6, 14], [5, 26], [15, 38]] }
+            type: worm,
+            ai: [            // worms are immobile; their permanent locations are included here for consistency
+                [[57, 21]],
+                [[29, 2]],
+                [[77, 29]],
+                [[2, 54]],
+                [[53, 77]],
+                [[27, 57]]
+            ]
+        },
+
+        {
+            type: harpy,
+            ai: [
+                [[11, 7], [71, 74]],
+                [[11, 74], [71, 7]],
+                [[52, 2], [77, 54], [29, 77], [2, 29]],
+                [[29, 77], [2, 29], [52, 2], [77, 54]],
+                [[77, 54], [29, 77], [2, 29], [52, 2]],
+                [[2, 29], [52, 2], [77, 54], [29, 77]]
+            ]
+        },
+
+        {
+            type: firestone,
+            ai: [
+                [[1, 1]]
+            ]
+        },
+
+        {
+            type: icegiant,
+            ai: [
+                [[75, 0], [75, 5], [79, 5]]
+            ]
         }
     ];
 };

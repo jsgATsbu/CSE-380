@@ -1,8 +1,13 @@
 'use strict';
 
 var updateBullets = function(level){
-    level.game.physics.arcade.collide(level.player.weapon.bullets, level.blockedLayer, function(bullet) {
-        bullet.kill();
+    level.game.physics.arcade.collide(level.player.weapon.bullets, level.blockedLayer, function(bullet, tile) {
+        bullet.kill();  // TODO fireballs should destroy trees
+        if (bullet.frameName === 'fireball') {
+            if (tile.index === 61 || tile.index === 62 || tile.index === 63 || tile.index === 117) {  // FIXME are tiles indexed from 1!?!?!?
+                this.map.removeTile(tile.x, tile.y, this.blockedLayer);
+            }
+        }
     }, null, level);
 
     level.game.physics.arcade.overlap(level.player.weapon.bullets, level.monsters, function(enemy, bullet) {
@@ -16,11 +21,15 @@ var updateBullets = function(level){
             case 'ice':
                 enemy.stats.currentHealth -= 10;
                 enemy.healthBar.setPercent(enemy.stats.currentHealth*100 / enemy.stats.maxHealth);
-                enemy.frozen = true;
 
-                this.game.time.events.add(10000, function() {
-                    enemy.frozen = false;
-                }, this);
+                if (!enemy.frozen) {
+                    enemy.frozen = true;
+                    let ice = this.game.add.sprite(enemy.x - enemy.width / 2, enemy.y - enemy.height / 2, 'ice');
+                    this.game.time.events.add(10000, function () {
+                        enemy.frozen = false;
+                        ice.destroy();
+                    }, this);
+                }
                 break;
 
             case 'lifeDrain':
@@ -32,12 +41,27 @@ var updateBullets = function(level){
                 break;
 
             case 'fireball':
-                enemy.stats.currentHealth -= 10;
+                if (enemy.type === icegiant) {
+                    enemy.stats.currentHealth -= 20;
+                } else {
+                    enemy.stats.currentHealth -= 10;
+                }
                 enemy.healthBar.setPercent(enemy.stats.currentHealth*100 / enemy.stats.maxHealth);
 
-                this.game.time.events.repeat(1000, 9, function () {
-                    enemy.stats.currentHealth -= 5;
-                }, this);
+                if (!enemy.onFire) {
+                    enemy.onFire = true;
+                    this.game.time.events.repeat(1000, 9, function () {
+                        if (enemy.type === icegiant) {
+                            enemy.stats.currentHealth -= 10;
+                        } else {
+                            enemy.stats.currentHealth -= 5;
+                        }
+                    }, this);
+
+                    this.game.time.events.add(10000, function () {
+                        enemy.onFire = false;
+                    }, this);
+                }
                 break;
         }
 

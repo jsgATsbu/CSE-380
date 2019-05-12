@@ -52,13 +52,13 @@
         {
          "draworder":"topdown",
          "id":4,
-         "name":"objectLayer",
+         "name":"objectsLayer",
          "objects":[
                 {
-                 "gid":209,
+                 "gid":225,
                  "height":64,
                  "id":1,
-                 "name":"guardIceGiant",
+                 "name":"icegiant1",
                  "rotation":0,
                  "type":"icegiant",
                  "visible":true,
@@ -67,7 +67,7 @@
                  "y":244
                 }, 
                 {
-                 "gid":249,
+                 "gid":265,
                  "height":40,
                  "id":2,
                  "name":"player",
@@ -79,7 +79,7 @@
                  "y":5064
                 }, 
                 {
-                 "gid":337,
+                 "gid":353,
                  "height":64,
                  "id":3,
                  "name":"firestone1",
@@ -87,11 +87,11 @@
                  "type":"firestone",
                  "visible":true,
                  "width":64,
-                 "x":16,
-                 "y":80
+                 "x":152,
+                 "y":288
                 }, 
                 {
-                 "gid":377,
+                 "gid":393,
                  "height":64,
                  "id":4,
                  "name":"harpy1",
@@ -99,11 +99,11 @@
                  "type":"harpy",
                  "visible":true,
                  "width":64,
-                 "x":4560,
-                 "y":4828
+                 "x":4548,
+                 "y":4796
                 }, 
                 {
-                 "gid":377,
+                 "gid":393,
                  "height":64,
                  "id":5,
                  "name":"harpy2",
@@ -115,7 +115,7 @@
                  "y":2508
                 }, 
                 {
-                 "gid":377,
+                 "gid":393,
                  "height":64,
                  "id":6,
                  "name":"harpy3",
@@ -124,10 +124,10 @@
                  "visible":true,
                  "width":64,
                  "x":128,
-                 "y":1944
+                 "y":1920
                 }, 
                 {
-                 "gid":425,
+                 "gid":441,
                  "height":64,
                  "id":7,
                  "name":"worm1",
@@ -135,11 +135,11 @@
                  "type":"worm",
                  "visible":true,
                  "width":64,
-                 "x":3676,
-                 "y":1420
+                 "x":3652,
+                 "y":1404
                 }, 
                 {
-                 "gid":425,
+                 "gid":441,
                  "height":64,
                  "id":8,
                  "name":"worm2",
@@ -147,11 +147,11 @@
                  "type":"worm",
                  "visible":true,
                  "width":64,
-                 "x":1872,
-                 "y":136
+                 "x":1852,
+                 "y":188
                 }, 
                 {
-                 "gid":425,
+                 "gid":441,
                  "height":64,
                  "id":9,
                  "name":"worm3",
@@ -159,11 +159,11 @@
                  "type":"worm",
                  "visible":true,
                  "width":64,
-                 "x":4940,
+                 "x":4928,
                  "y":1916
                 }, 
                 {
-                 "gid":425,
+                 "gid":441,
                  "height":64,
                  "id":10,
                  "name":"worm4",
@@ -171,11 +171,11 @@
                  "type":"worm",
                  "visible":true,
                  "width":64,
-                 "x":116,
-                 "y":3504
+                 "x":124,
+                 "y":3520
                 }, 
                 {
-                 "gid":425,
+                 "gid":441,
                  "height":64,
                  "id":11,
                  "name":"worm5",
@@ -183,11 +183,11 @@
                  "type":"worm",
                  "visible":true,
                  "width":64,
-                 "x":3420,
-                 "y":4960
+                 "x":3392,
+                 "y":4992
                 }, 
                 {
-                 "gid":377,
+                 "gid":393,
                  "height":64,
                  "id":12,
                  "name":"harpy4",
@@ -195,23 +195,23 @@
                  "type":"harpy",
                  "visible":true,
                  "width":64,
-                 "x":4920,
-                 "y":3740
+                 "x":4932,
+                 "y":3524
                 }, 
                 {
-                 "gid":377,
+                 "gid":393,
                  "height":64,
                  "id":13,
                  "name":"harpy5",
                  "rotation":0,
                  "type":"harpy",
                  "visible":true,
-                 "width":64,
-                 "x":3100,
-                 "y":140
+                 "width":80,
+                 "x":3320,
+                 "y":192
                 }, 
                 {
-                 "gid":377,
+                 "gid":393,
                  "height":64,
                  "id":14,
                  "name":"harpy6",
@@ -219,11 +219,11 @@
                  "type":"harpy",
                  "visible":true,
                  "width":64,
-                 "x":1624,
-                 "y":4972
+                 "x":1852,
+                 "y":4996
                 }, 
                 {
-                 "gid":425,
+                 "gid":441,
                  "height":64,
                  "id":15,
                  "name":"worm6",
@@ -232,7 +232,7 @@
                  "visible":true,
                  "width":64,
                  "x":1728,
-                 "y":3744
+                 "y":3712
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -251,18 +251,18 @@
          "columns":16,
          "firstgid":1,
          "image":"..\/images\/sprite\/tiles2.png",
-         "imageheight":832,
+         "imageheight":896,
          "imagewidth":1024,
          "margin":0,
          "name":"tiles",
          "spacing":0,
-         "tilecount":208,
+         "tilecount":224,
          "tileheight":64,
          "tilewidth":64
         }, 
         {
          "columns":4,
-         "firstgid":209,
+         "firstgid":225,
          "image":"..\/images\/sprite\/icegiant.png",
          "imageheight":640,
          "imagewidth":256,
@@ -275,7 +275,7 @@
         }, 
         {
          "columns":4,
-         "firstgid":249,
+         "firstgid":265,
          "image":"..\/images\/sprite\/Meta_new.png",
          "imageheight":880,
          "imagewidth":160,
@@ -288,7 +288,7 @@
         }, 
         {
          "columns":4,
-         "firstgid":337,
+         "firstgid":353,
          "image":"..\/images\/sprite\/firestone.png",
          "imageheight":640,
          "imagewidth":256,
@@ -301,7 +301,7 @@
         }, 
         {
          "columns":4,
-         "firstgid":377,
+         "firstgid":393,
          "image":"..\/images\/sprite\/harpy.png",
          "imageheight":768,
          "imagewidth":256,
@@ -314,7 +314,7 @@
         }, 
         {
          "columns":4,
-         "firstgid":425,
+         "firstgid":441,
          "image":"..\/images\/sprite\/worm.png",
          "imageheight":576,
          "imagewidth":256,

@@ -92,12 +92,17 @@ let poison = function() {
     let reach = getReach(player.weapon.fireAngle);
 
     let sprite = this.findSpritesByCoordinates(player.x + reach[0], player.y + reach[1])[0];
-    if (sprite !== undefined) {
+    if (sprite !== undefined && !sprite.poisoned) {
         sprite.stats.currentHealth -= 10;
         sprite.healthBar.setPercent(sprite.stats.currentHealth*100 / sprite.stats.maxHealth);
 
+        sprite.poisoned = true;
         this.game.time.events.repeat(1000, 9, function () {
             sprite.stats.currentHealth -= 10;
+        }, this);
+
+        this.game.time.events.add(10000, function() {
+            sprite.poisoned = false;
         }, this);
     }
 };

@@ -55,7 +55,7 @@
          "name":"objectsLayer",
          "objects":[
                 {
-                 "gid":209,
+                 "gid":225,
                  "height":40,
                  "id":1,
                  "name":"player",
@@ -67,7 +67,7 @@
                  "y":4718.90909090909
                 }, 
                 {
-                 "gid":297,
+                 "gid":313,
                  "height":64,
                  "id":2,
                  "name":"dreadFace1",
@@ -79,7 +79,7 @@
                  "y":4756.24242424242
                 }, 
                 {
-                 "gid":337,
+                 "gid":353,
                  "height":64,
                  "id":6,
                  "name":"werewolf1",
@@ -91,7 +91,7 @@
                  "y":1647.15151515152
                 }, 
                 {
-                 "gid":377,
+                 "gid":393,
                  "height":64,
                  "id":7,
                  "name":"alien1",
@@ -103,7 +103,7 @@
                  "y":647.151515151514
                 }, 
                 {
-                 "gid":337,
+                 "gid":353,
                  "height":64,
                  "id":8,
                  "name":"werewolf2",
@@ -115,7 +115,7 @@
                  "y":4747.15151515152
                 }, 
                 {
-                 "gid":429,
+                 "gid":445,
                  "height":64,
                  "id":11,
                  "name":"harpy1",
@@ -127,7 +127,7 @@
                  "y":3562.30303030303
                 }, 
                 {
-                 "gid":337,
+                 "gid":353,
                  "height":64,
                  "id":12,
                  "name":"werewolf3",
@@ -139,7 +139,7 @@
                  "y":3922.90909090909
                 }, 
                 {
-                 "gid":297,
+                 "gid":313,
                  "height":64,
                  "id":13,
                  "name":"dreadFace2",
@@ -151,10 +151,10 @@
                  "y":1283.51515151515
                 }, 
                 {
-                 "gid":337,
+                 "gid":353,
                  "height":64,
                  "id":15,
-                 "name":"guardWerewolf1",
+                 "name":"werewolf4",
                  "rotation":0,
                  "type":"werewolf",
                  "visible":true,
@@ -163,10 +163,10 @@
                  "y":1856.12121212121
                 }, 
                 {
-                 "gid":337,
+                 "gid":353,
                  "height":64,
                  "id":16,
-                 "name":"guardWerewolf2",
+                 "name":"werewolf5",
                  "rotation":0,
                  "type":"werewolf",
                  "visible":true,
@@ -175,10 +175,10 @@
                  "y":1854.78787878788
                 }, 
                 {
-                 "gid":429,
+                 "gid":445,
                  "height":64,
                  "id":17,
-                 "name":"guardHarpy1",
+                 "name":"harpy3",
                  "rotation":0,
                  "type":"harpy",
                  "visible":true,
@@ -187,10 +187,10 @@
                  "y":1983.0303030303
                 }, 
                 {
-                 "gid":429,
+                 "gid":445,
                  "height":64,
                  "id":18,
-                 "name":"guardHarpy2",
+                 "name":"harpy4",
                  "rotation":0,
                  "type":"harpy",
                  "visible":true,
@@ -199,7 +199,7 @@
                  "y":1982.0606060606
                 }, 
                 {
-                 "gid":429,
+                 "gid":445,
                  "height":64,
                  "id":20,
                  "name":"harpy2",
@@ -227,18 +227,18 @@
          "columns":16,
          "firstgid":1,
          "image":"..\/images\/sprite\/tiles2.png",
-         "imageheight":832,
+         "imageheight":896,
          "imagewidth":1024,
          "margin":0,
          "name":"tiles",
          "spacing":0,
-         "tilecount":208,
+         "tilecount":224,
          "tileheight":64,
          "tilewidth":64
         }, 
         {
          "columns":4,
-         "firstgid":209,
+         "firstgid":225,
          "image":"..\/images\/sprite\/Meta_new.png",
          "imageheight":880,
          "imagewidth":160,
@@ -251,7 +251,7 @@
         }, 
         {
          "columns":4,
-         "firstgid":297,
+         "firstgid":313,
          "image":"..\/images\/sprite\/dreadFace.png",
          "imageheight":640,
          "imagewidth":256,
@@ -264,7 +264,7 @@
         }, 
         {
          "columns":4,
-         "firstgid":337,
+         "firstgid":353,
          "image":"..\/images\/sprite\/werewolf.png",
          "imageheight":640,
          "imagewidth":256,
@@ -277,7 +277,7 @@
         }, 
         {
          "columns":4,
-         "firstgid":377,
+         "firstgid":393,
          "image":"..\/images\/sprite\/alien.png",
          "imageheight":832,
          "imagewidth":256,
@@ -290,7 +290,7 @@
         }, 
         {
          "columns":4,
-         "firstgid":429,
+         "firstgid":445,
          "image":"..\/images\/sprite\/harpy.png",
          "imageheight":768,
          "imagewidth":256,

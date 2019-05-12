@@ -42,7 +42,7 @@ var createMap = function(level) {
 };
 
 var createPlayer = function(level) {
-    level.player = createSprite(level, level.playerProperties);
+    level.player = createSprite(level, level.playerProperties,level.playerProperties.name);
     level.player.abilities = [];
     level.player.activeAbilityIndex = -1;
     level.player.activeAbility = attack;
@@ -61,24 +61,34 @@ var createMonsters = function(level) {
     if(properties === undefined){
         return;
     }
-    properties.forEach(function (pro) {
-        let mon = createSprite(level, pro);
-        mon.ai = new AI(mon, pro.ai.patrol, this);
-        level.monsters.push(mon);
+    properties.forEach(function (monProperty) {
+        for(let i=0;i<monProperty.ai.length;i++) {
+            let monName = monProperty.type.spriteKey + (i+1);
+            let mon = createSprite(level, monProperty,monName);
+            mon.ai = new AI(mon, monProperty.ai[i], this);
+            level.monsters.push(mon);
+        }
     }, level);
 };
 
-var createSprite = function(level, properties) {
+var createSprite = function(level, properties, name) {
     let type = properties.type;
 
     let results = level.findObjectsByType(type.spriteKey, level.map, 'objectsLayer');
     let found = results.find(function(obj) {
-        return obj.name === properties.name;
+        return obj.name === name;
     });
+
+    if(found === undefined){
+        console.log(name);
+    }
 
     let sprite = level.game.add.sprite(found.x + 32, found.y + 32, type.spriteKey);
     initializeStats(sprite, type.stats);
     level.game.sprites.push(sprite);
+
+    /// For debugging
+    sprite.properties = properties;
 
     level.game.physics.arcade.enable(sprite);
     sprite.anchor.setTo(0.5,0.5);

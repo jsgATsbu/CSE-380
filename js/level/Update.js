@@ -1,20 +1,38 @@
 'use strict';
 
 var updateBullets = function(level){
-    level.game.physics.arcade.collide(level.player.weapon.bullets, level.blockedLayer, function(bullet) {
+
+
+    level.game.physics.arcade.collide(level.player.weapon.bullets, level.blockedLayer, function(bullet, tile) {
         bullet.kill();
+        if (bullet.frameName === 'fireball') {
+            // if the tile is a tree; note that tiles are indexed from 1
+            if (tile.index === 61 || tile.index === 62 || tile.index === 63 || tile.index === 117) {
+                this.map.removeTile(tile.x, tile.y, this.blockedLayer);
+            }
+        }
     }, null, level);
 
     level.game.physics.arcade.overlap(level.player.weapon.bullets, level.monsters, function(enemy, bullet) {
         bullet.kill();
         switch (bullet.frameName) {
             case 'feather':
-                enemy.stats.currentHealth -= 10;
+                enemy.stats.currentHealth -= 20;
                 enemy.healthBar.setPercent(enemy.stats.currentHealth*100 / enemy.stats.maxHealth);
                 break;
 
             case 'ice':
-                // TODO
+                enemy.stats.currentHealth -= 10;
+                enemy.healthBar.setPercent(enemy.stats.currentHealth*100 / enemy.stats.maxHealth);
+
+                if (!enemy.frozen) {
+                    enemy.frozen = true;
+                    let ice = this.game.add.sprite(enemy.x - enemy.width / 2, enemy.y - enemy.height / 2, 'ice');
+                    this.game.time.events.add(10000, function () {
+                        enemy.frozen = false;
+                        ice.destroy();
+                    }, this);
+                }
                 break;
 
             case 'lifeDrain':
@@ -24,6 +42,30 @@ var updateBullets = function(level){
                 this.player.stats.currentHealth -= 10;
                 this.player.healthBar.setPercent(this.player.stats.currentHealth*100 / this.player.stats.maxHealth);
                 break;
+
+            case 'fireball':
+                if (enemy.type === icegiant) {
+                    enemy.stats.currentHealth -= 20;
+                } else {
+                    enemy.stats.currentHealth -= 10;
+                }
+                enemy.healthBar.setPercent(enemy.stats.currentHealth*100 / enemy.stats.maxHealth);
+
+                if (!enemy.onFire) {
+                    enemy.onFire = true;
+                    this.game.time.events.repeat(1000, 9, function () {
+                        if (enemy.type === icegiant) {
+                            enemy.stats.currentHealth -= 10;
+                        } else {
+                            enemy.stats.currentHealth -= 5;
+                        }
+                    }, this);
+
+                    this.game.time.events.add(10000, function () {
+                        enemy.onFire = false;
+                    }, this);
+                }
+                break;
         }
 
     }, null, level);
@@ -31,15 +73,6 @@ var updateBullets = function(level){
 
 var updateSprites = function(level) {
     level.game.physics.arcade.collide(level.player, [level.blockedLayer,level.bulletLayer]);
-
-    /*level.icons.forEach(function(icon) {
-        level.game.physics.arcade.overlap(level.player, icon, function () {
-            if (level.player.abilities.length < 4 || level.r) {
-                level.addAbility(icon);
-                icon.destroy();
-            }
-        });
-    });*/
 
     //// Update the HP bar position and the percentage every frame
     level.player.healthBar.setPosition(level.player.body.x + 32, level.player.body.y - 20);
@@ -87,8 +120,6 @@ var updatePlayerMovement = function(level) {
         level.player.animations.play('death',3,false,true);
         return;
     }
-
-    // level.r = level.rKey.isDown;
 
     let cursors = level.cursors;
 

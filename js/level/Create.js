@@ -13,7 +13,6 @@ var createFields = function(level){
     level.tempSetting = null;
     level.monsters = [];
     level.game.sprites = [];
-    // level.icons = [];
 };
 
 var createSkillSlot = function(level){
@@ -47,7 +46,7 @@ var createPlayer = function(level) {
     level.player.activeAbilityIndex = -1;
     level.player.activeAbility = attack;
 
-    var weapon = level.game.add.weapon(10, 'bullets');
+    var weapon = level.game.add.weapon(-1, 'bullets');
     weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
     weapon.bulletSpeed = 600;
     weapon.fireRate = 100;

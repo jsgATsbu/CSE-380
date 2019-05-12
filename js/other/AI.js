@@ -36,12 +36,11 @@ class AI {
             monster.animations.play("death", 3, false, true);
 
             this.level.addAbility(monster.ability);
-            // this.level.addIcon(monster.x + 32, monster.y + 32, monster.ability);
 
             return;
         }
 
-        if(monster.properties.name === "werewolf5"){
+        if(monster.properties.name === "werewolf5"){  // TODO remove this?
             console.log("---------------");
             console.log(this.path[0]);
             console.log(this.patrolList);
@@ -77,8 +76,8 @@ class AI {
             this.path.shift();
         }
 
-        if(this.cooldown <= 0 && this.reachedPlayer()){
-            this.monster.attack.call(this.monster, this.level.player);
+        if(this.cooldown <= 0 && this.reachedPlayer() && !monster.frozen){
+            monster.attack.call(monster, this.level.player);
             this.cooldown = 100;
         }
         else{
@@ -91,7 +90,7 @@ class AI {
             this.path = this.pathFinder.findPath(start, dest);
         }
 
-        if(this.path.length !== 0 && !this.reachedPlayer()) {
+        if(this.path.length !== 0 && !this.reachedPlayer() && !monster.frozen) {  // frozen monsters can't move
             this.moveMonToXY(this.path[0].worldX,this.path[0].worldY);
         }
     }

@@ -35,6 +35,7 @@ TheLegendOfMeta.Preload.prototype = {
 
         this.load.atlas('abilities', 'assets/images/atlases/abilities.png', 'assets/atlases/abilities.json');
         this.load.atlas('bullets', 'assets/images/atlases/bullets.png', 'assets/atlases/bullets.json');
+        this.load.image('ice', 'assets/images/other/iced.png');
 
         this.load.audio('bgm1','assets/audios/1.ogg');
         this.load.audio('bgm2','assets/audios/2.ogg');
@@ -46,7 +47,7 @@ TheLegendOfMeta.Preload.prototype = {
         this.load.tilemap('level1', 'assets/tilemaps/level7.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.tilemap('level2', 'assets/tilemaps/level8.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.tilemap('level3', 'assets/tilemaps/level3.json', null, Phaser.Tilemap.TILED_JSON);
-        this.load.tilemap('level4', 'assets/tilemaps/level4.json', null, Phaser.Tilemap.TILED_JSON);
+        this.load.tilemap('level4', 'assets/tilemaps/level10.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.tilemap('level5', 'assets/tilemaps/level5.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.tilemap('level6', 'assets/tilemaps/level6.json', null, Phaser.Tilemap.TILED_JSON);
 

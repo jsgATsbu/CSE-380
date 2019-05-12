@@ -139,7 +139,7 @@ let harpy = {
     ability: feather
 };
 
-let iceGiant = {
+let icegiant = {
     spriteKey: "icegiant",
 
     stats: {
@@ -209,6 +209,56 @@ let death = {
         attackRight: { frames: [16, 17, 18, 19], frameRate: 5, loop: false },
         attackBack: { frames: [20, 21, 22, 23], frameRate: 5, loop: false },
         death: { frames: [24, 25, 26, 27], frameRate: 5, loop: false }
+    },
+
+    // ability: poison
+};
+
+let firestone = {
+    spriteKey: 'firestone',
+
+    stats: {
+        atk: 50,
+        def: 5,
+        health: 60,
+        spd: 400
+    },
+
+    animations: {
+        walkFront: { frames: [0, 1], frameRate: 5, loop: true },
+        walkLeft: { frames: [2, 3], frameRate: 5, loop: true },
+        walkRight: { frames: [4, 5], frameRate: 5, loop: true },
+        walkBack: { frames: [6, 7], frameRate: 5, loop: true },
+        attackFront: { frames: [8, 9, 10, 11], frameRate: 5, loop: false },
+        attackLeft: { frames: [12, 13, 14, 15], frameRate: 5, loop: false },
+        attackRight: { frames: [16, 17, 18, 19], frameRate: 5, loop: false },
+        attackBack: { frames: [20, 21, 22, 23], frameRate: 5, loop: false },
+        death: { frames: [24, 25, 26, 27], frameRate: 5, loop: false }
+    },
+
+    ability: fireball
+};
+
+let worm = {
+    spriteKey: 'worm',
+
+    stats: {
+        atk: 50,
+        def: 5,
+        health: 60,
+        spd: 0
+    },
+
+    animations: {
+        walkFront: { frames: [0, 1], frameRate: 5, loop: true },
+        walkLeft: { frames: [0, 1], frameRate: 5, loop: true },
+        walkRight: { frames: [0, 1], frameRate: 5, loop: true },
+        walkBack: { frames: [0, 1], frameRate: 5, loop: true },
+        attackFront: { frames: [2, 3, 4, 5], frameRate: 5, loop: false },
+        attackLeft: { frames: [6, 7, 8, 9], frameRate: 5, loop: false },
+        attackRight: { frames: [10, 11, 12, 13], frameRate: 5, loop: false },
+        attackBack: { frames: [14, 15, 16, 17], frameRate: 5, loop: false },
+        death: { frames: [18, 19, 20, 21], frameRate: 5, loop: false }
     },
 
     ability: poison

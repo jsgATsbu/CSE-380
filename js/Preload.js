@@ -29,7 +29,7 @@ TheLegendOfMeta.Preload.prototype = {
         this.load.image("Control",'assets/images/gui/controls.png');
         this.load.image("SkillSlot",'assets/images/gui/SkillSlot.png');
         this.load.image("SkillFrame",'assets/images/gui/SkillFrame.png');
-        this.load.image('gameTiles', 'assets/images/sprite/tiles2.png');
+        this.load.image('gameTiles', 'assets/images/sprite/tiles.png');
         this.load.image('returnBtn','assets/images/gui/menu_return.png');
         this.load.image('bullet','assets/images/bullet/bullet.png');
 

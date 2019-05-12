@@ -213,3 +213,26 @@ let death = {
 
     ability: poison
 };
+
+let firestone = {
+    spriteKey: "firestone",
+
+    stats:{
+        atk: 100,
+        def: 40,
+        health: 200,
+        spd: 150,
+    },
+
+    animations: {
+        walkFront: { frames: [0, 1], frameRate: 5, loop: true },
+        walkLeft: { frames: [2, 3], frameRate: 5, loop: true },
+        walkRight: { frames: [4, 5], frameRate: 5, loop: true },
+        walkBack: { frames: [6, 7], frameRate: 5, loop: true },
+        attackFront: { frames: [8, 9, 10, 11], frameRate: 5, loop: false },
+        attackLeft: { frames: [12, 13, 14, 15], frameRate: 5, loop: false },
+        attackRight: { frames: [16, 17, 18, 19], frameRate: 5, loop: false },
+        attackBack: { frames: [20, 21, 22, 23], frameRate: 5, loop: false },
+        death: { frames: [24, 25, 26, 27], frameRate: 5, loop: false }
+    },
+};

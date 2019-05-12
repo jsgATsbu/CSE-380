@@ -11,7 +11,6 @@ class Pathfinder {
     findPath(src, dest) {
         this.cleanMap();
 
-        // let obstacle = this.map.getTile(dest.x, dest.y, 'obstacles');
         if (src === dest || dest === null || this.isObstacle(dest)) {  // if the destination is the player's current location or is inaccessible
             return [];
         }

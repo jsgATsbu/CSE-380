@@ -42,8 +42,7 @@ let breakRock = function() {
 
     let tile = this.map.getTileWorldXY(player.x + reach[0], player.y + reach[1],
                                        64, 64, this.blockedLayer);
-    if (tile !== null && (tile.index === 112 || tile.index === 48)) {  // if the tile is a rock  FIXME 112 is temporary
-                                                                                              // FIXME not sure why this is 48
+    if (tile !== null && (tile.index === 48)) {  // if the tile is a rock; note that tiles are indexed from 1
         this.map.removeTileWorldXY(player.x + reach[0], player.y + reach[1],
                                    64, 64, this.blockedLayer);
     }

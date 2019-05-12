@@ -1,10 +1,13 @@
 'use strict';
 
 var updateBullets = function(level){
+
+
     level.game.physics.arcade.collide(level.player.weapon.bullets, level.blockedLayer, function(bullet, tile) {
-        bullet.kill();  // TODO fireballs should destroy trees
+        bullet.kill();
         if (bullet.frameName === 'fireball') {
-            if (tile.index === 61 || tile.index === 62 || tile.index === 63 || tile.index === 117) {  // FIXME are tiles indexed from 1!?!?!?
+            // if the tile is a tree; note that tiles are indexed from 1
+            if (tile.index === 61 || tile.index === 62 || tile.index === 63 || tile.index === 117) {
                 this.map.removeTile(tile.x, tile.y, this.blockedLayer);
             }
         }
@@ -71,15 +74,6 @@ var updateBullets = function(level){
 var updateSprites = function(level) {
     level.game.physics.arcade.collide(level.player, [level.blockedLayer,level.bulletLayer]);
 
-    /*level.icons.forEach(function(icon) {
-        level.game.physics.arcade.overlap(level.player, icon, function () {
-            if (level.player.abilities.length < 4 || level.r) {
-                level.addAbility(icon);
-                icon.destroy();
-            }
-        });
-    });*/
-
     //// Update the HP bar position and the percentage every frame
     level.player.healthBar.setPosition(level.player.body.x + 32, level.player.body.y - 20);
     level.player.healthBar.setPercent(level.player.stats.currentHealth*100 / level.player.stats.maxHealth);
@@ -126,8 +120,6 @@ var updatePlayerMovement = function(level) {
         level.player.animations.play('death',3,false,true);
         return;
     }
-
-    // level.r = level.rKey.isDown;
 
     let cursors = level.cursors;
 

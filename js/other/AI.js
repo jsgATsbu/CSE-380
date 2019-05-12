@@ -36,12 +36,11 @@ class AI {
             monster.animations.play("death", 3, false, true);
 
             this.level.addAbility(monster.ability);
-            // this.level.addIcon(monster.x + 32, monster.y + 32, monster.ability);
 
             return;
         }
 
-        if(monster.properties.name === "werewolf5"){
+        if(monster.properties.name === "werewolf5"){  // TODO remove this?
             console.log("---------------");
             console.log(this.path[0]);
             console.log(this.patrolList);

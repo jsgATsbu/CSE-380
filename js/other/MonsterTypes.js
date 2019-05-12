@@ -218,10 +218,10 @@ let firestone = {
     spriteKey: 'firestone',
 
     stats: {
-        atk: 50,
-        def: 5,
-        health: 60,
-        spd: 400
+        atk: 80,
+        def: 20,
+        health: 150,
+        spd: 100
     },
 
     animations: {

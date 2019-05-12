@@ -29,7 +29,7 @@ TheLegendOfMeta.Preload.prototype = {
         this.load.image("Control",'assets/images/gui/controls.png');
         this.load.image("SkillSlot",'assets/images/gui/SkillSlot.png');
         this.load.image("SkillFrame",'assets/images/gui/SkillFrame.png');
-        this.load.image('gameTiles', 'assets/images/sprite/tiles2.png');
+        this.load.image('gameTiles', 'assets/images/sprite/tiles.png');
         this.load.image('returnBtn','assets/images/gui/menu_return.png');
         this.load.image('bullet','assets/images/bullet/bullet.png');
 
@@ -44,10 +44,10 @@ TheLegendOfMeta.Preload.prototype = {
         this.load.audio('bgm5','assets/audios/5.ogg');
         this.load.audio('bgm6','assets/audios/6.ogg');
 
-        this.load.tilemap('level1', 'assets/tilemaps/level7.json', null, Phaser.Tilemap.TILED_JSON);
-        this.load.tilemap('level2', 'assets/tilemaps/level8.json', null, Phaser.Tilemap.TILED_JSON);
+        this.load.tilemap('level1', 'assets/tilemaps/level1.json', null, Phaser.Tilemap.TILED_JSON);
+        this.load.tilemap('level2', 'assets/tilemaps/level2.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.tilemap('level3', 'assets/tilemaps/level3.json', null, Phaser.Tilemap.TILED_JSON);
-        this.load.tilemap('level4', 'assets/tilemaps/level10.json', null, Phaser.Tilemap.TILED_JSON);
+        this.load.tilemap('level4', 'assets/tilemaps/level4.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.tilemap('level5', 'assets/tilemaps/level5.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.tilemap('level6', 'assets/tilemaps/level6.json', null, Phaser.Tilemap.TILED_JSON);
 

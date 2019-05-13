@@ -40,16 +40,16 @@ class AI {
             return;
         }
 
-        if(monster.properties.name === "werewolf5"){  // TODO remove this?
-            console.log("---------------");
-            console.log(this.path[0]);
-            console.log(this.patrolList);
-            console.log(this.level.map.getTile(30,68, this.level.blockedLayer));
-            // let s = this.level.map.getTile(22,68);
-            // let d = this.level.map.getTile(13,72);
-            // let r = this.pathFinder.findPath(s,d);
-            // console.log(r);
-        }
+        // if(monster.properties.name === "werewolf5"){  // TODO remove this?
+        //     console.log("---------------");
+        //     console.log(this.path[0]);
+        //     console.log(this.patrolList);
+        //     console.log(this.level.map.getTile(30,68, this.level.blockedLayer));
+        //     // let s = this.level.map.getTile(22,68);
+        //     // let d = this.level.map.getTile(13,72);
+        //     // let r = this.pathFinder.findPath(s,d);
+        //     // console.log(r);
+        // }
 
         let start = this.level.map.getTileWorldXY(this.monster.x, this.monster.y);
 
@@ -93,28 +93,53 @@ class AI {
         if(this.path.length !== 0 && !this.reachedPlayer() && !monster.frozen) {  // frozen monsters can't move
             this.moveMonToXY(this.path[0].worldX,this.path[0].worldY);
         }
+
+
+
+        if(this.monster.spriteName === "vampire1"){
+            console.log(this.reachedTarget());
+            console.log(this.path[0].x + " " + this.path[0].y);
+            console.log(this.monster.body.x + " " + this.monster.body.y)
+        }
+
+
+
     }
 
     moveMonToXY(x,y) {
-        let speed = this.monster.stats.spd;
+        let speedX = this.monster.stats.spd;
+        let speedY = this.monster.stats.spd;
 
-        if (x === this.monster.body.x) {
+        if(this.monster.body.x < x && (this.monster.body.x + speedX / 60) > x){
+            speedX = (x - this.monster.body.x) * 60;
+        }
+        else if(this.monster.body.x > x && (this.monster.body.x - speedX / 60) < x){
+            speedX = -1 * (x - this.monster.body.x) * 60;
+        }
+        if(this.monster.body.y < y && (this.monster.body.y + speedY / 60) > y){
+            speedY = (y - this.monster.body.y) * 60;
+        }
+        else if(this.monster.body.y > y && (this.monster.body.y - speedY / 60) < y){
+            speedY = -1 * (y - this.monster.body.y) * 60;
+        }
+
+        if (Math.abs(this.monster.body.x - this.path[0].worldX) === 0) {
             this.monster.body.velocity.x = 0;
         } else {
-            this.monster.body.velocity.x = (x > this.monster.body.x) ? speed : -1 * speed;
+            this.monster.body.velocity.x = (x > this.monster.body.x) ? speedX : -1 * speedX;
         }
-        if (y === this.monster.body.y) {
+        if (Math.abs(this.monster.body.y - this.path[0].worldY) === 0) {
             this.monster.body.velocity.y = 0;
         } else {
-            this.monster.body.velocity.y = (y > this.monster.body.y) ? speed : -1 * speed;
+            this.monster.body.velocity.y = (y > this.monster.body.y) ? speedY : -1 * speedY;
         }
     }
 
     reachedTarget() {
         if (this.path.length === 0) return true;
 
-        return Math.abs(this.monster.body.x - this.path[0].worldX) <= this.monster.stats.spd / 60 &&
-            Math.abs(this.monster.body.y - this.path[0].worldY) <= this.monster.stats.spd / 60;
+        return Math.abs(this.monster.body.x - this.path[0].worldX) === 0 &&
+            Math.abs(this.monster.body.y - this.path[0].worldY) === 0;
     }
 
     reachedPlayer() {

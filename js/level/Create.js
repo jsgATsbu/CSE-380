@@ -87,7 +87,7 @@ var createSprite = function(level, properties, name) {
     level.game.sprites.push(sprite);
 
     /// For debugging
-    sprite.properties = properties;
+    sprite.spriteName = name;
 
     level.game.physics.arcade.enable(sprite);
     sprite.anchor.setTo(0.5,0.5);

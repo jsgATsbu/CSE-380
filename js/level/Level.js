@@ -29,7 +29,7 @@ class Level {
         updateSprites(this);
         updatePlayerMovement(this);
         updateMonsterMovement(this);
-        // checkGameStatus(this);
+        checkGameStatus(this);  // subclasses should define checkWinCondition()
     }
 
     findObjectsByType(type, map, layer) {

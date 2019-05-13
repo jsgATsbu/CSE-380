@@ -43,6 +43,7 @@ var createMap = function(level) {
 var createPlayer = function(level) {
     level.player = createSprite(level, level.playerProperties,level.playerProperties.name);
     level.player.abilities = [];
+    level.player.charges = [];
     level.player.activeAbilityIndex = -1;
     level.player.activeAbility = attack;
 

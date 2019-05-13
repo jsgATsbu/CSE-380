@@ -52,7 +52,7 @@ TheLegendOfMeta.Level2 = function() {
     ];
 };
 
-TheLegendOfMeta.Level2.prototype = Level.prototype;
+TheLegendOfMeta.Level2.prototype = Object.create(Level.prototype);
 
 TheLegendOfMeta.Level2.prototype.checkWinCondition = function() {
     let playerTile = this.map.getTileWorldXY(this.player.x, this.player.y);

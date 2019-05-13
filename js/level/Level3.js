@@ -23,4 +23,8 @@ TheLegendOfMeta.Level3 = function() {
     ];
 };
 
-TheLegendOfMeta.Level3.prototype = Level.prototype;
+TheLegendOfMeta.Level3.prototype = Object.create(Level.prototype);
+
+TheLegendOfMeta.Level3.prototype.checkWinCondition = function() {
+    // TODO
+};

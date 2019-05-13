@@ -47,6 +47,7 @@ let breakRock = function() {
                                    64, 64, this.blockedLayer);
     }
 };
+breakRock.charges = 3;
 
 let invisibility = function() {
     if (!this.player.invisible) {
@@ -59,6 +60,7 @@ let invisibility = function() {
         }, this);
     }
 };
+invisibility.charges = 1;
 
 let strength = function() {
     if (!this.player.strengthened) {
@@ -71,20 +73,24 @@ let strength = function() {
         }, this);
     }
 };
+strength.charges = 1;
 
 let feather = function() {
     this.player.weapon.fire();
 };
 feather.bullet = 'feather';
+feather.charges = 5;
 
 let freeze = function() {
     this.player.weapon.fire();
 };
 freeze.bullet = 'ice';
+freeze.charges = 3;
 
 let lifeDrain = function() {
     // TODO melee or ranged?
 };
+lifeDrain.charges = 3;
 
 let poison = function() {
     let player = this.player;
@@ -105,8 +111,10 @@ let poison = function() {
         }, this);
     }
 };
+poison.charges = 3;
 
 let fireball = function() {
     this.player.weapon.fire();
 };
 fireball.bullet = 'fireball';
+fireball.charges = 3;

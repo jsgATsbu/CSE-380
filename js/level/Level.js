@@ -54,16 +54,17 @@ class Level {
     }
 
     addAbility(ability) {
+        console.log("addAbility()");
         let player = this.player;
-        let abilities = player.abilities;
         // noinspection JSUnresolvedVariable
         let abilityIcons = this.skillIcons;
 
-        if (abilities.includes(ability)) {
+        if (player.abilities.includes(ability)) {
             return;
         }
 
-        abilities.push(ability);
+        player.abilities.push(ability);
+        player.charges[player.abilities.length - 1] = ability.charges;
         let index = player.activeAbilityIndex;  // reset selected ability
         player.activeAbilityIndex = -1;
         this.selectAbility(index);
@@ -74,6 +75,22 @@ class Level {
         icon.fixedToCamera = true;
         icon.moveDown();
         abilityIcons.push(icon);
+    }
+
+    removeAbility(ability) {
+        console.log("removeAbility()");
+        let index = this.player.abilities.indexOf(ability);
+        // noinspection JSUnresolvedVariable
+        let icons = this.skillIcons;
+
+        this.player.abilities.splice(index, 1);
+        this.player.charges[index] = undefined;
+
+        this.player.activeAbilityIndex = -1;  // reset selected ability
+        this.selectAbility(index);
+
+        icons[index].destroy();
+        icons.splice(index, 1);
     }
 
     selectAbility(num) {

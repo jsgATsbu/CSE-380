@@ -105,9 +105,9 @@ var updateMonsterMovement = function(level) {
         animateSprite(mon);
     }, level);
 
-    /*level.monsters = level.monsters.filter(function(mon) {
+    level.monsters = level.monsters.filter(function(mon) {
         return mon.stats.currentHealth > 0;
-    });*/
+    });
 };
 
 var updatePlayerMovement = function(level) {

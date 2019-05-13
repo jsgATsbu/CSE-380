@@ -70,19 +70,25 @@ var updateBullets = function(level){
 };
 
 var updateSprites = function(level) {
-    level.game.physics.arcade.collide(level.player, [level.blockedLayer,level.bulletLayer]);
+    let game = level.game;
+    let player = level.player;
+
+    game.physics.arcade.collide(player, level.blockedLayer,);
+    if (!player.flying) {
+        game.physics.arcade.collide(player, level.bulletLayer);
+    }
 
     //// Update the HP bar position and the percentage every frame
-    level.player.healthBar.setPosition(level.player.body.x + 32, level.player.body.y - 20);
-    level.player.healthBar.setPercent(level.player.stats.currentHealth*100 / level.player.stats.maxHealth);
+    player.healthBar.setPosition(player.body.x + 32, player.body.y - 20);
+    player.healthBar.setPercent(player.stats.currentHealth*100 / player.stats.maxHealth);
 
     level.monsters.forEach(function(mon){
-        level.game.physics.arcade.collide(mon, [level.blockedLayer,level.bulletLayer]);
+        game.physics.arcade.collide(mon, [level.blockedLayer,level.bulletLayer]);
 
         mon.healthBar.setPosition(mon.body.x + 32,mon.body.y - 20);
         mon.healthBar.setPercent(mon.stats.currentHealth*100 / mon.stats.maxHealth);
 
-        if (level.game.physics.arcade.collide(level.player, mon)) {
+        if (!player.flying && game.physics.arcade.collide(player, mon)) {
             mon.body.moves = false;
             mon.body.velocity.x = 0;
             mon.body.velocity.y = 0;
@@ -91,8 +97,6 @@ var updateSprites = function(level) {
             mon.body.moves = true;
             mon.body.immovable = false;
         }
-
-        level.game.physics.arcade.collide(level.player, mon);
     }, level);
 };
 

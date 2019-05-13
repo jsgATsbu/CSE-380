@@ -54,7 +54,6 @@ class Level {
     }
 
     addAbility(ability) {
-        console.log("addAbility()");
         let player = this.player;
         // noinspection JSUnresolvedVariable
         let abilityIcons = this.skillIcons;
@@ -78,7 +77,6 @@ class Level {
     }
 
     removeAbility(ability) {
-        console.log("removeAbility()");
         let index = this.player.abilities.indexOf(ability);
         // noinspection JSUnresolvedVariable
         let icons = this.skillIcons;

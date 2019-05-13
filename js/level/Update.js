@@ -1,8 +1,6 @@
 'use strict';
 
 var updateBullets = function(level){
-
-
     level.game.physics.arcade.collide(level.player.weapon.bullets, level.blockedLayer, function(bullet, tile) {
         bullet.kill();
         if (bullet.frameName === 'fireball') {
@@ -107,9 +105,9 @@ var updateMonsterMovement = function(level) {
         animateSprite(mon);
     }, level);
 
-    level.monsters = level.monsters.filter(function(mon) {
+    /*level.monsters = level.monsters.filter(function(mon) {
         return mon.stats.currentHealth > 0;
-    });
+    });*/
 };
 
 var updatePlayerMovement = function(level) {
@@ -191,22 +189,15 @@ var animateSprite = function(sprite) {
 var checkGameStatus = function(level){
     if(level.player.alive === false){
         level.input.enabled = true;
-        level.state.start("ResultScreen",true,false,'lose',level.lvl);
+        level.state.start("ResultScreen", true, false, 'lose', level.lvl);
         return;
     }
 
-    let allMonsterDead = true;
-    level.monsters.forEach(function(mon){
-        if(mon.alive)
-            allMonsterDead = false
-    },this);
-
-    if(allMonsterDead){
-        if(level.mapKey === 'level6'){
-            level.state.start("ResultScreen",true,false,'final', level.lvl);
-        }
-        else {
-            level.state.start("ResultScreen",true,false,'win', level.lvl);
+    if(level.checkWinCondition()){
+        if(level.mapKey === 'level6') {
+            level.state.start("ResultScreen", true, false, 'final', level.lvl);
+        } else {
+            level.state.start("ResultScreen", true, false, 'win', level.lvl);
         }
     }
 };

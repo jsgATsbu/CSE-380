@@ -49,7 +49,7 @@ TheLegendOfMeta.Level6 = function() {
         },
 
         {
-            type: harpy,
+            type: level6harpy,
             ai: [
                 [[8,13],[22,18]],
                 [[36,2],[47,6]],
@@ -74,4 +74,8 @@ TheLegendOfMeta.Level6 = function() {
     ];
 };
 
-TheLegendOfMeta.Level6.prototype = Level.prototype;
+TheLegendOfMeta.Level6.prototype = Object.create(Level.prototype);
+
+TheLegendOfMeta.Level6.prototype.checkWinCondition = function() {
+    // TODO
+};

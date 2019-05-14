@@ -1,5 +1,16 @@
 'use strict';
 
+var createText = function(level) {
+    if(level.mapKey !== 'level5')
+        return;
+
+    let text = "Number of Soul orb left: " + level.soulorbs.children.length;
+    let style = { font: "32px Arial", fill: "#f26c4f", align: "center" };
+    level.lvl5Text = level.game.add.text(32,32,text,style);
+    level.lvl5Text.fixedToCamera = true;
+    level.lvl5Text.cameraOffset.setTo(window.innerWidth-500,100);
+};
+
 var createSound = function(level){
     level.bgm = level.game.add.audio(level.music,1,true);
     level.bgm.play();
@@ -15,14 +26,33 @@ var createFields = function(level){
     level.game.sprites = [];
 };
 
-var createSkillSlot = function(level){
-    level.skillSlot = level.game.add.image(level.game.camera.x+window.innerWidth/2-128,level.game.camera.y+window.innerHeight*8/10, 'SkillSlot');
-    level.skillFrame = level.game.add.image(level.game.camera.x+window.innerWidth/2-128,level.game.camera.y+window.innerHeight*8/10, 'SkillFrame');
-    level.skillIcons = [];
+var createCollectable = function(level){
+    let map = level.map;
+    let layer = 'objectsLayer';
+    level.collectables = level.game.add.group();
+    level.collectables.enableBody = true;
+    level.collectables.physicsBodyType = Phaser.Physics.ARCADE;
 
+    level.soulorbs = level.game.add.group();
+    level.soulorbs.enableBody = true;
+    level.soulorbs.physicsBodyType = Phaser.Physics.ARCADE;
+
+    map.objects[layer].forEach(function(element) {
+        if (element.type === 'heart') {
+            let h = level.collectables.create(element.x + 32,element.y-16,'heart');
+            h.anchor.setTo(0.5);
+        }
+        else if (element.type === 'soulorb') {
+            let h = level.soulorbs.create(element.x + 32,element.y-16,'soulorb');
+            h.anchor.setTo(0.5);
+        }
+    });
+};
+
+var createSkillSlot = function(level){
+    level.skillSlot = level.game.add.image(level.game.camera.x+window.innerWidth/2-128,level.game.camera.y+window.innerHeight*8/10, 'SkillSlot1');
+    level.skillIcons = [];
     level.skillSlot.fixedToCamera = true;
-    level.skillFrame.fixedToCamera = true;
-    level.skillFrame.visible = false;
 };
 
 var createMap = function(level) {
@@ -43,6 +73,7 @@ var createMap = function(level) {
 var createPlayer = function(level) {
     level.player = createSprite(level, level.playerProperties,level.playerProperties.name);
     level.player.abilities = [];
+    level.player.charges = [];
     level.player.activeAbilityIndex = -1;
     level.player.activeAbility = attack;
 
@@ -82,12 +113,12 @@ var createSprite = function(level, properties, name) {
         console.log(name);
     }
 
-    let sprite = level.game.add.sprite(found.x + 32, found.y + 32, type.spriteKey);
+    let sprite = level.game.add.sprite(found.x + 32, found.y - 32, type.spriteKey);
     initializeStats(sprite, type.stats);
     level.game.sprites.push(sprite);
 
     /// For debugging
-    sprite.properties = properties;
+    sprite.spriteName = name;
 
     level.game.physics.arcade.enable(sprite);
     sprite.anchor.setTo(0.5,0.5);
@@ -99,6 +130,7 @@ var createSprite = function(level, properties, name) {
     };
     sprite.healthBar = new HealthBar(level.game, barConfig);
     sprite.healthBar.setAnchor(0.5,0.5);
+    sprite.healthBar.config.animationDuration = 1;
 
     Object.keys(type.animations).forEach(function(anim) {
         sprite.animations.add(anim, type.animations[anim].frames, type.animations[anim].frameRate, type.animations[anim].loop);

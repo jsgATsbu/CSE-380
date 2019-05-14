@@ -27,8 +27,10 @@ TheLegendOfMeta.Preload.prototype = {
         this.load.image('pauseMenu','assets/images/gui/menu_paused.png');
         this.load.image("Black",'assets/images/other/Black.png');
         this.load.image("Control",'assets/images/gui/controls.png');
-        this.load.image("SkillSlot",'assets/images/gui/SkillSlot.png');
-        this.load.image("SkillFrame",'assets/images/gui/SkillFrame.png');
+        this.load.image("SkillSlot1",'assets/images/gui/SkillSlot1.png');
+        this.load.image("SkillSlot2",'assets/images/gui/SkillSlot2.png');
+        this.load.image("SkillSlot3",'assets/images/gui/SkillSlot3.png');
+        this.load.image("SkillSlot4",'assets/images/gui/SkillSlot4.png');
         this.load.image('gameTiles', 'assets/images/sprite/tiles.png');
         this.load.image('returnBtn','assets/images/gui/menu_return.png');
         this.load.image('bullet','assets/images/bullet/bullet.png');
@@ -51,6 +53,8 @@ TheLegendOfMeta.Preload.prototype = {
         this.load.tilemap('level5', 'assets/tilemaps/level5.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.tilemap('level6', 'assets/tilemaps/level6.json', null, Phaser.Tilemap.TILED_JSON);
 
+        this.load.spritesheet('heart','assets/images/sprite/heart.png',40,40);
+        this.load.spritesheet('soulorb','assets/images/sprite/soulorb.png',40,40);
         this.load.spritesheet('player', 'assets/images/sprite/Meta_new.png',40,40);
         this.load.spritesheet('alien', 'assets/images/sprite/alien.png',64,64);
         this.load.spritesheet('dreadFace', 'assets/images/sprite/dreadFace.png',64,64);

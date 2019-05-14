@@ -54,14 +54,13 @@ TheLegendOfMeta.Level4 = function() {
     ];
 };
 
-TheLegendOfMeta.Level4.prototype = Level.prototype;
+TheLegendOfMeta.Level4.prototype = Object.create(Level.prototype);
 
 TheLegendOfMeta.Level4.prototype.checkWinCondition = function() {
     let playerTile = this.map.getTileWorldXY(this.player.x, this.player.y);
-
     let icegiant1 = this.monsters.find(function(monster) {
         return monster.key === 'icegiant';
     });
 
-    return !icegiant1.alive && playerTile.x >= 75 && playerTile.y <= 5;
+    return !icegiant1 && playerTile.x >= 75 && playerTile.y <= 5;
 };

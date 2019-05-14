@@ -11,10 +11,17 @@ var setupInput = function(obj) {
     });
 
     obj.game.input.onDown.add(function(event) {
+        let player = obj.player;
+
         if (obj.game.paused) {
             handleClickPaused(obj, event.clientX + obj.game.camera.x, event.clientY + obj.game.camera.y);
-        } else if (obj.player.stats.currentHealth > 0) {
-            obj.player.activeAbility.call(obj);
+        } else if (player.stats.currentHealth > 0) {
+            player.activeAbility.call(obj);
+
+            player.charges[player.activeAbilityIndex] -= 1;
+            if (player.charges[player.activeAbilityIndex] <= 0) {
+                obj.removeAbility(player.activeAbility);
+            }
          }
     }, obj);
 

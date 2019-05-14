@@ -50,8 +50,14 @@ var createCollectable = function(level){
 };
 
 var createSkillSlot = function(level){
-    level.skillSlot = level.game.add.image(level.game.camera.x+window.innerWidth/2-128,level.game.camera.y+window.innerHeight*8/10, 'SkillSlot1');
+    let bg = level.game.add.image(level.game.camera.x + window.innerWidth/2 - 128,
+                                  level.game.camera.y + window.innerHeight * 8/10,
+                                  'SkillSlotBG');
+    level.skillSlot = level.game.add.image(level.game.camera.x + window.innerWidth/2 - 128,
+                                           level.game.camera.y + window.innerHeight * 8/10,
+                                           'SkillSlot1');
     level.skillIcons = [];
+    bg.fixedToCamera = true;
     level.skillSlot.fixedToCamera = true;
 };
 
@@ -74,7 +80,7 @@ var createPlayer = function(level) {
     level.player = createSprite(level, level.playerProperties,level.playerProperties.name);
     level.player.abilities = [];
     level.player.charges = [];
-    level.player.activeAbilityIndex = -1;
+    level.player.activeAbilityIndex = 0;
     level.player.activeAbility = attack;
 
     var weapon = level.game.add.weapon(-1, 'bullets');

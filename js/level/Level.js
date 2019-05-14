@@ -66,12 +66,14 @@ class Level {
 
         player.abilities.push(ability);
         player.charges[player.abilities.length - 1] = ability.charges;
-        let index = player.activeAbilityIndex;  // reset selected ability
-        player.activeAbilityIndex = -1;
-        this.selectAbility(index);
+        this.selectAbility(player.activeAbilityIndex);
 
-        let icon = this.game.add.image(this.skillSlot.x, this.skillSlot.y,'abilities', ability.name);
+        let index = player.abilities.length - 1;
+        let icon = this.game.add.image(window.innerWidth/2 + (-128 + 64 * index) + 4,
+                                       window.innerHeight * 8/10 + 4,
+                                       'abilities', ability.name);
         icon.fixedToCamera = true;
+        // icon.cameraOffset.setTo(window.innerWidth/2 + (-128 + 64 * index), window.innerHeight * 8/10);
         icon.moveDown();
         abilityIcons.push(icon);
     }
@@ -84,18 +86,18 @@ class Level {
         this.player.abilities.splice(index, 1);
         this.player.charges[index] = undefined;
 
-        this.player.activeAbilityIndex = -1;  // reset selected ability
-        this.selectAbility(index);
+        this.selectAbility(this.player.activeAbilityIndex);
 
         icons[index].destroy();
         icons.splice(index, 1);
     }
 
     selectAbility(num) {
-
         this.skillSlot = this.skillSlot || {};
-
         this.skillSlot.loadTexture("SkillSlot"+(num+1));
+
+        this.player.activeAbility = this.player.abilities[num] || attack;
+        this.player.activeAbilityIndex = num;
 
         // let player = this.player;
         //

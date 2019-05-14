@@ -31,6 +31,16 @@
     },
 
     {
+      "filename": "strength_def",
+      "frame": {
+        "x": 128,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      }
+    },
+
+    {
       "filename": "fly",
       "frame": {
         "x": 192,

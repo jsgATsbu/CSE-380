@@ -139,6 +139,56 @@ let harpy = {
     ability: feather
 };
 
+let siren = {
+    spriteKey: 'siren',
+
+    stats: {
+        atk: 50,
+        def: 20,
+        health: 150,
+        spd: 100
+    },
+
+    animations: {
+        walkFront: { frames: [0, 1], frameRate: 5, loop: true },
+        walkLeft: { frames: [2, 3], frameRate: 5, loop: true },
+        walkRight: { frames: [4, 5], frameRate: 5, loop: true },
+        walkBack: { frames: [6, 7], frameRate: 5, loop: true },
+        attackFront: { frames: [8, 9, 10, 11], frameRate: 5, loop: false },
+        attackLeft: { frames: [12, 13, 14, 15], frameRate: 5, loop: false },
+        attackRight: { frames: [16, 17, 18, 19], frameRate: 5, loop: false },
+        attackBack: { frames: [20, 21, 22, 23], frameRate: 5, loop: false },
+        death: { frames: [24, 25, 26, 27], frameRate: 5, loop: false }
+    },
+
+    ability: waterWalk
+};
+
+let statue = {
+    spriteKey: "statue",
+
+    stats: {
+        atk: 0,
+        def: 30,
+        health: 200,
+        spd: 0
+    },
+
+    animations: {
+        walkFront: {frames: [0], frameRate: 5, loop: true },
+        walkLeft: {frames: [0], frameRate: 5, loop: true },
+        walkRight: {frames: [0], frameRate: 5, loop: true },
+        walkBack: {frames: [0], frameRate: 5, loop: true },
+        attackFront: {frames: [0], frameRate: 5, loop: false },
+        attackLeft: {frames: [0], frameRate: 5, loop: false },
+        attackRight: {frames: [0], frameRate: 5, loop: false },
+        attackBack: {frames: [0], frameRate: 5, loop: false },
+        death: {frames: [0,1,2], frameRate: 5, loop: false}
+    },
+
+    ability: strength_def
+};
+
 let icegiant = {
     spriteKey: "icegiant",
 

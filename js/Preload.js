@@ -63,6 +63,8 @@ TheLegendOfMeta.Preload.prototype = {
         this.load.spritesheet('werewolf', 'assets/images/sprite/werewolf.png',64,64);
         this.load.spritesheet('worm', 'assets/images/sprite/worm.png',64,64);
 
+        this.load.spritesheet('statue', 'assets/images/sprite/statue.png',64,64);
+
         this.load.spritesheet('startBtn','assets/images/gui/menu_start.png',256,128);
         this.load.spritesheet('selectLevelBtn','assets/images/gui/menu_select.png',256,128);
         this.load.spritesheet('settingBtn','assets/images/gui/menu_setting.png',256,128);

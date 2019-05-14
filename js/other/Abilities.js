@@ -110,3 +110,26 @@ let fireball = function() {
     this.player.weapon.fire();
 };
 fireball.bullet = 'fireball';
+
+let waterWalk = function() {
+    if (!this.player.float) {
+
+        this.player.float = true;
+
+        this.game.time.events.add(10000, function() {
+            this.player.float = false;
+        }, this);
+    }
+};
+
+let strength_def = function() {
+    if (!this.player.strengthened) {
+        this.player.stats.def *= 2;
+        this.player.strengthened = true;
+
+        this.game.time.events.add(10000, function() {
+            this.player.stats.def /= 2;
+            this.player.strengthened = false;
+        }, this);
+    }
+};

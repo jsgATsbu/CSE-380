@@ -49,7 +49,7 @@ TheLegendOfMeta.Level6 = function() {
         },
 
         {
-            type: harpy,
+            type: level6harpy,
             ai: [
                 [[8,13],[22,18]],
                 [[36,2],[47,6]],

@@ -56,7 +56,6 @@ class Level {
     }
 
     addAbility(ability) {
-        console.log("addAbility()");
         let player = this.player;
         // noinspection JSUnresolvedVariable
         let abilityIcons = this.skillIcons;
@@ -115,5 +114,11 @@ class Level {
         //         window.innerHeight * 8/10);
         //     this.skillFrame.visible = true;
         // }
+    }
+    
+    playerDeath() {
+        this.player.body.velocity.x = 0;
+        this.player.body.velocity.y = 0;
+        this.player.animations.play('death',3,false,true);
     }
 }

@@ -19,7 +19,6 @@ var setupInput = function(obj) {
             player.activeAbility.call(obj);
 
             player.charges[player.activeAbilityIndex] -= 1;
-            console.log("charges = ", player.charges[player.activeAbilityIndex]);
             if (player.charges[player.activeAbilityIndex] <= 0) {
                 obj.removeAbility(player.activeAbility);
             }

@@ -118,3 +118,20 @@ let fireball = function() {
 };
 fireball.bullet = 'fireball';
 fireball.charges = 3;
+
+let fly = function() {
+    let player = this.player;
+    if (!player.flying) {
+        player.flying = true;
+
+        this.game.time.events.add(10000, function() {
+            player.flying = false;
+
+            let tile = this.map.getTileWorldXY(player.x, player.y, 64, 64, this.bulletLayer);
+            if (tile !== null) {
+                this.playerDeath();
+            }
+        }, this);
+    }
+};
+fly.charges = 2;

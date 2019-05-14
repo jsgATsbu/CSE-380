@@ -143,6 +143,12 @@ let waterWalk = function() {
 
         this.game.time.events.add(10000, function() {
             this.player.float = false;
+
+            let tile = this.map.getTileWorldXY(player.x, player.y, 64, 64, this.bulletLayer);
+            let water = this.map.getTileWorldXY(player.x, player.y, 64, 64, this.backgroundLayer);
+            if (tile !== null || water.index === 27) {
+                this.playerDeath();
+            }
         }, this);
     }
 };

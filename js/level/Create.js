@@ -56,7 +56,7 @@ var createSkillSlot = function(level){
     level.skillSlot = level.game.add.image(level.game.camera.x + window.innerWidth/2 - 128,
                                            level.game.camera.y + window.innerHeight * 8/10,
                                            'SkillSlot1');
-    level.skillIcons = [];
+    level.skillIcons = [null, null, null, null];
     bg.fixedToCamera = true;
     level.skillSlot.fixedToCamera = true;
 };
@@ -78,8 +78,8 @@ var createMap = function(level) {
 
 var createPlayer = function(level) {
     level.player = createSprite(level, level.playerProperties,level.playerProperties.name);
-    level.player.abilities = [];
-    level.player.charges = [];
+    level.player.abilities = [null, null, null, null];
+    level.player.charges = [null, null, null, null];
     level.player.activeAbilityIndex = 0;
     level.player.activeAbility = attack;
 

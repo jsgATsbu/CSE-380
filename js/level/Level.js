@@ -64,18 +64,18 @@ class Level {
             return;
         }
 
-        player.abilities.push(ability);
-        player.charges[player.abilities.length - 1] = ability.charges;
+        let index = player.abilities.indexOf(null);
+
+        player.abilities[index] = ability;
+        player.charges[index] = ability.charges;
         this.selectAbility(player.activeAbilityIndex);
 
-        let index = player.abilities.length - 1;
-        let icon = this.game.add.image(window.innerWidth/2 + (-128 + 64 * index) + 4,
-                                       window.innerHeight * 8/10 + 4,
+        let icon = this.game.add.image(window.innerWidth/2 + (-128 + 61 * index) + 5,  // 61 not 64 because of the way the frame is designed
+                                       window.innerHeight * 8/10 + 5,
                                        'abilities', ability.name);
         icon.fixedToCamera = true;
-        // icon.cameraOffset.setTo(window.innerWidth/2 + (-128 + 64 * index), window.innerHeight * 8/10);
         icon.moveDown();
-        abilityIcons.push(icon);
+        abilityIcons[index] = icon;
     }
 
     removeAbility(ability) {
@@ -83,13 +83,13 @@ class Level {
         // noinspection JSUnresolvedVariable
         let icons = this.skillIcons;
 
-        this.player.abilities.splice(index, 1);
-        this.player.charges[index] = undefined;
+        this.player.abilities[index] = null;
+        this.player.charges[index] = null;
 
         this.selectAbility(this.player.activeAbilityIndex);
 
         icons[index].destroy();
-        icons.splice(index, 1);
+        icons[index] = null;
     }
 
     selectAbility(num) {
@@ -98,6 +98,7 @@ class Level {
 
         this.player.activeAbility = this.player.abilities[num] || attack;
         this.player.activeAbilityIndex = num;
+        this.player.weapon.bulletFrame = this.player.activeAbility.bullet;
 
         // let player = this.player;
         //

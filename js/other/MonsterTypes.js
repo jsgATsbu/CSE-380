@@ -70,7 +70,7 @@ let dreadFace = {
     stats: {
         atk: 20,
         def: 20,
-        health: 120,
+        health: 100,
         spd: 200
     },
 
@@ -170,7 +170,7 @@ let siren = {
     stats: {
         atk: 50,
         def: 20,
-        health: 150,
+        health: 30,
         spd: 100
     },
 

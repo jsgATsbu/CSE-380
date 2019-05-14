@@ -18,10 +18,12 @@ var setupInput = function(obj) {
         } else if (player.stats.currentHealth > 0) {
             player.activeAbility.call(obj);
 
+            let index = player.activeAbilityIndex;
             if (!obj.defaultAbilities.includes(player.activeAbility)) {
-                player.charges[player.activeAbilityIndex] -= 1;
+                player.charges[index] -= 1;
+                obj.chargesText[index].setText(player.charges[index]);
             }
-            if (player.charges[player.activeAbilityIndex] <= 0) {
+            if (player.charges[index] <= 0) {
                 obj.removeAbility(player.activeAbility);
             }
          }

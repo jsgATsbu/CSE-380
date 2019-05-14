@@ -25,12 +25,13 @@ TheLegendOfMeta.Preload.prototype = {
         this.load.image('Level-6','assets/images/gui/Level6.png');
 
         this.load.image('pauseMenu','assets/images/gui/menu_paused.png');
-        this.load.image("Black",'assets/images/other/Black.png');
-        this.load.image("Control",'assets/images/gui/controls.png');
-        this.load.image("SkillSlot1",'assets/images/gui/SkillSlot1.png');
-        this.load.image("SkillSlot2",'assets/images/gui/SkillSlot2.png');
-        this.load.image("SkillSlot3",'assets/images/gui/SkillSlot3.png');
-        this.load.image("SkillSlot4",'assets/images/gui/SkillSlot4.png');
+        this.load.image('Black','assets/images/other/Black.png');
+        this.load.image('Control','assets/images/gui/controls.png');
+        this.load.image('SkillSlot1','assets/images/gui/SkillSlot1.png');
+        this.load.image('SkillSlot2','assets/images/gui/SkillSlot2.png');
+        this.load.image('SkillSlot3','assets/images/gui/SkillSlot3.png');
+        this.load.image('SkillSlot4','assets/images/gui/SkillSlot4.png');
+        this.load.image('SkillSlotBG', 'assets/images/gui/SkillSlotBG.png');
         this.load.image('gameTiles', 'assets/images/sprite/tiles.png');
         this.load.image('returnBtn','assets/images/gui/menu_return.png');
         this.load.image('bullet','assets/images/bullet/bullet.png');

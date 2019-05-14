@@ -2,7 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="31eb6693-bbb3-410f-9abd-67e33bc239ea" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/images/gui/SkillSlot1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/gui/SkillSlot2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/gui/SkillSlot3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/gui/SkillSlot4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/gui/SkillSlotBG.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/atlases/abilities.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/atlases/abilities.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/gui/SkillSlot.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/gui/SkillSlot.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/gui/skillslot1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/gui/skillslot2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/gui/skillslot3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/gui/skillslot4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/tilemaps/level3.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/tilemaps/level3.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/Preload.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/Preload.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/level/Create.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/level/Create.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/level/Level.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/level/Level.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/level/Level3.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/level/Level3.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/other/Abilities.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/other/Abilities.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,46 +33,46 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/tilemaps/level1.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/tilemaps/level2.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4199">
-              <caret line="247" column="18" selection-start-line="247" selection-start-column="18" selection-end-line="247" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/level/Level1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
+            <state relative-caret-position="-464">
               <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/other/Abilities.js">
+        <entry file="file://$PROJECT_DIR$/js/level/Level3.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+            <state relative-caret-position="272">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/level/Level2.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="799">
+              <caret line="47" column="27" lean-forward="true" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/level/Level4.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="590">
+              <caret line="48" column="27" lean-forward="true" selection-start-line="48" selection-start-column="27" selection-end-line="48" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/Preload.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="39" column="63" lean-forward="true" selection-start-line="39" selection-start-column="63" selection-end-line="39" selection-end-column="63" />
+            <state relative-caret-position="680">
+              <caret line="40" column="63" lean-forward="true" selection-start-line="40" selection-start-column="63" selection-end-line="40" selection-end-column="63" />
             </state>
           </provider>
         </entry>
@@ -63,31 +80,31 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/level/Create.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="75" column="4" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="4" />
+            <state relative-caret-position="219">
+              <caret line="83" column="36" lean-forward="true" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/images/gui/SkillFrame.png">
+        <entry file="file://$PROJECT_DIR$/assets/images/atlases/abilities.png">
           <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/level/Input.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+            <state relative-caret-position="238">
+              <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/level/Level.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="74" column="24" lean-forward="true" selection-start-line="74" selection-start-column="24" selection-end-line="74" selection-end-column="24" />
+            <state relative-caret-position="153">
+              <caret line="66" column="9" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -113,36 +130,29 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
+      <find>player.health</find>
+      <find>player.stats.currentHealth</find>
+      <find>kill</find>
+      <find>direc</find>
+      <find>weapon</find>
+      <find>attackRight</find>
+      <find>TilemapLayer</find>
+      <find>getRayC</find>
+      <find>getLayerIn</find>
+      <find>weap</find>
+      <find>type</find>
       <find>name</find>
       <find>tiles</find>
       <find>attack</find>
-      <find>movelist</find>
-      <find>AI</find>
-      <find>console.log</find>
-      <find>this.path =</find>
-      <find>tiles2</find>
-      <find>level1</find>
-      <find>tiles2.png</find>
-      <find>type: meta</find>
-      <find>checkwin</find>
-      <find>new AI</find>
-      <find>todo remove this</find>
-      <find>win condition</find>
-      <find>checkWincondition</find>
-      <find>console.log(</find>
-      <find>console.log(&quot;charges</find>
-      <find>collide(</find>
-      <find>'heart'</find>
-      <find>overlap(</find>
-      <find>console.log(&quot;yes&quot;</find>
-      <find>healthbar</find>
-      <find>.One</find>
-      <find>'skillslot'</find>
-      <find>'skillframe'</find>
-      <find>level.skillframe</find>
-      <find>input</find>
-      <find>'abilities</find>
-      <find>activeAbilityIndex</find>
+      <find>SkillSlot</find>
+      <find>addabilit</find>
+      <find>getreach</find>
+      <find>'attack</find>
+      <find>.direction</find>
+      <find>attack(</find>
+      <find>mousePointer</find>
+      <find>.call(</find>
+      <find>this.game.camera.x</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -172,28 +182,24 @@
         <option value="$PROJECT_DIR$/js/AI.js" />
         <option value="$PROJECT_DIR$/assets/atlases/bullets.json" />
         <option value="$PROJECT_DIR$/assets/atlases/abilities.json" />
-        <option value="$PROJECT_DIR$/js/other/Abilities.js" />
-        <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/js/level/Level3.js" />
-        <option value="$PROJECT_DIR$/js/level/Setup.js" />
-        <option value="$PROJECT_DIR$/js/level/Level1.js" />
-        <option value="$PROJECT_DIR$/js/level/Level6.js" />
-        <option value="$PROJECT_DIR$/assets/tilemaps/level7.json" />
         <option value="$PROJECT_DIR$/assets/tilemaps/level8.json" />
-        <option value="$PROJECT_DIR$/assets/tilemaps/level6.json" />
-        <option value="$PROJECT_DIR$/assets/tilemaps/level1.json" />
-        <option value="$PROJECT_DIR$/assets/tilemaps/level4.json" />
-        <option value="$PROJECT_DIR$/assets/tilemaps/level2.json" />
-        <option value="$PROJECT_DIR$/js/other/MonsterTypes.js" />
-        <option value="$PROJECT_DIR$/js/level/Level2.js" />
-        <option value="$PROJECT_DIR$/js/level/Level4.js" />
-        <option value="$PROJECT_DIR$/js/level/Level5.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/level/Setup.js" />
+        <option value="$PROJECT_DIR$/js/other/Pathfinder.js" />
         <option value="$PROJECT_DIR$/js/other/AI.js" />
+        <option value="$PROJECT_DIR$/js/level/Level2.js" />
+        <option value="$PROJECT_DIR$/js/level/Level1.js" />
+        <option value="$PROJECT_DIR$/js/level/Level5.js" />
+        <option value="$PROJECT_DIR$/js/other/MonsterTypes.js" />
+        <option value="$PROJECT_DIR$/js/level/Level6.js" />
+        <option value="$PROJECT_DIR$/js/level/Input.js" />
         <option value="$PROJECT_DIR$/js/level/Update.js" />
         <option value="$PROJECT_DIR$/js/Preload.js" />
-        <option value="$PROJECT_DIR$/js/level/Create.js" />
-        <option value="$PROJECT_DIR$/js/level/Input.js" />
         <option value="$PROJECT_DIR$/js/level/Level.js" />
+        <option value="$PROJECT_DIR$/js/level/Create.js" />
+        <option value="$PROJECT_DIR$/js/other/Abilities.js" />
+        <option value="$PROJECT_DIR$/js/level/Level4.js" />
+        <option value="$PROJECT_DIR$/js/level/Level3.js" />
       </list>
     </option>
   </component>
@@ -204,10 +210,10 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
-    <option name="y" value="-10" />
-    <option name="width" value="1940" />
-    <option name="height" value="1050" />
+    <option name="x" value="240" />
+    <option name="y" value="125" />
+    <option name="width" value="1440" />
+    <option name="height" value="775" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -320,7 +326,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="D:/BaiduNetdiskDownload" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -407,25 +413,13 @@
       <workItem from="1557359527364" duration="17000" />
       <workItem from="1557359578415" duration="11192000" />
       <workItem from="1557408575783" duration="840000" />
-      <workItem from="1557414445192" duration="7890000" />
-      <workItem from="1557582412756" duration="16623000" />
-      <workItem from="1557681499604" duration="9046000" />
-      <workItem from="1557767526030" duration="28514000" />
-      <workItem from="1557844383434" duration="4113000" />
-    </task>
-    <task id="LOCAL-00010" summary="Added rock breaking ability. Map is currently broken.">
-      <created>1555383044847</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1555383044847</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Fixed rock breaking ability">
-      <created>1555439739332</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1555439739332</updated>
+      <workItem from="1557414445192" duration="9318000" />
+      <workItem from="1557465757088" duration="152000" />
+      <workItem from="1557523215649" duration="5040000" />
+      <workItem from="1557596145788" duration="6379000" />
+      <workItem from="1557676333913" duration="13721000" />
+      <workItem from="1557762299058" duration="16202000" />
+      <workItem from="1557841364458" duration="7650000" />
     </task>
     <task id="LOCAL-00012" summary="Split several methods into smaller methods. Note that &quot;playerStart&quot; in the map is now &quot;player&quot; and initiateStat() is now initializeStats().">
       <created>1555714316280</created>
@@ -700,67 +694,90 @@
       <option name="project" value="LOCAL" />
       <updated>1557424463928</updated>
     </task>
-    <task id="LOCAL-00051" summary="Added MonsterTypes.js">
-      <created>1557612259081</created>
+    <task id="LOCAL-00051" summary="Modified way monsters are added">
+      <created>1557428795085</created>
       <option name="number" value="00051" />
       <option name="presentableId" value="LOCAL-00051" />
       <option name="project" value="LOCAL" />
-      <updated>1557612259082</updated>
+      <updated>1557428795085</updated>
     </task>
-    <task id="LOCAL-00052" summary="Added MonsterTypes.js">
-      <created>1557695869899</created>
+    <task id="LOCAL-00052" summary="Merged level 1 and added previously unsaved changes to level 2">
+      <created>1557622982766</created>
       <option name="number" value="00052" />
       <option name="presentableId" value="LOCAL-00052" />
       <option name="project" value="LOCAL" />
-      <updated>1557695869900</updated>
+      <updated>1557622982766</updated>
     </task>
-    <task id="LOCAL-00053" summary="Added MonsterTypes.js">
-      <created>1557696224162</created>
+    <task id="LOCAL-00053" summary="Updated AI and abilities">
+      <created>1557679287854</created>
       <option name="number" value="00053" />
       <option name="presentableId" value="LOCAL-00053" />
       <option name="project" value="LOCAL" />
-      <updated>1557696224162</updated>
+      <updated>1557679287855</updated>
     </task>
-    <task id="LOCAL-00054" summary="Added MonsterTypes.js">
-      <created>1557696506067</created>
+    <task id="LOCAL-00054" summary="Cleaned up code and fixed a bug with bullets">
+      <created>1557694509566</created>
       <option name="number" value="00054" />
       <option name="presentableId" value="LOCAL-00054" />
       <option name="project" value="LOCAL" />
-      <updated>1557696506067</updated>
+      <updated>1557694509567</updated>
     </task>
-    <task id="LOCAL-00055" summary="Added MonsterTypes.js">
-      <created>1557770932355</created>
+    <task id="LOCAL-00055" summary="Committing workspace.xml">
+      <created>1557696520721</created>
       <option name="number" value="00055" />
       <option name="presentableId" value="LOCAL-00055" />
       <option name="project" value="LOCAL" />
-      <updated>1557770932356</updated>
+      <updated>1557696520721</updated>
     </task>
-    <task id="LOCAL-00056" summary="Added MonsterTypes.js">
-      <created>1557780846920</created>
+    <task id="LOCAL-00056" summary="Added win conditions for levels 2 and 4.">
+      <created>1557711257749</created>
       <option name="number" value="00056" />
       <option name="presentableId" value="LOCAL-00056" />
       <option name="project" value="LOCAL" />
-      <updated>1557780846920</updated>
+      <updated>1557711257749</updated>
     </task>
-    <task id="LOCAL-00057" summary="Still need to fix some issue in skill slot">
-      <created>1557811049853</created>
+    <task id="LOCAL-00057" summary="Added charges to abilities">
+      <created>1557774427253</created>
       <option name="number" value="00057" />
       <option name="presentableId" value="LOCAL-00057" />
       <option name="project" value="LOCAL" />
-      <updated>1557811049853</updated>
+      <updated>1557774427255</updated>
     </task>
-    <task id="LOCAL-00058" summary="Still need to fix some issue in skill slot">
-      <created>1557811075641</created>
+    <task id="LOCAL-00058" summary="Fixed bug with inheritance that was breaking the win condition checking">
+      <created>1557777712861</created>
       <option name="number" value="00058" />
       <option name="presentableId" value="LOCAL-00058" />
       <option name="project" value="LOCAL" />
-      <updated>1557811075641</updated>
+      <updated>1557777712862</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Added flying to level 6">
+      <created>1557785762134</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1557785762134</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Player now dies if they land on an invalid tile">
+      <created>1557800165696</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1557800165696</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="336048000" />
+    <option name="totallyTimeSpent" value="336652000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -775,9 +792,9 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3286119" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.20679887" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3286119" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
@@ -789,6 +806,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -831,15 +858,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="AI doesn't work yet, but it doesn't crash" />
-    <MESSAGE value="Added pathfinding and patrolling. Monsters currently don't follow player." />
-    <MESSAGE value="Monsters now pursue player" />
-    <MESSAGE value="Monsters now attack" />
-    <MESSAGE value="Merged audio" />
-    <MESSAGE value="Temporarily changed how abilities are added" />
-    <MESSAGE value="Fixed rock breaking" />
-    <MESSAGE value="Added more complex patrols" />
-    <MESSAGE value="Added invisibility" />
     <MESSAGE value="Added strength ability" />
     <MESSAGE value="Added stubs for remaining abilities" />
     <MESSAGE value="Added ability icons" />
@@ -855,49 +873,36 @@
     <MESSAGE value="Added names to distinguish monsters" />
     <MESSAGE value="Added level 2 and made necessary changes to level, AI, and ability code" />
     <MESSAGE value="Added MonsterTypes.js" />
-    <MESSAGE value="Still need to fix some issue in skill slot" />
-    <option name="LAST_COMMIT_MESSAGE" value="Still need to fix some issue in skill slot" />
+    <MESSAGE value="Modified way monsters are added" />
+    <MESSAGE value="Merged level 1 and added previously unsaved changes to level 2" />
+    <MESSAGE value="Updated AI and abilities" />
+    <MESSAGE value="Cleaned up code and fixed a bug with bullets" />
+    <MESSAGE value="Committing workspace.xml" />
+    <MESSAGE value="Added win conditions for levels 2 and 4." />
+    <MESSAGE value="Added charges to abilities" />
+    <MESSAGE value="Fixed bug with inheritance that was breaking the win condition checking" />
+    <MESSAGE value="Added flying to level 6" />
+    <MESSAGE value="Player now dies if they land on an invalid tile" />
+    <option name="LAST_COMMIT_MESSAGE" value="Player now dies if they land on an invalid tile" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/MainMenu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/assets/images/alien.png" />
+    <entry file="file://$PROJECT_DIR$/assets/images/Meta.png" />
+    <entry file="file://$PROJECT_DIR$/js/Level.js" />
+    <entry file="file://D:/BaiduNetdiskDownload/2d-topdown/CSE 380 HW3/js/Game.js" />
+    <entry file="file://$PROJECT_DIR$/assets/images/sprite/Meta.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/level/Setup.js" />
-    <entry file="file://$PROJECT_DIR$/js/other/Pathfinder.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/assets/images/sprite/Meta_new.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/tilemaps/5.tmx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="34" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/assets/images/bullet/bullet.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/tilemaps/level7.json" />
-    <entry file="file://$PROJECT_DIR$/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/assets/images/sprite/death.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/tilemaps/level10.json" />
     <entry file="file://$PROJECT_DIR$/assets/tilemaps/level8.json" />
-    <entry file="file://$PROJECT_DIR$/assets/tilemaps/level4.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="252" column="37" selection-start-line="252" selection-start-column="37" selection-end-line="252" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="131">
@@ -905,140 +910,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/other/MonsterTypes.js">
+    <entry file="file://$PROJECT_DIR$/assets/images/sprite/worm.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/atlases/abilities.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3774">
-          <caret line="222" column="18" selection-start-line="222" selection-start-column="18" selection-end-line="222" selection-end-column="18" />
+        <state>
+          <caret column="1" selection-start-column="1" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/tilemaps/level6.json">
+    <entry file="file://$PROJECT_DIR$/assets/atlases/bullets.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8857">
-          <caret line="521" column="20" selection-start-line="521" selection-start-column="20" selection-end-line="521" selection-end-column="20" />
+        <state>
+          <caret column="1" lean-forward="true" selection-start-column="1" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/level/Level3.js">
+    <entry file="file://$PROJECT_DIR$/assets/images/atlases/bullets.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/abilities/freeze.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/other/iced.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/sprite/tiles2.png" />
+    <entry file="file://$PROJECT_DIR$/js/other/NodeHeap.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+        <state relative-caret-position="-889" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/other/Pathfinder.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1586">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/Boot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/Help.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/tilemaps/level5.json">
+    <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5121" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/level/Level5.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
+        <state relative-caret-position="68">
+          <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/level/Level2.js">
+    <entry file="file://$PROJECT_DIR$/js/MainMenu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="55" selection-start-line="55" selection-end-line="55" />
+        <state relative-caret-position="374">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/level/Level6.js">
+    <entry file="file://$PROJECT_DIR$/js/ResultScreen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="24" lean-forward="true" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
-        </state>
+        <state relative-caret-position="-396" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/level/Level4.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="59" column="75" lean-forward="true" selection-start-line="59" selection-start-column="75" selection-end-line="59" selection-end-column="75" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/js/SelectLevel.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/other/Healthbar.standalone.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="173" selection-start-line="173" selection-end-line="173" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/js/Setting.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/level/Update.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="85" column="91" selection-start-line="85" selection-start-column="91" selection-end-line="85" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/sprite/vampire.png">
+    <entry file="file://$PROJECT_DIR$/assets/images/sprite/tiles.png">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/bullet/bullet.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/atlases/bullets.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/abilities/fireball.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/abilities/feather.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/abilities/strength.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/abilities/waterWalk.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/abilities/poison.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/abilities/lifeDrain.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/abilities/invisibility.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/abilities/freeze.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/abilities/fly.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/abilities/breakRock.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/sprite/harpy.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/sprite/dreadFace.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/sprite/Meta_resize.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/sprite/Meta_new.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/sprite/death.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/gui/SkillSlot.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/tilemaps/level1.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/tilemaps/level2.json">
       <provider selected="true" editor-type-id="text-editor">
@@ -1047,34 +994,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/level/Level1.js">
+    <entry file="file://$PROJECT_DIR$/assets/tilemaps/level1.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/images/gui/SkillFrame.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/Preload.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="39" column="63" lean-forward="true" selection-start-line="39" selection-start-column="63" selection-end-line="39" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/phaser.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="45816" selection-start-line="45816" selection-end-line="45816" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/other/Abilities.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="32" column="4" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="4" />
+        <state relative-caret-position="119">
+          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -1085,24 +1008,122 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/level/Create.js">
+    <entry file="file://$PROJECT_DIR$/js/level/Level5.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="75" column="4" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="4" />
+        <state relative-caret-position="437">
+          <caret line="43" column="34" lean-forward="true" selection-start-line="43" selection-start-column="34" selection-end-line="43" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/level/Level6.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="51" column="29" selection-start-line="51" selection-start-column="29" selection-end-line="51" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/level/Update.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="129" column="28" selection-start-line="129" selection-start-column="28" selection-end-line="129" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/gui/SkillSlot1.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/gui/SkillSlot2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/gui/SkillSlot3.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/gui/SkillSlot4.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/phaser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="48281" column="7" selection-start-line="48281" selection-start-column="7" selection-end-line="48281" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/gui/SkillFrame.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/gui/SkillSlot.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/other/MonsterTypes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="63" column="13" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/level/Input.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+        <state relative-caret-position="238">
+          <caret line="18" column="27" lean-forward="true" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/images/atlases/abilities.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/level/Create.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="83" column="36" lean-forward="true" selection-start-line="83" selection-start-column="36" selection-end-line="83" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/other/Abilities.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="24" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/level/Level1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-464">
+          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/level/Level2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="47" column="27" lean-forward="true" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/level/Level4.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="590">
+          <caret line="48" column="27" lean-forward="true" selection-start-line="48" selection-start-column="27" selection-end-line="48" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/level/Level3.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/level/Level.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="74" column="24" lean-forward="true" selection-start-line="74" selection-start-column="24" selection-end-line="74" selection-end-column="24" />
+        <state relative-caret-position="153">
+          <caret line="66" column="9" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/Preload.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="40" column="63" lean-forward="true" selection-start-line="40" selection-start-column="63" selection-end-line="40" selection-end-column="63" />
         </state>
       </provider>
     </entry>

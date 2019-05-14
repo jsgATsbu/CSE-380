@@ -121,6 +121,7 @@ var createSprite = function(level, properties, name) {
     sprite.spriteName = name;
 
     level.game.physics.arcade.enable(sprite);
+    sprite.body.collideWorldBounds = true;
     sprite.anchor.setTo(0.5,0.5);
     let barConfig = {
         width: 64, height: 8,

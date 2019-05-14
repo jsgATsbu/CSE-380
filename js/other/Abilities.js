@@ -147,6 +147,8 @@ let waterWalk = function() {
     }
 };
 
+waterWalk.charges = 1;
+
 let strength_def = function() {
     if (!this.player.strengthened) {
         this.player.stats.def *= 2;
@@ -158,3 +160,4 @@ let strength_def = function() {
         }, this);
     }
 };
+strength_def.charges = 2;

@@ -170,7 +170,7 @@ let siren = {
     stats: {
         atk: 50,
         def: 20,
-        health: 150,
+        health: 30,
         spd: 100
     },
 

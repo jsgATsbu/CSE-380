@@ -50,7 +50,7 @@ var createCollectable = function(level){
 };
 
 var setupAbilities = function(level){
-    level.player.abilities = level.defaultAbilities;
+    level.player.abilities = level.defaultAbilities.slice(0);  // shallow copy
     level.player.charges = level.defaultAbilities.map(ability => ability === null ? null : 999);
 
     level.player.activeAbilityIndex = 0;

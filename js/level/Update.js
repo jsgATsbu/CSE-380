@@ -76,6 +76,16 @@ var updateSprites = function(level) {
     level.player.healthBar.setPosition(level.player.body.x + 32, level.player.body.y - 20);
     level.player.healthBar.setPercent(level.player.stats.currentHealth*100 / level.player.stats.maxHealth);
 
+    level.game.physics.arcade.overlap(level.player, level.collectables, function(player, heart){
+        heart.destroy();
+        player.stats.currentHealth = player.stats.maxHealth;
+    });
+
+    level.game.physics.arcade.overlap(level.player, level.soulorbs, function(player, soulorb){
+        soulorb.destroy();
+        level.lvl5Text.setText("Number of Soulorb left: " + level.soulorbs.children.length);
+    },null,this);
+
     level.monsters.forEach(function(mon){
         level.game.physics.arcade.collide(mon, [level.blockedLayer,level.bulletLayer]);
 

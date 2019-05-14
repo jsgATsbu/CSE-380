@@ -18,10 +18,12 @@ class Level {
         createSound(this);
         createFields(this);
         createMap(this);
+        createCollectable(this);
         createPlayer(this);
         createMonsters(this);
         createSkillSlot(this);
         setupInput(this);
+        createText(this);
     }
 
     update() {
@@ -69,16 +71,13 @@ class Level {
         player.activeAbilityIndex = -1;
         this.selectAbility(index);
 
-        let icon = this.game.add.image(window.innerWidth/2 + (-128 + 64 * abilityIcons.length),
-                                       window.innerHeight * 8/10,
-                                       'abilities', ability.name);
+        let icon = this.game.add.image(this.skillSlot.x, this.skillSlot.y,'abilities', ability.name);
         icon.fixedToCamera = true;
         icon.moveDown();
         abilityIcons.push(icon);
     }
 
     removeAbility(ability) {
-        console.log("removeAbility()");
         let index = this.player.abilities.indexOf(ability);
         // noinspection JSUnresolvedVariable
         let icons = this.skillIcons;
@@ -94,22 +93,27 @@ class Level {
     }
 
     selectAbility(num) {
-        let player = this.player;
 
-        if (player.activeAbilityIndex === num) {
-            player.activeAbilityIndex = -1;
-            player.activeAbility = attack;
+        this.skillSlot = this.skillSlot || {};
 
-            this.skillFrame.visible = false;
-        } else {
-            player.activeAbilityIndex = num;
-            player.activeAbility = player.abilities[num] || attack;
+        this.skillSlot.loadTexture("SkillSlot"+(num+1));
 
-            player.weapon.bulletFrame = player.activeAbility.bullet;
-
-            this.skillFrame.cameraOffset.setTo(window.innerWidth / 2 + (-128 + 64 * num),
-                window.innerHeight * 8/10);
-            this.skillFrame.visible = true;
-        }
+        // let player = this.player;
+        //
+        // if (player.activeAbilityIndex === num) {
+        //     player.activeAbilityIndex = -1;
+        //     player.activeAbility = attack;
+        //
+        //     this.skillFrame.visible = false;
+        // } else {
+        //     player.activeAbilityIndex = num;
+        //     player.activeAbility = player.abilities[num] || attack;
+        //
+        //     player.weapon.bulletFrame = player.activeAbility.bullet;
+        //
+        //     this.skillFrame.cameraOffset.setTo(window.innerWidth / 2 + (-128 + 64 * num),
+        //         window.innerHeight * 8/10);
+        //     this.skillFrame.visible = true;
+        // }
     }
 }

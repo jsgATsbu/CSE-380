@@ -93,17 +93,6 @@ class AI {
         if(this.path.length !== 0 && !this.reachedPlayer() && !monster.frozen) {  // frozen monsters can't move
             this.moveMonToXY(this.path[0].worldX,this.path[0].worldY);
         }
-
-
-
-        if(this.monster.spriteName === "vampire1"){
-            console.log(this.reachedTarget());
-            console.log(this.path[0].x + " " + this.path[0].y);
-            console.log(this.monster.body.x + " " + this.monster.body.y)
-        }
-
-
-
     }
 
     moveMonToXY(x,y) {

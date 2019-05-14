@@ -126,6 +126,11 @@ let fly = function() {
 
         this.game.time.events.add(10000, function() {
             player.flying = false;
+
+            let tile = this.map.getTileWorldXY(player.x, player.y, 64, 64, this.bulletLayer);
+            if (tile !== null) {
+                this.playerDeath();
+            }
         }, this);
     }
 };

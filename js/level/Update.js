@@ -117,9 +117,7 @@ var updateMonsterMovement = function(level) {
 var updatePlayerMovement = function(level) {
 
     if(level.player.stats.currentHealth <= 0){
-        level.player.body.velocity.x = 0;
-        level.player.body.velocity.y = 0;
-        level.player.animations.play('death',3,false,true);
+        level.playerDeath();
         return;
     }
 

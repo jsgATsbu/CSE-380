@@ -5,8 +5,9 @@ var TheLegendOfMeta = TheLegendOfMeta || {};
 TheLegendOfMeta.Level1 = function() {
     this.mapKey = 'level1';
     this.lvl = 1;
-
     this.music = 'bgm1';
+
+    this.defaultAbilities = [attack, null, null, null];
 
     this.playerProperties = {
         name: 'player',

@@ -249,14 +249,14 @@ var checkGameStatus = function(level){
     if(level.player.alive === false){
         level.input.enabled = true;
         level.state.start("ResultScreen", true, false, 'lose', level.lvl);
-        // return;
+        return;
     }
 
-    // if(level.checkWinCondition()){
-    //     if(level.mapKey === 'level6') {
-    //         level.state.start("ResultScreen", true, false, 'final', level.lvl);
-    //     } else {
-    //         level.state.start("ResultScreen", true, false, 'win', level.lvl);
-    //     }
-    // }
+    if(level.checkWinCondition()){
+        if(level.mapKey === 'level6') {
+            level.state.start("ResultScreen", true, false, 'final', level.lvl);
+        } else {
+            level.state.start("ResultScreen", true, false, 'win', level.lvl);
+        }
+    }
 };

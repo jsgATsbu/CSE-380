@@ -58,15 +58,25 @@ TheLegendOfMeta.Level1 = function() {
                 [[75,52],[63,62]],
 
                 [[45,75],[60,63]],
-                [[41,74],[53,62]],
-                [[68,69],[68,71],[71,71],[71,69]],
+                [[41,74],[53,62]]
             ]
         },
+
+        {
+            type: death,
+            ai: [
+                [[68,69],[68,71],[71,71],[71,69]]
+            ]
+        }
     ];
 };
 
 TheLegendOfMeta.Level1.prototype = Object.create(Level.prototype);
 
 TheLegendOfMeta.Level1.prototype.checkWinCondition = function() {
-    // TODO
+    let death = this.monsters.find(function(monster) {
+        return monster.key === 'death';
+    });
+
+    return !death;
 };

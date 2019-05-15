@@ -40,9 +40,9 @@ class AI {
             return;
         }
 
-        if(this.patrolList.length === 1){
+        /*if (this.patrolList.length === 1) {
             return;
-        }
+        }*/
 
         let start = this.level.map.getTileWorldXY(this.monster.x, this.monster.y);
 

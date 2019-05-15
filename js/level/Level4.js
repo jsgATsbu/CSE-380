@@ -17,20 +17,19 @@ TheLegendOfMeta.Level4 = function() {
     this.monsterProperties = [
         {
             type: worm,
-            ai: [            // worms are immobile; their permanent locations are included here for consistency
-                [[57, 21]],
-                [[29, 2]],
-                [[77, 29]],
-                [[2, 54]],
-                [[53, 77]],
-                [[27, 57]]
+            ai: [
+                [[]],
+                [[]],
+                [[]],
+                [[]],
+                [[]],
+                [[]]
             ]
         },
 
         {
             type: harpy,
             ai: [
-                [[11, 7], [71, 74]],
                 [[11, 74], [71, 7]],
                 [[52, 2], [77, 54], [29, 77], [2, 29]],
                 [[29, 77], [2, 29], [52, 2], [77, 54]],
@@ -42,7 +41,8 @@ TheLegendOfMeta.Level4 = function() {
         {
             type: firestone,
             ai: [
-                [[1, 1]]
+                [[1, 1]],
+                [[11, 7], [71, 74]]
             ]
         },
 

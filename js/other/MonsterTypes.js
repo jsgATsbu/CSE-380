@@ -284,17 +284,15 @@ let death = {
         attackRight: { frames: [16, 17, 18, 19], frameRate: 5, loop: false },
         attackBack: { frames: [20, 21, 22, 23], frameRate: 5, loop: false },
         death: { frames: [24, 25, 26, 27], frameRate: 5, loop: false }
-    },
-
-    // ability: poison
+    }
 };
 
 let firestone = {
     spriteKey: 'firestone',
 
     stats: {
-        atk: 80,
-        def: 20,
+        atk: 50,
+        def: 10,
         health: 150,
         spd: 100
     },

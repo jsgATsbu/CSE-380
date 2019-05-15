@@ -80,6 +80,9 @@ let breakRock = function() {
     if (tile !== null && (tile.index === 48)) {  // if the tile is a rock; note that tiles are indexed from 1
         this.map.removeTileWorldXY(player.x + reach.x, player.y + reach.y,
                                    64, 64, this.blockedLayer);
+        return true;
+    } else {
+        return false;
     }
 };
 breakRock.charges = 3;

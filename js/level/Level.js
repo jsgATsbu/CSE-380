@@ -15,7 +15,6 @@ class Level {
 
     create() {
         ///for Simple AI, temporary
-        
         createSound(this);
         createFields(this);
         createMap(this);

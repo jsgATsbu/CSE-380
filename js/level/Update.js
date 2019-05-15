@@ -78,6 +78,12 @@ var updateSprites = function(level) {
         game.physics.arcade.collide(player, level.bulletLayer);
     }
 
+    game.physics.arcade.collide(player, level.extraLayer);
+
+    if(level.extraLayer !== undefined) {
+        game.physics.arcade.collide(player, level.extraLayer);
+    }
+
     //// Update the HP bar position and the percentage every frame
     player.healthBar.setPosition(player.body.x + 32, player.body.y - 20);
     player.healthBar.setPercent(player.stats.currentHealth*100 / player.stats.maxHealth);
@@ -94,6 +100,9 @@ var updateSprites = function(level) {
 
     level.monsters.forEach(function(mon){
         game.physics.arcade.collide(mon, [level.blockedLayer,level.bulletLayer]);
+        if(level.extraLayer !== undefined){
+            game.physics.arcade.collide(mon, level.extraLayer);
+        }
 
         mon.healthBar.setPosition(mon.body.x + 32,mon.body.y - 20);
         mon.healthBar.setPercent(mon.stats.currentHealth*100 / mon.stats.maxHealth);

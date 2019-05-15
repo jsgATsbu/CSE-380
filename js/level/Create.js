@@ -87,13 +87,17 @@ var createMap = function(level) {
 
     level.backgroundlayer = level.map.createLayer('backgroundLayer');
     if(level.map.getLayerIndex('roadLayer') !== null)
-        level.map.createLayer('roadLayer');
+        level.roadLayer = level.map.createLayer('roadLayer');
     level.bulletLayer = level.map.createLayer('bulletLayer');
     level.blockedLayer = level.map.createLayer('blockedLayer');
+    if(level.map.getLayerIndex('extraLayer') !== null)
+        level.extraLayer = level.map.createLayer('extraLayer');
+
     level.backgroundlayer.resizeWorld();
 
     level.map.setCollisionBetween(1,2000,true,'bulletLayer');
     level.map.setCollisionBetween(1, 2000, true, 'blockedLayer');
+    level.map.setCollisionBetween(1,2000,true,'extraLayer');
 };
 
 var createPlayer = function(level) {
@@ -141,6 +145,7 @@ var createSprite = function(level, properties, name) {
 
     /// For debugging
     sprite.spriteName = name;
+    sprite.spriteType = type;
 
     level.game.physics.arcade.enable(sprite);
     sprite.body.collideWorldBounds = true;

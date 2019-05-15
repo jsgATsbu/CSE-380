@@ -55,6 +55,17 @@ class Level {
         return result;
     }
 
+    findSpritesByCoordinateRange(range) {
+        let result = [];
+        this.game.sprites.forEach(function (sprite) {
+            if (range.xMin < sprite.right && range.xMax > sprite.left &&
+                range.yMin < sprite.bottom && range.yMax > sprite.top) {
+                result.push(sprite);
+            }
+        });
+        return result;
+    }
+
     addAbility(ability) {
         let player = this.player;
 
@@ -105,6 +116,9 @@ class Level {
         this.player.charges.splice(index, 1);
         this.player.charges.push(null);
 
+        if (this.player.abilities[this.player.activeAbilityIndex] === null) {
+            this.player.activeAbilityIndex--;
+        }
         this.selectAbility(this.player.activeAbilityIndex);
 
         icons[index].destroy();

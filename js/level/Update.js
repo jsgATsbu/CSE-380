@@ -246,6 +246,8 @@ var animateSprite = function(sprite) {
 var checkGameStatus = function(level){
     if(level.player.alive === false){
         level.input.enabled = true;
+        let effect = level.game.add.audio('dead',1,false);
+        effect.play();
         level.state.start("ResultScreen", true, false, 'lose', level.lvl);
         return;
     }

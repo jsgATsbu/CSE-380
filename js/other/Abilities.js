@@ -62,13 +62,14 @@ let getReachRange = function(sprite, angle) {
 let attack = function() {
     let player = this.player;
     let reach = getReachRange(player, player.weapon.fireAngle);
+    let effect = this.game.add.audio('attack',1,false);
+    effect.play();
 
     let sprite = this.findSpritesByCoordinateRange(reach)[0];
     if (sprite !== undefined) {
         player.attack(sprite);
     }
 };
-
 attack.tooltip = "Basic Attack";
 
 let breakRock = function() {
@@ -97,6 +98,10 @@ let invisibility = function() {
             this.player.alpha = 1.0;
             this.player.invisible = false;
         }, this);
+
+        return true;
+    } else {
+        return false;
     }
 };
 invisibility.charges = 1;
@@ -107,16 +112,28 @@ let strength = function() {
         this.player.stats.atk *= 2;
         this.player.strengthened = true;
 
+        let effect = this.game.add.audio('strength',1,false);
+        effect.play();
+
         this.game.time.events.add(10000, function() {
             this.player.stats.atk /= 2;
             this.player.strengthened = false;
+
+            let effect = this.game.add.audio('strength_end',1,false);
+            effect.play();
         }, this);
+
+        return true;
+    } else {
+        return false;
     }
 };
 strength.charges = 1;
 strength.tooltip = "Increase player attack";
 
 let feather = function() {
+    let effect = this.game.add.audio('feather',1,false);
+    effect.play();
     this.player.weapon.fire();
 };
 feather.bullet = 'feather';
@@ -124,6 +141,8 @@ feather.charges = 5;
 feather.tooltip = "Attack with feather";
 
 let freeze = function() {
+    let effect = this.game.add.audio('ice',1,false);
+    effect.play();
     this.player.weapon.fire();
 };
 freeze.bullet = 'ice';
@@ -142,6 +161,10 @@ let lifeDrain = function() {
         } else {
             this.player.stats.currentHealth = this.player.stats.maxHealth;
         }
+
+        return true;
+    } else {
+        return false;
     }
 };
 lifeDrain.charges = 1;
@@ -149,9 +172,9 @@ lifeDrain.tooltip = "Drain Life from enemy";
 
 let poison = function() {
     let player = this.player;
-    let reach = getReach(player.weapon.fireAngle);
+    let reach = getReachRange(player, player.weapon.fireAngle);
 
-    let sprite = this.findSpritesByCoordinates(player.x + reach.x, player.y + reach.y)[0];
+    let sprite = this.findSpritesByCoordinateRange(reach)[0];
     if (sprite !== undefined && !sprite.poisoned) {
         sprite.stats.currentHealth -= 10;
         sprite.healthBar.setPercent(sprite.stats.currentHealth*100 / sprite.stats.maxHealth);
@@ -164,12 +187,18 @@ let poison = function() {
         this.game.time.events.add(10000, function() {
             sprite.poisoned = false;
         }, this);
+
+        return true;
+    } else {
+        return false;
     }
 };
 poison.charges = 3;
 poison.tooltip = "Poison enemy";
 
 let fireball = function() {
+    let effect = this.game.add.audio('fireball',1,false);
+    effect.play();
     this.player.weapon.fire();
 };
 fireball.bullet = 'fireball';
@@ -189,6 +218,10 @@ let fly = function() {
                 this.playerDeath();
             }
         }, this);
+
+        return true;
+    } else {
+        return false;
     }
 };
 fly.charges = 2;
@@ -196,19 +229,23 @@ fly.tooltip = "Allow flying over unwalkable region";
 
 let waterWalk = function() {
     if (!this.player.float) {
-        let player = this.player;
 
         this.player.float = true;
 
         this.game.time.events.add(10000, function() {
             this.player.float = false;
 
-            let tile = this.map.getTileWorldXY(player.x, player.y, 64, 64, this.bulletLayer);
-            let water = this.map.getTileWorldXY(player.x, player.y, 64, 64, this.backgroundlayer);
-            if (tile !== null || water.index === 27) {
+            let tileBullet = this.map.getTileWorldXY(this.player.x, this.player.y, 64, 64, this.bulletLayer);
+            let tileExtra = this.map.getTileWorldXY(this.player.x, this.player.y, 64, 64, this.extraLayer);
+            let water = this.map.getTileWorldXY(this.player.x, this.player.y, 64, 64, this.backgroundLayer);
+            if (tileBullet !== null || tileExtra !== null || water.index === 27) {
                 this.playerDeath();
             }
         }, this);
+
+        return true;
+    } else {
+        return false;
     }
 };
 
@@ -220,10 +257,20 @@ let strength_def = function() {
         this.player.stats.def *= 2;
         this.player.strengthened = true;
 
+        let effect = this.game.add.audio('strength',1,false);
+        effect.play();
+
         this.game.time.events.add(10000, function() {
             this.player.stats.def /= 2;
             this.player.strengthened = false;
+
+            let effect = this.game.add.audio('strength_end',1,false);
+            effect.play();
         }, this);
+
+        return true;
+    } else {
+        return false;
     }
 };
 strength_def.charges = 2;

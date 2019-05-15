@@ -1,5 +1,27 @@
 'use strict';
 
+var updateTooltips = function(level){
+    if(level.skillText === undefined){
+        level.skillText = level.game.add.text(level.skillSlot.x, level.skillSlot.y - 30,
+            "", {font: "20px Arial", fill: "#f26c4f", align: "center"});
+        level.skillText.fixedToCamera = true;
+    }
+    for(let i=0;i<level.skillIcons.length;i++) {
+        let icon = level.skillIcons[i];
+        if (icon !== null){
+            if(icon.input === null){
+                icon.inputEnabled = true;
+            }
+            if(icon.input.pointerOver()) {
+                level.skillText.setText(level.player.abilities[i].tooltip);
+                break;
+            } else {
+                level.skillText.setText("");
+            }
+        }
+    }
+};
+
 var updateBullets = function(level){
     level.game.physics.arcade.collide(level.player.weapon.bullets, level.blockedLayer, function(bullet, tile) {
         bullet.kill();
@@ -74,8 +96,14 @@ var updateSprites = function(level) {
     let player = level.player;
 
     game.physics.arcade.collide(player, level.blockedLayer,);
-    if (!player.flying || !player.float) {
+    if (!player.flying && !player.float) {
         game.physics.arcade.collide(player, level.bulletLayer);
+    }
+
+    game.physics.arcade.collide(player, level.extraLayer);
+
+    if(level.extraLayer !== undefined) {
+        game.physics.arcade.collide(player, level.extraLayer);
     }
 
     //// Update the HP bar position and the percentage every frame
@@ -94,6 +122,9 @@ var updateSprites = function(level) {
 
     level.monsters.forEach(function(mon){
         game.physics.arcade.collide(mon, [level.blockedLayer,level.bulletLayer]);
+        if(level.extraLayer !== undefined){
+            game.physics.arcade.collide(mon, level.extraLayer);
+        }
 
         mon.healthBar.setPosition(mon.body.x + 32,mon.body.y - 20);
         mon.healthBar.setPercent(mon.stats.currentHealth*100 / mon.stats.maxHealth);
@@ -186,13 +217,29 @@ var animateSprite = function(sprite) {
 
     let velocity = sprite.body.velocity;
     if (velocity.x > 0) {  // don't restart an already playing animation
-        sprite.animations.play('walkRight');
+        if(sprite.strengthened !== undefined && sprite.strengthened){
+            sprite.animations.play('buffWalkRight')
+        }
+        else
+            sprite.animations.play('walkRight');
     } else if (velocity.x < 0) {
-        sprite.animations.play('walkLeft');
+        if(sprite.strengthened !== undefined && sprite.strengthened){
+            sprite.animations.play('buffWalkLeft')
+        }
+        else
+            sprite.animations.play('walkLeft');
     } else if (velocity.y > 0) {
-        sprite.animations.play('walkFront');
+        if(sprite.strengthened !== undefined && sprite.strengthened){
+            sprite.animations.play('buffWalkFront')
+        }
+        else
+            sprite.animations.play('walkFront');
     } else if (velocity.y < 0) {
-        sprite.animations.play('walkBack');
+        if(sprite.strengthened !== undefined && sprite.strengthened){
+            sprite.animations.play('buffWalkFront')
+        }
+        else
+            sprite.animations.play('walkBack');
     } else {
         sprite.animations.stop(sprite.animations.currentAnim.name, true);
     }
@@ -202,14 +249,14 @@ var checkGameStatus = function(level){
     if(level.player.alive === false){
         level.input.enabled = true;
         level.state.start("ResultScreen", true, false, 'lose', level.lvl);
-        // return;
+        return;
     }
 
-    // if(level.checkWinCondition()){
-    //     if(level.mapKey === 'level6') {
-    //         level.state.start("ResultScreen", true, false, 'final', level.lvl);
-    //     } else {
-    //         level.state.start("ResultScreen", true, false, 'win', level.lvl);
-    //     }
-    // }
+    if(level.checkWinCondition()){
+        if(level.mapKey === 'level6') {
+            level.state.start("ResultScreen", true, false, 'final', level.lvl);
+        } else {
+            level.state.start("ResultScreen", true, false, 'win', level.lvl);
+        }
+    }
 };

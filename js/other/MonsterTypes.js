@@ -194,7 +194,7 @@ let statue = {
 
     stats: {
         atk: 0,
-        def: 30,
+        def: 20,
         health: 200,
         spd: 0
     },

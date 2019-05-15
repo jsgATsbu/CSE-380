@@ -1,14 +1,19 @@
 'use strict';
 
 var createText = function(level) {
-    if(level.mapKey !== 'level5')
-        return;
+    if(level.mapKey === 'level5') {
+        let text = "Number of Soul orb left: " + level.soulorbs.children.length;
+        let style = {font: "32px Arial", fill: "#f26c4f", align: "center"};
+        level.lvl5Text = level.game.add.text(32, 32, text, style);
+        level.lvl5Text.fixedToCamera = true;
+        level.lvl5Text.cameraOffset.setTo(window.innerWidth - 500, 100);
+    }
 
-    let text = "Number of Soul orb left: " + level.soulorbs.children.length;
-    let style = { font: "32px Arial", fill: "#f26c4f", align: "center" };
-    level.lvl5Text = level.game.add.text(32,32,text,style);
-    level.lvl5Text.fixedToCamera = true;
-    level.lvl5Text.cameraOffset.setTo(window.innerWidth-500,100);
+    
+
+    level.skillText = level.game.add.text(level.skillSlot.x, level.skillSlot.y - 30,
+        "", {font: "20px Arial", fill: "#f26c4f", align: "center"});
+    level.skillText.fixedToCamera = true;
 };
 
 var createSound = function(level){
@@ -75,6 +80,7 @@ var setupAbilities = function(level){
             level.skillIcons[i] = level.game.add.image(window.innerWidth / 2 + (-128 + 61 * i) + 5,
                                                        window.innerHeight * 8 / 10 + 5,
                                                        'abilities', level.defaultAbilities[i].name);
+            level.skillIcons[i].inputEnabled = true;
             level.skillIcons[i].fixedToCamera = true;
             level.skillIcons[i].moveDown();
         }
@@ -89,9 +95,14 @@ var createMap = function(level) {
 
     level.backgroundlayer = level.map.createLayer('backgroundLayer');
     if(level.map.getLayerIndex('roadLayer') !== null)
-        level.map.createLayer('roadLayer');
+        level.roadLayer = level.map.createLayer('roadLayer');
     level.bulletLayer = level.map.createLayer('bulletLayer');
     level.blockedLayer = level.map.createLayer('blockedLayer');
+    if(level.map.getLayerIndex('extraLayer') !== null) {
+        level.extraLayer = level.map.createLayer('extraLayer');
+        level.map.setCollisionBetween(1, 2000, true, 'extraLayer');
+    }
+
     level.backgroundlayer.resizeWorld();
 
     level.map.setCollisionBetween(1,2000,true,'bulletLayer');
@@ -143,6 +154,7 @@ var createSprite = function(level, properties, name) {
 
     /// For debugging
     sprite.spriteName = name;
+    sprite.spriteType = type;
 
     level.game.physics.arcade.enable(sprite);
     sprite.body.collideWorldBounds = true;
@@ -183,15 +195,31 @@ var initializeStats = function(sprite, stats){
 
         if (Math.abs(diffX) > Math.abs(diffY)) {
             if (diffX > 0) {
-                sprite.animations.play('attackRight');
+                if(sprite.strengthened !== undefined && sprite.strengthened){
+                    sprite.animations.play('buffAttackRight')
+                }
+                else
+                    sprite.animations.play('attackRight');
             } else {
-                sprite.animations.play('attackLeft');
+                if(sprite.strengthened !== undefined && sprite.strengthened){
+                    sprite.animations.play('buffAttackLeft')
+                }
+                else
+                    sprite.animations.play('attackLeft');
             }
         } else {
             if (diffY > 0) {
-                sprite.animations.play('attackFront');
+                if(sprite.strengthened !== undefined && sprite.strengthened){
+                    sprite.animations.play('buffAttackFront')
+                }
+                else
+                    sprite.animations.play('attackFront');
             } else {
-                sprite.animations.play('attackBack');
+                if(sprite.strengthened !== undefined && sprite.strengthened){
+                    sprite.animations.play('buffAttackBack')
+                }
+                else
+                    sprite.animations.play('attackBack');
             }
         }
 

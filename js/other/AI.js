@@ -40,16 +40,9 @@ class AI {
             return;
         }
 
-        // if(monster.properties.name === "werewolf5"){  // TODO remove this?
-        //     console.log("---------------");
-        //     console.log(this.path[0]);
-        //     console.log(this.patrolList);
-        //     console.log(this.level.map.getTile(30,68, this.level.blockedLayer));
-        //     // let s = this.level.map.getTile(22,68);
-        //     // let d = this.level.map.getTile(13,72);
-        //     // let r = this.pathFinder.findPath(s,d);
-        //     // console.log(r);
-        // }
+        /*if (this.patrolList.length === 1) {
+            return;
+        }*/
 
         let start = this.level.map.getTileWorldXY(this.monster.x, this.monster.y);
 

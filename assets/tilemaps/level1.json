@@ -259,18 +259,6 @@
                  "y":3961.7124600639
                 }, 
                 {
-                 "gid":353,
-                 "height":64,
-                 "id":27,
-                 "name":"alien8",
-                 "rotation":0,
-                 "type":"alien",
-                 "visible":true,
-                 "width":64,
-                 "x":4352.51418906221,
-                 "y":4480.41195264048
-                }, 
-                {
                  "gid":313,
                  "height":64,
                  "id":30,
@@ -557,6 +545,18 @@
                  "width":40,
                  "x":3468,
                  "y":4484
+                }, 
+                {
+                 "gid":446,
+                 "height":64,
+                 "id":57,
+                 "name":"death1",
+                 "rotation":0,
+                 "type":"death",
+                 "visible":true,
+                 "width":64,
+                 "x":4354,
+                 "y":4482
                 }],
          "opacity":1,
          "properties":[
@@ -571,7 +571,7 @@
          "y":0
         }],
  "nextlayerid":7,
- "nextobjectid":57,
+ "nextobjectid":58,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.3",
@@ -654,6 +654,19 @@
          "tilecount":1,
          "tileheight":40,
          "tilewidth":40
+        }, 
+        {
+         "columns":4,
+         "firstgid":446,
+         "image":"..\/images\/sprite\/death.png",
+         "imageheight":640,
+         "imagewidth":256,
+         "margin":0,
+         "name":"death",
+         "spacing":0,
+         "tilecount":40,
+         "tileheight":64,
+         "tilewidth":64
         }],
  "tilewidth":64,
  "type":"map",

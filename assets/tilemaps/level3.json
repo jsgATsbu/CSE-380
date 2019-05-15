@@ -156,6 +156,19 @@
          "tilecount":3,
          "tileheight":64,
          "tilewidth":64
+        }, 
+        {
+         "columns":1,
+         "firstgid":444,
+         "image":"..\/images\/sprite\/heart.png",
+         "imageheight":40,
+         "imagewidth":40,
+         "margin":0,
+         "name":"heart",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":40,
+         "tilewidth":40
         }],
  "tilewidth":64,
  "type":"map",

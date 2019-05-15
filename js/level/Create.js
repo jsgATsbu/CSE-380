@@ -92,14 +92,15 @@ var createMap = function(level) {
         level.roadLayer = level.map.createLayer('roadLayer');
     level.bulletLayer = level.map.createLayer('bulletLayer');
     level.blockedLayer = level.map.createLayer('blockedLayer');
-    if(level.map.getLayerIndex('extraLayer') !== null)
+    if(level.map.getLayerIndex('extraLayer') !== null) {
         level.extraLayer = level.map.createLayer('extraLayer');
+        level.map.setCollisionBetween(1, 2000, true, 'extraLayer');
+    }
 
     level.backgroundlayer.resizeWorld();
 
     level.map.setCollisionBetween(1,2000,true,'bulletLayer');
     level.map.setCollisionBetween(1, 2000, true, 'blockedLayer');
-    level.map.setCollisionBetween(1,2000,true,'extraLayer');
 };
 
 var createPlayer = function(level) {

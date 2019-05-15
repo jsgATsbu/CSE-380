@@ -18,7 +18,9 @@ var setupInput = function(obj) {
         } else if (player.stats.currentHealth > 0) {
             player.activeAbility.call(obj);
 
-            player.charges[player.activeAbilityIndex] -= 1;
+            if (!obj.defaultAbilities.includes(player.activeAbility)) {
+                player.charges[player.activeAbilityIndex] -= 1;
+            }
             if (player.charges[player.activeAbilityIndex] <= 0) {
                 obj.removeAbility(player.activeAbility);
             }

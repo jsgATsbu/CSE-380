@@ -1,16 +1,16 @@
 "use strict";
 
 class Level {
-    // subclasses should define mapKey, playerProperties, and monsterProperties
+    // subclasses should define mapKey, playerProperties, monsterProperties, and abilities
     constructor() {
         this.game = undefined;
 
         this.mapKey = undefined;  // should be string with name of map
         this.playerProperties = undefined;  // should be object with properties of player
         this.monsterProperties = undefined;  // should be array of objects with properties of each monster
+        this.defaultAbilities = undefined;  // should be array of default abilities
 
         this.player = undefined;  // defined in createPlayer(); included here to avoid IDE warning
-        this.skillFrame = undefined;  // defined in createSkillSlot(); included here to avoid IDE warning
     }
 
     create() {
@@ -22,7 +22,7 @@ class Level {
         createCollectable(this);
         createPlayer(this);
         createMonsters(this);
-        createSkillSlot(this);
+        setupAbilities(this);
         setupInput(this);
         createText(this);
     }
@@ -61,22 +61,27 @@ class Level {
         // noinspection JSUnresolvedVariable
         let abilityIcons = this.skillIcons;
 
-        if (player.abilities.includes(ability)) {
+        let currentIndex = player.abilities.indexOf(ability);
+        if (currentIndex !== -1) {
+            player.charges[currentIndex] += ability.charges;
             return;
         }
 
-        let index = player.abilities.indexOf(null);
+        let nextIndex = player.abilities.indexOf(null);
+        if (nextIndex === -1) {  // abilities are full
+            return;
+        }
 
-        player.abilities[index] = ability;
-        player.charges[index] = ability.charges;
+        player.abilities[nextIndex] = ability;
+        player.charges[nextIndex] = ability.charges;
         this.selectAbility(player.activeAbilityIndex);
 
-        let icon = this.game.add.image(window.innerWidth/2 + (-128 + 61 * index) + 5,  // 61 not 64 because of the way the frame is designed
+        let icon = this.game.add.image(window.innerWidth/2 + (-128 + 61 * nextIndex) + 5,  // 61 not 64 because of the way the frame is designed
                                        window.innerHeight * 8/10 + 5,
                                        'abilities', ability.name);
         icon.fixedToCamera = true;
         icon.moveDown();
-        abilityIcons[index] = icon;
+        abilityIcons[nextIndex] = icon;
     }
 
     removeAbility(ability) {
@@ -84,40 +89,33 @@ class Level {
         // noinspection JSUnresolvedVariable
         let icons = this.skillIcons;
 
-        this.player.abilities[index] = null;
-        this.player.charges[index] = null;
+        this.player.abilities.splice(index, 1);
+        this.player.abilities.push(null);
+        this.player.charges.splice(index, 1);
+        this.player.charges.push(null);
 
         this.selectAbility(this.player.activeAbilityIndex);
 
         icons[index].destroy();
-        icons[index] = null;
+        icons.splice(index, 1);
+        icons.push(null);
+        for(let i = index; i < icons.length; i++) {
+            if (icons[i] !== null)
+                icons[i].cameraOffset.x -= 61;
+        }
     }
 
     selectAbility(num) {
+        if (this.player.abilities[num] === null) {
+            return;
+        }
+
         this.skillSlot = this.skillSlot || {};
         this.skillSlot.loadTexture("SkillSlot"+(num+1));
 
-        this.player.activeAbility = this.player.abilities[num] || attack;
+        this.player.activeAbility = this.player.abilities[num];
         this.player.activeAbilityIndex = num;
         this.player.weapon.bulletFrame = this.player.activeAbility.bullet;
-
-        // let player = this.player;
-        //
-        // if (player.activeAbilityIndex === num) {
-        //     player.activeAbilityIndex = -1;
-        //     player.activeAbility = attack;
-        //
-        //     this.skillFrame.visible = false;
-        // } else {
-        //     player.activeAbilityIndex = num;
-        //     player.activeAbility = player.abilities[num] || attack;
-        //
-        //     player.weapon.bulletFrame = player.activeAbility.bullet;
-        //
-        //     this.skillFrame.cameraOffset.setTo(window.innerWidth / 2 + (-128 + 64 * num),
-        //         window.innerHeight * 8/10);
-        //     this.skillFrame.visible = true;
-        // }
     }
     
     playerDeath() {

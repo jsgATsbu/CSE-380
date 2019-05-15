@@ -49,16 +49,36 @@ var createCollectable = function(level){
     });
 };
 
-var createSkillSlot = function(level){
+var setupAbilities = function(level){
+    level.player.abilities = level.defaultAbilities.slice(0);  // shallow copy
+    level.player.charges = level.defaultAbilities.map(ability => ability === null ? null : 999);
+
+    level.player.activeAbilityIndex = 0;
+    level.player.activeAbility = level.player.abilities[0];
+
     let bg = level.game.add.image(level.game.camera.x + window.innerWidth/2 - 128,
                                   level.game.camera.y + window.innerHeight * 8/10,
                                   'SkillSlotBG');
+    bg.fixedToCamera = true;
+
     level.skillSlot = level.game.add.image(level.game.camera.x + window.innerWidth/2 - 128,
                                            level.game.camera.y + window.innerHeight * 8/10,
                                            'SkillSlot1');
-    level.skillIcons = [null, null, null, null];
-    bg.fixedToCamera = true;
     level.skillSlot.fixedToCamera = true;
+
+    level.skillIcons = [];
+    for (let i = 0; i < level.defaultAbilities.length; i++) {
+        if (level.defaultAbilities[i] === null) {
+            level.skillIcons[i] = null;
+        } else {
+            // 61 not 64 because of the way the frame is designed
+            level.skillIcons[i] = level.game.add.image(window.innerWidth / 2 + (-128 + 61 * i) + 5,
+                                                       window.innerHeight * 8 / 10 + 5,
+                                                       'abilities', level.defaultAbilities[i].name);
+            level.skillIcons[i].fixedToCamera = true;
+            level.skillIcons[i].moveDown();
+        }
+    }
 };
 
 var createMap = function(level) {
@@ -78,10 +98,6 @@ var createMap = function(level) {
 
 var createPlayer = function(level) {
     level.player = createSprite(level, level.playerProperties,level.playerProperties.name);
-    level.player.abilities = [null, null, null, null];
-    level.player.charges = [null, null, null, null];
-    level.player.activeAbilityIndex = 0;
-    level.player.activeAbility = attack;
 
     var weapon = level.game.add.weapon(-1, 'bullets');
     weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;

@@ -108,9 +108,15 @@ let strength = function() {
         this.player.stats.atk *= 2;
         this.player.strengthened = true;
 
+        let effect = this.game.add.audio('strength',1,false);
+        effect.play();
+
         this.game.time.events.add(10000, function() {
             this.player.stats.atk /= 2;
             this.player.strengthened = false;
+
+            let effect = this.game.add.audio('strength_end',1,false);
+            effect.play();
         }, this);
     }
 };
@@ -227,9 +233,15 @@ let strength_def = function() {
         this.player.stats.def *= 2;
         this.player.strengthened = true;
 
+        let effect = this.game.add.audio('strength',1,false);
+        effect.play();
+
         this.game.time.events.add(10000, function() {
             this.player.stats.def /= 2;
             this.player.strengthened = false;
+
+            let effect = this.game.add.audio('strength_end',1,false);
+            effect.play();
         }, this);
     }
 };

@@ -47,6 +47,13 @@ TheLegendOfMeta.Preload.prototype = {
         this.load.audio('bgm5','assets/audios/5.ogg');
         this.load.audio('bgm6','assets/audios/6.ogg');
 
+        this.load.audio('bat','assets/audios/bat.ogg');
+        this.load.audio('feather','assets/audios/feather.ogg');
+        this.load.audio('ice','assets/audios/ice.ogg');
+        this.load.audio('fireball','assets/audios.fireball.ogg');
+        this.load.audio('musicNote','assets/musicNote.ogg');
+        this.load.audio('attack','assets/attack.ogg');
+
         this.load.tilemap('level1', 'assets/tilemaps/level1.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.tilemap('level2', 'assets/tilemaps/level2.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.tilemap('level3', 'assets/tilemaps/level3.json', null, Phaser.Tilemap.TILED_JSON);

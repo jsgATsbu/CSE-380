@@ -97,6 +97,10 @@ let invisibility = function() {
             this.player.alpha = 1.0;
             this.player.invisible = false;
         }, this);
+
+        return true;
+    } else {
+        return false;
     }
 };
 invisibility.charges = 1;
@@ -111,6 +115,10 @@ let strength = function() {
             this.player.stats.atk /= 2;
             this.player.strengthened = false;
         }, this);
+
+        return true;
+    } else {
+        return false;
     }
 };
 strength.charges = 1;
@@ -142,6 +150,10 @@ let lifeDrain = function() {
         } else {
             this.player.stats.currentHealth = this.player.stats.maxHealth;
         }
+
+        return true;
+    } else {
+        return false;
     }
 };
 lifeDrain.charges = 1;
@@ -149,9 +161,9 @@ lifeDrain.tooltip = "Drain Life from enemy";
 
 let poison = function() {
     let player = this.player;
-    let reach = getReach(player.weapon.fireAngle);
+    let reach = getReachRange(player, player.weapon.fireAngle);
 
-    let sprite = this.findSpritesByCoordinates(player.x + reach.x, player.y + reach.y)[0];
+    let sprite = this.findSpritesByCoordinateRange(reach)[0];
     if (sprite !== undefined && !sprite.poisoned) {
         sprite.stats.currentHealth -= 10;
         sprite.healthBar.setPercent(sprite.stats.currentHealth*100 / sprite.stats.maxHealth);
@@ -164,6 +176,10 @@ let poison = function() {
         this.game.time.events.add(10000, function() {
             sprite.poisoned = false;
         }, this);
+
+        return true;
+    } else {
+        return false;
     }
 };
 poison.charges = 3;
@@ -189,6 +205,10 @@ let fly = function() {
                 this.playerDeath();
             }
         }, this);
+
+        return true;
+    } else {
+        return false;
     }
 };
 fly.charges = 2;
@@ -208,6 +228,10 @@ let waterWalk = function() {
                 this.playerDeath();
             }
         }, this);
+
+        return true;
+    } else {
+        return false;
     }
 };
 
@@ -223,6 +247,10 @@ let strength_def = function() {
             this.player.stats.def /= 2;
             this.player.strengthened = false;
         }, this);
+
+        return true;
+    } else {
+        return false;
     }
 };
 strength_def.charges = 2;

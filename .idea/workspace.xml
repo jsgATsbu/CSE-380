@@ -4,10 +4,7 @@
     <list default="true" id="31eb6693-bbb3-410f-9abd-67e33bc239ea" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/level/Create.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/level/Create.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/level/Level.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/level/Level.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/level/Update.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/level/Update.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/other/Abilities.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/other/Abilities.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/other/MonsterTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/other/MonsterTypes.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -29,10 +26,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/other/MonsterTypes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
+            <state relative-caret-position="3332">
               <caret line="196" column="14" selection-start-line="196" selection-start-column="14" selection-end-line="196" selection-end-column="14" />
             </state>
           </provider>
@@ -41,17 +38,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/other/Abilities.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
+            <state relative-caret-position="-1463">
               <caret line="85" column="33" selection-start-line="85" selection-start-column="33" selection-end-line="85" selection-end-column="33" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/level/Create.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="34" lean-forward="true" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+            <state relative-caret-position="221">
+              <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -77,8 +74,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/level/Update.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="87" selection-start-line="4" selection-start-column="87" selection-end-line="4" selection-end-column="87" />
+            <state relative-caret-position="85">
+              <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -122,7 +119,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getLayerIn</find>
       <find>weap</find>
       <find>type</find>
       <find>name</find>
@@ -152,6 +148,7 @@
       <find>level.skillText</find>
       <find>soul orb lef</find>
       <find>statue</find>
+      <find>player.flying</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -195,10 +192,10 @@
         <option value="$PROJECT_DIR$/js/level/Level3.js" />
         <option value="$PROJECT_DIR$/js/other/AI.js" />
         <option value="$PROJECT_DIR$/js/level/Level.js" />
-        <option value="$PROJECT_DIR$/js/level/Update.js" />
         <option value="$PROJECT_DIR$/js/other/Abilities.js" />
-        <option value="$PROJECT_DIR$/js/level/Create.js" />
         <option value="$PROJECT_DIR$/js/other/MonsterTypes.js" />
+        <option value="$PROJECT_DIR$/js/level/Update.js" />
+        <option value="$PROJECT_DIR$/js/level/Create.js" />
       </list>
     </option>
   </component>
@@ -419,13 +416,6 @@
       <workItem from="1557676333913" duration="13721000" />
       <workItem from="1557762299058" duration="16202000" />
       <workItem from="1557841364458" duration="17093000" />
-    </task>
-    <task id="LOCAL-00018" summary="Added invincibility cheat">
-      <created>1555800433892</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1555800433892</updated>
     </task>
     <task id="LOCAL-00019" summary="First attempt at adding attack and death animations (currently doesn't work)">
       <created>1555818777884</created>
@@ -763,11 +753,18 @@
       <option name="project" value="LOCAL" />
       <updated>1557894377175</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Added default abilities and some other improvements to the ability system">
+      <created>1557899923561</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1557899923561</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="355583000" />
+    <option name="totallyTimeSpent" value="356877000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1080,31 +1077,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/other/MonsterTypes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3332">
+          <caret line="196" column="14" selection-start-line="196" selection-start-column="14" selection-end-line="196" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/level/Level.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
           <caret line="33" column="29" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/level/Update.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="87" selection-start-line="4" selection-start-column="87" selection-end-line="4" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/other/Abilities.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="85" column="33" selection-start-line="85" selection-start-column="33" selection-end-line="85" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/level/Create.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="34" lean-forward="true" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -1115,10 +1098,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/other/MonsterTypes.js">
+    <entry file="file://$PROJECT_DIR$/js/other/Abilities.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="196" column="14" selection-start-line="196" selection-start-column="14" selection-end-line="196" selection-end-column="14" />
+        <state relative-caret-position="-1463">
+          <caret line="85" column="33" selection-start-line="85" selection-start-column="33" selection-end-line="85" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/level/Update.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/level/Create.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
         </state>
       </provider>
     </entry>

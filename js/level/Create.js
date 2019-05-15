@@ -8,7 +8,10 @@ var createText = function(level) {
         level.lvl5Text.fixedToCamera = true;
         level.lvl5Text.cameraOffset.setTo(window.innerWidth - 500, 100);
     }
-    
+
+    level.skillText = level.game.add.text(level.skillSlot.x, level.skillSlot.y - 30,
+        "", {font: "20px Arial", fill: "#f26c4f", align: "center"});
+    level.skillText.fixedToCamera = true;
 };
 
 var createSound = function(level){

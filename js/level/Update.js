@@ -96,7 +96,7 @@ var updateSprites = function(level) {
     let player = level.player;
 
     game.physics.arcade.collide(player, level.blockedLayer,);
-    if (!player.flying || !player.float) {
+    if (!player.flying && !player.float) {
         game.physics.arcade.collide(player, level.bulletLayer);
     }
 

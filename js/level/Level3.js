@@ -52,6 +52,13 @@ TheLegendOfMeta.Level3 = function() {
 
                 [[]],
             ]
+        },
+
+        {
+            type: harpy,
+            ai: [
+                [[57,6],[73,13]],
+            ]
         }
     ];
 };

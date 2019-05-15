@@ -15,6 +15,7 @@ class Level {
 
     create() {
         ///for Simple AI, temporary
+        
         createSound(this);
         createFields(this);
         createMap(this);
@@ -32,7 +33,6 @@ class Level {
         updateSprites(this);
         updatePlayerMovement(this);
         updateMonsterMovement(this);
-        updateTooltips(this);
         checkGameStatus(this);  // subclasses should define checkWinCondition()
     }
 

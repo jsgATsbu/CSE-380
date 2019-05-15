@@ -98,6 +98,10 @@ let invisibility = function() {
             this.player.alpha = 1.0;
             this.player.invisible = false;
         }, this);
+
+        return true;
+    } else {
+        return false;
     }
 };
 invisibility.charges = 1;
@@ -118,6 +122,10 @@ let strength = function() {
             let effect = this.game.add.audio('strength_end',1,false);
             effect.play();
         }, this);
+
+        return true;
+    } else {
+        return false;
     }
 };
 strength.charges = 1;
@@ -153,6 +161,10 @@ let lifeDrain = function() {
         } else {
             this.player.stats.currentHealth = this.player.stats.maxHealth;
         }
+
+        return true;
+    } else {
+        return false;
     }
 };
 lifeDrain.charges = 1;
@@ -160,9 +172,9 @@ lifeDrain.tooltip = "Drain Life from enemy";
 
 let poison = function() {
     let player = this.player;
-    let reach = getReach(player.weapon.fireAngle);
+    let reach = getReachRange(player, player.weapon.fireAngle);
 
-    let sprite = this.findSpritesByCoordinates(player.x + reach.x, player.y + reach.y)[0];
+    let sprite = this.findSpritesByCoordinateRange(reach)[0];
     if (sprite !== undefined && !sprite.poisoned) {
         sprite.stats.currentHealth -= 10;
         sprite.healthBar.setPercent(sprite.stats.currentHealth*100 / sprite.stats.maxHealth);
@@ -175,6 +187,10 @@ let poison = function() {
         this.game.time.events.add(10000, function() {
             sprite.poisoned = false;
         }, this);
+
+        return true;
+    } else {
+        return false;
     }
 };
 poison.charges = 3;
@@ -202,6 +218,10 @@ let fly = function() {
                 this.playerDeath();
             }
         }, this);
+
+        return true;
+    } else {
+        return false;
     }
 };
 fly.charges = 2;
@@ -209,19 +229,23 @@ fly.tooltip = "Allow flying over unwalkable region";
 
 let waterWalk = function() {
     if (!this.player.float) {
-        let player = this.player;
 
         this.player.float = true;
 
         this.game.time.events.add(10000, function() {
             this.player.float = false;
 
-            let tile = this.map.getTileWorldXY(player.x, player.y, 64, 64, this.bulletLayer);
-            let water = this.map.getTileWorldXY(player.x, player.y, 64, 64, this.backgroundlayer);
-            if (tile !== null || water.index === 27) {
+            let tileBullet = this.map.getTileWorldXY(this.player.x, this.player.y, 64, 64, this.bulletLayer);
+            let tileExtra = this.map.getTileWorldXY(this.player.x, this.player.y, 64, 64, this.extraLayer);
+            let water = this.map.getTileWorldXY(this.player.x, this.player.y, 64, 64, this.backgroundLayer);
+            if (tileBullet !== null || tileExtra !== null || water.index === 27) {
                 this.playerDeath();
             }
         }, this);
+
+        return true;
+    } else {
+        return false;
     }
 };
 
@@ -243,6 +267,10 @@ let strength_def = function() {
             let effect = this.game.add.audio('strength_end',1,false);
             effect.play();
         }, this);
+
+        return true;
+    } else {
+        return false;
     }
 };
 strength_def.charges = 2;

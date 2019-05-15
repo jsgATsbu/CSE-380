@@ -58,6 +58,7 @@ var setupAbilities = function(level){
 
     level.player.activeAbilityIndex = 0;
     level.player.activeAbility = level.player.abilities[0];
+    level.player.weapon.bulletFrame = level.player.activeAbility.bullet;
 
     let bg = level.game.add.image(level.game.camera.x + window.innerWidth/2 - 128,
                                   level.game.camera.y + window.innerHeight * 8/10,
@@ -91,7 +92,7 @@ var createMap = function(level) {
     level.map = level.game.add.tilemap(level.mapKey);
     level.map.addTilesetImage('tiles', 'gameTiles');
 
-    level.backgroundlayer = level.map.createLayer('backgroundLayer');
+    level.backgroundLayer = level.map.createLayer('backgroundLayer');
     if(level.map.getLayerIndex('roadLayer') !== null)
         level.roadLayer = level.map.createLayer('roadLayer');
     level.bulletLayer = level.map.createLayer('bulletLayer');
@@ -101,7 +102,7 @@ var createMap = function(level) {
         level.map.setCollisionBetween(1, 2000, true, 'extraLayer');
     }
 
-    level.backgroundlayer.resizeWorld();
+    level.backgroundLayer.resizeWorld();
 
     level.map.setCollisionBetween(1,2000,true,'bulletLayer');
     level.map.setCollisionBetween(1, 2000, true, 'blockedLayer');

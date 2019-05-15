@@ -100,9 +100,9 @@ var updateSprites = function(level) {
         game.physics.arcade.collide(player, level.bulletLayer);
     }
 
-    game.physics.arcade.collide(player, level.extraLayer);
+    // game.physics.arcade.collide(player, level.extraLayer);
 
-    if(level.extraLayer !== undefined) {
+    if(level.extraLayer !== undefined && !player.flying && !player.float) {
         game.physics.arcade.collide(player, level.extraLayer);
     }
 

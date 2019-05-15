@@ -8,7 +8,7 @@ TheLegendOfMeta.Level3 = function() {
 
     this.music = 'bgm3';
 
-    this.defaultAbilities = [attack, null, null, null];
+    this.defaultAbilities = [feather, null, null, null];
 
     this.playerProperties = {
         name: 'player',

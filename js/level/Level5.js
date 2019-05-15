@@ -7,7 +7,7 @@ TheLegendOfMeta.Level5 = function() {
     this.lvl = 5;
     this.music = 'bgm5';
 
-    this.defaultAbilities = [attack, null, null, null];
+    this.defaultAbilities = [feather, null, null, null];
 
     this.playerProperties = {
         name: 'player',

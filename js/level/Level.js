@@ -31,6 +31,7 @@ class Level {
         updateSprites(this);
         updatePlayerMovement(this);
         updateMonsterMovement(this);
+        updateTooltips(this);
         checkGameStatus(this);  // subclasses should define checkWinCondition()
     }
 

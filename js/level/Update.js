@@ -1,5 +1,27 @@
 'use strict';
 
+var updateTooltips = function(level){
+    if(level.skillText === undefined){
+        level.skillText = level.game.add.text(level.skillSlot.x, level.skillSlot.y - 30,
+            "", {font: "20px Arial", fill: "#f26c4f", align: "center"});
+        level.skillText.fixedToCamera = true;
+    }
+    for(let i=0;i<level.skillIcons.length;i++) {
+        let icon = level.skillIcons[i];
+        if (icon !== null){
+            if(icon.input === null){
+                icon.inputEnabled = true;
+            }
+            if(icon.input.pointerOver()) {
+                level.skillText.setText(level.player.abilities[i].tooltip);
+                break;
+            } else {
+                level.skillText.setText("");
+            }
+        }
+    }
+};
+
 var updateBullets = function(level){
     level.game.physics.arcade.collide(level.player.weapon.bullets, level.blockedLayer, function(bullet, tile) {
         bullet.kill();

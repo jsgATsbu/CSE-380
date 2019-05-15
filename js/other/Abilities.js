@@ -69,6 +69,8 @@ let attack = function() {
     }
 };
 
+attack.tooltip = "Basic Attack";
+
 let breakRock = function() {
     let player = this.player;
     let reach = getReach(player.weapon.fireAngle);
@@ -81,6 +83,7 @@ let breakRock = function() {
     }
 };
 breakRock.charges = 3;
+breakRock.tooltip = "Break Rock Obstacle (No damage to enemy)";
 
 let invisibility = function() {
     if (!this.player.invisible) {
@@ -94,6 +97,7 @@ let invisibility = function() {
     }
 };
 invisibility.charges = 1;
+invisibility.tooltip = "Can make user invisible and free from attack for a short period of time";
 
 let strength = function() {
     if (!this.player.strengthened) {
@@ -107,23 +111,38 @@ let strength = function() {
     }
 };
 strength.charges = 1;
+strength.tooltip = "Increase player attack";
 
 let feather = function() {
     this.player.weapon.fire();
 };
 feather.bullet = 'feather';
 feather.charges = 5;
+feather.tooltip = "Attack with feather";
 
 let freeze = function() {
     this.player.weapon.fire();
 };
 freeze.bullet = 'ice';
 freeze.charges = 3;
+freeze.tooltip = "Freeze enemy";
 
 let lifeDrain = function() {
-    // TODO melee or ranged?
+    let player = this.player;
+    let reach = getReachRange(player, player.weapon.fireAngle);
+
+    let sprite = this.findSpritesByCoordinateRange(reach)[0];
+    if (sprite !== undefined) {
+        player.attack(sprite);
+        if (this.player.stats.maxHealth - this.player.stats.currentHealth >= 50) {
+            this.player.stats.currentHealth += 50;
+        } else {
+            this.player.stats.currentHealth = this.player.stats.maxHealth;
+        }
+    }
 };
-lifeDrain.charges = 3;
+lifeDrain.charges = 1;
+lifeDrain.tooltip = "Drain Life from enemy";
 
 let poison = function() {
     let player = this.player;
@@ -145,12 +164,14 @@ let poison = function() {
     }
 };
 poison.charges = 3;
+poison.tooltip = "Poison enemy";
 
 let fireball = function() {
     this.player.weapon.fire();
 };
 fireball.bullet = 'fireball';
 fireball.charges = 3;
+fireball.tooltip = "Cast fireball";
 
 let fly = function() {
     let player = this.player;
@@ -168,6 +189,7 @@ let fly = function() {
     }
 };
 fly.charges = 2;
+fly.tooltip = "Allow flying over unwalkable region";
 
 let waterWalk = function() {
     if (!this.player.float) {
@@ -187,6 +209,7 @@ let waterWalk = function() {
 };
 
 waterWalk.charges = 1;
+waterWalk.tooltip = "Able to walk on water";
 
 let strength_def = function() {
     if (!this.player.strengthened) {
@@ -200,3 +223,4 @@ let strength_def = function() {
     }
 };
 strength_def.charges = 2;
+strength_def.tooltip = "Increase player defense";

@@ -1,14 +1,14 @@
 'use strict';
 
 var createText = function(level) {
-    if(level.mapKey !== 'level5')
-        return;
-
-    let text = "Number of Soul orb left: " + level.soulorbs.children.length;
-    let style = { font: "32px Arial", fill: "#f26c4f", align: "center" };
-    level.lvl5Text = level.game.add.text(32,32,text,style);
-    level.lvl5Text.fixedToCamera = true;
-    level.lvl5Text.cameraOffset.setTo(window.innerWidth-500,100);
+    if(level.mapKey === 'level5') {
+        let text = "Number of Soul orb left: " + level.soulorbs.children.length;
+        let style = {font: "32px Arial", fill: "#f26c4f", align: "center"};
+        level.lvl5Text = level.game.add.text(32, 32, text, style);
+        level.lvl5Text.fixedToCamera = true;
+        level.lvl5Text.cameraOffset.setTo(window.innerWidth - 500, 100);
+    }
+    
 };
 
 var createSound = function(level){
@@ -75,6 +75,7 @@ var setupAbilities = function(level){
             level.skillIcons[i] = level.game.add.image(window.innerWidth / 2 + (-128 + 61 * i) + 5,
                                                        window.innerHeight * 8 / 10 + 5,
                                                        'abilities', level.defaultAbilities[i].name);
+            level.skillIcons[i].inputEnabled = true;
             level.skillIcons[i].fixedToCamera = true;
             level.skillIcons[i].moveDown();
         }

@@ -189,15 +189,31 @@ var initializeStats = function(sprite, stats){
 
         if (Math.abs(diffX) > Math.abs(diffY)) {
             if (diffX > 0) {
-                sprite.animations.play('attackRight');
+                if(sprite.strengthened !== undefined && sprite.strengthened){
+                    sprite.animations.play('buffAttackRight')
+                }
+                else
+                    sprite.animations.play('attackRight');
             } else {
-                sprite.animations.play('attackLeft');
+                if(sprite.strengthened !== undefined && sprite.strengthened){
+                    sprite.animations.play('buffAttackLeft')
+                }
+                else
+                    sprite.animations.play('attackLeft');
             }
         } else {
             if (diffY > 0) {
-                sprite.animations.play('attackFront');
+                if(sprite.strengthened !== undefined && sprite.strengthened){
+                    sprite.animations.play('buffAttackFront')
+                }
+                else
+                    sprite.animations.play('attackFront');
             } else {
-                sprite.animations.play('attackBack');
+                if(sprite.strengthened !== undefined && sprite.strengthened){
+                    sprite.animations.play('buffAttackBack')
+                }
+                else
+                    sprite.animations.play('attackBack');
             }
         }
 

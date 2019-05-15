@@ -196,6 +196,7 @@ fly.tooltip = "Allow flying over unwalkable region";
 
 let waterWalk = function() {
     if (!this.player.float) {
+        let player = this.player;
 
         this.player.float = true;
 
@@ -203,7 +204,7 @@ let waterWalk = function() {
             this.player.float = false;
 
             let tile = this.map.getTileWorldXY(player.x, player.y, 64, 64, this.bulletLayer);
-            let water = this.map.getTileWorldXY(player.x, player.y, 64, 64, this.backgroundLayer);
+            let water = this.map.getTileWorldXY(player.x, player.y, 64, 64, this.backgroundlayer);
             if (tile !== null || water.index === 27) {
                 this.playerDeath();
             }

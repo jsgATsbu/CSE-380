@@ -23,14 +23,47 @@ let getReach = function(angle) {
             yReach = -64;
     }
 
-    return [xReach, yReach];
+    return new Phaser.Point(xReach, yReach);
+};
+
+let getReachRange = function(sprite, angle) {
+    let xMin, xMax, yMin, yMax;
+    // note: 10 pixels is considered melee range to make melee combat smoother
+    switch(angle) {
+        case 0:
+            xMin = sprite.right;
+            xMax = sprite.right + 10;
+            yMin = sprite.top;
+            yMax = sprite.bottom;
+            break;
+        case 90:
+            xMin = sprite.left;
+            xMax = sprite.right;
+            yMin = sprite.bottom;
+            yMax = sprite.bottom + 10;
+            break;
+        case 180:
+            xMin = sprite.left - 10;
+            xMax = sprite.left;
+            yMin = sprite.top;
+            yMax = sprite.bottom;
+            break;
+        case 270:
+        default:
+            xMin = sprite.left;
+            xMax = sprite.right;
+            yMin = sprite.top - 10;
+            yMax = sprite.top;
+    }
+
+    return { xMin: xMin, xMax: xMax, yMin: yMin, yMax: yMax };
 };
 
 let attack = function() {
     let player = this.player;
-    let reach = getReach(player.weapon.fireAngle);
+    let reach = getReachRange(player, player.weapon.fireAngle);
 
-    let sprite = this.findSpritesByCoordinates(player.x + reach[0], player.y + reach[1])[0];
+    let sprite = this.findSpritesByCoordinateRange(reach)[0];
     if (sprite !== undefined) {
         player.attack(sprite);
     }
@@ -40,10 +73,10 @@ let breakRock = function() {
     let player = this.player;
     let reach = getReach(player.weapon.fireAngle);
 
-    let tile = this.map.getTileWorldXY(player.x + reach[0], player.y + reach[1],
+    let tile = this.map.getTileWorldXY(player.x + reach.x, player.y + reach.y,
                                        64, 64, this.blockedLayer);
     if (tile !== null && (tile.index === 48)) {  // if the tile is a rock; note that tiles are indexed from 1
-        this.map.removeTileWorldXY(player.x + reach[0], player.y + reach[1],
+        this.map.removeTileWorldXY(player.x + reach.x, player.y + reach.y,
                                    64, 64, this.blockedLayer);
     }
 };
@@ -96,7 +129,7 @@ let poison = function() {
     let player = this.player;
     let reach = getReach(player.weapon.fireAngle);
 
-    let sprite = this.findSpritesByCoordinates(player.x + reach[0], player.y + reach[1])[0];
+    let sprite = this.findSpritesByCoordinates(player.x + reach.x, player.y + reach.y)[0];
     if (sprite !== undefined && !sprite.poisoned) {
         sprite.stats.currentHealth -= 10;
         sprite.healthBar.setPercent(sprite.stats.currentHealth*100 / sprite.stats.maxHealth);

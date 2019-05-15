@@ -79,6 +79,8 @@ var setupAbilities = function(level){
             level.skillIcons[i].moveDown();
         }
     }
+
+    level.chargesText = [null, null, null, null];
 };
 
 var createMap = function(level) {

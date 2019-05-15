@@ -55,14 +55,25 @@ class Level {
         return result;
     }
 
+    findSpritesByCoordinateRange(range) {
+        let result = [];
+        this.game.sprites.forEach(function (sprite) {
+            if (range.xMin < sprite.right && range.xMax > sprite.left &&
+                range.yMin < sprite.bottom && range.yMax > sprite.top) {
+                result.push(sprite);
+            }
+        });
+        return result;
+    }
+
     addAbility(ability) {
         let player = this.player;
-        // noinspection JSUnresolvedVariable
-        let abilityIcons = this.skillIcons;
 
         let currentIndex = player.abilities.indexOf(ability);
         if (currentIndex !== -1) {
             player.charges[currentIndex] += ability.charges;
+            // noinspection JSUnresolvedVariable
+            this.chargesText[currentIndex].setText(player.charges[currentIndex]);
             return;
         }
 
@@ -80,27 +91,47 @@ class Level {
                                        'abilities', ability.name);
         icon.fixedToCamera = true;
         icon.moveDown();
-        abilityIcons[nextIndex] = icon;
+        for (let i = 0; i < nextIndex; i++) icon.moveDown();  // icons overlap, so have to keep moving down
+        // noinspection JSUnresolvedVariable
+        this.skillIcons[nextIndex] = icon;
+
+        let text = this.game.add.text(window.innerWidth/2 + (-128 + 61 * nextIndex) + 66,
+                                      window.innerHeight * 8/10 + 66,
+                                      ability.charges, { font: '8pt Courier New', fill: 'white' });
+        text.fixedToCamera = true;
+        text.anchor.setTo(1, 1);
+        // noinspection JSUnresolvedVariable
+        this.chargesText[nextIndex] = text;
     }
 
     removeAbility(ability) {
         let index = this.player.abilities.indexOf(ability);
         // noinspection JSUnresolvedVariable
         let icons = this.skillIcons;
+        // noinspection JSUnresolvedVariable
+        let chargesText = this.chargesText;
 
         this.player.abilities.splice(index, 1);
         this.player.abilities.push(null);
         this.player.charges.splice(index, 1);
         this.player.charges.push(null);
 
+        if (this.player.abilities[this.player.activeAbilityIndex] === null) {
+            this.player.activeAbilityIndex--;
+        }
         this.selectAbility(this.player.activeAbilityIndex);
 
         icons[index].destroy();
+        chargesText[index].destroy();
         icons.splice(index, 1);
+        chargesText.splice(index, 1);
         icons.push(null);
+        chargesText.push(null);
         for(let i = index; i < icons.length; i++) {
-            if (icons[i] !== null)
+            if (icons[i] !== null) {
                 icons[i].cameraOffset.x -= 61;
+                chargesText[i].cameraOffset.x -= 61;
+            }
         }
     }
 

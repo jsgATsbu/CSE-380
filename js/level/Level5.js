@@ -51,5 +51,5 @@ TheLegendOfMeta.Level5 = function() {
 TheLegendOfMeta.Level5.prototype = Object.create(Level.prototype);
 
 TheLegendOfMeta.Level5.prototype.checkWinCondition = function() {
-    // TODO
+    return this.soulorbs.children.length === 0;
 };

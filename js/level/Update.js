@@ -195,13 +195,29 @@ var animateSprite = function(sprite) {
 
     let velocity = sprite.body.velocity;
     if (velocity.x > 0) {  // don't restart an already playing animation
-        sprite.animations.play('walkRight');
+        if(sprite.strengthened !== undefined && sprite.strengthened){
+            sprite.animations.play('buffWalkRight')
+        }
+        else
+            sprite.animations.play('walkRight');
     } else if (velocity.x < 0) {
-        sprite.animations.play('walkLeft');
+        if(sprite.strengthened !== undefined && sprite.strengthened){
+            sprite.animations.play('buffWalkLeft')
+        }
+        else
+            sprite.animations.play('walkLeft');
     } else if (velocity.y > 0) {
-        sprite.animations.play('walkFront');
+        if(sprite.strengthened !== undefined && sprite.strengthened){
+            sprite.animations.play('buffWalkFront')
+        }
+        else
+            sprite.animations.play('walkFront');
     } else if (velocity.y < 0) {
-        sprite.animations.play('walkBack');
+        if(sprite.strengthened !== undefined && sprite.strengthened){
+            sprite.animations.play('buffWalkFront')
+        }
+        else
+            sprite.animations.play('walkBack');
     } else {
         sprite.animations.stop(sprite.animations.currentAnim.name, true);
     }

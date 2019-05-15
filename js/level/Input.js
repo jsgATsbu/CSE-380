@@ -54,7 +54,7 @@ var setupInput = function(obj) {
     obj.iKey.onDown.add(function() {
         obj.player.invincible = !obj.player.invincible;
     }, obj);
-    obj.pKey.onDown.add(killAll, obj);
+    obj.pKey.onDown.add(skip, obj);
 };
 
 var pause = function(obj) {
@@ -112,10 +112,10 @@ var selectAbilityWrapper = function(obj, num) {  // obj is automatically passed 
     this.selectAbility(num);
 };
 
-var killAll = function() {
-    this.monsters.forEach(function(mon) {
-        mon.healthBar.kill();
-        mon.stats.currentHealth = 0;
-        mon.animations.play("death", 2, false, true);
-    });
+var skip = function() {
+    if(this.mapKey === 'level6') {
+        this.state.start("ResultScreen", true, false, 'final', this.lvl);
+    } else {
+        this.state.start("ResultScreen", true, false, 'win', this.lvl);
+    }
 };

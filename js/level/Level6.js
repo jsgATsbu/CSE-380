@@ -78,5 +78,9 @@ TheLegendOfMeta.Level6 = function() {
 TheLegendOfMeta.Level6.prototype = Object.create(Level.prototype);
 
 TheLegendOfMeta.Level6.prototype.checkWinCondition = function() {
-    // TODO
+    let death = this.monsters.find(function(monster) {
+        return monster.key === 'death';
+    });
+
+    return !death;
 };

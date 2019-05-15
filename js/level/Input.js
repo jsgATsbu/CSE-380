@@ -16,10 +16,11 @@ var setupInput = function(obj) {
         if (obj.game.paused) {
             handleClickPaused(obj, event.clientX + obj.game.camera.x, event.clientY + obj.game.camera.y);
         } else if (player.stats.currentHealth > 0) {
-            player.activeAbility.call(obj);
+            let useCharge = player.activeAbility.call(obj);
+            if (useCharge === undefined) useCharge = true;
 
             let index = player.activeAbilityIndex;
-            if (!obj.defaultAbilities.includes(player.activeAbility)) {
+            if (useCharge && !obj.defaultAbilities.includes(player.activeAbility)) {
                 player.charges[index] -= 1;
                 obj.chargesText[index].setText(player.charges[index]);
             }

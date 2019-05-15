@@ -25,6 +25,7 @@ class Level {
         setupAbilities(this);
         setupInput(this);
         createText(this);
+
     }
 
     update() {
@@ -68,6 +69,9 @@ class Level {
     }
 
     addAbility(ability) {
+        if(ability === undefined){
+            return;
+        }
         let player = this.player;
 
         let currentIndex = player.abilities.indexOf(ability);

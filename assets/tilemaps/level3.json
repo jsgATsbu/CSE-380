@@ -401,6 +401,18 @@
                  "width":40,
                  "x":1801.67306729003,
                  "y":2224.04074135916
+                }, 
+                {
+                 "gid":357,
+                 "height":64,
+                 "id":61,
+                 "name":"harpy1",
+                 "rotation":0,
+                 "type":"harpy",
+                 "visible":true,
+                 "width":64,
+                 "x":3652.32026688907,
+                 "y":509.481234361968
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -409,7 +421,7 @@
          "y":0
         }],
  "nextlayerid":13,
- "nextobjectid":60,
+ "nextobjectid":62,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.3",
@@ -479,6 +491,19 @@
          "tilecount":1,
          "tileheight":40,
          "tilewidth":40
+        }, 
+        {
+         "columns":4,
+         "firstgid":357,
+         "image":"..\/images\/sprite\/harpy.png",
+         "imageheight":768,
+         "imagewidth":256,
+         "margin":0,
+         "name":"harpy",
+         "spacing":0,
+         "tilecount":48,
+         "tileheight":64,
+         "tilewidth":64
         }],
  "tilewidth":64,
  "type":"map",

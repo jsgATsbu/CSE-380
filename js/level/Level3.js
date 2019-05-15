@@ -52,6 +52,13 @@ TheLegendOfMeta.Level3 = function() {
 
                 [[]],
             ]
+        },
+
+        {
+            type: harpy,
+            ai: [
+                [[57,6],[73,13]],
+            ]
         }
     ];
 };
@@ -59,5 +66,9 @@ TheLegendOfMeta.Level3 = function() {
 TheLegendOfMeta.Level3.prototype = Object.create(Level.prototype);
 
 TheLegendOfMeta.Level3.prototype.checkWinCondition = function() {
-    // TODO
+    let death = this.monsters.find(function(monster) {
+        return monster.key === 'statue';
+    });
+
+    return !death;
 };

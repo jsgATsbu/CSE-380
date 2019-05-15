@@ -81,6 +81,9 @@ let breakRock = function() {
     if (tile !== null && (tile.index === 48)) {  // if the tile is a rock; note that tiles are indexed from 1
         this.map.removeTileWorldXY(player.x + reach.x, player.y + reach.y,
                                    64, 64, this.blockedLayer);
+        return true;
+    } else {
+        return false;
     }
 };
 breakRock.charges = 3;
@@ -200,6 +203,7 @@ fly.tooltip = "Allow flying over unwalkable region";
 
 let waterWalk = function() {
     if (!this.player.float) {
+        let player = this.player;
 
         this.player.float = true;
 
@@ -207,7 +211,7 @@ let waterWalk = function() {
             this.player.float = false;
 
             let tile = this.map.getTileWorldXY(player.x, player.y, 64, 64, this.bulletLayer);
-            let water = this.map.getTileWorldXY(player.x, player.y, 64, 64, this.backgroundLayer);
+            let water = this.map.getTileWorldXY(player.x, player.y, 64, 64, this.backgroundlayer);
             if (tile !== null || water.index === 27) {
                 this.playerDeath();
             }

@@ -19,7 +19,6 @@ TheLegendOfMeta.Level2 = function() {
             type: werewolf,
             ai: [
                 [[9,5], [15, 33]],
-                [[47, 62], [75, 62]],
                 [[24, 74], [27, 57], [24, 74], [12, 60]],
                 [[76, 28]],
                 [[78, 28]]
@@ -47,7 +46,8 @@ TheLegendOfMeta.Level2 = function() {
                 [[55, 55], [65, 55]],
                 [[76, 7], [67, 20]],
                 [[76, 30]],
-                [[78, 30]]
+                [[78, 30]],
+                [[47, 62], [75, 62]]
             ]
         }
     ];
@@ -55,7 +55,7 @@ TheLegendOfMeta.Level2 = function() {
 
 TheLegendOfMeta.Level2.prototype = Object.create(Level.prototype);
 
-// TheLegendOfMeta.Level2.prototype.checkWinCondition = function() {
-//     let playerTile = this.map.getTileWorldXY(this.player.x, this.player.y);
-//     return playerTile.x === 79 && playerTile.y === 36;
-// };
+TheLegendOfMeta.Level2.prototype.checkWinCondition = function() {
+    let playerTile = this.map.getTileWorldXY(this.player.x, this.player.y);
+    return playerTile.x === 79 && playerTile.y === 36;
+};

@@ -62,13 +62,14 @@ let getReachRange = function(sprite, angle) {
 let attack = function() {
     let player = this.player;
     let reach = getReachRange(player, player.weapon.fireAngle);
+    let effect = this.game.add.audio('attack',1,false);
+    effect.play();
 
     let sprite = this.findSpritesByCoordinateRange(reach)[0];
     if (sprite !== undefined) {
         player.attack(sprite);
     }
 };
-
 attack.tooltip = "Basic Attack";
 
 let breakRock = function() {
@@ -114,6 +115,8 @@ strength.charges = 1;
 strength.tooltip = "Increase player attack";
 
 let feather = function() {
+    let effect = this.game.add.audio('feather',1,false);
+    effect.play();
     this.player.weapon.fire();
 };
 feather.bullet = 'feather';
@@ -121,6 +124,8 @@ feather.charges = 5;
 feather.tooltip = "Attack with feather";
 
 let freeze = function() {
+    let effect = this.game.add.audio('ice',1,false);
+    effect.play();
     this.player.weapon.fire();
 };
 freeze.bullet = 'ice';
@@ -167,6 +172,8 @@ poison.charges = 3;
 poison.tooltip = "Poison enemy";
 
 let fireball = function() {
+    let effect = this.game.add.audio('fireball',1,false);
+    effect.play();
     this.player.weapon.fire();
 };
 fireball.bullet = 'fireball';

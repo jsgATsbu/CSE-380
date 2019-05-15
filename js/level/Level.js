@@ -23,10 +23,10 @@ class Level {
         setupAbilities(this);
         setupInput(this);
         createText(this);
-
     }
 
     update() {
+        updateTooltips(this);
         updateBullets(this);
         updateSprites(this);
         updatePlayerMovement(this);

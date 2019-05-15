@@ -40,9 +40,10 @@ class AI {
             return;
         }
 
-        /*if (this.patrolList.length === 1) {
+        // without this, level3 is laggy
+        if (this.monster.spriteType.spriteKey === "statue") {
             return;
-        }*/
+        }
 
         let start = this.level.map.getTileWorldXY(this.monster.x, this.monster.y);
 

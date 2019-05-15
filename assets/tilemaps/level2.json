@@ -67,18 +67,6 @@
                  "y":4756.24242424242
                 }, 
                 {
-                 "gid":353,
-                 "height":64,
-                 "id":6,
-                 "name":"werewolf1",
-                 "rotation":0,
-                 "type":"werewolf",
-                 "visible":true,
-                 "width":64,
-                 "x":464.636363636364,
-                 "y":1647.15151515152
-                }, 
-                {
                  "gid":393,
                  "height":64,
                  "id":7,
@@ -106,7 +94,7 @@
                  "gid":353,
                  "height":64,
                  "id":12,
-                 "name":"werewolf2",
+                 "name":"werewolf1",
                  "rotation":0,
                  "type":"werewolf",
                  "visible":true,
@@ -115,22 +103,10 @@
                  "y":3922.90909090909
                 }, 
                 {
-                 "gid":313,
-                 "height":64,
-                 "id":13,
-                 "name":"dreadFace2",
-                 "rotation":0,
-                 "type":"dreadFace",
-                 "visible":true,
-                 "width":64,
-                 "x":3728.60606060606,
-                 "y":1283.51515151515
-                }, 
-                {
                  "gid":353,
                  "height":64,
                  "id":15,
-                 "name":"werewolf3",
+                 "name":"werewolf2",
                  "rotation":0,
                  "type":"werewolf",
                  "visible":true,
@@ -142,7 +118,7 @@
                  "gid":353,
                  "height":64,
                  "id":16,
-                 "name":"werewolf4",
+                 "name":"werewolf3",
                  "rotation":0,
                  "type":"werewolf",
                  "visible":true,
@@ -269,6 +245,30 @@
                  "width":64,
                  "x":2992,
                  "y":4062
+                }, 
+                {
+                 "gid":313,
+                 "height":64,
+                 "id":29,
+                 "name":"dreadFace2",
+                 "rotation":0,
+                 "type":"dreadFace",
+                 "visible":true,
+                 "width":64,
+                 "x":520,
+                 "y":1962
+                }, 
+                {
+                 "gid":393,
+                 "height":64,
+                 "id":30,
+                 "name":"alien2",
+                 "rotation":0,
+                 "type":"alien",
+                 "visible":true,
+                 "width":64,
+                 "x":3704,
+                 "y":1338
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -277,7 +277,7 @@
          "y":0
         }],
  "nextlayerid":7,
- "nextobjectid":29,
+ "nextobjectid":31,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.3",

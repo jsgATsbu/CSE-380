@@ -14,8 +14,6 @@ class Level {
     }
 
     create() {
-        ///for Simple AI, temporary
-        
         createSound(this);
         createFields(this);
         createMap(this);
@@ -41,17 +39,6 @@ class Level {
         map.objects[layer].forEach(function(element) {
             if (element.type === type) {
                 result.push(element);
-            }
-        });
-        return result;
-    }
-
-    findSpritesByCoordinates(x, y) {
-        let result = [];
-        this.game.sprites.forEach(function (sprite) {
-            if (x > sprite.left && x < sprite.right &&
-                y > sprite.top  && y < sprite.bottom) {
-                result.push(sprite);
             }
         });
         return result;

@@ -401,18 +401,6 @@
                  "width":40,
                  "x":1801.67306729003,
                  "y":2224.04074135916
-                }, 
-                {
-                 "gid":357,
-                 "height":64,
-                 "id":61,
-                 "name":"harpy1",
-                 "rotation":0,
-                 "type":"harpy",
-                 "visible":true,
-                 "width":64,
-                 "x":3652.32026688907,
-                 "y":509.481234361968
                 }],
          "opacity":1,
          "type":"objectgroup",
